@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheatsheets - Library of Summaries and Cheatsheets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .cheatsheet-list {
+            list-style: none;
+        }
+
+        .cheatsheet-item {
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .cheatsheet-item:hover {
+            border-left-color: #764ba2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .cheatsheet-item a {
+            display: block;
+            padding: 20px;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .cheatsheet-item a:hover {
+            color: #667eea;
+        }
+
+        .cheatsheet-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cheatsheet-desc {
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Cheatsheets Library</h1>
+        <p class="subtitle">Library of summaries and cheatsheets on various topics</p>
+
+        <ul class="cheatsheet-list">
+            <li class="cheatsheet-item">
+                <a href="01_sdes_ito_formula.html">
+                    <div class="cheatsheet-title">Stochastic Differential Equations & Ito Formula</div>
+                    <div class="cheatsheet-desc">Applications and quant interview most asked questions</div>
+                </a>
+            </li>
+        </ul>
+
+        <footer>
+            More cheatsheets coming soon!
+        </footer>
+    </div>
+</body>
+</html>
