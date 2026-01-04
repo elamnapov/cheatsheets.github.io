@@ -183,15 +183,196 @@
             border-radius: 4px;
             transition: width 0.3s ease;
         }
+    
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                column-count: 1;
+                padding: 20px;
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#topic-1">1. Definition of a Stochastic Process and Key Examples (Brownian Motion, Poisson Process)</a></li>
+                <li><a href="#topic-2">2. Filtration and Adapted Processes in Probability Spaces</a></li>
+                <li><a href="#topic-3">3. Martingales, Submartingales, and Supermartingales</a></li>
+                <li><a href="#topic-4">4. Quadratic Variation of a Stochastic Process</a></li>
+                <li><a href="#topic-5">5. Itô's Definition of Stochastic Integrals (for Simple Processes)</a></li>
+                <li><a href="#topic-6">6. Extension of Itô Integrals to General Integrands (L² Theory)</a></li>
+                <li><a href="#topic-7">7. Itô's Isometry and Its Proof</a></li>
+                <li><a href="#topic-8">8. Itô's Lemma (1D and Multidimensional Versions)</a></li>
+                <li><a href="#topic-9">9. Derivation of Itô's Lemma via Taylor Expansion</a></li>
+                <li><a href="#topic-10">10. Geometric Brownian Motion (GBM) and Its SDE</a></li>
+                <li><a href="#topic-11">11. Solution to GBM: Log-Normal Distribution of Stock Prices</a></li>
+                <li><a href="#topic-12">12. Ornstein-Uhlenbeck (OU) Process and Mean-Reverting SDE</a></li>
+                <li><a href="#topic-13">13. Solution to the Ornstein-Uhlenbeck (OU) Process (Explicit Form)</a></li>
+                <li><a href="#topic-14">14. Cox-Ingersoll-Ross (CIR) Model for Interest Rates</a></li>
+                <li><a href="#topic-15">15. Existence and Uniqueness of SDE Solutions (Lipschitz Conditions)</a></li>
+                <li><a href="#topic-16">16. Strong vs. Weak Solutions of SDEs</a></li>
+                <li><a href="#topic-17">17. Girsanov's Theorem and Change of Measure</a></li>
+                <li><a href="#topic-18">18. Radon-Nikodym Derivative and Its Role in Measure Change</a></li>
+                <li><a href="#topic-19">19. Novikov's Condition for Girsanov's Theorem</a></li>
+                <li><a href="#topic-20">20. Black-Scholes SDE and Its Derivation from GBM</a></li>
+                <li><a href="#topic-21">21. Black-Scholes PDE via Itô's Lemma and Hedging</a></li>
+                <li><a href="#topic-22">22. Feynman-Kac Theorem and Its Connection to PDEs</a></li>
+                <li><a href="#topic-23">23. Risk-Neutral Pricing and Martingale Measures</a></li>
+                <li><a href="#topic-24">24. Derivation of the Black-Scholes Formula via SDEs</a></li>
+                <li><a href="#topic-25">25. Local Volatility Models (Dupire's Equation)</a></li>
+                <li><a href="#topic-26">26. Stochastic Volatility Models (Heston Model)</a></li>
+                <li><a href="#topic-27">27. Heston Model SDE and Its Characteristic Function</a></li>
+                <li><a href="#topic-28">28. Affine Processes and Their Applications in Finance</a></li>
+                <li><a href="#topic-29">29. Jump-Diffusion Processes (Merton Model)</a></li>
+                <li><a href="#topic-30">30. Itô's Lemma for Jump-Diffusion Processes</a></li>
+                <li><a href="#topic-31">31. Lévy Processes and Their Role in Finance</a></li>
+                <li><a href="#topic-32">32. Poisson Processes and Compound Poisson Processes</a></li>
+                <li><a href="#topic-33">33. Change of Time in SDEs (Dambis-Dubins-Schwarz Theorem)</a></li>
+                <li><a href="#topic-34">34. Stochastic Differential Equations with Jumps (Kunita's Lemma)</a></li>
+                <li><a href="#topic-35">35. Forward SDEs (FSDEs) and Backward SDEs (BSDEs)</a></li>
+                <li><a href="#topic-36">36. Nonlinear Feynman-Kac Representation for BSDEs</a></li>
+                <li><a href="#topic-37">37. Malliavin Calculus Basics (Skorokhod Integral, Clark-Ocone Formula)</a></li>
+                <li><a href="#topic-38">38. Greeks via Malliavin Calculus (Delta, Vega, Gamma)</a></li>
+                <li><a href="#topic-39">39. Monte Carlo Simulation of SDEs (Euler-Maruyama Scheme)</a></li>
+                <li><a href="#topic-40">40. Strong and Weak Convergence of Numerical Schemes</a></li>
+                <li><a href="#topic-41">41. Milstein Scheme for Higher-Order SDE Approximation</a></li>
+                <li><a href="#topic-42">42. Variance Reduction Techniques in SDE Simulation</a></li>
+                <li><a href="#topic-43">43. Stochastic Control and Hamilton-Jacobi-Bellman (HJB) Equation</a></li>
+                <li><a href="#topic-44">44. Optimal Stopping Problems (American Options)</a></li>
+                <li><a href="#topic-45">45. Reflected SDEs and Their Applications (Barrier Options)</a></li>
+                <li><a href="#topic-46">46. Local Time of Brownian Motion and Its Properties</a></li>
+                <li><a href="#topic-47">47. Tanaka's Formula and Its Applications</a></li>
+                <li><a href="#topic-48">48. Change of Numéraire Technique in Derivatives Pricing</a></li>
+                <li><a href="#topic-49">49. Forward LIBOR Model (BGM) and Its SDEs</a></li>
+                <li><a href="#topic-50">50. Common Quant Interview Questions on SDEs and Itô's Lemma (Tricky Cases)</a></li>
+            </ol>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
         <h1>'Stochastic_Differential_Equations_and_Ito_formula_applications_and_quant_interview_most_asked_questions'</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
-<h3>Definition of a Stochastic Process and Key Examples (Brownian Motion, Poisson Process)</h3>
+<h3 id="topic-1">Topic 1: Definition of a Stochastic Process and Key Examples (Brownian Motion, Poisson Process)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Process:</strong> A stochastic process is a collection of random variables \( \{X_t\}_{t \in T} \) indexed by a set \( T \) (often representing time), defined on a common probability space \( (\Omega, \mathcal{F}, \mathbb{P}) \). For each \( t \in T \), \( X_t \) is a random variable, and for each \( \omega \in \Omega \), \( X_t(\omega) \) is a realization (or sample path) of the process.</p>
@@ -421,7 +602,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Filtration and Adapted Processes in Probability Spaces</h3>
+<h3 id="topic-2">Topic 2: Filtration and Adapted Processes in Probability Spaces</h3>
 
 <div class="definition">
     <p><strong>Probability Space:</strong> A probability space is a mathematical triplet \((\Omega, \mathcal{F}, \mathbb{P})\) where:</p>
@@ -524,7 +705,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Martingales, Submartingales, and Supermartingales</h3>
+<h3 id="topic-3">Topic 3: Martingales, Submartingales, and Supermartingales</h3>
 
 <div class="definition">
     <p><strong>Stochastic Process:</strong> A collection of random variables \( \{X_t\}_{t \in T} \) defined on a common probability space \( (\Omega, \mathcal{F}, \mathbb{P}) \), indexed by a set \( T \) (often representing time).</p>
@@ -710,7 +891,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Quadratic Variation of a Stochastic Process</h3>
+<h3 id="topic-4">Topic 4: Quadratic Variation of a Stochastic Process</h3>
 
 <div class="definition">
     <p><strong>Definition:</strong> The <strong>quadratic variation</strong> of a stochastic process \( X_t \) over the interval \([0, T]\) is a measure of the "total variability" of the process due to its continuous fluctuations. It is defined as the limit in probability of the sum of squared increments of the process over a partition of the interval as the mesh size of the partition tends to zero.</p>
@@ -967,7 +1148,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Itô’s Definition of Stochastic Integrals (for Simple Processes)</h3>
+<h3 id="topic-5">Topic 5: Itô's Definition of Stochastic Integrals (for Simple Processes)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Integral:</strong> A stochastic integral is a generalization of the deterministic integral to incorporate randomness. Itô's stochastic integral is defined for a class of stochastic processes called <em>integrands</em> with respect to another stochastic process called the <em>integrator</em>, typically a Brownian motion \( W_t \).</p>
@@ -1099,7 +1280,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Extension of Itô Integrals to General Integrands (L² Theory)</h3>
+<h3 id="topic-6">Topic 6: Extension of Itô Integrals to General Integrands (L² Theory)</h3>
 
 <div class="definition">
     <p><strong>Itô Integral for Simple Processes:</strong>
@@ -1301,7 +1482,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Itô’s Isometry and Its Proof</h3>
+<h3 id="topic-7">Topic 7: Itô's Isometry and Its Proof</h3>
 
 <div class="definition">
     <p><strong>Itô’s Isometry:</strong> Itô’s Isometry is a fundamental result in stochastic calculus that provides an isometric relationship between the space of square-integrable stochastic processes and the space of square-integrable random variables. Specifically, it states that the expected value of the square of the Itô integral of a process is equal to the expected value of the integral of the square of the process.</p>
@@ -1462,7 +1643,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Itô’s Lemma (1D and Multidimensional Versions)</h3>
+<h3 id="topic-8">Topic 8: Itô's Lemma (1D and Multidimensional Versions)</h3>
 
 <div class="definition">
     <p><strong>Definition (Itô Process):</strong> An Itô process \( X_t \) is a stochastic process that can be expressed as:</p>
@@ -1613,7 +1794,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Derivation of Itô’s Lemma via Taylor Expansion</h3>
+<h3 id="topic-9">Topic 9: Derivation of Itô's Lemma via Taylor Expansion</h3>
 
 <div class="definition">
     <p><strong>Itô’s Lemma (Itô’s Formula):</strong> A fundamental result in stochastic calculus that provides a way to compute the differential of a function of a stochastic process. It generalizes the chain rule from ordinary calculus to stochastic processes driven by Brownian motion.</p>
@@ -1806,7 +1987,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Geometric Brownian Motion (GBM) and Its SDE</h3>
+<h3 id="topic-10">Topic 10: Geometric Brownian Motion (GBM) and Its SDE</h3>
 
 <div class="definition">
     <p><strong>Geometric Brownian Motion (GBM):</strong> A continuous-time stochastic process used to model the evolution of stock prices, interest rates, and other financial variables. It is characterized by a drift term (representing the average growth rate) and a volatility term (representing the random fluctuations). GBM ensures that the modeled quantity remains positive, making it particularly suitable for financial applications.</p>
@@ -1964,7 +2145,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Solution to GBM: Log-Normal Distribution of Stock Prices</h3>
+<h3 id="topic-11">Topic 11: Solution to GBM: Log-Normal Distribution of Stock Prices</h3>
 
 <div class="definition">
     <p><strong>Geometric Brownian Motion (GBM):</strong> A continuous-time stochastic process used to model stock prices in the Black-Scholes framework. It is defined by the stochastic differential equation (SDE):</p>
@@ -2085,7 +2266,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Ornstein-Uhlenbeck (OU) Process and Mean-Reverting SDE</h3>
+<h3 id="topic-12">Topic 12: Ornstein-Uhlenbeck (OU) Process and Mean-Reverting SDE</h3>
 
 <div class="definition">
     <p><strong>Ornstein-Uhlenbeck (OU) Process:</strong>
@@ -2282,7 +2463,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Solution to the Ornstein-Uhlenbeck (OU) Process (Explicit Form)</h3>
+<h3 id="topic-13">Topic 13: Solution to the Ornstein-Uhlenbeck (OU) Process (Explicit Form)</h3>
 
 <div class="definition">
     <p><strong>Ornstein-Uhlenbeck (OU) Process:</strong>
@@ -2420,7 +2601,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Cox-Ingersoll-Ross (CIR) Model for Interest Rates</h3>
+<h3 id="topic-14">Topic 14: Cox-Ingersoll-Ross (CIR) Model for Interest Rates</h3>
 
 <div class="definition">
     <p><strong>Cox-Ingersoll-Ross (CIR) Model:</strong> A mathematical model for describing the evolution of interest rates, introduced by John C. Cox, Jonathan E. Ingersoll, and Stephen A. Ross in 1985. The CIR model is a type of <em>one-factor short-rate model</em> that captures the mean-reverting behavior of interest rates while ensuring they remain non-negative.</p>
@@ -2604,7 +2785,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Existence and Uniqueness of SDE Solutions (Lipschitz Conditions)</h3>
+<h3 id="topic-15">Topic 15: Existence and Uniqueness of SDE Solutions (Lipschitz Conditions)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong>
@@ -2833,7 +3014,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Strong vs. Weak Solutions of SDEs</h3>
+<h3 id="topic-16">Topic 16: Strong vs. Weak Solutions of SDEs</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong>
@@ -2973,7 +3154,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Girsanov’s Theorem and Change of Measure</h3>
+<h3 id="topic-17">Topic 17: Girsanov's Theorem and Change of Measure</h3>
 
 <div class="definition">
     <p><strong>Girsanov’s Theorem:</strong> A fundamental result in stochastic calculus that describes how the dynamics of stochastic processes change when the underlying probability measure is altered. It is particularly useful for removing drifts from stochastic differential equations (SDEs) or introducing them, facilitating the pricing of financial derivatives under different measures (e.g., risk-neutral measure).</p>
@@ -3204,7 +3385,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Radon-Nikodym Derivative and Its Role in Measure Change</h3>
+<h3 id="topic-18">Topic 18: Radon-Nikodym Derivative and Its Role in Measure Change</h3>
 
 <div class="definition">
     <p><strong>Radon-Nikodym Derivative:</strong> Let \((\Omega, \mathcal{F})\) be a measurable space, and let \(\mathbb{P}\) and \(\mathbb{Q}\) be two probability measures on \((\Omega, \mathcal{F})\). If \(\mathbb{Q}\) is absolutely continuous with respect to \(\mathbb{P}\) (denoted \(\mathbb{Q} \ll \mathbb{P}\)), then there exists a non-negative, \(\mathcal{F}\)-measurable function \(Z: \Omega \to \mathbb{R}\) such that for any \(A \in \mathcal{F}\),</p>
@@ -3383,7 +3564,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Novikov’s Condition for Girsanov’s Theorem</h3>
+<h3 id="topic-19">Topic 19: Novikov's Condition for Girsanov's Theorem</h3>
 
 <div class="definition">
     <p><strong>Girsanov’s Theorem:</strong> A fundamental result in stochastic calculus that describes how the dynamics of stochastic processes change under an equivalent probability measure. Specifically, it provides a way to transform a Brownian motion under one measure into a Brownian motion with drift under another equivalent measure.</p>
@@ -3492,7 +3673,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Black-Scholes SDE and Its Derivation from GBM</h3>
+<h3 id="topic-20">Topic 20: Black-Scholes SDE and Its Derivation from GBM</h3>
 
 <div class="definition">
     <p><strong>Geometric Brownian Motion (GBM):</strong> A continuous-time stochastic process where the logarithm of the variable follows a Brownian motion with drift. It is commonly used to model stock prices in financial mathematics.</p>
@@ -3670,7 +3851,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Black-Scholes PDE via Itô’s Lemma and Hedging</h3>
+<h3 id="topic-21">Topic 21: Black-Scholes PDE via Itô's Lemma and Hedging</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong> An equation of the form</p>
@@ -3807,7 +3988,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Feynman-Kac Theorem and Its Connection to PDEs</h3>
+<h3 id="topic-22">Topic 22: Feynman-Kac Theorem and Its Connection to PDEs</h3>
 
 <div class="definition">
     <p><strong>Feynman-Kac Theorem:</strong> The Feynman-Kac theorem establishes a profound connection between stochastic differential equations (SDEs) and partial differential equations (PDEs). It provides a probabilistic representation for the solutions of certain linear parabolic PDEs using expectations of functionals of diffusion processes.</p>
@@ -3972,7 +4153,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Risk-Neutral Pricing and Martingale Measures</h3>
+<h3 id="topic-23">Topic 23: Risk-Neutral Pricing and Martingale Measures</h3>
 
 <div class="definition">
     <p><strong>Risk-Neutral Probability Measure (ℚ):</strong>
@@ -4131,7 +4312,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Derivation of the Black-Scholes Formula via SDEs</h3>
+<h3 id="topic-24">Topic 24: Derivation of the Black-Scholes Formula via SDEs</h3>
 
 <div class="definition">
     <p><strong>Black-Scholes Model:</strong> A mathematical model for pricing an options contract, particularly European options. It assumes that the price of the underlying asset follows a geometric Brownian motion with constant drift and volatility.</p>
@@ -4291,7 +4472,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Local Volatility Models (Dupire’s Equation)</h3>
+<h3 id="topic-25">Topic 25: Local Volatility Models (Dupire's Equation)</h3>
 
 <div class="definition">
     <p><strong>Local Volatility Model:</strong> A deterministic function \(\sigma_{LV}(S_t, t)\) that describes the volatility of an asset's price \(S_t\) as a function of both the current asset price and time. Unlike constant volatility models (e.g., Black-Scholes), local volatility models allow for a more accurate fit to the observed market prices of vanilla options.</p>
@@ -4465,7 +4646,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Stochastic Volatility Models (Heston Model)</h3>
+<h3 id="topic-26">Topic 26: Stochastic Volatility Models (Heston Model)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Volatility Models:</strong> A class of financial models where the volatility of an asset's price is not constant but follows a stochastic (random) process. These models address the limitations of constant volatility models (e.g., Black-Scholes) by capturing phenomena such as volatility clustering and the leverage effect.</p>
@@ -4684,7 +4865,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Heston Model SDE and Its Characteristic Function</h3>
+<h3 id="topic-27">Topic 27: Heston Model SDE and Its Characteristic Function</h3>
 
 <div class="definition">
     <p><strong>Heston Model:</strong> A stochastic volatility model where both the asset price \( S_t \) and its variance \( v_t \) follow stochastic processes. The model captures the volatility smile observed in markets by allowing the variance to be mean-reverting and correlated with the asset price.</p>
@@ -4821,7 +5002,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Affine Processes and Their Applications in Finance</h3>
+<h3 id="topic-28">Topic 28: Affine Processes and Their Applications in Finance</h3>
 
 <div class="definition">
     <p><strong>Affine Process:</strong> A stochastic process \( X = \{X_t\}_{t \geq 0} \) taking values in \( \mathbb{R}^d \) is called <em>affine</em> if its characteristic function has the exponential-affine form:</p>
@@ -5048,7 +5229,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Jump-Diffusion Processes (Merton Model)</h3>
+<h3 id="topic-29">Topic 29: Jump-Diffusion Processes (Merton Model)</h3>
 
 <div class="definition">
     <p><strong>Jump-Diffusion Process:</strong> A stochastic process that combines a continuous diffusion component (modeled by a Brownian motion) with a discontinuous jump component (modeled by a compound Poisson process). This hybrid model captures both small, continuous price movements and sudden, large jumps in asset prices.</p>
@@ -5387,7 +5568,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Itô’s Lemma for Jump-Diffusion Processes</h3>
+<h3 id="topic-30">Topic 30: Itô's Lemma for Jump-Diffusion Processes</h3>
 
 <div class="definition">
     <p><strong>Jump-Diffusion Process:</strong> A stochastic process that combines continuous diffusion (modeled by a Brownian motion) with discontinuous jumps (modeled by a Poisson process). Mathematically, a jump-diffusion process \( X_t \) satisfies the following stochastic differential equation (SDE):</p>
@@ -5553,7 +5734,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Lévy Processes and Their Role in Finance</h3>
+<h3 id="topic-31">Topic 31: Lévy Processes and Their Role in Finance</h3>
 
 <div class="definition">
     <p><strong>Definition (Lévy Process):</strong> A <em>Lévy process</em> \( \{X_t\}_{t \geq 0} \) is a stochastic process with the following properties:</p>
@@ -5735,7 +5916,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Poisson Processes and Compound Poisson Processes</h3>
+<h3 id="topic-32">Topic 32: Poisson Processes and Compound Poisson Processes</h3>
 
 <div class="definition">
     <p><strong>Poisson Process:</strong> A Poisson process \( \{N(t), t \geq 0\} \) is a counting process that models the number of events occurring in a fixed interval of time or space. It satisfies the following properties:</p>
@@ -5967,7 +6148,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Change of Time in SDEs (Dambis-Dubins-Schwarz Theorem)</h3>
+<h3 id="topic-33">Topic 33: Change of Time in SDEs (Dambis-Dubins-Schwarz Theorem)</h3>
 
 <div class="definition">
     <p><strong>Definition (Change of Time):</strong> A <em>change of time</em> is a strictly increasing, continuous stochastic process \(\tau = \{\tau_t, t \geq 0\}\) such that \(\tau_t\) is a stopping time for each \(t \geq 0\) and \(\tau_t \to \infty\) almost surely as \(t \to \infty\). The process \(\tau\) is often called a <em>time-change</em>.</p>
@@ -6086,7 +6267,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Stochastic Differential Equations with Jumps (Kunita’s Lemma)</h3>
+<h3 id="topic-34">Topic 34: Stochastic Differential Equations with Jumps (Kunita's Lemma)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equations (SDEs) with Jumps:</strong> These are SDEs that incorporate discontinuous jumps in the process, typically modeled using a Poisson random measure to describe the jump arrivals and magnitudes. They generalize the standard SDE framework to account for sudden, discrete changes in the state variable.</p>
@@ -6257,7 +6438,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Forward SDEs (FSDEs) and Backward SDEs (BSDEs)</h3>
+<h3 id="topic-35">Topic 35: Forward SDEs (FSDEs) and Backward SDEs (BSDEs)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equations (SDEs):</strong> SDEs are differential equations in which one or more of the terms is a stochastic process, resulting in a solution that is also a stochastic process. They are used to model systems that evolve over time with inherent randomness.</p>
@@ -6539,7 +6720,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Nonlinear Feynman-Kac Representation for BSDEs</h3>
+<h3 id="topic-36">Topic 36: Nonlinear Feynman-Kac Representation for BSDEs</h3>
 
 <div class="definition">
     <p><strong>Backward Stochastic Differential Equation (BSDE):</strong>
@@ -6708,7 +6889,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Malliavin Calculus Basics (Skorokhod Integral, Clark-Ocone Formula)</h3>
+<h3 id="topic-37">Topic 37: Malliavin Calculus Basics (Skorokhod Integral, Clark-Ocone Formula)</h3>
 
 <div class="definition">
     <p><strong>Malliavin Calculus:</strong> An infinite-dimensional differential calculus on the Wiener space, extending classical calculus to functionals of Brownian motion. It provides tools for stochastic analysis, particularly for studying the smoothness of laws of random variables and for representing random variables as stochastic integrals.</p>
@@ -6866,7 +7047,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Greeks via Malliavin Calculus (Delta, Vega, Gamma)</h3>
+<h3 id="topic-38">Topic 38: Greeks via Malliavin Calculus (Delta, Vega, Gamma)</h3>
 
 <div class="definition">
     <p><strong>Malliavin Calculus:</strong> A branch of stochastic analysis that extends calculus of variations to functionals of Brownian motion. It provides a framework for differentiating random variables with respect to the underlying Brownian paths, enabling computation of sensitivities (Greeks) in financial models.</p>
@@ -7028,7 +7209,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Monte Carlo Simulation of SDEs (Euler-Maruyama Scheme)</h3>
+<h3 id="topic-39">Topic 39: Monte Carlo Simulation of SDEs (Euler-Maruyama Scheme)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong> An SDE is a differential equation in which one or more terms are stochastic processes, resulting in a solution that is itself a stochastic process. A general form of an SDE is:</p>
@@ -7210,7 +7391,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Strong and Weak Convergence of Numerical Schemes</h3>
+<h3 id="topic-40">Topic 40: Strong and Weak Convergence of Numerical Schemes</h3>
 
 <div class="definition">
     <p><strong>Numerical Scheme:</strong> A numerical scheme for a stochastic differential equation (SDE) is a discrete-time approximation of the continuous-time process described by the SDE. Common examples include the Euler-Maruyama scheme and the Milstein scheme.</p>
@@ -7328,7 +7509,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Milstein Scheme for Higher-Order SDE Approximation</h3>
+<h3 id="topic-41">Topic 41: Milstein Scheme for Higher-Order SDE Approximation</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong> An SDE is a differential equation in which one or more terms are stochastic processes, resulting in a solution that is itself a stochastic process. A general SDE in Itô form is given by:</p>
@@ -7457,7 +7638,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Variance Reduction Techniques in SDE Simulation</h3>
+<h3 id="topic-42">Topic 42: Variance Reduction Techniques in SDE Simulation</h3>
 
 <div class="definition">
     <p><strong>Variance Reduction Techniques:</strong> Methods used in Monte Carlo simulations of Stochastic Differential Equations (SDEs) to reduce the variance of estimators, thereby improving efficiency and accuracy without increasing computational cost significantly.</p>
@@ -7689,7 +7870,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Stochastic Control and Hamilton-Jacobi-Bellman (HJB) Equation</h3>
+<h3 id="topic-43">Topic 43: Stochastic Control and Hamilton-Jacobi-Bellman (HJB) Equation</h3>
 
 <div class="definition">
     <p><strong>Stochastic Control:</strong> A branch of control theory that deals with systems influenced by random noise. The goal is to find a control policy that optimizes a given objective function, often representing cost or reward, in the presence of uncertainty.</p>
@@ -7885,7 +8066,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Optimal Stopping Problems (American Options)</h3>
+<h3 id="topic-44">Topic 44: Optimal Stopping Problems (American Options)</h3>
 
 <div class="definition">
     <p><strong>Optimal Stopping Problem:</strong> An optimal stopping problem involves choosing a time to take a particular action, based on sequentially observed random variables, in order to maximize an expected reward or minimize an expected cost. In the context of finance, this often relates to deciding when to exercise an American option.</p>
@@ -8065,7 +8246,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Reflected SDEs and Their Applications (Barrier Options)</h3>
+<h3 id="topic-45">Topic 45: Reflected SDEs and Their Applications (Barrier Options)</h3>
 
 <div class="definition">
     <p><strong>Reflected Stochastic Differential Equation (SDE):</strong>
@@ -8311,7 +8492,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Local Time of Brownian Motion and Its Properties</h3>
+<h3 id="topic-46">Topic 46: Local Time of Brownian Motion and Its Properties</h3>
 
 <div class="definition">
     <p><strong>Definition (Local Time of Brownian Motion):</strong>
@@ -8485,7 +8666,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Tanaka’s Formula and Its Applications</h3>
+<h3 id="topic-47">Topic 47: Tanaka's Formula and Its Applications</h3>
 
 <div class="definition">
     <p><strong>Tanaka’s Formula:</strong> A generalization of Itô's formula for functions that are not twice continuously differentiable. It provides a way to express the local time of a semimartingale in terms of a stochastic integral, particularly useful for studying the behavior of Brownian motion at points where the function fails to be smooth (e.g., the absolute value function).</p>
@@ -8629,7 +8810,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Change of Numéraire Technique in Derivatives Pricing</h3>
+<h3 id="topic-48">Topic 48: Change of Numéraire Technique in Derivatives Pricing</h3>
 
 <div class="definition">
     <p><strong>Numéraire:</strong> In financial mathematics, a numéraire is a reference asset used to express the value of other assets. Common numéraires include the money-market account (risk-free asset), a zero-coupon bond, or a stock. The choice of numéraire affects the probability measure under which asset prices are martingales.</p>
@@ -8814,7 +8995,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Forward LIBOR Model (BGM) and Its SDEs</h3>
+<h3 id="topic-49">Topic 49: Forward LIBOR Model (BGM) and Its SDEs</h3>
 
 <div class="definition">
     <p><strong>Forward LIBOR Model (BGM/Jamshidian Model):</strong>
@@ -9036,7 +9217,7 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 </div>
 
 
-<h3>Common Quant Interview Questions on SDEs and Itô’s Lemma (Tricky Cases)</h3>
+<h3 id="topic-50">Topic 50: Common Quant Interview Questions on SDEs and Itô's Lemma (Tricky Cases)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Differential Equation (SDE):</strong>
@@ -9289,5 +9470,50 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 
         
     </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking on a link (mobile)
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-100px 0px -66%',
+            threshold: 0
+        });
+
+        // Observe all h3 headings
+        document.querySelectorAll('h3[id^="topic-"]').forEach(heading => {
+            observer.observe(heading);
+        });
+    </script>
 </body>
 </html>
