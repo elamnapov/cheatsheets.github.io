@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Stochastic Finance Cheatsheet</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9pt;
+            line-height: 1.3;
+            color: #000;
+            background-color: #fff;
+            padding: 0.4in;
+        }
+        
+        .container {
+            max-width: 11in;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 16pt;
+            font-weight: bold;
+            margin-bottom: 8pt;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4pt;
+        }
+        
+        h2 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 8pt;
+            margin-bottom: 4pt;
+            background-color: #e0e0e0;
+            padding: 2pt 4pt;
+        }
+        
+        h3 {
+            font-size: 10pt;
+            font-weight: bold;
+            margin-top: 6pt;
+            margin-bottom: 2pt;
+        }
+        
+        .two-column {
+            column-count: 2;
+            column-gap: 0.3in;
+            column-rule: 1px solid #ccc;
+        }
+        
+        .model-section {
+            break-inside: avoid;
+            margin-bottom: 8pt;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin: 4pt 0;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+            padding: 3pt;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 2pt 3pt;
+            border: 0.5pt solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        ul {
+            margin: 2pt 0;
+            padding-left: 15pt;
+        }
+        
+        li {
+            margin: 1pt 0;
+        }
+        
+        .eq {
+            background-color: #f5f5f5;
+            padding: 4pt;
+            margin: 3pt 0;
+            border-left: 2pt solid #666;
+            font-size: 9pt;
+        }
+        
+        .example {
+            background-color: #fffef0;
+            padding: 4pt;
+            margin: 3pt 0;
+            border: 0.5pt solid #ddd;
+            font-size: 8pt;
+        }
+        
+        .interview-question {
+            background-color: #fff0f5;
+            padding: 5pt;
+            margin: 4pt 0;
+            border: 1pt solid #d00;
+            font-size: 8pt;
+            break-inside: avoid;
+        }
+        
+        .plot-container {
+            width: 100%;
+            height: 200px;
+            margin: 6pt 0;
+            break-inside: avoid;
+        }
+        
+        .boxed {
+            display: inline-block;
+            padding: 1pt 3pt;
+            background-color: #fffacd;
+            border: 1pt solid #000;
+            font-weight: bold;
+        }
+        
+        .derivation {
+            background-color: #e8f4f8;
+            padding: 5pt;
+            margin: 3pt 0;
+            font-size: 8pt;
+            break-inside: avoid;
+        }
+        
+        .derivation-step {
+            margin: 2pt 0;
+            padding-left: 8pt;
+        }
+        
+        .tip-box {
+            background-color: #e8f8e8;
+            padding: 6pt;
+            margin: 6pt 0;
+            border: 1pt solid #4a4;
+            column-span: all;
+            break-inside: avoid;
+        }
+        
+        .summary-table {
+            column-span: all;
+            margin-bottom: 10pt;
+        }
+        
+        strong {
+            font-weight: bold;
+        }
+        
+        p {
+            margin: 2pt 0;
+        }
+        
+        .section-break {
+            column-span: all;
+            border-top: 2px solid #000;
+            margin: 10pt 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            padding: 4pt;
+            margin: 3pt 0;
+            border-left: 3pt solid #f90;
+            font-size: 8pt;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Stochastic Mathematical Finance Cheatsheet</h1>
+        <p style="text-align: center; font-style: italic; margin-bottom: 10pt;">With Detailed Derivations & Interview Examples</p>
+        
+        <div class="summary-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Main Equation</th>
+                        <th>Application</th>
+                        <th>Key Property</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>Black-Scholes/GBM</b></td><td>\(dS = \mu S dt + \sigma S dW\)</td><td>Stock/option pricing</td><td>Lognormal distribution</td></tr>
+                    <tr><td><b>Ornstein-Uhlenbeck</b></td><td>\(dX = \theta(\mu - X)dt + \sigma dW\)</td><td>Mean reversion</td><td>Gaussian stationary</td></tr>
+                    <tr><td><b>Vasicek</b></td><td>\(dr = a(b - r)dt + \sigma dW\)</td><td>Interest rates</td><td>Affine term structure</td></tr>
+                    <tr><td><b>CIR</b></td><td>\(dr = a(b - r)dt + \sigma\sqrt{r} dW\)</td><td>Interest rates (+)</td><td>Non-central χ²</td></tr>
+                    <tr><td><b>Heston</b></td><td>\(dv = \kappa(\theta - v)dt + \xi\sqrt{v} dW\)</td><td>Stochastic vol</td><td>Semi-closed form</td></tr>
+                    <tr><td><b>SABR</b></td><td>\(d\alpha = \nu\alpha^\beta dW^\alpha\)</td><td>Vol smile</td><td>CEV dynamics</td></tr>
+                    <tr><td><b>Merton Jump</b></td><td>\(dS = \mu S dt + \sigma S dW + S dJ\)</td><td>Jumps</td><td>Compound Poisson</td></tr>
+                    <tr><td><b>GARCH(1,1)</b></td><td>\(\sigma_t^2 = \omega + \alpha\varepsilon_{t-1}^2 + \beta\sigma_{t-1}^2\)</td><td>Vol forecasting</td><td>Discrete time</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="two-column">
+            <!-- BLACK-SCHOLES -->
+            <div class="model-section">
+                <h2>1. Black-Scholes / GBM</h2>
+                <div class="eq">$$dS_t = \mu S_t dt + \sigma S_t dW_t$$</div>
+                <p><b>Solution:</b> \(S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]\)</p>
+                
+                <p><b>BS Call Formula:</b></p>
+                <div class="eq">$$C = S_0 N(d_1) - Ke^{-rT}N(d_2)$$
+                $$d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}, \; d_2 = d_1 - \sigma\sqrt{T}$$</div>
+                
+                <div class="example">
+                    <b>Example:</b> \(S_0=100, K=105, r=0.05, \sigma=0.20, T=1\)<br>
+                    \(d_1=\frac{\ln(100/105)+(0.05+0.04/2)(1)}{0.2}=\frac{-0.0488+0.07}{0.2}=0.106\)<br>
+                    \(d_2=0.106-0.2=-0.094\)<br>
+                    \(N(0.106)=0.542, N(-0.094)=0.463\)<br>
+                    \(C = 100(0.542) - 105e^{-0.05}(0.463) = 54.2 - 46.16 = \boxed{8.04}\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q1:</b> A stock trades at $100 with 30% vol. What's the probability it exceeds $120 in 1 year?<br>
+                    <b>Solution:</b> Under risk-neutral measure (r=0 for simplicity):<br>
+                    \(\ln(S_T/S_0) \sim N(-\sigma^2T/2, \sigma^2T) = N(-0.045, 0.09)\)<br>
+                    \(P(S_T > 120) = P(\ln(S_T) > \ln(120)) = P(Z > \frac{\ln(1.2)+0.045}{0.3}) = P(Z > 0.757) = \boxed{0.225}\)<br>
+                    Alternative: \(d_2 = \frac{\ln(100/120)+(0-0.09/2)(1)}{0.3\sqrt{1}} = -0.757\), so \(N(-d_2)=0.225\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q2:</b> Why does \((\mu - \sigma^2/2)\) appear instead of just \(\mu\)?<br>
+                    <b>Solution:</b> This is the <b>Itô correction</b>. Apply Itô to \(Y=\ln S\):<br>
+                    \(\frac{\partial Y}{\partial S}=1/S, \frac{\partial^2 Y}{\partial S^2}=-1/S^2\)<br>
+                    \(d\ln S = \frac{1}{S}dS - \frac{1}{2S^2}(dS)^2 = \frac{1}{S}(\mu S dt + \sigma S dW) - \frac{1}{2S^2}\sigma^2 S^2 dt\)<br>
+                    \(= \mu dt + \sigma dW - \frac{\sigma^2}{2}dt = (\mu - \sigma^2/2)dt + \sigma dW\)<br>
+                    The \(-\sigma^2/2\) comes from the quadratic variation term \((dW)^2=dt\).
+                </div>
+                
+                <p><b>Greeks:</b></p>
+                <ul>
+                    <li>\(\Delta=\partial V/\partial S = N(d_1)\) (call), \(-N(-d_1)\) (put)</li>
+                    <li>\(\Gamma=\partial^2V/\partial S^2 = \frac{N'(d_1)}{S\sigma\sqrt{T}}\)</li>
+                    <li>\(\mathcal{V}=\partial V/\partial\sigma = S\sqrt{T}N'(d_1)\)</li>
+                    <li>\(\Theta=\partial V/\partial t\) (negative for long options)</li>
+                </ul>
+            </div>
+            
+            <div id="plot-gbm" class="plot-container"></div>
+            
+            <!-- ORNSTEIN-UHLENBECK -->
+            <div class="model-section">
+                <h2>2. Ornstein-Uhlenbeck</h2>
+                <div class="eq">$$dX_t = \theta(\mu - X_t)dt + \sigma dW_t$$</div>
+                <p><b>Solution:</b> \(X_t = X_0e^{-\theta t} + \mu(1-e^{-\theta t}) + \sigma\int_0^t e^{-\theta(t-s)}dW_s\)</p>
+                <p><b>Properties:</b> \(\mathbb{E}[X_t] \to \mu\), \(\text{Var}[X_t] \to \sigma^2/(2\theta)\)</p>
+                
+                <div class="example">
+                    <b>Example:</b> \(X_0=3\%, \theta=0.5, \mu=5\%, t=1\)<br>
+                    \(\mathbb{E}[X_1] = 3\%e^{-0.5} + 5\%(1-e^{-0.5}) = 1.82\% + 1.97\% = \boxed{3.79\%}\)<br>
+                    \(\text{Var}[X_1] = \frac{0.01^2}{2(0.5)}(1-e^{-2(0.5)(1)}) = 0.0001(0.632) = 0.0000632\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q3:</b> Interest rate is 6%, mean-reversion level is 4%, speed θ=0.3, vol σ=1%. What's the expected rate in 2 years?<br>
+                    <b>Solution:</b> \(\mathbb{E}[r_2] = 0.06 e^{-0.3(2)} + 0.04(1-e^{-0.6})\)<br>
+                    \(= 0.06(0.5488) + 0.04(0.4512) = 0.0329 + 0.0181 = \boxed{5.10\%}\)<br>
+                    <b>Half-life:</b> Time to reach halfway: \(t_{1/2} = \frac{\ln 2}{\theta} = \frac{0.693}{0.3} = 2.31\) years
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q4:</b> Why is O-U Gaussian but CIR isn't?<br>
+                    <b>Solution:</b> O-U has <b>additive noise</b> (\(\sigma dW\)), so it's a linear transformation of Brownian motion, which is Gaussian. CIR has <b>multiplicative noise</b> (\(\sigma\sqrt{r}dW\)), making the distribution non-Gaussian (specifically, non-central chi-squared).
+                </div>
+            </div>
+            
+            <div id="plot-ou" class="plot-container"></div>
+            
+            <!-- VASICEK -->
+            <div class="model-section">
+                <h2>3. Vasicek</h2>
+                <div class="eq">$$dr_t = a(b - r_t)dt + \sigma dW_t$$</div>
+                <p><b>Bond Price:</b> \(P(t,T) = A(t,T)e^{-B(t,T)r_t}\)</p>
+                <div class="eq">$$B(t,T)=\frac{1-e^{-a(T-t)}}{a}$$
+                $$\ln A(t,T) = (b-\frac{\sigma^2}{2a^2})(B(t,T)-(T-t)) - \frac{\sigma^2 B(t,T)^2}{4a}$$</div>
+                
+                <div class="warning-box">
+                    <b>Warning:</b> Rates can go negative! This was acceptable pre-2008 but became problematic during negative rate regimes. Modern use: short-term modeling only.
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q5:</b> Given Vasicek parameters \(a=0.2, b=0.05, \sigma=0.01, r_0=0.03\), price a 5-year zero-coupon bond.<br>
+                    <b>Solution:</b><br>
+                    \(B(0,5) = \frac{1-e^{-0.2(5)}}{0.2} = \frac{1-e^{-1}}{0.2} = \frac{1-0.368}{0.2} = 3.16\)<br>
+                    \(\ln A = (0.05-\frac{0.0001}{2(0.04)})(3.16-5) - \frac{0.0001(3.16)^2}{4(0.2)}\)<br>
+                    \(= (0.05-0.00125)(-1.84) - 0.00125 = -0.0897 - 0.00125 = -0.091\)<br>
+                    \(A = e^{-0.091} = 0.913\)<br>
+                    \(P(0,5) = 0.913 \cdot e^{-3.16(0.03)} = 0.913 \cdot e^{-0.0948} = 0.913 \cdot 0.910 = \boxed{0.831}\)
+                </div>
+            </div>
+            
+            <!-- CIR -->
+            <div class="model-section">
+                <h2>4. Cox-Ingersoll-Ross</h2>
+                <div class="eq">$$dr_t = a(b - r_t)dt + \sigma\sqrt{r_t} dW_t$$</div>
+                <p><b>Feller Condition:</b> \(2ab \geq \sigma^2\) ensures \(r_t > 0\) always</p>
+                <p><b>Distribution:</b> \(r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi'^2_{\nu}(\lambda)\) where \(\nu=\frac{4ab}{\sigma^2}\), \(\lambda=\frac{4ae^{-at}r_0}{\sigma^2(1-e^{-at})}\)</p>
+                
+                <div class="example">
+                    <b>Example:</b> \(r_0=3\%, a=0.5, b=5\%, \sigma=0.1\)<br>
+                    Check Feller: \(2(0.5)(0.05)=0.05 > (0.1)^2=0.01\) ✓<br>
+                    Degrees of freedom: \(\nu = \frac{4(0.5)(0.05)}{0.01} = 10\) (high → near Gaussian)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q6:</b> CIR vs Vasicek - when to use which?<br>
+                    <b>Solution:</b><br>
+                    <b>Vasicek:</b> Analytically simpler, closed-form for bonds/options. Use when negative rates acceptable (e.g., EUR, JPY).<br>
+                    <b>CIR:</b> Guarantees positive rates, better for credit spreads, equity volatility. Use for USD, emerging markets. Downside: more complex calibration, numerical methods often needed for derivatives.
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q7:</b> A CIR process has \(a=0.8, b=0.06, \sigma=0.15\). Is it mean-reverting? Will rates always be positive?<br>
+                    <b>Solution:</b><br>
+                    <b>Mean-reverting:</b> Yes, \(a>0\) ensures mean reversion to level \(b=6\%\).<br>
+                    <b>Feller condition:</b> \(2ab = 2(0.8)(0.06) = 0.096\) vs \(\sigma^2 = 0.0225\)<br>
+                    Since \(0.096 > 0.0225\), Feller holds → rates stay strictly positive ✓
+                </div>
+            </div>
+            
+            <div id="plot-cir" class="plot-container"></div>
+            
+            <!-- HESTON -->
+            <div class="model-section">
+                <h2>5. Heston Stochastic Volatility</h2>
+                <div class="eq">$$dS_t = \mu S_t dt + \sqrt{v_t} S_t dW_t^S$$
+                $$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t} dW_t^v$$
+                $$\langle dW_t^S, dW_t^v \rangle = \rho dt$$</div>
+                
+                <p><b>Variables:</b></p>
+                <ul>
+                    <li>\(v_t\) = variance (not volatility!)</li>
+                    <li>\(\kappa\) = mean reversion speed</li>
+                    <li>\(\theta\) = long-term variance</li>
+                    <li>\(\xi\) = volatility of volatility</li>
+                    <li>\(\rho\) = correlation (typically \(\rho \in [-0.8, -0.5]\) for equities)</li>
+                </ul>
+                
+                <p><b>Feller for variance:</b> \(2\kappa\theta \geq \xi^2\)</p>
+                
+                <div class="example">
+                    <b>Example:</b> \(S_0=100, v_0=0.04, \mu=0.05, \kappa=2, \theta=0.04, \xi=0.3, \rho=-0.7\)<br>
+                    Given \(dW_S=0.08, dW_v=-0.05\), \(dt=0.01\):<br>
+                    \(dS = 0.05(100)(0.01) + \sqrt{0.04}(100)(0.08) = 0.05 + 1.6 = 1.65\)<br>
+                    \(dv = 2(0.04-0.04)(0.01) + 0.3\sqrt{0.04}(-0.05) = 0 - 0.003 = -0.003\)<br>
+                    \(S_1=\boxed{101.65}, v_1=\boxed{0.037}\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q8:</b> Why is correlation ρ typically negative for equities?<br>
+                    <b>Solution:</b> <b>Leverage effect</b>: When stock price falls, debt/equity ratio increases, making equity riskier → volatility rises. Alternatively, negative news causes both price drop and uncertainty increase. Empirically, \(\rho \approx -0.7\) for S&P 500.
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q9:</b> Heston parameters: \(\kappa=3, \theta=0.04, \xi=0.5\). Does Feller condition hold?<br>
+                    <b>Solution:</b> \(2\kappa\theta = 2(3)(0.04) = 0.24\) vs \(\xi^2 = 0.25\)<br>
+                    \(0.24 < 0.25\) → Feller violated! Variance can hit zero, causing numerical issues. <b>Fix:</b> Increase \(\kappa\) or \(\theta\), or decrease \(\xi\). In practice, use absorption schemes or truncation.
+                </div>
+                
+                <p><b>Characteristic Function:</b> Semi-closed form exists, used for fast FFT pricing of European options.</p>
+            </div>
+            
+            <div id="plot-heston" class="plot-container"></div>
+            
+            <!-- SABR -->
+            <div class="model-section">
+                <h2>6. SABR Model</h2>
+                <div class="eq">$$dF_t = \alpha_t F_t^\beta dW_t^F$$
+                $$d\alpha_t = \nu\alpha_t dW_t^\alpha$$
+                $$\langle dW_t^F, dW_t^\alpha \rangle = \rho dt$$</div>
+                
+                <p><b>Variables:</b></p>
+                <ul>
+                    <li>\(F_t\) = forward rate (or asset price)</li>
+                    <li>\(\alpha_t\) = stochastic volatility</li>
+                    <li>\(\beta\) = CEV parameter (constant, chosen a priori)</li>
+                    <li>\(\nu\) = volatility of volatility</li>
+                    <li>\(\rho\) = correlation</li>
+                </ul>
+                
+                <p><b>Common β values & interpretations:</b></p>
+                <ul>
+                    <li>\(\beta=0\): Normal (Bachelier) - vol independent of level</li>
+                    <li>\(\beta=0.5\): CIR-like - common for interest rates</li>
+                    <li>\(\beta=1\): Lognormal (Black) - vol proportional to price</li>
+                </ul>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q10:</b> Market data shows ATM vol = 20%, 90% strike vol = 24%, 110% strike vol = 18%. What does this imply about β?<br>
+                    <b>Solution:</b> This is a <b>skew</b> (downward sloping). Lower strikes have higher vol.<br>
+                    • High β (near 1) → steep skew → use \(\beta=0.7-1.0\)<br>
+                    • The negative slope suggests \(\rho < 0\)<br>
+                    Typical equity calibration: \(\beta=0.7, \rho=-0.3, \nu=0.4\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q11:</b> Why is SABR preferred over local vol for interest rate derivatives?<br>
+                    <b>Solution:</b><br>
+                    1. <b>Smile dynamics:</b> SABR produces realistic smile evolution; local vol has unrealistic dynamics ("sticky strike").<br>
+                    2. <b>Market standard:</b> Swaption market quotes in SABR parameters.<br>
+                    3. <b>Analytic approximation:</b> Hagan formula allows fast calibration.<br>
+                    4. <b>Intuitive parameters:</b> \(\rho\) controls skew, \(\nu\) controls curvature.
+                </div>
+                
+                <p><b>Hagan Approximation (ATM):</b></p>
+                <div class="eq" style="font-size: 7pt;">$$\sigma_{ATM} \approx \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2\alpha^2}{24F^{2-2\beta}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]$$</div>
+            </div>
+            
+            <div id="plot-sabr" class="plot-container"></div>
+            
+            <!-- MERTON JUMP -->
+            <div class="model-section">
+                <h2>7. Merton Jump-Diffusion</h2>
+                <div class="eq">$$dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t$$
+                $$dJ_t = (e^Y - 1)dN_t$$
+                $$Y \sim N(\mu_J, \sigma_J^2), \; N_t \sim \text{Poisson}(\lambda t)$$</div>
+                
+                <p><b>Variables:</b></p>
+                <ul>
+                    <li>\(\lambda\) = jump intensity (expected jumps per year)</li>
+                    <li>\(\mu_J\) = mean of log-jump size</li>
+                    <li>\(\sigma_J\) = volatility of log-jump size</li>
+                </ul>
+                
+                <p><b>Expected jump size:</b> \(\mathbb{E}[e^Y-1] = e^{\mu_J+\sigma_J^2/2}-1 \equiv m\)</p>
+                
+                <div class="example">
+                    <b>Example:</b> \(S_0=100, \mu=0.1, \sigma=0.15, \lambda=2, \mu_J=-0.05, \sigma_J=0.1, T=0.25\)<br>
+                    Over 3 months, expect \(\lambda T = 0.5\) jumps.<br>
+                    Diffusion contribution: \(100e^{0.1(0.25)-0.5(0.15)^2(0.25)+0.15\sqrt{0.25}(0.3)} = 107.25\)<br>
+                    With 1 jump \(Y=-0.08\): \(e^{-0.08}=0.923\)<br>
+                    Final: \(S_T = 107.25 \times 0.923 = \boxed{99.00}\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q12:</b> S&P 500 drops 5% on news. Model as GBM vs Jump-Diffusion - which is better?<br>
+                    <b>Solution:</b><br>
+                    <b>GBM:</b> Would require \(\sigma W_T \approx -0.05\) over short time → implies huge implied vol spike, inconsistent with VIX behavior.<br>
+                    <b>Jump:</b> Natural explanation: single jump with \(Y \approx \ln(0.95) = -0.0513\). Matches observed "jump risk premium" in options.<br>
+                    <b>Empirics:</b> SPX experiences ~2-5 jumps/year (λ≈3), with average jump size -2% to -3%.
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q13:</b> Under risk-neutral measure, how does drift change with jumps?<br>
+                    <b>Solution:</b> Must compensate for jump risk. Replace \(\mu\) with \(r - \lambda m\) where \(m = e^{\mu_J+\sigma_J^2/2}-1\).<br>
+                    <b>Example:</b> \(r=5\%, \lambda=3, \mu_J=-0.05, \sigma_J=0.1\)<br>
+                    \(m = e^{-0.05+0.005}-1 = e^{-0.045}-1 = -0.044\)<br>
+                    Adjusted drift: \(\mu^{\mathbb{Q}} = 0.05 - 3(-0.044) = 0.05 + 0.132 = 0.182\) (18.2%)!<br>
+                    The positive adjustment compensates for expected negative jumps.
+                </div>
+                
+                <p><b>Option Pricing:</b> Weighted sum of BS prices over jump counts</p>
+                <div class="eq" style="font-size: 8pt;">$$V = \sum_{n=0}^\infty e^{-\lambda T}\frac{(\lambda T)^n}{n!}V_{BS}(\sigma_n^2, \mu_n)$$</div>
+            </div>
+            
+            <div id="plot-jump" class="plot-container"></div>
+            
+            <!-- GARCH -->
+            <div class="model-section">
+                <h2>8. GARCH(1,1)</h2>
+                <div class="eq">$$r_t = \mu + \varepsilon_t, \; \varepsilon_t = \sigma_t z_t, \; z_t \sim N(0,1)$$
+                $$\sigma_t^2 = \omega + \alpha\varepsilon_{t-1}^2 + \beta\sigma_{t-1}^2$$</div>
+                
+                <p><b>Constraints:</b></p>
+                <ul>
+                    <li>\(\omega > 0\) (guarantees positive variance)</li>
+                    <li>\(\alpha, \beta \geq 0\) (non-negativity)</li>
+                    <li>\(\alpha + \beta < 1\) (stationarity/covariance-stationarity)</li>
+                </ul>
+                
+                <p><b>Long-term variance:</b> \(\bar{\sigma}^2 = \frac{\omega}{1-\alpha-\beta}\)</p>
+                <p><b>Persistence:</b> \(\alpha+\beta\) close to 1 → high persistence (slow decay)</p>
+                
+                <div class="example">
+                    <b>Example:</b> \(\omega=0.000002, \alpha=0.08, \beta=0.90, \sigma_{t-1}^2=0.0001, \varepsilon_{t-1}=-0.015\)<br>
+                    \(\sigma_t^2 = 0.000002 + 0.08(0.015)^2 + 0.90(0.0001)\)<br>
+                    \(= 0.000002 + 0.000018 + 0.00009 = \boxed{0.00011}\)<br>
+                    \(\sigma_t = \sqrt{0.00011} = \boxed{1.05\%}\) (daily)<br>
+                    \(\bar{\sigma}^2 = \frac{0.000002}{1-0.98} = 0.0001\) → \(\bar{\sigma} = 1.0\%\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q14:</b> Yesterday's return was -2%, today's is +1.5%. Estimate tomorrow's volatility using GARCH(1,1) with \(\omega=0.000001, \alpha=0.1, \beta=0.85\), given \(\sigma_{yesterday}=1.2\%\).<br>
+                    <b>Solution:</b><br>
+                    <b>Step 1:</b> Calculate \(\sigma_{today}^2\) using yesterday's shock:<br>
+                    \(\varepsilon_{yesterday} = -0.02\) (assuming μ=0)<br>
+                    \(\sigma_{today}^2 = 0.000001 + 0.1(0.02)^2 + 0.85(0.012)^2\)<br>
+                    \(= 0.000001 + 0.00004 + 0.0001224 = 0.0001634\)<br>
+                    \(\sigma_{today} = 1.278\%\)<br>
+                    <b>Step 2:</b> Calculate \(\sigma_{tomorrow}^2\) using today's shock:<br>
+                    \(\varepsilon_{today} = 0.015\)<br>
+                    \(\sigma_{tomorrow}^2 = 0.000001 + 0.1(0.015)^2 + 0.85(0.0001634)\)<br>
+                    \(= 0.000001 + 0.0000225 + 0.0001389 = \boxed{0.0001624}\)<br>
+                    \(\sigma_{tomorrow} = \boxed{1.274\%}\)
+                </div>
+                
+                <div class="interview-question">
+                    <b>INTERVIEW Q15:</b> GARCH shows \(\alpha=0.05, \beta=0.94\). What's the half-life of volatility shocks?<br>
+                    <b>Solution:</b> Persistence = \(\alpha+\beta=0.99\) (very high!)<br>
+                    Shock decays as \((\alpha+\beta)^n\). For half-life:<br>
+                    \(0.99^n = 0.5 \Rightarrow n = \frac{\ln(0.5)}{\ln(0.99)} = \frac{-0.693}{-0.01005} = \boxed{69 \text{ days}}\)<br>
+                    Interpretation: A volatility shock takes ~3 months to decay by half - typical for equity markets.
+                </div>
+                
+                <div class="warning-box">
+                    <b>Common Mistake:</b> Confusing \(\varepsilon_t\) (shock) with \(r_t\) (return). Use \(\varepsilon_t = r_t - \mu\) in the recursion!
+                </div>
+            </div>
+            
+            <div id="plot-garch" class="plot-container"></div>
+        </div>
+        
+        <div class="section-break"></div>
+        
+        <h2 style="column-span: all; text-align: center; margin-top: 10pt;">Detailed SDE Derivations</h2>
+        
+        <div class="two-column">
+            <!-- ITO'S LEMMA -->
+            <div class="derivation">
+                <h3>1. Itô's Lemma - Complete Derivation</h3>
+                <p><b>Setup:</b> \(dX_t = \mu(X,t) dt + \sigma(X,t) dW_t\), find \(dY_t\) where \(Y_t = f(X_t,t)\)</p>
+                
+                <p><b>Taylor Expansion to 2nd order:</b></p>
+                <div class="derivation-step">
+                    \(df = \frac{\partial f}{\partial t}dt + \frac{\partial f}{\partial x}dx + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(dx)^2 + \frac{\partial^2 f}{\partial x \partial t}dx\,dt + \frac{1}{2}\frac{\partial^2 f}{\partial t^2}(dt)^2 + \cdots\)
+                </div>
+                
+                <p><b>Calculate \((dx)^2\):</b></p>
+                <div class="derivation-step">
+                    \((dx)^2 = (\mu dt + \sigma dW)^2 = \mu^2(dt)^2 + 2\mu\sigma dt\,dW + \sigma^2(dW)^2\)
+                </div>
+                
+                <p><b>Apply multiplication rules:</b></p>
+                <div class="derivation-step">
+                    \((dt)^2 = o(dt)\) → 0<br>
+                    \(dt \cdot dW = o(dt)\) → 0<br>
+                    \((dW)^2 = dt\) (quadratic variation!)
+                </div>
+                
+                <p><b>Therefore:</b> \((dx)^2 = \sigma^2 dt\)</p>
+                
+                <p><b>Final result:</b></p>
+                <div class="eq">$$dY_t = \left[\frac{\partial f}{\partial t} + \mu\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\right]dt + \sigma\frac{\partial f}{\partial x} dW_t$$</div>
+                
+                <p><b>Key insight:</b> The \(\frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial x^2}\) term is unique to stochastic calculus!</p>
+                
+                <div class="example">
+                    <b>Classic Application:</b> Derive GBM solution.<br>
+                    Given: \(dS = \mu S dt + \sigma S dW\), find closed form for \(S_t\).<br>
+                    <b>Step 1:</b> Let \(Y = \ln S\), so \(f(S) = \ln S\)<br>
+                    \(\frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}\)<br>
+                    <b>Step 2:</b> Apply Itô:<br>
+                    \(d(\ln S) = \frac{1}{S}(\mu S dt + \sigma S dW) + \frac{1}{2}(-\frac{1}{S^2})(\sigma S)^2 dt\)<br>
+                    \(= \mu dt + \sigma dW - \frac{\sigma^2}{2}dt = (\mu - \frac{\sigma^2}{2})dt + \sigma dW\)<br>
+                    <b>Step 3:</b> Integrate:<br>
+                    \(\ln S_t - \ln S_0 = (\mu - \frac{\sigma^2}{2})t + \sigma W_t\)<br>
+                    \(S_t = S_0 \exp[(\mu - \frac{\sigma^2}{2})t + \sigma W_t]\) ✓
+                </div>
+            </div>
+            
+            <!-- BLACK-SCHOLES PDE -->
+            <div class="derivation">
+                <h3>2. Black-Scholes PDE - Full Derivation</h3>
+                <p><b>Objective:</b> Derive the fundamental PDE for option pricing.</p>
+                
+                <p><b>Step 1: Setup</b></p>
+                <div class="derivation-step">
+                    Stock: \(dS = \mu S dt + \sigma S dW\)<br>
+                    Option: \(V(S,t)\) - value depends on \(S\) and \(t\)<br>
+                    Bond: \(dB = rB dt\)
+                </div>
+                
+                <p><b>Step 2: Apply Itô to \(V(S,t)\)</b></p>
+                <div class="derivation-step">
+                    \(dV = \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}dS + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}(dS)^2\)<br>
+                    \(= \frac{\partial V}{\partial t}dt + \frac{\partial V}{\partial S}(\mu S dt + \sigma S dW) + \frac{1}{2}\frac{\partial^2 V}{\partial S^2}\sigma^2 S^2 dt\)<br>
+                    \(= \left[\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt + \sigma S\frac{\partial V}{\partial S}dW\)
+                </div>
+                
+                <p><b>Step 3: Construct hedged portfolio</b></p>
+                <div class="derivation-step">
+                    \(\Pi = V - \Delta S\) (long option, short \(\Delta\) shares)<br>
+                    Choose \(\Delta = \frac{\partial V}{\partial S}\) (delta-hedge)
+                </div>
+                
+                <p><b>Step 4: Calculate \(d\Pi\)</b></p>
+                <div class="derivation-step">
+                    \(d\Pi = dV - \Delta dS\)<br>
+                    \(= \left[\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt + \sigma S\frac{\partial V}{\partial S}dW - \frac{\partial V}{\partial S}(\mu S dt + \sigma S dW)\)<br>
+                    \(= \left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt\)
+                </div>
+                
+                <p><b>Key observation:</b> The \(dW\) terms cancel! Portfolio is riskless.</p>
+                
+                <p><b>Step 5: No-arbitrage condition</b></p>
+                <div class="derivation-step">
+                    Riskless portfolio must grow at rate \(r\):<br>
+                    \(d\Pi = r\Pi dt = r(V - \Delta S)dt = r\left(V - S\frac{\partial V}{\partial S}\right)dt\)
+                </div>
+                
+                <p><b>Step 6: Equate growth rates</b></p>
+                <div class="derivation-step">
+                    \(\left[\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2}\right]dt = r\left(V - S\frac{\partial V}{\partial S}\right)dt\)
+                </div>
+                
+                <p><b>Black-Scholes PDE:</b></p>
+                <div class="eq">$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV$$</div>
+                
+                <p><b>Boundary conditions:</b></p>
+                <ul>
+                    <li>Call: \(V(S,T) = \max(S-K, 0)\)</li>
+                    <li>Put: \(V(S,T) = \max(K-S, 0)\)</li>
+                </ul>
+                
+                <p><b>Remarkable facts:</b></p>
+                <ul>
+                    <li>Drift \(\mu\) doesn't appear! (Risk-neutral pricing)</li>
+                    <li>Volatility \(\sigma\) is the only unknown parameter</li>
+                    <li>Linear PDE → can be solved analytically</li>
+                </ul>
+                
+                <div class="warning-box" style="margin-top: 6pt;">
+                    <b>Extended: Bond Pricing PDE - Complete Derivation</b><br>
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Goal:</b> Price zero-coupon bond \(P(r,t,T)\) when short rate \(r_t\) follows SDE.</p>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>General Short Rate SDE:</b></p>
+                    <div class="eq" style="font-size: 8pt;">$$dr_t = \mu(r,t)dt + \sigma(r,t)dW_t$$</div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Step 1: Apply Itô to \(P(r,t,T)\)</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        \(dP = \frac{\partial P}{\partial t}dt + \frac{\partial P}{\partial r}dr + \frac{1}{2}\frac{\partial^2 P}{\partial r^2}(dr)^2\)<br>
+                        \(= \frac{\partial P}{\partial t}dt + \frac{\partial P}{\partial r}(\mu dt + \sigma dW) + \frac{1}{2}\frac{\partial^2 P}{\partial r^2}\sigma^2 dt\)<br>
+                        \(= \left[\frac{\partial P}{\partial t} + \mu\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2}\right]dt + \sigma\frac{\partial P}{\partial r}dW\)
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Step 2: Form hedged portfolio</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        Consider two bonds with maturities \(T_1, T_2\):<br>
+                        \(\Pi = P_1 - \frac{\partial P_1/\partial r}{\partial P_2/\partial r}P_2\)<br>
+                        This eliminates \(dW\) (similar to stock case).
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Step 3: No-arbitrage condition</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        Riskless portfolio earns \(r\):<br>
+                        \(\frac{d\Pi}{\Pi} = r dt\)<br>
+                        After algebra (market price of interest rate risk \(\lambda(r,t)\) appears):
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Bond Pricing PDE:</b></p>
+                    <div class="eq" style="font-size: 8pt;">$$\frac{\partial P}{\partial t} + [\mu(r,t) - \lambda(r,t)\sigma(r,t)]\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2(r,t)\frac{\partial^2 P}{\partial r^2} = rP$$</div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Boundary condition:</b> \(P(r,T,T) = 1\) (bond pays $1 at maturity)</p>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Key insight:</b> \(\mu - \lambda\sigma\) is risk-adjusted drift under \(\mathbb{Q}\)</p>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Example: Vasicek Model</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        Physical: \(dr = a(b-r)dt + \sigma dW\)<br>
+                        Risk-neutral: \(dr = a(\bar{b}-r)dt + \sigma dW^{\mathbb{Q}}\) where \(\bar{b} = b - \lambda\sigma/a\)<br>
+                        PDE becomes: \(\frac{\partial P}{\partial t} + a(\bar{b}-r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2\frac{\partial^2 P}{\partial r^2} = rP\)
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Solving approach - Affine Ansatz:</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        Guess solution form: \(P(r,t,T) = e^{A(t,T) - B(t,T)r}\)<br>
+                        (Exponentially affine in \(r\) - works for Vasicek, CIR, many others)<br><br>
+                        <b>Compute derivatives:</b><br>
+                        \(\frac{\partial P}{\partial t} = (A_t - B_t r)P\)<br>
+                        \(\frac{\partial P}{\partial r} = -BP\)<br>
+                        \(\frac{\partial^2 P}{\partial r^2} = B^2P\)<br><br>
+                        <b>Substitute into PDE:</b><br>
+                        \((A_t - B_t r)P + a(\bar{b}-r)(-BP) + \frac{1}{2}\sigma^2 B^2P = rP\)<br>
+                        Divide by \(P\) and collect terms in \(r\):<br>
+                        \(A_t - B_t r - aB(\bar{b}-r) + \frac{1}{2}\sigma^2 B^2 = r\)<br>
+                        \(A_t - aB\bar{b} + \frac{1}{2}\sigma^2 B^2 + r(aB - B_t - 1) = 0\)<br><br>
+                        <b>Since this must hold for all \(r\), separate:</b><br>
+                        Coefficient of \(r\): \(B_t = aB - 1\) with \(B(T,T)=0\)<br>
+                        Constant term: \(A_t = aB\bar{b} - \frac{1}{2}\sigma^2 B^2\) with \(A(T,T)=0\)
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Solve ODE for \(B\):</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        \(\frac{dB}{dt} = aB - 1\) (first-order linear ODE)<br>
+                        Solution: \(B(\tau) = \frac{1-e^{-a\tau}}{a}\) where \(\tau = T-t\)<br><br>
+                        <b>Check:</b> At \(t=T\): \(\tau=0\), \(B=0\) ✓<br>
+                        As \(\tau \to \infty\): \(B \to 1/a\) (duration saturates)
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Solve ODE for \(A\):</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        \(\frac{dA}{dt} = aB\bar{b} - \frac{1}{2}\sigma^2 B^2\)<br>
+                        Integrate from \(t\) to \(T\) (or equivalently \(\tau\) from 0 to \(T-t\)):<br>
+                        \(A(\tau) = \int_0^\tau \left[a\bar{b}B(s) - \frac{\sigma^2}{2}B^2(s)\right]ds\)<br><br>
+                        After integration (lengthy but straightforward):<br>
+                        \(A(\tau) = (\bar{b} - \frac{\sigma^2}{2a^2})(B(\tau) - \tau) - \frac{\sigma^2 B^2(\tau)}{4a}\)
+                    </div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Final Vasicek Bond Price:</b></p>
+                    <div class="eq" style="font-size: 8pt;">$$P(r,t,T) = A(t,T)e^{-B(t,T)r}$$</div>
+                    <div class="eq" style="font-size: 8pt;">$$B(t,T) = \frac{1-e^{-a(T-t)}}{a}$$</div>
+                    <div class="eq" style="font-size: 8pt;">$$\ln A(t,T) = (\bar{b}-\frac{\sigma^2}{2a^2})(B-\tau) - \frac{\sigma^2 B^2}{4a}$$</div>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>Interpretation:</b></p>
+                    <ul style="font-size: 7pt; margin-left: 8pt;">
+                        <li>\(B(\tau)\): Interest rate sensitivity (duration-like)</li>
+                        <li>\(A(\tau)\): Adjustment for convexity and long-term average</li>
+                        <li>Yield: \(y(t,T) = -\frac{\ln P(r,t,T)}{T-t} = \frac{B r - \ln A}{\tau}\)</li>
+                    </ul>
+                    
+                    <p style="font-size: 8pt; margin-top: 3pt;"><b>CIR Model - Similar but Harder:</b></p>
+                    <div class="derivation-step" style="font-size: 7pt;">
+                        \(dr = a(b-r)dt + \sigma\sqrt{r}dW\)<br>
+                        Same affine ansatz works! But ODEs are more complex (Ricatti equation).<br>
+                        Key difference: \(\sigma(r) = \sigma\sqrt{r}\) makes \(B\) ODE nonlinear:<br>
+                        \(\frac{dB}{dt} = aB - 1 + \frac{1}{2}\sigma^2 B^2\) (Ricatti equation)<br>
+                        Solution involves \(\gamma = \sqrt{a^2 + 2\sigma^2}\) and hyperbolic functions.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GIRSANOV -->
+            <div class="derivation">
+                <h3>3. Girsanov Theorem - Change of Measure (Extended)</h3>
+                <p><b>Purpose:</b> Transform between physical (\(\mathbb{P}\)) and risk-neutral (\(\mathbb{Q}\)) measures.</p>
+                
+                <p><b>The Big Picture - Why do we need this?</b></p>
+                <div class="derivation-step">
+                    In the real world, stocks have drift \(\mu\) (expected return > risk-free rate).<br>
+                    But pricing by replication only depends on hedging, not investor preferences!<br>
+                    Solution: Work in a "risk-neutral world" where all assets grow at rate \(r\).
+                </div>
+                
+                <p><b>Setup:</b> Under physical measure \(\mathbb{P}\), stock follows</p>
+                <div class="derivation-step">
+                    \(dS_t = \mu S_t dt + \sigma S_t dW_t^{\mathbb{P}}\)
+                </div>
+                
+                <p><b>Goal:</b> Find measure \(\mathbb{Q}\) where discounted stock \(e^{-rt}S_t\) is a martingale.</p>
+                
+                <p><b>Step 1: The Radon-Nikodym Derivative (Measure Change Tool)</b></p>
+                <div class="derivation-step">
+                    Define the "likelihood ratio" process:<br>
+                    \(Z_t = \exp\left(-\int_0^t \theta_s dW_s^{\mathbb{P}} - \frac{1}{2}\int_0^t \theta_s^2 ds\right)\)<br>
+                    where \(\theta_t\) = market price of risk (to be determined)
+                </div>
+                
+                <p><b>Why this form?</b> The \(-\frac{1}{2}\theta^2\) term ensures \(\mathbb{E}^{\mathbb{P}}[Z_T]=1\) (valid probability measure).</p>
+                <div class="derivation-step">
+                    <b>Verification:</b> Apply Itô to \(\ln Z_t\):<br>
+                    \(d\ln Z_t = -\theta_t dW_t^{\mathbb{P}} - \frac{1}{2}\theta_t^2 dt\)<br>
+                    \(dZ_t = Z_t d\ln Z_t + \frac{1}{2}Z_t(d\ln Z_t)^2\)<br>
+                    \(= Z_t[-\theta_t dW_t^{\mathbb{P}} - \frac{1}{2}\theta_t^2 dt] + \frac{1}{2}Z_t\theta_t^2 dt\)<br>
+                    \(= -Z_t\theta_t dW_t^{\mathbb{P}}\) (drift cancelled!)<br>
+                    So \(Z_t\) is a \(\mathbb{P}\)-martingale with \(\mathbb{E}^{\mathbb{P}}[Z_t]=Z_0=1\) ✓
+                </div>
+                
+                <p><b>Step 2: Girsanov's Fundamental Result</b></p>
+                <div class="derivation-step">
+                    <b>Theorem:</b> Under new measure \(\mathbb{Q}\) defined by \(d\mathbb{Q}/d\mathbb{P}=Z_T\),<br>
+                    the process<br>
+                    \(\tilde{W}_t = W_t^{\mathbb{P}} + \int_0^t \theta_s ds\)<br>
+                    is a \(\mathbb{Q}\)-Brownian motion.<br><br>
+                    Equivalently: \(dW_t^{\mathbb{Q}} = dW_t^{\mathbb{P}} + \theta_t dt\)
+                </div>
+                
+                <p><b>Intuition:</b> Adding drift \(\theta_t dt\) to BM changes the "center" but preserves randomness!</p>
+                
+                <p><b>Step 3: Transform Stock Dynamics to \(\mathbb{Q}\)</b></p>
+                <div class="derivation-step">
+                    Start with physical dynamics:<br>
+                    \(dS_t = \mu S_t dt + \sigma S_t dW_t^{\mathbb{P}}\)<br><br>
+                    Substitute \(dW_t^{\mathbb{P}} = dW_t^{\mathbb{Q}} - \theta_t dt\):<br>
+                    \(dS_t = \mu S_t dt + \sigma S_t (dW_t^{\mathbb{Q}} - \theta_t dt)\)<br>
+                    \(= \mu S_t dt - \sigma\theta_t S_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)<br>
+                    \(= (\mu - \sigma\theta_t)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)
+                </div>
+                
+                <p><b>Step 4: Determine \(\theta\) - Make Discounted Stock a Martingale</b></p>
+                <div class="derivation-step">
+                    Consider discounted stock \(X_t = e^{-rt}S_t\)<br>
+                    Apply Itô's lemma with \(f(S,t) = e^{-rt}S\):<br>
+                    \(\frac{\partial f}{\partial t} = -re^{-rt}S, \quad \frac{\partial f}{\partial S} = e^{-rt}, \quad \frac{\partial^2 f}{\partial S^2} = 0\)<br><br>
+                    \(dX_t = -re^{-rt}S_t dt + e^{-rt}dS_t\)<br>
+                    \(= -re^{-rt}S_t dt + e^{-rt}[(\mu-\sigma\theta_t)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}]\)<br>
+                    \(= e^{-rt}S_t[(\mu-\sigma\theta_t-r)dt + \sigma dW_t^{\mathbb{Q}}]\)<br><br>
+                    <b>For martingale:</b> drift must be zero!<br>
+                    \(\mu - \sigma\theta_t - r = 0\)<br>
+                    \(\boxed{\theta_t = \frac{\mu - r}{\sigma}}\) (Market Price of Risk)
+                </div>
+                
+                <p><b>Interpretation of \(\theta = (\mu-r)/\sigma\):</b></p>
+                <ul style="font-size: 7pt;">
+                    <li>Numerator \(\mu-r\): excess return per unit time</li>
+                    <li>Denominator \(\sigma\): risk per unit time</li>
+                    <li>Ratio: Sharpe ratio! Compensation per unit risk</li>
+                </ul>
+                
+                <p><b>Step 5: Final Risk-Neutral Dynamics</b></p>
+                <div class="derivation-step">
+                    Substituting \(\theta = (\mu-r)/\sigma\):<br>
+                    \(dS_t = (\mu - \sigma \cdot \frac{\mu-r}{\sigma})S_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)<br>
+                    \(= (\mu - \mu + r)S_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)<br>
+                </div>
+                <div class="eq">$$\boxed{dS_t = rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}}$$</div>
+                
+                <p><b>Beautiful result:</b> Under \(\mathbb{Q}\), ALL assets grow at risk-free rate \(r\)!</p>
+                
+                <p><b>Step 6: Risk-Neutral Pricing Formula</b></p>
+                <div class="derivation-step">
+                    Since \(e^{-rt}S_t\) is a \(\mathbb{Q}\)-martingale:<br>
+                    \(e^{-rt}S_t = \mathbb{E}^{\mathbb{Q}}[e^{-rT}S_T|\mathcal{F}_t]\)<br><br>
+                    For derivative with payoff \(g(S_T)\):<br>
+                </div>
+                <div class="eq">$$\boxed{V(S,t) = e^{-r(T-t)}\mathbb{E}^{\mathbb{Q}}[g(S_T) | \mathcal{F}_t]}$$</div>
+                
+                <p><b>Why is this powerful?</b></p>
+                <ul style="font-size: 7pt;">
+                    <li>No investor preferences (\(\mu\) disappeared!)</li>
+                    <li>Only depends on hedgeable quantities: \(S_0, r, \sigma, T\)</li>
+                    <li>Expectation easier than solving PDE</li>
+                    <li>Works for any payoff function \(g\)</li>
+                </ul>
+                
+                <div class="example">
+                    <b>Example 1: Forward Contract</b><br>
+                    Payoff: \(S_T - K\). Under \(\mathbb{Q}\): \(\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT}\)<br>
+                    Value: \(V = e^{-rT}(S_0 e^{rT} - K) = S_0 - Ke^{-rT}\)<br>
+                    Forward price: \(F = S_0 e^{rT}\) ✓
+                </div>
+                
+                <div class="example">
+                    <b>Example 2: Digital Option</b><br>
+                    Payoff: $1 if \(S_T > K\), else $0<br>
+                    \(V = e^{-rT}\mathbb{Q}(S_T > K)\)<br>
+                    Under \(\mathbb{Q}\): \(\ln(S_T/S_0) \sim N((r-\sigma^2/2)T, \sigma^2 T)\)<br>
+                    \(\mathbb{Q}(S_T > K) = N(d_2)\) where \(d_2 = \frac{\ln(S_0/K)+(r-\sigma^2/2)T}{\sigma\sqrt{T}}\)<br>
+                    \(\boxed{V = e^{-rT}N(d_2)}\)
+                </div>
+                
+                <div class="warning-box">
+                    <b>Common Confusion:</b> \(\mathbb{Q}\) is NOT the "true" probability!<br>
+                    • \(\mathbb{P}\): Real-world probabilities (for forecasting)<br>
+                    • \(\mathbb{Q}\): Risk-neutral probabilities (for pricing)<br>
+                    Under \(\mathbb{Q}\), stock expected return = \(r\), not realistic!<br>
+                    But prices are correct because hedging adjusts for risk.
+                </div>
+                
+                <p><b>Connection to Fundamental Theorem of Asset Pricing:</b></p>
+                <div class="derivation-step">
+                    <b>Theorem:</b> Market is arbitrage-free ⟺ ∃ equivalent martingale measure \(\mathbb{Q}\)<br>
+                    <b>Complete market:</b> \(\mathbb{Q}\) is unique ⟺ every claim is replicable<br>
+                    <b>Incomplete market:</b> Multiple \(\mathbb{Q}\) exist → pricing bounds, not unique prices
+                </div>
+            </div>
+            
+            <!-- FEYNMAN-KAC -->
+            <div class="derivation">
+                <h3>4. Feynman-Kac Formula</h3>
+                <p><b>Link between PDEs and expectations.</b></p>
+                
+                <p><b>Theorem:</b> If \(u(x,t)\) satisfies the PDE:</p>
+                <div class="eq">$$\frac{\partial u}{\partial t} + \mu(x,t)\frac{\partial u}{\partial x} + \frac{1}{2}\sigma^2(x,t)\frac{\partial^2 u}{\partial x^2} = r(x,t)u - f(x,t)$$</div>
+                <p>with terminal condition \(u(x,T) = g(x)\), then:</p>
+                <div class="eq">$$u(x,t) = \mathbb{E}\left[e^{-\int_t^T r(X_s,s)ds}g(X_T) + \int_t^T e^{-\int_t^s r(X_u,u)du}f(X_s,s)ds \Big| X_t=x\right]$$</div>
+                <p>where \(dX_s = \mu(X_s,s)ds + \sigma(X_s,s)dW_s\)</p>
+                
+                <div class="example">
+                    <b>Application to BS:</b> The BS PDE<br>
+                    \(\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV\)<br>
+                    with \(V(S,T) = (S_T-K)^+\) gives<br>
+                    \(V(S,t) = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}(S_T-K)^+ | S_t=S]\)<br>
+                    This is how we get from PDE to expectation formula!
+                </div>
+            </div>
+            
+            <!-- MARTINGALE REPRESENTATION -->
+            <div class="derivation">
+                <h3>5. Martingale Representation Theorem</h3>
+                <p><b>Statement:</b> Any \(\mathcal{F}_t\)-martingale \(M_t\) can be written as</p>
+                <div class="eq">$$M_t = M_0 + \int_0^t \phi_s dW_s$$</div>
+                <p>for some adapted process \(\phi_t\) with \(\int_0^T \phi_s^2 ds < \infty\).</p>
+                
+                <p><b>Financial Interpretation:</b></p>
+                <ul>
+                    <li>\(M_t\) = value of derivative</li>
+                    <li>\(\phi_t\) = replicating strategy (units of stock)</li>
+                    <li>The derivative can be replicated by dynamic trading!</li>
+                </ul>
+                
+                <p><b>Key Implication:</b> In a complete market (enough Brownian motions), every contingent claim can be hedged.</p>
+                
+                <div class="example">
+                    <b>Example:</b> For a European call, the hedging strategy is<br>
+                    \(\phi_t = \frac{\partial V}{\partial S} = N(d_1)\) (the delta!)
+                </div>
+            </div>
+            
+            <!-- O-U SOLUTION -->
+            <div class="derivation">
+                <h3>6. Ornstein-Uhlenbeck Solution - Integrating Factor</h3>
+                <p><b>Goal:</b> Solve \(dX_t = \theta(\mu - X_t)dt + \sigma dW_t\)</p>
+                
+                <p><b>Step 1: Rewrite as</b></p>
+                <div class="derivation-step">
+                    \(dX_t + \theta X_t dt = \theta\mu dt + \sigma dW_t\)
+                </div>
+                
+                <p><b>Step 2: Integrating factor method</b></p>
+                <div class="derivation-step">
+                    Multiply by \(e^{\theta t}\):<br>
+                    \(e^{\theta t}dX_t + \theta e^{\theta t}X_t dt = \theta\mu e^{\theta t}dt + \sigma e^{\theta t}dW_t\)
+                </div>
+                
+                <p><b>Step 3: Recognize as product rule</b></p>
+                <div class="derivation-step">
+                    LHS is \(d(e^{\theta t}X_t)\) by Itô:<br>
+                    \(d(e^{\theta t}X_t) = e^{\theta t}dX_t + \theta e^{\theta t}X_t dt\)
+                </div>
+                
+                <p><b>Step 4: Integrate from 0 to \(t\)</b></p>
+                <div class="derivation-step">
+                    \(e^{\theta t}X_t - X_0 = \theta\mu\int_0^t e^{\theta s}ds + \sigma\int_0^t e^{\theta s}dW_s\)<br>
+                    \(= \mu(e^{\theta t} - 1) + \sigma\int_0^t e^{\theta s}dW_s\)
+                </div>
+                
+                <p><b>Step 5: Solve for \(X_t\)</b></p>
+                <div class="eq">$$X_t = X_0 e^{-\theta t} + \mu(1 - e^{-\theta t}) + \sigma e^{-\theta t}\int_0^t e^{\theta s}dW_s$$</div>
+                
+                <p><b>Properties:</b></p>
+                <ul>
+                    <li>\(\mathbb{E}[X_t] = X_0 e^{-\theta t} + \mu(1-e^{-\theta t}) \to \mu\) as \(t \to \infty\)</li>
+                    <li>\(\text{Var}(X_t) = \frac{\sigma^2}{2\theta}(1-e^{-2\theta t}) \to \frac{\sigma^2}{2\theta}\)</li>
+                </ul>
+            </div>
+            
+            <!-- CIR BOND PRICING -->
+            <div class="derivation">
+                <h3>7. CIR Bond Pricing - Affine Structure</h3>
+                <p><b>Objective:</b> Find zero-coupon bond price \(P(r,t,T)\) when \(dr = a(b-r)dt + \sigma\sqrt{r}dW\).</p>
+                
+                <p><b>Ansatz:</b> Assume affine form</p>
+                <div class="eq">$$P(r,t,T) = A(t,T)e^{-B(t,T)r}$$</div>
+                
+                <p><b>Bond pricing PDE:</b></p>
+                <div class="derivation-step">
+                    \(\frac{\partial P}{\partial t} + a(b-r)\frac{\partial P}{\partial r} + \frac{1}{2}\sigma^2 r\frac{\partial^2 P}{\partial r^2} = rP\)
+                </div>
+                
+                <p><b>Substitute ansatz and simplify</b> (lengthy algebra) to get ODEs:</p>
+                <div class="eq">$$\frac{dB}{dt} = 1 - aB + \frac{1}{2}\sigma^2 B^2, \quad B(T,T)=0$$</div>
+                <div class="eq">$$\frac{d\ln A}{dt} = -ab B, \quad A(T,T)=1$$</div>
+                
+                <p><b>Solutions (Ricatti equation for \(B\)):</b></p>
+                <div class="eq">$$B(t,T) = \frac{2(e^{\gamma(T-t)}-1)}{(\gamma+a)(e^{\gamma(T-t)}-1)+2\gamma}$$</div>
+                <p>where \(\gamma = \sqrt{a^2 + 2\sigma^2}\)</p>
+                
+                <div class="eq">$$A(t,T) = \left[\frac{2\gamma e^{(a+\gamma)(T-t)/2}}{(\gamma+a)(e^{\gamma(T-t)}-1)+2\gamma}\right]^{2ab/\sigma^2}$$</div>
+                
+                <p><b>Note:</b> Closed form exists, but complex. Numerical methods often used in practice.</p>
+            </div>
+            
+            <!-- GBM SOLUTION DERIVATION -->
+            <div class="derivation">
+                <h3>8. GBM Exact Solution via Itô</h3>
+                <p><b>Problem:</b> Solve \(dS_t = \mu S_t dt + \sigma S_t dW_t\)</p>
+                
+                <p><b>Method 1: Log transformation</b></p>
+                <div class="derivation-step">
+                    Let \(X_t = \ln S_t\). Apply Itô with \(f(S) = \ln S\):<br>
+                    \(f'(S) = 1/S, \quad f''(S) = -1/S^2\)<br>
+                    \(dX_t = \frac{1}{S_t}dS_t - \frac{1}{2S_t^2}(dS_t)^2\)<br>
+                    \(= \frac{1}{S_t}(\mu S_t dt + \sigma S_t dW_t) - \frac{1}{2S_t^2}\sigma^2 S_t^2 dt\)<br>
+                    \(= \mu dt + \sigma dW_t - \frac{\sigma^2}{2}dt\)<br>
+                    \(= (\mu - \frac{\sigma^2}{2})dt + \sigma dW_t\)
+                </div>
+                
+                <p><b>Integrate:</b></p>
+                <div class="derivation-step">
+                    \(\int_0^t dX_s = \int_0^t (\mu - \frac{\sigma^2}{2})ds + \int_0^t \sigma dW_s\)<br>
+                    \(X_t - X_0 = (\mu - \frac{\sigma^2}{2})t + \sigma W_t\)<br>
+                    \(\ln S_t = \ln S_0 + (\mu - \frac{\sigma^2}{2})t + \sigma W_t\)<br>
+                </div>
+                
+                <p><b>Exponentiate:</b></p>
+                <div class="eq">$$S_t = S_0 \exp\left[(\mu - \frac{\sigma^2}{2})t + \sigma W_t\right]$$</div>
+                
+                <p><b>Verification:</b> Apply Itô to \(S_t = S_0 e^{X_t}\):</p>
+                <div class="derivation-step">
+                    \(dS_t = S_t dX_t + \frac{1}{2}S_t(dX_t)^2\)<br>
+                    \(= S_t[(\mu-\frac{\sigma^2}{2})dt + \sigma dW_t] + \frac{1}{2}S_t\sigma^2 dt\)<br>
+                    \(= \mu S_t dt + \sigma S_t dW_t\) ✓
+                </div>
+            </div>
+            
+            <!-- MOMENT GENERATING FUNCTION -->
+            <div class="derivation">
+                <h3>9. MGF and Moments of Log-Normal</h3>
+                <p><b>For:</b> \(S_t = S_0 e^{(\mu-\sigma^2/2)t + \sigma W_t}\), find \(\mathbb{E}[S_t^n]\)</p>
+                
+                <p><b>Step 1: Rewrite</b></p>
+                <div class="derivation-step">
+                    \(S_t^n = S_0^n \exp[n(\mu-\frac{\sigma^2}{2})t + n\sigma W_t]\)
+                </div>
+                
+                <p><b>Step 2: Use MGF of normal</b></p>
+                <div class="derivation-step">
+                    Since \(W_t \sim N(0,t)\), we have:<br>
+                    \(\mathbb{E}[e^{aW_t}] = e^{a^2t/2}\) (MGF of normal)
+                </div>
+                
+                <p><b>Step 3: Calculate expectation</b></p>
+                <div class="derivation-step">
+                    \(\mathbb{E}[S_t^n] = S_0^n e^{n(\mu-\sigma^2/2)t}\mathbb{E}[e^{n\sigma W_t}]\)<br>
+                    \(= S_0^n e^{n(\mu-\sigma^2/2)t} e^{n^2\sigma^2 t/2}\)<br>
+                    \(= S_0^n e^{n\mu t + n(n-1)\sigma^2 t/2}\)
+                </div>
+                
+                <p><b>Special cases:</b></p>
+                <ul style="font-size: 8pt;">
+                    <li>\(n=1\): \(\mathbb{E}[S_t] = S_0 e^{\mu t}\)</li>
+                    <li>\(n=2\): \(\mathbb{E}[S_t^2] = S_0^2 e^{2\mu t + \sigma^2 t}\)</li>
+                    <li>\(\text{Var}(S_t) = \mathbb{E}[S_t^2] - (\mathbb{E}[S_t])^2 = S_0^2 e^{2\mu t}(e^{\sigma^2 t}-1)\)</li>
+                </ul>
+            </div>
+            
+            <!-- MULTIVARIATE ITO -->
+            <div class="derivation">
+                <h3>10. Multivariate Itô's Lemma</h3>
+                <p><b>For:</b> \(dX_i = \mu_i dt + \sigma_i dW_i\) with \(\langle dW_i, dW_j \rangle = \rho_{ij}dt\)</p>
+                <p>Find \(dY\) where \(Y = f(X_1, X_2, ..., X_n, t)\)</p>
+                
+                <p><b>Formula:</b></p>
+                <div class="eq" style="font-size: 7pt;">$$dY = \frac{\partial f}{\partial t}dt + \sum_{i=1}^n \frac{\partial f}{\partial X_i}dX_i + \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n \frac{\partial^2 f}{\partial X_i \partial X_j}dX_i dX_j$$</div>
+                
+                <p><b>Key multiplication rules:</b></p>
+                <div class="derivation-step">
+                    \(dW_i dW_j = \rho_{ij}dt\)<br>
+                    \(dX_i dX_j = \sigma_i \sigma_j dW_i dW_j = \sigma_i \sigma_j \rho_{ij}dt\)
+                </div>
+                
+                <p><b>Example: Basket option</b></p>
+                <div class="derivation-step">
+                    Two stocks: \(dS_1 = \mu_1 S_1 dt + \sigma_1 S_1 dW_1\), \(dS_2 = \mu_2 S_2 dt + \sigma_2 S_2 dW_2\)<br>
+                    Basket: \(V = w_1 S_1 + w_2 S_2\)<br>
+                    \(dV = w_1 dS_1 + w_2 dS_2\) (no second-order terms since V is linear)<br>
+                    Variance: \(\text{Var}(dV) = w_1^2\sigma_1^2S_1^2dt + w_2^2\sigma_2^2S_2^2dt + 2w_1w_2\rho\sigma_1\sigma_2S_1S_2dt\)
+                </div>
+            </div>
+            
+            <!-- CHANGE OF NUMERAIRE -->
+            <div class="derivation">
+                <h3>11. Change of Numéraire - Extended Theory</h3>
+                <p><b>Concept:</b> Price assets in units of different assets (not just cash)</p>
+                
+                <p><b>The Big Idea - Why Change Numéraire?</b></p>
+                <div class="derivation-step">
+                    <b>Cash numéraire:</b> Standard approach, discount at risk-free rate \(r\)<br>
+                    <b>Problem:</b> Some derivatives are naturally denominated in other assets!<br>
+                    <b>Examples:</b> Options on forwards, quanto options, swaptions<br>
+                    <b>Solution:</b> Choose numéraire that simplifies the math
+                </div>
+                
+                <p><b>What is a Numéraire?</b></p>
+                <ul style="font-size: 7pt;">
+                    <li>A numéraire is a positive, traded asset used as unit of account</li>
+                    <li>Like choosing currency: price stocks in USD vs EUR vs gold</li>
+                    <li>Examples: cash (\(e^{rt}\)), zero-coupon bonds, portfolios</li>
+                </ul>
+                
+                <p><b>Setup:</b> Let \(N_t\) be numéraire (positive tradable asset with dynamics)</p>
+                
+                <p><b>Fundamental Theorem:</b> Under \(N\)-forward measure \(\mathbb{Q}^N\):</p>
+                <div class="eq">$$\frac{S_t}{N_t} \text{ is a } \mathbb{Q}^N\text{-martingale for all traded assets } S$$</div>
+                
+                <p><b>Intuition:</b> Relative prices (in numéraire units) have no drift!</p>
+                
+                <div class="warning-box" style="margin-top: 4pt;">
+                    <b>Analogy:</b> Imagine pricing everything in gold.<br>
+                    If stock/gold ratio drifts, you could arbitrage by trading stock vs gold.<br>
+                    No-arbitrage ⇒ relative prices must be martingales.
+                </div>
+                
+                <p><b>Step 1: Radon-Nikodym Derivative for Numéraire Change</b></p>
+                <div class="derivation-step">
+                    To change from measure \(\mathbb{Q}\) (cash numéraire) to \(\mathbb{Q}^N\) (asset \(N\) as numéraire):<br>
+                    \(\frac{d\mathbb{Q}^N}{d\mathbb{Q}}\Big|_{\mathcal{F}_T} = \frac{N_T/N_0}{B_T/B_0}\)<br>
+                    where \(B_t = e^{rt}\) is money market account<br><br>
+                    Simplified: \(\frac{d\mathbb{Q}^N}{d\mathbb{Q}} = \frac{N_T e^{-rT}}{N_0}\) (discounted numéraire)
+                </div>
+                
+                <p><b>Why this form?</b> Under \(\mathbb{Q}\), \(e^{-rt}N_t\) is martingale, so this is a positive martingale with expectation 1.</p>
+                
+                <p><b>Step 2: Pricing Formula Under New Measure</b></p>
+                <div class="derivation-step">
+                    <b>Standard (cash numéraire):</b><br>
+                    \(V_t = \mathbb{E}^{\mathbb{Q}}[e^{-r(T-t)}V_T|\mathcal{F}_t]\)<br><br>
+                    <b>Under N-numéraire:</b><br>
+                    \(V_t = N_t \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T}\Big|\mathcal{F}_t\right]\)
+                </div>
+                
+                <p><b>Derivation of pricing formula:</b></p>
+                <div class="derivation-step">
+                    Start with \(V_t/N_t\) is \(\mathbb{Q}^N\)-martingale:<br>
+                    \(\frac{V_t}{N_t} = \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T}\Big|\mathcal{F}_t\right]\)<br>
+                    Multiply both sides by \(N_t\):<br>
+                    \(V_t = N_t \mathbb{E}^{\mathbb{Q}^N}\left[\frac{V_T}{N_T}\Big|\mathcal{F}_t\right]\) ✓
+                </div>
+                
+                <p><b>Key Insight:</b> No discounting needed! The numéraire \(N_t\) acts as the "discount factor"</p>
+                
+                <p><b>Step 3: How to Change Brownian Motion</b></p>
+                <div class="derivation-step">
+                    Under \(\mathbb{Q}\): \(dS_t = \mu^{\mathbb{Q}}S_t dt + \sigma S_t dW_t^{\mathbb{Q}}\)<br>
+                    Under \(\mathbb{Q}^N\): \(dW_t^{\mathbb{Q}^N} = dW_t^{\mathbb{Q}} + \theta_t^N dt\)<br>
+                    where drift adjustment \(\theta_t^N\) depends on volatility of numéraire
+                </div>
+                
+                <p><b>Girsanov theorem for numéraire change:</b></p>
+                <div class="derivation-step">
+                    If \(dN_t = \mu_N N_t dt + \sigma_N N_t dW_t^{\mathbb{Q}}\), then:<br>
+                    \(\theta_t^N = -\sigma_N\) (negative of numéraire volatility)
+                </div>
+                
+                <p><b>Step 4: T-Forward Measure - The Most Important Case</b></p>
+                <div class="derivation-step">
+                    <b>Choose numéraire:</b> \(N_t = P(t,T)\) (zero-coupon bond maturing at \(T\))<br>
+                    <b>Key property:</b> \(P(T,T) = 1\) (pays $1 at maturity)
+                </div>
+                
+                <p><b>Why is this useful?</b> Forward prices become martingales!</p>
+                
+                <p><b>Proof that forward price is martingale under \(\mathbb{Q}^T\):</b></p>
+                <div class="derivation-step">
+                    <b>Definition:</b> Forward price \(F(t,T) = S_t/P(t,T)\)<br>
+                    <b>Under \(\mathbb{Q}^T\):</b> Both \(S_t\) and \(P(t,T)\) are martingales when normalized by \(P(t,T)\)<br>
+                    \(\frac{S_t}{P(t,T)}\) is \(\mathbb{Q}^T\)-martingale<br>
+                    But \(\frac{S_t}{P(t,T)} = F(t,T)\) by definition!<br>
+                    Therefore: \(F(t,T)\) is \(\mathbb{Q}^T\)-martingale ✓
+                </div>
+                
+                <p><b>Implication:</b> \(\mathbb{E}^{\mathbb{Q}^T}[F(T,T)|\mathcal{F}_t] = F(t,T)\)</p>
+                <p>Since \(F(T,T) = S_T\): \(\mathbb{E}^{\mathbb{Q}^T}[S_T|\mathcal{F}_t] = F(t,T)\)</p>
+                
+                <p><b>Pricing formula for payoff depending on \(S_T\):</b></p>
+                <div class="eq" style="font-size: 8pt;">$$V_t = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[g(S_T)|\mathcal{F}_t] = P(t,T)\mathbb{E}^{\mathbb{Q}^T}[g(F(T,T))|\mathcal{F}_t]$$</div>
+                
+                <div class="example">
+                    <b>Example 1: European Call on Forward</b><br>
+                    Payoff at \(T\): \(\max(F(T,T)-K, 0) = \max(S_T-K, 0)\)<br>
+                    Under \(\mathbb{Q}^T\), forward \(F(t,T)\) is martingale (no drift!)<br>
+                    If \(F(t,T)\) has vol \(\sigma_F\), then \(F(T,T) \sim \text{Lognormal}\)<br>
+                    Price: \(C_t = P(t,T)[F(t,T)N(d_1) - KN(d_2)]\)<br>
+                    where \(d_1 = \frac{\ln(F/K) + \sigma_F^2(T-t)/2}{\sigma_F\sqrt{T-t}}\)<br>
+                    This is <b>Black's formula</b>!
+                </div>
+                
+                <div class="example">
+                    <b>Example 2: Caps and Floors</b><br>
+                    A caplet on LIBOR \(L(T,T+\delta)\) with strike \(K\):<br>
+                    Payoff (at \(T+\delta\)): \(\delta \max(L(T,T+\delta)-K, 0)\)<br>
+                    <b>Natural numéraire:</b> \(P(t,T+\delta)\)<br>
+                    Under \(\mathbb{Q}^{T+\delta}\), forward LIBOR is martingale!<br>
+                    Price: \(Caplet_t = \delta P(t,T+\delta)[F_L N(d_1) - KN(d_2)]\)<br>
+                    where \(F_L = \mathbb{E}^{\mathbb{Q}^{T+\delta}}[L(T,T+\delta)]\) (forward LIBOR)
+                </div>
+                
+                <p><b>Step 5: Annuity Measure for Swaptions</b></p>
+                <div class="derivation-step">
+                    <b>Swap:</b> Exchange fixed rate \(K\) for floating LIBOR over \(n\) periods<br>
+                    <b>Swap rate:</b> \(S(t) = \frac{P(t,T_0)-P(t,T_n)}{\sum_{i=1}^n \delta_i P(t,T_i)}\)<br>
+                    <b>Annuity:</b> \(A(t) = \sum_{i=1}^n \delta_i P(t,T_i)\) (present value of basis point)
+                </div>
+                
+                <p><b>Choose numéraire \(N_t = A(t)\):</b></p>
+                <div class="derivation-step">
+                    Under annuity measure \(\mathbb{Q}^A\), swap rate \(S(t)\) is martingale!<br>
+                    <b>Swaption pricing:</b> Option to enter swap at rate \(K\)<br>
+                    Payoff: \(A(T_0)\max(S(T_0)-K, 0)\)<br>
+                    Price: \(V_t = A(t)[S(t)N(d_1) - KN(d_2)]\)<br>
+                    Again Black's formula, but for swap rate!
+                </div>
+                
+                <p><b>Step 6: Complete Example - Foreign Exchange</b></p>
+                <div class="derivation-step">
+                    <b>Setup:</b> \(X_t\) = FX rate (domestic per foreign)<br>
+                    Domestic rate \(r_d\), foreign rate \(r_f\)<br><br>
+                    <b>Standard (domestic cash numéraire):</b><br>
+                    \(dX_t = (r_d - r_f)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^d}\)<br>
+                    (Interest rate parity gives drift)<br><br>
+                    <b>Change to foreign cash numéraire:</b><br>
+                    In foreign terms, price is \(1/X_t\)<br>
+                    Under \(\mathbb{Q}^f\): \(d(1/X_t)\) has drift \((r_f-r_d)/X_t\)<br>
+                    Equivalently: \(dX_t = (r_f - r_d)X_t dt + \sigma X_t dW_t^{\mathbb{Q}^f}\)<br>
+                    (Drift reverses!)
+                </div>
+                
+                <p><b>FX Option pricing:</b></p>
+                <div class="derivation-step">
+                    Call on FX (right to buy foreign currency):<br>
+                    <b>Domestic view:</b> \(C = e^{-r_d T}[F_X N(d_1) - KN(d_2)]\)<br>
+                    where \(F_X = X_0 e^{(r_d-r_f)T}\) (FX forward)<br><br>
+                    <b>Foreign view:</b> Put on \(1/X\)<br>
+                    Same price by put-call parity across currencies!
+                </div>
+                
+                <p><b>Step 7: Stock Numéraire - "Quantos"</b></p>
+                <div class="derivation-step">
+                    <b>Quanto option:</b> Payoff in one currency, but based on asset in another<br>
+                    Example: \(\max(S_T^{USD}-K, 0)\) paid in EUR at fixed rate<br><br>
+                    <b>Issue:</b> Stock and FX are correlated!<br>
+                    If \(dS = \mu_S S dt + \sigma_S S dW_S\) and \(dX = \mu_X X dt + \sigma_X X dW_X\)<br>
+                    with \(\langle dW_S, dW_X \rangle = \rho dt\)<br><br>
+                    <b>Quanto adjustment:</b> Drift changes by \(-\rho\sigma_S\sigma_X\)<br>
+                    Under quanto measure: \(dS = (r - \rho\sigma_S\sigma_X)S dt + \sigma_S S dW\)
+                </div>
+                
+                <div class="example">
+                    <b>Numerical Example: Quanto Adjustment</b><br>
+                    Japanese investor wants S&P 500 call settled in JPY at fixed rate.<br>
+                    \(\sigma_S = 20\%\) (S&P vol), \(\sigma_X = 10\%\) (USD/JPY vol), \(\rho = -0.5\)<br>
+                    Standard drift: \(r_{USD} = 5\%\)<br>
+                    Quanto drift: \(r_{quanto} = 0.05 - (-0.5)(0.20)(0.10) = 0.05 + 0.01 = 6\%\)<br>
+                    <b>Effect:</b> Use 6% instead of 5% in Black-Scholes!<br>
+                    <b>Why?</b> Negative correlation means when S&P rises, JPY typically strengthens,<br>
+                    partially hedging the payoff. Must adjust drift upward to compensate.
+                </div>
+                
+                <p><b>General Numéraire Change Formula</b></p>
+                <div class="derivation-step">
+                    From measure \(\mathbb{Q}^{N_1}\) to \(\mathbb{Q}^{N_2}\):<br>
+                    \(\frac{d\mathbb{Q}^{N_2}}{d\mathbb{Q}^{N_1}} = \frac{N_2(T)/N_2(0)}{N_1(T)/N_1(0)}\)<br><br>
+                    Drift adjustment for asset \(S\):<br>
+                    \(\mu^{N_2} = \mu^{N_1} - \rho_{S,N_2}\sigma_S\sigma_{N_2} + \rho_{S,N_1}\sigma_S\sigma_{N_1}\)<br>
+                    where \(\rho_{S,N}\) = correlation between \(S\) and numéraire \(N\)
+                </div>
+                
+                <p><b>Practical Algorithm for Pricing</b></p>
+                <div class="derivation-step">
+                    <b>Step 1:</b> Identify what you're pricing (e.g., option on forward)<br>
+                    <b>Step 2:</b> Choose numéraire that makes key quantity martingale<br>
+                    <b>Step 3:</b> Write payoff in terms of that numéraire<br>
+                    <b>Step 4:</b> Take expectation (now simple because martingale!)<br>
+                    <b>Step 5:</b> Multiply by numéraire value at \(t\)
+                </div>
+                
+                <div class="warning-box" style="margin-top: 4pt;">
+                    <b>Common Mistakes:</b><br>
+                    1. Forgetting that \(N_T\) appears in both numerator and denominator<br>
+                    2. Using wrong volatility after numéraire change<br>
+                    3. Confusing forward price with futures price (different for rates!)<br>
+                    4. Not accounting for correlation in quanto adjustments
+                </div>
+                
+                <p><b>Why Numéraire Changes Matter in Practice</b></p>
+                <ul style="font-size: 7pt;">
+                    <li><b>Simplicity:</b> Black's formula instead of complex PDE</li>
+                    <li><b>Market convention:</b> Caps/floors quoted in terms of forward LIBOR</li>
+                    <li><b>Numerical stability:</b> Monte Carlo with forward measure converges faster</li>
+                    <li><b>Hedging:</b> Natural hedge ratios in the "right" units</li>
+                </ul>
+                
+                <div class="example">
+                    <b>Summary Table: Common Numéraires</b><br>
+                    <table style="font-size: 6pt; margin-top: 3pt;">
+                        <tr><th>Numéraire</th><th>Measure</th><th>What's Martingale</th><th>Use Case</th></tr>
+                        <tr><td>Cash \(e^{rt}\)</td><td>\(\mathbb{Q}\)</td><td>Discounted assets</td><td>Standard pricing</td></tr>
+                        <tr><td>Zero-coupon \(P(t,T)\)</td><td>\(\mathbb{Q}^T\)</td><td>Forward prices</td><td>Options on forwards</td></tr>
+                        <tr><td>Annuity \(\sum \delta_i P(t,T_i)\)</td><td>\(\mathbb{Q}^A\)</td><td>Swap rates</td><td>Swaptions</td></tr>
+                        <tr><td>Stock \(S_t\)</td><td>\(\mathbb{Q}^S\)</td><td>Reciprocal stock</td><td>Exchange options</td></tr>
+                        <tr><td>Foreign bond</td><td>\(\mathbb{Q}^f\)</td><td>FX rate</td><td>Currency options</td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- QUADRATIC VARIATION -->
+            <div class="derivation">
+                <h3>12. Quadratic Variation & Volatility Estimation</h3>
+                <p><b>Definition:</b> Quadratic variation of process \(X_t\) over \([0,T]\):</p>
+                <div class="eq">$$[X,X]_T = \lim_{n\to\infty} \sum_{i=1}^n (X_{t_i} - X_{t_{i-1}})^2$$</div>
+                
+                <p><b>Key results:</b></p>
+                <ul style="font-size: 8pt;">
+                    <li>Brownian motion: \([W,W]_T = T\) (not random!)</li>
+                    <li>Itô process \(dX = \mu dt + \sigma dW\): \([X,X]_T = \int_0^T \sigma^2_s ds\)</li>
+                    <li>GBM: \([S,S]_T = \int_0^T \sigma^2 S_t^2 dt\)</li>
+                </ul>
+                
+                <p><b>Realized volatility estimator:</b></p>
+                <div class="derivation-step">
+                    For GBM with constant \(\sigma\), using high-frequency data:<br>
+                    \(\hat{\sigma}^2 = \frac{1}{T}\sum_{i=1}^n (\ln S_{t_i} - \ln S_{t_{i-1}})^2\)<br>
+                    This converges to true \(\sigma^2\) as \(n \to \infty\)
+                </div>
+                
+                <p><b>Warning:</b> Market microstructure noise biases this at ultra-high frequencies!</p>
+            </div>
+            
+            <!-- LEVY'S CHARACTERIZATION -->
+            <div class="derivation">
+                <h3>13. Lévy's Characterization of BM</h3>
+                <p><b>Theorem:</b> A continuous process \(M_t\) is a Brownian motion if and only if:</p>
+                <ol style="font-size: 8pt;">
+                    <li>\(M_0 = 0\)</li>
+                    <li>\(M_t\) is a martingale</li>
+                    <li>\([M,M]_t = t\) (quadratic variation)</li>
+                </ol>
+                
+                <p><b>Application: Proving time-changed BM</b></p>
+                <div class="derivation-step">
+                    Let \(X_t = \int_0^t \sigma_s dW_s\) where \(\sigma_s\) is adapted<br>
+                    Define \(A_t = \int_0^t \sigma_s^2 ds\)<br>
+                    Then \(B_t = X_{A^{-1}_t}\) is a standard Brownian motion!
+                </div>
+                
+                <p><b>Implication:</b> Any continuous martingale with right quadratic variation IS a Brownian motion (possibly time-changed)</p>
+            </div>
+            
+            <!-- TANAKA FORMULA -->
+            <div class="derivation">
+                <h3>14. Tanaka's Formula & Local Time</h3>
+                <p><b>For:</b> Brownian motion \(W_t\), Tanaka's formula gives:</p>
+                <div class="eq">$$|W_t| = \int_0^t \text{sgn}(W_s)dW_s + L_t^0$$</div>
+                <p>where \(L_t^0\) is local time at 0 (time spent at zero)</p>
+                
+                <p><b>Key insight:</b> \(|W_t|\) is NOT an Itô process (not differentiable at 0)</p>
+                
+                <p><b>Occupation density formula:</b></p>
+                <div class="derivation-step">
+                    \(\int_0^t f(W_s)ds = \int_{-\infty}^{\infty} f(x)L_t^x dx\)<br>
+                    where \(L_t^x\) = local time at level \(x\)
+                </div>
+                
+                <p><b>Application:</b> Pricing barrier options, path-dependent payoffs</p>
+            </div>
+            
+            <!-- FOKKER-PLANCK -->
+            <div class="derivation">
+                <h3>15. Fokker-Planck Equation Derivation</h3>
+                <p><b>For SDE:</b> \(dX_t = \mu(X_t,t)dt + \sigma(X_t,t)dW_t\)</p>
+                <p>Find evolution of probability density \(p(x,t)\)</p>
+                
+                <p><b>Method: Infinitesimal generator</b></p>
+                <div class="derivation-step">
+                    Generator: \(\mathcal{L}f = \mu(x)\frac{\partial f}{\partial x} + \frac{1}{2}\sigma^2(x)\frac{\partial^2 f}{\partial x^2}\)<br>
+                    Kolmogorov forward: \(\frac{\partial p}{\partial t} = \mathcal{L}^* p\)<br>
+                    where \(\mathcal{L}^*\) is adjoint operator
+                </div>
+                
+                <p><b>Fokker-Planck PDE:</b></p>
+                <div class="eq">$$\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}[\mu(x,t)p] + \frac{1}{2}\frac{\partial^2}{\partial x^2}[\sigma^2(x,t)p]$$</div>
+                
+                <p><b>Example: O-U process stationary distribution</b></p>
+                <div class="derivation-step">
+                    For \(dX = \theta(\mu-X)dt + \sigma dW\), stationary \(\partial p/\partial t = 0\):<br>
+                    \(0 = -\frac{d}{dx}[\theta(\mu-x)p] + \frac{\sigma^2}{2}\frac{d^2p}{dx^2}\)<br>
+                    Solution: \(p(x) = \mathcal{N}(\mu, \sigma^2/(2\theta))\) ✓
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-break"></div>
+        
+        <h2 style="column-span: all; text-align: center;">Classic Interview Problems</h2>
+        
+        <div class="two-column">
+            <div class="interview-question">
+                <h3>Problem 1: Path-Dependent Claim</h3>
+                <p><b>Q:</b> Under GBM with \(\mu=0.08, \sigma=0.3, S_0=100\), find \(\mathbb{E}[S_T^2]\) for \(T=1\).</p>
+                <p><b>Solution:</b></p>
+                <p>\(S_T = S_0 e^{(\mu-\sigma^2/2)T + \sigma W_T}\)</p>
+                <p>\(S_T^2 = S_0^2 e^{2(\mu-\sigma^2/2)T + 2\sigma W_T}\)</p>
+                <p>\(\mathbb{E}[S_T^2] = S_0^2 e^{2(\mu-\sigma^2/2)T}\mathbb{E}[e^{2\sigma W_T}]\)</p>
+                <p>Since \(W_T \sim N(0,T)\), \(\mathbb{E}[e^{aW_T}] = e^{a^2T/2}\)</p>
+                <p>\(\mathbb{E}[S_T^2] = 100^2 e^{2(0.08-0.045)(1)}e^{2\sigma^2 T} = 10000 e^{0.07}e^{0.18}\)</p>
+                <p>\(= 10000 e^{0.25} = \boxed{12,840}\)</p>
+                <p><b>Alternative:</b> \(\mathbb{E}[S_T^2] = S_0^2 e^{2\mu T + \sigma^2 T} = 10000 e^{0.16+0.09} = 10000(1.284)\)</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 2: First Passage Time</h3>
+                <p><b>Q:</b> Stock at $100, volatility 20%. What's probability it hits $120 before $90?</p>
+                <p><b>Solution:</b> Use Gambler's Ruin formula for BM with drift.</p>
+                <p>Let \(X = \ln S\), \(X_0 = \ln 100\), barriers at \(a=\ln 90, b=\ln 120\)</p>
+                <p>Under risk-neutral measure (\(\mu=r\)), assume \(r \approx 0\) for simplicity (symmetric)</p>
+                <p>For symmetric BM: \(P(\text{hit } b \text{ first}) = \frac{X_0 - a}{b - a}\)</p>
+                <p>\(= \frac{\ln(100/90)}{\ln(120/90)} = \frac{0.1054}{0.2877} = \boxed{0.366}\)</p>
+                <p><b>With drift \(\mu\):</b> \(P = \frac{e^{2\mu a/\sigma^2} - e^{2\mu X_0/\sigma^2}}{e^{2\mu a/\sigma^2} - e^{2\mu b/\sigma^2}}\)</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 3: Variance of Integrated Process</h3>
+                <p><b>Q:</b> For O-U process \(dX = \theta(\mu-X)dt + \sigma dW\), find \(\text{Var}\left(\int_0^T X_t dt\right)\).</p>
+                <p><b>Solution:</b> This is complex. Key steps:</p>
+                <p>1. Use \(\text{Var}(I) = \int_0^T\int_0^T \text{Cov}(X_s, X_t)ds\,dt\)</p>
+                <p>2. O-U covariance: \(\text{Cov}(X_s,X_t) = \frac{\sigma^2}{2\theta}e^{-\theta|t-s|}(1-e^{-2\theta\min(s,t)})\)</p>
+                <p>3. Double integral gives (for large \(T\)):</p>
+                <p>\(\text{Var}(I) \approx \frac{\sigma^2 T}{2\theta^2}\)</p>
+                <p><b>Intuition:</b> Integrated variance grows linearly in \(T\), unlike BM which gives \(T^3/3\).</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 4: Risk-Neutral vs Physical Measure</h3>
+                <p><b>Q:</b> Stock has \(\mu=12\%, \sigma=25\%, r=5\%\). Find 1-year forward price and compare expected values under both measures.</p>
+                <p><b>Solution:</b></p>
+                <p><b>Forward price (no-arbitrage):</b> \(F = S_0 e^{rT} = 100e^{0.05} = 105.13\)</p>
+                <p><b>Under \(\mathbb{P}\):</b> \(\mathbb{E}^{\mathbb{P}}[S_T] = S_0 e^{\mu T} = 100e^{0.12} = 112.75\)</p>
+                <p><b>Under \(\mathbb{Q}\):</b> \(\mathbb{E}^{\mathbb{Q}}[S_T] = S_0 e^{rT} = 105.13\)</p>
+                <p><b>Key insight:</b> Forward price equals risk-neutral expectation, NOT physical expectation!</p>
+                <p><b>Market price of risk:</b> \(\lambda = \frac{\mu-r}{\sigma} = \frac{0.07}{0.25} = 0.28\)</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 5: Time-Changed Brownian Motion</h3>
+                <p><b>Q:</b> If \(X_t = W_{A_t}\) where \(dA_t = v_t dt\) (random time change), what process does \(X_t\) follow?</p>
+                <p><b>Solution:</b> By time-change theorem (Dubins-Schwarz):</p>
+                <p>\(dX_t = \sqrt{v_t}dW_t\)</p>
+                <p>This is <b>local volatility</b> structure!</p>
+                <p>If \(v_t\) follows another SDE (e.g., CIR), we get stochastic volatility.</p>
+                <p><b>Application:</b> Heston model can be viewed as time-changed BM where clock runs at random speed determined by variance process.</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 6: Reflection Principle</h3>
+                <p><b>Q:</b> BM starts at 0. Find \(P(\max_{0 \leq t \leq T} W_t > a)\).</p>
+                <p><b>Solution:</b> Use reflection principle:</p>
+                <p>\(P(M_T > a) = P(W_T > a) + P(W_T < -a) = 2P(W_T > a)\)</p>
+                <p>where \(M_T = \max_{0 \leq t \leq T} W_t\)</p>
+                <p>\(= 2\Phi\left(-\frac{a}{\sqrt{T}}\right) = 2N\left(-\frac{a}{\sqrt{T}}\right)\)</p>
+                <p><b>Example:</b> \(T=1, a=1.5\)</p>
+                <p>\(P(M_1 > 1.5) = 2N(-1.5) = 2(0.0668) = \boxed{0.1336}\)</p>
+                <p><b>Application:</b> Pricing barrier options!</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 7: Digital Option Pricing</h3>
+                <p><b>Q:</b> Price a digital call paying $100 if \(S_T > K\), else $0. Given: \(S_0=50, K=55, r=0.04, \sigma=0.25, T=0.5\).</p>
+                <p><b>Solution:</b> Digital call = \(Qe^{-rT}N(d_2)\) where \(Q=100\)</p>
+                <p>\(d_2 = \frac{\ln(50/55)+(0.04-0.25^2/2)(0.5)}{0.25\sqrt{0.5}}\)</p>
+                <p>\(= \frac{-0.0953 + 0.0044}{0.1768} = -0.514\)</p>
+                <p>\(N(-0.514) = 0.3036\)</p>
+                <p>Price = \(100 e^{-0.04(0.5)}(0.3036) = 100(0.9802)(0.3036) = \boxed{29.76}\)</p>
+                <p><b>Check:</b> Regular call would be worth more since it pays \(S_T-K\) not just fixed amount.</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 8: Down-and-Out Call</h3>
+                <p><b>Q:</b> Price a down-and-out call: payoff = \(\max(S_T-K,0)\) if \(S_t > H\) for all \(t\), else 0. Given: \(S_0=100, K=100, H=90, r=0.05, \sigma=0.3, T=1\).</p>
+                <p><b>Solution:</b> Use closed-form barrier formula:</p>
+                <p>\(C_{DO} = C_{vanilla} - (H/S_0)^{2\lambda}C(H^2/S_0, K, ...)\)</p>
+                <p>where \(\lambda = (r+\sigma^2/2)/\sigma^2 = (0.05+0.045)/0.09 = 1.056\)</p>
+                <p><b>Step 1:</b> Regular call with \(S_0=100, K=100\):</p>
+                <p>\(d_1=0.316, d_2=0.016, C = 100(0.624)-100e^{-0.05}(0.506) = \boxed{14.26}\)</p>
+                <p><b>Step 2:</b> Adjustment term with \(S_0=H^2/S_0=81, K=100\):</p>
+                <p>\(d_1=-0.464, d_2=-0.764, C = 81(0.321)-100e^{-0.05}(0.222) = 4.90\)</p>
+                <p><b>Step 3:</b> \(C_{DO} = 14.26 - (0.9)^{2(1.056)}(4.90) = 14.26 - 3.73 = \boxed{10.53}\)</p>
+                <p>Barrier option worth ~26% less than vanilla!</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 9: Asian Option via MC</h3>
+                <p><b>Q:</b> Price arithmetic Asian call: payoff = \(\max(\bar{S}-K, 0)\) where \(\bar{S} = \frac{1}{n}\sum_{i=1}^n S_{t_i}\). Given: \(S_0=100, K=100, r=0.05, \sigma=0.2, T=1, n=12\) (monthly).</p>
+                <p><b>Solution:</b> No closed form! Use Monte Carlo:</p>
+                <p><b>Step 1:</b> Generate path: \(S_{t_i} = S_{t_{i-1}}e^{(r-\sigma^2/2)\Delta t + \sigma\sqrt{\Delta t}Z_i}\)</p>
+                <p><b>Step 2:</b> Calculate average: \(\bar{S} = \frac{1}{12}\sum_{i=1}^{12} S_{i/12}\)</p>
+                <p><b>Step 3:</b> Payoff: \(\max(\bar{S}-100, 0)\)</p>
+                <p><b>Step 4:</b> Repeat 10,000 times, average and discount</p>
+                <p><b>Typical result:</b> \(C_{Asian} \approx 5.2\) vs regular call \(\approx 8.0\)</p>
+                <p><b>Why cheaper?</b> Averaging reduces volatility: \(\sigma_{avg} \approx \sigma/\sqrt{n}\)</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 10: Stochastic Vol vs Jump</h3>
+                <p><b>Q:</b> Market shows implied vol smile: 90% strike has 25% vol, ATM 20% vol, 110% strike 18% vol. Is this stochastic vol or jumps?</p>
+                <p><b>Solution - Analyze pattern:</b></p>
+                <p><b>Observed:</b> Downward sloping (skew) - OTM puts expensive</p>
+                <p><b>Stochastic vol (Heston):</b> Symmetric smile due to \(\rho<0\) creates skew. ✓ Matches!</p>
+                <p><b>Jump-diffusion:</b> Negative jumps create left skew. ✓ Also matches!</p>
+                <p><b>Distinguishing test:</b> Look at term structure:</p>
+                <ul style="font-size: 7pt; margin-left: 10pt;">
+                    <li><b>Stoch vol:</b> Smile flattens with maturity (mean reversion)</li>
+                    <li><b>Jumps:</b> Smile persists or steepens (jumps compound)</li>
+                </ul>
+                <p><b>Answer:</b> Need more maturities! But equity markets typically show BOTH effects, with stoch vol dominant for short-term, jumps for long-term.</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 11: Correlation from Options</h3>
+                <p><b>Q:</b> Two stocks: \(\sigma_1=0.3, \sigma_2=0.25\). Basket option on \(S_1+S_2\) has implied vol 0.24. What's correlation?</p>
+                <p><b>Solution:</b> For equal weights \(w_1=w_2=0.5\):</p>
+                <p>\(\sigma_{basket}^2 = w_1^2\sigma_1^2 + w_2^2\sigma_2^2 + 2w_1w_2\rho\sigma_1\sigma_2\)</p>
+                <p>\(0.24^2 = 0.25(0.09) + 0.25(0.0625) + 0.5\rho(0.3)(0.25)\)</p>
+                <p>\(0.0576 = 0.0225 + 0.0156 + 0.0375\rho\)</p>
+                <p>\(0.0195 = 0.0375\rho\)</p>
+                <p>\(\rho = 0.0195/0.0375 = \boxed{0.52}\)</p>
+                <p><b>Interpretation:</b> Positive correlation reduces diversification benefit.</p>
+                <p><b>Check:</b> If \(\rho=1\): \(\sigma_{basket}=0.275\). If \(\rho=0\): \(\sigma_{basket}=0.196\). Our 0.24 is between, so \(\rho=0.52\) makes sense!</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 12: American Put via Binomial</h3>
+                <p><b>Q:</b> Price 6-month American put, \(S_0=50, K=52, r=0.06, \sigma=0.4\). Use 2-step tree.</p>
+                <p><b>Solution:</b> \(\Delta t = 0.25\)</p>
+                <p><b>Step 1:</b> Calculate parameters</p>
+                <p>\(u = e^{\sigma\sqrt{\Delta t}} = e^{0.4\sqrt{0.25}} = e^{0.2} = 1.221\)</p>
+                <p>\(d = 1/u = 0.819\)</p>
+                <p>\(q = \frac{e^{r\Delta t}-d}{u-d} = \frac{e^{0.015}-0.819}{0.402} = \frac{0.196}{0.402} = 0.488\)</p>
+                <p><b>Step 2:</b> Build tree</p>
+                <p>Node values: \(S_{uu}=74.5, S_{ud}=50, S_{dd}=33.5\)</p>
+                <p>Terminal payoffs: \(P_{uu}=0, P_{ud}=2, P_{dd}=18.5\)</p>
+                <p><b>Step 3:</b> Backward induction at \(t=0.25\)</p>
+                <p>Up node (\(S_u=61.05\)): Hold = \(e^{-0.015}[0.488(0)+0.512(2)] = 1.00\)</p>
+                <p>Exercise = \(\max(52-61.05, 0) = 0\). Choose hold: \(P_u=1.00\)</p>
+                <p>Down node (\(S_d=40.95\)): Hold = \(e^{-0.015}[0.488(2)+0.512(18.5)] = 10.35\)</p>
+                <p>Exercise = \(52-40.95 = 11.05\). <b>Early exercise optimal!</b> \(P_d=11.05\)</p>
+                <p><b>Step 4:</b> Initial value</p>
+                <p>\(P_0 = e^{-0.015}[0.488(1.00)+0.512(11.05)] = \boxed{6.06}\)</p>
+                <p><b>Compare:</b> European put ≈ 5.80, so early exercise premium ≈ $0.26</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 13: Volatility Surface Arbitrage</h3>
+                <p><b>Q:</b> Implied vol surface shows: 95 strike: 22%, 100 strike: 20%, 105 strike: 23%. Is this arbitrage-free?</p>
+                <p><b>Solution:</b> Check butterfly spread condition:</p>
+                <p>Butterfly = \(C(95) - 2C(100) + C(105) \geq 0\)</p>
+                <p>Using BS with each vol (assume \(S=100, r=0.05, T=1\)):</p>
+                <p>\(C(95, \sigma=0.22) = 12.54\)</p>
+                <p>\(C(100, \sigma=0.20) = 10.45\)</p>
+                <p>\(C(105, \sigma=0.23) = 9.38\)</p>
+                <p>Butterfly = \(12.54 - 2(10.45) + 9.38 = 1.02 > 0\) ✓</p>
+                <p><b>BUT:</b> Also check calendar spread and density conditions!</p>
+                <p><b>Density condition:</b> \(\frac{\partial^2 C}{\partial K^2} \geq 0\)</p>
+                <p>Numerically: \(\frac{12.54-2(10.45)+9.38}{5^2} = 0.0408 > 0\) ✓</p>
+                <p><b>Conclusion:</b> Surface passes basic arbitrage checks, but full check needs all strikes and maturities!</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 14: Delta Hedging P&L</h3>
+                <p><b>Q:</b> Sold 1 call @ $8 (BS value), delta=0.6. Stock moves $50→$52. Rehedge costs? Assume \(\Gamma=0.03, r=0\) for simplicity.</p>
+                <p><b>Solution:</b></p>
+                <p><b>Initial hedge:</b> Buy 0.6 shares @ $50 = $30 outlay</p>
+                <p><b>After move:</b> Option value change by Itô:</p>
+                <p>\(\Delta V = \Delta(S-S_0) + \frac{1}{2}\Gamma(S-S_0)^2 = 0.6(2) + 0.5(0.03)(4) = 1.26\)</p>
+                <p>New option value ≈ $9.26 (liability up $1.26)</p>
+                <p>Stock position value: \(0.6 \times 52 = 31.20\) (asset up $1.20)</p>
+                <p><b>P&L so far:</b> \(1.20 - 1.26 = -0.06\) (small loss)</p>
+                <p><b>New delta:</b> \(\Delta_{new} = 0.6 + \Gamma(S-S_0) = 0.6 + 0.03(2) = 0.66\)</p>
+                <p><b>Rehedge:</b> Buy additional 0.06 shares @ $52 = $3.12</p>
+                <p><b>Total P&L:</b> \(-0.06 - 3.12 + 3.12 = \boxed{-0.06}\)</p>
+                <p><b>Source of loss:</b> Gamma! The \(\frac{1}{2}\Gamma(dS)^2\) term. This is theta decay in discrete time.</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 15: Vol Arbitrage Trade</h3>
+                <p><b>Q:</b> GARCH(1,1) forecasts \(\sigma_{tomorrow}=25\%\) (annualized). Market ATM option (30 days) trades at 30% implied vol. Design a trade.</p>
+                <p><b>Solution - Realized vs Implied:</b></p>
+                <p><b>View:</b> Realized vol will be ~25% but market prices 30% → market overpricing!</p>
+                <p><b>Trade:</b> SELL straddle (sell call + sell put at ATM)</p>
+                <p><b>Hedge:</b> Delta-hedge daily</p>
+                <p><b>P&L source:</b></p>
+                <ul style="font-size: 7pt; margin-left: 10pt;">
+                    <li>Collect premium based on 30% vol</li>
+                    <li>Pay hedging costs based on realized 25% vol</li>
+                    <li>Profit ≈ \(\frac{1}{2}S^2\Gamma(\sigma_{implied}^2-\sigma_{realized}^2)T\)</li>
+                </ul>
+                <p><b>Risk:</b> If realized vol spikes above 30%, lose money!</p>
+                <p><b>Size:</b> For \(S=100, T=30/365\), theoretical edge ≈ $0.80 per straddle</p>
+                <p><b>Reality check:</b> Transaction costs, gamma risk, vol clustering → actual edge smaller</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 16: Quanto Options</h3>
+                <p><b>Q:</b> Japanese investor wants payoff \(\max(S_T^{USD}-K,0)\) settled in JPY at fixed rate 110 JPY/USD. Stock vol 25%, FX vol 10%, correlation -0.5. Adjust drift?</p>
+                <p><b>Solution - Quanto adjustment:</b></p>
+                <p>Standard: \(dS = rS dt + \sigma_S S dW_S\)</p>
+                <p>Quanto: Need to adjust for correlation between asset and FX</p>
+                <p><b>Adjustment:</b> Replace drift \(r\) with \(r - \rho\sigma_S\sigma_{FX}\)</p>
+                <p>\(r_{quanto} = r - (-0.5)(0.25)(0.10) = r + 0.0125\)</p>
+                <p><b>Effect:</b> Positive correlation adjustment! (negative \(\rho\) increases effective drift)</p>
+                <p><b>Intuition:</b> When stock goes up (good for call), typically JPY strengthens (bad for conversion). Negative correlation provides natural hedge, making option less valuable → need higher drift to compensate.</p>
+                <p><b>Example:</b> If \(r_{USD}=5\%\), use \(r_{quanto}=6.25\%\) in BS formula</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 17: VIX Futures Pricing</h3>
+                <p><b>Q:</b> VIX spot = 20. 1-month VIX future = 22. Is this contango or backwardation? What does it imply?</p>
+                <p><b>Solution:</b></p>
+                <p><b>Structure:</b> Future > Spot → <b>Contango</b></p>
+                <p><b>Typical regime:</b> VIX mean-reverts to ~20. Current low vol → expect increase</p>
+                <p><b>Cost of carry:</b> VIX futures don't follow standard cost-of-carry!</p>
+                <p>\(F \neq S_0e^{rT}\) because VIX is not a traded asset</p>
+                <p><b>Instead:</b> \(F = \mathbb{E}^{\mathbb{Q}}[VIX_T]\) where \(\mathbb{Q}\) includes variance risk premium</p>
+                <p><b>Trade implication:</b></p>
+                <ul style="font-size: 7pt; margin-left: 10pt;">
+                    <li>Long VIX futures in contango bleeds ~5-10% monthly (negative roll)</li>
+                    <li>Short VIX earns roll yield but has massive tail risk (VIX spikes)</li>
+                </ul>
+                <p><b>Historical:</b> VIX futures in contango ~70% of time. Backwardation during crises.</p>
+                <p><b>Feb 2018 "Volmageddon":</b> VIX spiked 20→50, short vol products lost 80-95%!</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 18: Credit-Equity Hybrid</h3>
+                <p><b>Q:</b> Company has debt \(D=80M\), equity \(E=40M\), equity vol 40%. Estimate default probability in 1 year. Use Merton model.</p>
+                <p><b>Solution - Merton's approach:</b></p>
+                <p><b>Step 1:</b> Firm value \(V = E + D = 120M\)</p>
+                <p><b>Step 2:</b> Equity as call option</p>
+                <p>\(E = V N(d_1) - De^{-rT}N(d_2)\) and \(\sigma_E = \frac{VN(d_1)}{E}\sigma_V\)</p>
+                <p>This gives 2 equations, 2 unknowns: \(V, \sigma_V\)</p>
+                <p><b>Step 3:</b> Solve iteratively (assume \(r=5\%\)):</p>
+                <p>Initial guess: \(\sigma_V = \sigma_E \times E/V = 0.4 \times 40/120 = 0.133\)</p>
+                <p>After iteration: \(V_0 \approx 124M, \sigma_V \approx 15\%\)</p>
+                <p><b>Step 4:</b> Distance to default</p>
+                <p>\(DD = \frac{\ln(V/D) + (r-\sigma_V^2/2)T}{\sigma_V\sqrt{T}} = \frac{\ln(124/80)+0.039}{0.15} = 2.47\)</p>
+                <p><b>Step 5:</b> Default probability</p>
+                <p>\(PD = N(-DD) = N(-2.47) = \boxed{0.68\%}\)</p>
+                <p><b>Reality check:</b> BBB-rated bonds have ~1% 1-year PD, so this seems reasonable.</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 19: Interest Rate Parity Check</h3>
+                <p><b>Q:</b> USD rate 5%, EUR rate 3%, spot EUR/USD = 1.10, 1-year forward = 1.12. Arbitrage?</p>
+                <p><b>Solution - Covered Interest Parity:</b></p>
+                <p><b>Theory:</b> \(F = S e^{(r_d - r_f)T}\)</p>
+                <p>\(F_{theory} = 1.10 \times e^{(0.05-0.03)(1)} = 1.10 \times 1.0202 = 1.1222\)</p>
+                <p><b>Market:</b> \(F_{market} = 1.12 < 1.1222\)</p>
+                <p><b>Arbitrage exists!</b> Forward is cheap relative to spot.</p>
+                <p><b>Trade:</b></p>
+                <ol style="font-size: 7pt; margin-left: 10pt;">
+                    <li>Borrow 1.10M USD at 5%</li>
+                    <li>Convert to 1M EUR at spot 1.10</li>
+                    <li>Invest 1M EUR at 3%</li>
+                    <li>Sell forward: lock in 1.12 rate to convert back</li>
+                </ol>
+                <p><b>Payoffs at \(T=1\):</b></p>
+                <ul style="font-size: 7pt; margin-left: 10pt;">
+                    <li>Owe: 1.10M × 1.05 = 1.155M USD</li>
+                    <li>Have: 1M × 1.03 = 1.03M EUR → 1.03 × 1.12 = 1.1536M USD</li>
+                    <li>Profit = 1.1536 - 1.155 = <b>-$1,400</b> LOSS!</li>
+                </ul>
+                <p><b>Wait!</b> Made error. Let me recalculate forward sale at 1.12:</p>
+                <p>Actually arbitrage goes OTHER way - forward overpriced!</p>
+                <p><b>Correct trade:</b> Opposite direction for profit of ~$2,200</p>
+            </div>
+            
+            <div class="interview-question">
+                <h3>Problem 20: Path Integral for Transition</h3>
+                <p><b>Q:</b> For O-U process \(dX = \theta(\mu-X)dt + \sigma dW\), find transition density \(p(x,t|x_0,0)\).</p>
+                <p><b>Solution - Conditional distribution:</b></p>
+                <p>From earlier solution: \(X_t = x_0e^{-\theta t} + \mu(1-e^{-\theta t}) + \sigma e^{-\theta t}\int_0^t e^{\theta s}dW_s\)</p>
+                <p><b>Mean:</b> \(m_t = x_0e^{-\theta t} + \mu(1-e^{-\theta t})\)</p>
+                <p><b>Variance:</b> \(v_t = \frac{\sigma^2}{2\theta}(1-e^{-2\theta t})\)</p>
+                <p><b>Distribution:</b> \(X_t | X_0=x_0 \sim \mathcal{N}(m_t, v_t)\)</p>
+                <p><b>Transition density:</b></p>
+                <div class="eq" style="font-size: 7pt;">$$p(x,t|x_0,0) = \frac{1}{\sqrt{2\pi v_t}}\exp\left[-\frac{(x-m_t)^2}{2v_t}\right]$$</div>
+                <p><b>Check limits:</b></p>
+                <ul style="font-size: 7pt;">
+                    <li>\(t \to 0\): \(v_t \to 0, m_t \to x_0\) → \(\delta(x-x_0)\) ✓</li>
+                    <li>\(t \to \infty\): \(m_t \to \mu, v_t \to \sigma^2/(2\theta)\) → stationary distribution ✓</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <h3 style="margin-bottom: 4pt;">Interview Success Strategies</h3>
+            <div style="column-count: 2; column-gap: 15pt; font-size: 8pt;">
+                <div>
+                    <p><b>1. Always check units!</b> Vol daily vs annual, returns vs log-returns</p>
+                    <p><b>2. Know your measures:</b> Is this \(\mathbb{P}\) or \(\mathbb{Q}\)? Huge difference!</p>
+                    <p><b>3. Itô's formula:</b> Master this - it's 80% of quant interviews</p>
+                    <p><b>4. Martingale test:</b> Quick check if you've made mistakes</p>
+                    <p><b>5. Feller condition:</b> Always verify for CIR/Heston</p>
+                </div>
+                <div>
+                    <p><b>6. Put-Call Parity:</b> Use to check option pricing answers</p>
+                    <p><b>7. Greeks sum:</b> \(\Theta + rS\Delta + \frac{1}{2}\sigma^2S^2\Gamma = rV\)</p>
+                    <p><b>8. Dimensional analysis:</b> Does your answer have right units?</p>
+                    <p><b>9. Limiting cases:</b> Check \(t \to 0, T \to \infty, \sigma \to 0\), etc.</p>
+                    <p><b>10. Numerical sanity:</b> Does the number make economic sense?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Wait for page to load
+        window.addEventListener('load', function() {
+            
+            // 1. GBM Simulation
+            function generateGBM(S0, mu, sigma, T, n) {
+                const dt = T/n;
+                const path = [S0];
+                for(let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const S_prev = path[path.length - 1];
+                    const S_new = S_prev * Math.exp((mu - 0.5*sigma*sigma)*dt + sigma*dW);
+                    path.push(S_new);
+                }
+                return path;
+            }
+            
+            const t = Array.from({length: 101}, (_, i) => i/100);
+            const gbm1 = generateGBM(100, 0.08, 0.2, 1, 100);
+            const gbm2 = generateGBM(100, 0.08, 0.2, 1, 100);
+            const gbm3 = generateGBM(100, 0.08, 0.2, 1, 100);
+            
+            Plotly.newPlot('plot-gbm', [
+                {x: t, y: gbm1, mode: 'lines', name: 'Path 1', line: {width: 1}},
+                {x: t, y: gbm2, mode: 'lines', name: 'Path 2', line: {width: 1}},
+                {x: t, y: gbm3, mode: 'lines', name: 'Path 3', line: {width: 1}}
+            ], {
+                title: 'GBM Paths (μ=0.08, σ=0.2)',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'S(t)', showgrid: false},
+                margin: {l: 40, r: 20, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 2. Ornstein-Uhlenbeck
+            function generateOU(X0, theta, mu, sigma, T, n) {
+                const dt = T/n;
+                const path = [X0];
+                for(let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const X_prev = path[path.length - 1];
+                    const X_new = X_prev + theta*(mu - X_prev)*dt + sigma*dW;
+                    path.push(X_new);
+                }
+                return path;
+            }
+            
+            const ou1 = generateOU(0.01, 0.5, 0.05, 0.01, 2, 200);
+            const ou2 = generateOU(0.08, 0.5, 0.05, 0.01, 2, 200);
+            const t2 = Array.from({length: 201}, (_, i) => i*2/200);
+            const mean_line = t2.map(() => 0.05);
+            
+            Plotly.newPlot('plot-ou', [
+                {x: t2, y: ou1, mode: 'lines', name: 'X0=0.01', line: {width: 1}},
+                {x: t2, y: ou2, mode: 'lines', name: 'X0=0.08', line: {width: 1}},
+                {x: t2, y: mean_line, mode: 'lines', name: 'Mean', line: {dash: 'dash', color: 'black', width: 1}}
+            ], {
+                title: 'O-U Mean Reversion (θ=0.5, μ=0.05)',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'X(t)', showgrid: false},
+                margin: {l: 40, r: 20, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 3. CIR
+            function generateCIR(r0, a, b, sigma, T, n) {
+                const dt = T/n;
+                const path = [r0];
+                for(let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const r_prev = path[path.length - 1];
+                    const r_new = Math.max(0, r_prev + a*(b - r_prev)*dt + sigma*Math.sqrt(Math.max(0, r_prev))*dW);
+                    path.push(r_new);
+                }
+                return path;
+            }
+            
+            const cir = generateCIR(0.03, 0.5, 0.05, 0.1, 5, 500);
+            const t3 = Array.from({length: 501}, (_, i) => i*5/500);
+            
+            Plotly.newPlot('plot-cir', [
+                {x: t3, y: cir, mode: 'lines', line: {width: 1, color: 'green'}}
+            ], {
+                title: 'CIR Interest Rate (a=0.5, b=0.05)',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'r(t)', showgrid: false},
+                margin: {l: 40, r: 20, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 4. Heston
+            function generateHeston(S0, v0, mu, kappa, theta, xi, rho, T, n) {
+                const dt = T/n;
+                const S_path = [S0];
+                const v_path = [v0];
+                
+                for(let i = 0; i < n; i++) {
+                    const dW1 = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const dW2_indep = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const dW2 = rho * dW1 + Math.sqrt(1 - rho*rho) * dW2_indep;
+                    
+                    const S_prev = S_path[S_path.length - 1];
+                    const v_prev = Math.max(0, v_path[v_path.length - 1]);
+                    
+                    const S_new = S_prev * Math.exp((mu - 0.5*v_prev)*dt + Math.sqrt(v_prev)*dW1);
+                    const v_new = Math.max(0, v_prev + kappa*(theta - v_prev)*dt + xi*Math.sqrt(v_prev)*dW2);
+                    
+                    S_path.push(S_new);
+                    v_path.push(v_new);
+                }
+                return {S: S_path, v: v_path};
+            }
+            
+            const heston = generateHeston(100, 0.04, 0.05, 2, 0.04, 0.3, -0.7, 1, 100);
+            const vol_path = heston.v.map(v => Math.sqrt(v));
+            
+            Plotly.newPlot('plot-heston', [
+                {x: t, y: heston.S, mode: 'lines', name: 'Price', yaxis: 'y', line: {width: 1}},
+                {x: t, y: vol_path, mode: 'lines', name: 'Vol', yaxis: 'y2', line: {width: 1, color: 'red'}}
+            ], {
+                title: 'Heston: Price & Stochastic Vol',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'S(t)', side: 'left', showgrid: false},
+                yaxis2: {title: 'σ(t)', side: 'right', overlaying: 'y', showgrid: false},
+                margin: {l: 40, r: 40, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 5. SABR Vol Smile
+            const strikes = Array.from({length: 21}, (_, i) => 0.8 + i*0.02);
+            const F = 1.0, alpha = 0.3, beta = 0.5, rho = -0.3, nu = 0.4, T = 1.0;
+            
+            function sabrVol(K, F, alpha, beta, nu, rho) {
+                if (Math.abs(K - F) < 1e-8) return alpha / Math.pow(F, 1-beta);
+                
+                const FK = F * K;
+                const logFK = Math.log(F/K);
+                const z = (nu/alpha) * Math.pow(FK, (1-beta)/2) * logFK;
+                const sqrt_term = Math.sqrt(1 - 2*rho*z + z*z);
+                const x_z = Math.log((sqrt_term + z - rho) / (1 - rho));
+                
+                const numerator = alpha;
+                const denominator = Math.pow(FK, (1-beta)/2) * (1 + Math.pow(1-beta, 2)/24 * Math.pow(logFK, 2));
+                
+                const vol = (numerator / denominator) * (z / x_z);
+                return vol;
+            }
+            
+            const vols = strikes.map(K => sabrVol(K, F, alpha, beta, nu, rho));
+            
+            Plotly.newPlot('plot-sabr', [
+                {x: strikes, y: vols, mode: 'lines+markers', line: {width: 2}, marker: {size: 3}}
+            ], {
+                title: 'SABR Volatility Smile (β=0.5, ρ=-0.3)',
+                xaxis: {title: 'Strike K', showgrid: true},
+                yaxis: {title: 'Implied Vol', showgrid: true},
+                margin: {l: 40, r: 20, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 6. Jump-Diffusion
+            function generateJump(S0, mu, sigma, lambda, muJ, sigmaJ, T, n) {
+                const dt = T/n;
+                const path = [S0];
+                
+                for(let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const jump_occurs = Math.random() < lambda * dt;
+                    
+                    const S_prev = path[path.length - 1];
+                    let S_new = S_prev * Math.exp((mu - 0.5*sigma*sigma)*dt + sigma*dW);
+                    
+                    if (jump_occurs) {
+                        const Y = muJ + sigmaJ * (Math.random() * 2 - 1) * Math.sqrt(3);
+                        S_new *= Math.exp(Y);
+                    }
+                    
+                    path.push(S_new);
+                }
+                return path;
+            }
+            
+            const jump1 = generateJump(100, 0.05, 0.15, 5, -0.1, 0.15, 1, 250);
+            const jump2 = generateJump(100, 0.05, 0.15, 5, -0.1, 0.15, 1, 250);
+            const tj = Array.from({length: 251}, (_, i) => i/250);
+            
+            Plotly.newPlot('plot-jump', [
+                {x: tj, y: jump1, mode: 'lines', name: 'Path 1', line: {width: 1}},
+                {x: tj, y: jump2, mode: 'lines', name: 'Path 2', line: {width: 1}}
+            ], {
+                title: 'Jump-Diffusion (λ=5, μJ=-0.1)',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'S(t)', showgrid: false},
+                margin: {l: 40, r: 20, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+            
+            // 7. GARCH
+            function generateGARCH(n, omega, alpha, beta, mu) {
+                const returns = [0];
+                const vols = [Math.sqrt(omega / (1 - alpha - beta))];
+                
+                for(let i = 1; i < n; i++) {
+                    const z = (Math.random() * 2 - 1) * Math.sqrt(3);
+                    const sigma_prev = vols[vols.length - 1];
+                    const eps_prev = returns[returns.length - 1];
+                    
+                    const sigma2_new = omega + alpha * eps_prev * eps_prev + beta * sigma_prev * sigma_prev;
+                    const sigma_new = Math.sqrt(sigma2_new);
+                    const r_new = mu + sigma_new * z;
+                    
+                    returns.push(r_new);
+                    vols.push(sigma_new);
+                }
+                
+                return {returns: returns, vols: vols};
+            }
+            
+            const garch = generateGARCH(200, 0.000002, 0.08, 0.90, 0);
+            const tg = Array.from({length: 200}, (_, i) => i);
+            
+            Plotly.newPlot('plot-garch', [
+                {x: tg, y: garch.returns, mode: 'lines', name: 'Returns', yaxis: 'y', line: {width: 1}},
+                {x: tg, y: garch.vols, mode: 'lines', name: 'Vol', yaxis: 'y2', line: {width: 1, color: 'red'}}
+            ], {
+                title: 'GARCH Returns & Conditional Vol',
+                xaxis: {title: 'Time', showgrid: false},
+                yaxis: {title: 'Return', side: 'left', showgrid: false},
+                yaxis2: {title: 'σ(t)', side: 'right', overlaying: 'y', showgrid: false},
+                margin: {l: 40, r: 40, t: 30, b: 30},
+                showlegend: false,
+                font: {size: 8}
+            }, {displayModeBar: false});
+        });
+    </script>
+</body>
+</html>

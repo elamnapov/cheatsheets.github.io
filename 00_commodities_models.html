@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQF Comprehensive Cheatsheet - Commodities</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            padding: 0.5cm;
+            background: white;
+        }
+        
+        .content {
+            column-count: 2;
+            column-gap: 0.8cm;
+            column-rule: 1px solid #ddd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.5cm;
+            column-span: all;
+        }
+        
+        .header h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.2cm;
+        }
+        
+        .header .subtitle {
+            font-style: italic;
+            font-size: 11pt;
+            color: #555;
+        }
+        
+        h2 {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #0066cc;
+            margin-top: 0.4cm;
+            margin-bottom: 0.2cm;
+            break-after: avoid;
+            column-span: all;
+            background-color: #e8f4f8;
+            padding: 0.2cm;
+            border-left: 4px solid #0066cc;
+        }
+        
+        h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0.3cm;
+            margin-bottom: 0.15cm;
+            break-after: avoid;
+        }
+        
+        p {
+            margin-bottom: 0.15cm;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 0.5cm;
+            margin-bottom: 0.15cm;
+        }
+        
+        li {
+            margin-bottom: 0.05cm;
+        }
+        
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        hr {
+            margin: 0.3cm 0;
+            border: none;
+            border-top: 2px solid #0066cc;
+            column-span: all;
+        }
+        
+        h2, h3 {
+            break-inside: avoid;
+        }
+        
+        .formula-block {
+            background-color: #f9f9f9;
+            border-left: 3px solid #0066cc;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+        }
+        
+        .example-box {
+            background-color: #fffef0;
+            border: 1px solid #ddb;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .warning-box {
+            background-color: #fff0f0;
+            border-left: 3px solid #cc0000;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.3cm 0;
+            font-size: 9pt;
+            break-inside: avoid;
+        }
+        
+        .summary-table th {
+            background-color: #333;
+            color: white;
+            padding: 0.15cm;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .summary-table td {
+            padding: 0.1cm;
+            border: 0.5pt solid #ddd;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        .key-formula {
+            background-color: #ffffcc;
+            border: 2px solid #ff9900;
+            padding: 0.15cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-weight: bold;
+        }
+        
+        .convention-box {
+            background-color: #f0f8ff;
+            border: 1px solid #4169e1;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3cm;
+            }
+            .content {
+                column-gap: 0.6cm;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .content {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CQF Comprehensive Cheatsheet - Commodities</h1>
+        <div class="subtitle">Energy, Metals, Agriculture: Futures, Options, Storage, and Convenience Yield</div>
+    </div>
+    
+    <div class="content">
+
+<h2>COMMODITY FUNDAMENTALS</h2>
+
+<h3>Commodity Classifications</h3>
+
+<p><strong>Energy</strong>:</p>
+<ul>
+<li>Crude oil (WTI, Brent)</li>
+<li>Natural gas (Henry Hub)</li>
+<li>Heating oil, gasoline, diesel</li>
+<li>Coal, electricity</li>
+</ul>
+
+<p><strong>Precious Metals</strong>:</p>
+<ul>
+<li>Gold, silver, platinum, palladium</li>
+<li>Investment assets (low storage cost)</li>
+<li>Backwardation typically</li>
+</ul>
+
+<p><strong>Base Metals</strong>:</p>
+<ul>
+<li>Copper, aluminum, zinc, nickel, lead</li>
+<li>Industrial demand drivers</li>
+<li>High storage costs</li>
+</ul>
+
+<p><strong>Agriculture</strong>:</p>
+<ul>
+<li>Grains: Corn, wheat, soybeans</li>
+<li>Softs: Coffee, sugar, cotton, cocoa</li>
+<li>Livestock: Cattle, hogs</li>
+<li>Seasonality important</li>
+</ul>
+
+<h3>Key Differences from Financial Assets</h3>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Financial Assets</th>
+<th>Commodities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Dividends</b></td>
+<td>Cash flows</td>
+<td>No dividends</td>
+</tr>
+<tr>
+<td><b>Storage</b></td>
+<td>Free/negligible</td>
+<td>Costly (physical)</td>
+</tr>
+<tr>
+<td><b>Convenience</b></td>
+<td>None</td>
+<td>Yield from holding</td>
+</tr>
+<tr>
+<td><b>Seasonality</b></td>
+<td>Minimal</td>
+<td>Strong (agriculture)</td>
+</tr>
+<tr>
+<td><b>Delivery</b></td>
+<td>Cash settled</td>
+<td>Physical possible</td>
+</tr>
+<tr>
+<td><b>Location</b></td>
+<td>Irrelevant</td>
+<td>Critical (transport)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Spot vs Futures Prices</h3>
+
+<p><strong>Spot Price</strong> (\(S_t\)): Current physical delivery price</p>
+
+<p><strong>Futures Price</strong> (\(F_t\)): Agreed price for future delivery</p>
+
+<p><strong>Basis</strong>:</p>
+
+<div class="key-formula">
+$$\text{Basis} = S_t - F_t$$
+</div>
+
+<ul>
+<li><strong>Contango</strong>: \(F > S\) (negative basis, upward-sloping curve)</li>
+<li><strong>Backwardation</strong>: \(F < S\) (positive basis, downward-sloping curve)</li>
+</ul>
+
+<div class="example-box">
+<strong>Example:</strong> Crude oil spot = $80/bbl, 1-year futures = $85/bbl<br>
+Basis = $80 - $85 = -$5<br>
+Market in <strong>contango</strong> by $5/bbl
+</div>
+
+<hr>
+
+<h2>COST OF CARRY MODEL</h2>
+
+<h3>Basic Cost of Carry</h3>
+
+<p><strong>No-arbitrage relationship</strong>:</p>
+
+<div class="formula-block">
+$$F(t,T) = S_t e^{(r+u-c)(T-t)}$$
+</div>
+
+<p>where:</p>
+<ul>
+<li>\(r\) = risk-free rate</li>
+<li>\(u\) = storage cost (as % of spot price per annum)</li>
+<li>\(c\) = convenience yield</li>
+</ul>
+
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>\(r\): Financing cost (opportunity cost of capital)</li>
+<li>\(u\): Cost of physically storing commodity</li>
+<li>\(c\): Benefit of holding physical commodity</li>
+</ul>
+
+<h3>Storage Costs</h3>
+
+<p><strong>Components</strong>:</p>
+<ul>
+<li>Warehouse rental</li>
+<li>Insurance</li>
+<li>Transportation</li>
+<li>Quality deterioration/spoilage</li>
+</ul>
+
+<p><strong>Modeling approaches</strong>:</p>
+<ol>
+<li><strong>Proportional</strong>: \(u\) as % of spot (used above)</li>
+<li><strong>Fixed</strong>: \(U\) dollars per unit per time</li>
+</ol>
+
+<p>With fixed storage cost:</p>
+$$F(t,T) = (S_t + U) e^{r(T-t)}$$
+
+<div class="example-box">
+<strong>Example:</strong> Gold spot = $2000/oz, \(r = 5\%\), storage = 1% p.a.<br>
+No convenience yield (\(c = 0\)) for gold<br>
+1-year forward: \(F = 2000 \times e^{(0.05+0.01) \times 1} = 2000 \times 1.0618 = \boxed{\$2123.60}\)
+</div>
+
+<h3>Convenience Yield</h3>
+
+<p><strong>Definition</strong>: Implicit benefit from holding physical commodity</p>
+
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>Ability to meet unexpected demand</li>
+<li>Maintain production processes</li>
+<li>Avoid stockouts</li>
+<li>Profit from temporary shortages</li>
+</ul>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Non-tradeable benefit (can't be monetized directly)</li>
+<li>Higher when inventories low (scarcity value)</li>
+<li>Lower when inventories high (abundant supply)</li>
+<li>Varies by commodity and market conditions</li>
+</ul>
+
+<p><strong>Implied convenience yield</strong> (from market prices):</p>
+
+<div class="key-formula">
+$$c = r + u - \frac{1}{T-t}\ln\frac{F(t,T)}{S_t}$$
+</div>
+
+<div class="example-box">
+<strong>Example:</strong> Crude oil spot = $80, 1Y futures = $75<br>
+\(r = 4\%\), \(u = 2\%\)<br>
+\(c = 0.04 + 0.02 - \ln(75/80) = 0.06 - (-0.0645) = 0.1245\) or <strong>12.45%</strong><br>
+High convenience yield → backwardation
+</div>
+
+<h3>Theory of Storage (Kaldor, Working)</h3>
+
+<p><strong>Relationship between inventory and convenience yield</strong>:</p>
+
+$$c = c(\text{Inventory level})$$
+
+<ul>
+<li>Low inventory → High \(c\) (scarcity premium)</li>
+<li>High inventory → Low \(c\) (abundant supply)</li>
+</ul>
+
+<p><strong>Typical functional form</strong>:</p>
+$$c(I) = \alpha e^{-\beta I}$$
+
+<p>where \(I\) = inventory level, \(\alpha, \beta\) = parameters</p>
+
+<hr>
+
+<h2>COMMODITY FUTURES CURVE SHAPES</h2>
+
+<h3>Contango</h3>
+
+<p><strong>Condition</strong>: \(F > S\) (futures above spot)</p>
+
+<p><strong>Cause</strong>: \(r + u > c\) (carry costs exceed convenience)</p>
+
+<p><strong>Typical for</strong>:</p>
+<ul>
+<li>Precious metals (gold, silver)</li>
+<li>Industrial metals with high storage costs</li>
+<li>Markets with ample inventory</li>
+</ul>
+
+<p><strong>Roll yield</strong>: Negative (futures converge down to spot)</p>
+
+<div class="convention-box">
+<strong>Contango Example:</strong><br>
+Spot: $100, 3M: $102, 6M: $104, 12M: $107<br>
+Upward-sloping curve, typical of well-supplied market
+</div>
+
+<h3>Backwardation</h3>
+
+<p><strong>Condition</strong>: \(F < S\) (futures below spot)</p>
+
+<p><strong>Cause</strong>: \(c > r + u\) (convenience exceeds carry costs)</p>
+
+<p><strong>Typical for</strong>:</p>
+<ul>
+<li>Energy (crude oil) during supply disruptions</li>
+<li>Agricultural commodities pre-harvest</li>
+<li>Markets with tight supply</li>
+</ul>
+
+<p><strong>Roll yield</strong>: Positive (futures converge up to spot)</p>
+
+<div class="convention-box">
+<strong>Backwardation Example:</strong><br>
+Spot: $100, 3M: $97, 6M: $95, 12M: $92<br>
+Downward-sloping curve, typical of tight supply
+</div>
+
+<h3>Roll Yield</h3>
+
+<p><strong>Definition</strong>: Return from rolling futures positions</p>
+
+<p><strong>Contango</strong> (negative roll yield):</p>
+<ul>
+<li>Sell expiring contract at spot</li>
+<li>Buy new contract at higher price</li>
+<li>Loss = \(F_{new} - S\)</li>
+</ul>
+
+<p><strong>Backwardation</strong> (positive roll yield):</p>
+<ul>
+<li>Sell expiring at spot</li>
+<li>Buy new at lower price</li>
+<li>Gain = \(S - F_{new}\)</li>
+</ul>
+
+<p><strong>Total futures return</strong>:</p>
+$$R_{total} = R_{spot} + R_{roll} + R_{collateral}$$
+
+<div class="example-box">
+<strong>Example:</strong> Hold 1M futures, roll monthly for 12 months<br>
+If consistently in backwardation (5% per roll):<br>
+Roll yield ≈ 5% × 12 = <strong>60% annual return</strong> from roll alone<br>
+(Plus spot price changes and collateral interest)
+</div>
+
+<hr>
+
+<h2>COMMODITY FUTURES PRICING MODELS</h2>
+
+<h3>Gibson-Schwartz Two-Factor Model</h3>
+
+<p><strong>Spot dynamics</strong>:</p>
+$$dS = \mu S dt + \sigma_S S dW_S$$
+
+<p><strong>Convenience yield dynamics</strong>:</p>
+$$d\delta = \kappa(\alpha - \delta)dt + \sigma_\delta dW_\delta$$
+
+<p>where \(\delta = c - u\) is net convenience yield</p>
+
+<p><strong>Correlation</strong>: \(dW_S dW_\delta = \rho dt\) (typically negative)</p>
+
+<p><strong>Futures price</strong>:</p>
+
+<div class="formula-block">
+$$F(t,T) = S_t \exp\left[A(T-t) - B(T-t)\delta_t\right]$$
+</div>
+
+<p>where \(A(t)\) and \(B(t)\) are known functions</p>
+
+<p><strong>Key insight</strong>: Two sources of uncertainty (spot and convenience)</p>
+
+<h3>Schwartz Three-Factor Model</h3>
+
+<p><strong>Three state variables</strong>:</p>
+<ol>
+<li>Spot price \(S_t\)</li>
+<li>Convenience yield \(\delta_t\)</li>
+<li>Interest rate \(r_t\)</li>
+</ol>
+
+<p><strong>Spot dynamics</strong>:</p>
+$$\frac{dS}{S} = (\mu - \delta)dt + \sigma_S dW_S$$
+
+<p><strong>Convenience yield</strong>:</p>
+$$d\delta = \kappa(\alpha - \delta)dt + \sigma_\delta dW_\delta$$
+
+<p><strong>Interest rate</strong> (Vasicek):</p>
+$$dr = a(b-r)dt + \sigma_r dW_r$$
+
+<p><strong>Correlations</strong>: \(\rho_{S\delta}, \rho_{Sr}, \rho_{\delta r}\)</p>
+
+<h3>Spot Price Models with Mean Reversion</h3>
+
+<p><strong>Ornstein-Uhlenbeck (OU)</strong>:</p>
+$$dX_t = \kappa(\mu - X_t)dt + \sigma dW_t$$
+
+<p>where \(S_t = e^{X_t}\) (log spot)</p>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Mean reversion to long-term level \(\mu\)</li>
+<li>Speed \(\kappa\)</li>
+<li>Common for energy commodities</li>
+</ul>
+
+<p><strong>Alternative (geometric mean reversion)</strong>:</p>
+$$dS_t = \kappa(\mu - S_t)S_t dt + \sigma S_t dW_t$$
+
+<div class="example-box">
+<strong>Example:</strong> Natural gas spot = $4/MMBtu, long-term mean = $5<br>
+\(\kappa = 2\) (fast mean reversion due to weather/seasonal factors)<br>
+Expected to revert toward $5 relatively quickly
+</div>
+
+<hr>
+
+<h2>COMMODITY OPTIONS</h2>
+
+<h3>Black-76 Formula</h3>
+
+<p><strong>Standard for commodity options</strong> (on futures):</p>
+
+<p><strong>Call option</strong>:</p>
+
+<div class="formula-block">
+$$C = e^{-rT}[F \cdot N(d_1) - K \cdot N(d_2)]$$
+$$d_1 = \frac{\ln(F/K) + \sigma^2T/2}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}$$
+</div>
+
+<p><strong>Put option</strong>:</p>
+$$P = e^{-rT}[K \cdot N(-d_2) - F \cdot N(-d_1)]$$
+
+<p>where \(F\) = futures price, \(K\) = strike, \(\sigma\) = volatility</p>
+
+<div class="example-box">
+<strong>Example:</strong> Crude oil call option<br>
+\(F = \$80\), \(K = \$85\), \(\sigma = 30\%\), \(T = 0.25\), \(r = 5\%\)<br><br>
+\(d_1 = \frac{\ln(80/85) + 0.045 \times 0.25}{0.15} = -0.3367\)<br>
+\(d_2 = -0.4867\)<br>
+\(C = e^{-0.0125}[80 \times 0.3682 - 85 \times 0.3134] = \boxed{\$2.51}\)
+</div>
+
+<h3>Greeks for Commodity Options</h3>
+
+<p><strong>Delta</strong> (option on futures):</p>
+$$\Delta_C = e^{-rT} N(d_1), \quad \Delta_P = -e^{-rT} N(-d_1)$$
+
+<p><strong>Gamma</strong>:</p>
+$$\Gamma = \frac{e^{-rT} N'(d_1)}{F \sigma \sqrt{T}}$$
+
+<p><strong>Vega</strong>:</p>
+$$\mathcal{V} = F e^{-rT} \sqrt{T} N'(d_1)$$
+
+<p><strong>Theta</strong>:</p>
+$$\Theta = -\frac{F e^{-rT} N'(d_1) \sigma}{2\sqrt{T}} + rC$$
+
+<h3>Spread Options</h3>
+
+<p><strong>Definition</strong>: Options on price difference between two commodities</p>
+
+<p><strong>Crack spread</strong>: Refining margin (crude oil → gasoline + heating oil)</p>
+$$\text{Payoff} = \max(aP_{gas} + bP_{heat} - P_{crude} - K, 0)$$
+
+<p><strong>Spark spread</strong>: Power generation margin (electricity - gas)</p>
+$$\text{Payoff} = \max(P_{electricity} - HR \times P_{gas} - K, 0)$$
+
+<p>where HR = heat rate (efficiency factor)</p>
+
+<p><strong>Calendar spread</strong>:</p>
+$$\text{Payoff} = \max(F_2 - F_1 - K, 0)$$
+
+<p>Options on contango/backwardation changes</p>
+
+<p><strong>Margrabe Formula</strong> (exchange option, \(K=0\)):</p>
+$$C = S_1 N(d_1) - S_2 N(d_2)$$
+$$d_1 = \frac{\ln(S_1/S_2) + \sigma^2T/2}{\sigma\sqrt{T}}$$
+
+<p>where \(\sigma^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2\)</p>
+
+<h3>Asian Options</h3>
+
+<p><strong>Common in commodities</strong>: Average price over period</p>
+
+<p><strong>Use case</strong>: Hedge average purchase/sale price</p>
+
+<p><strong>Payoff</strong> (arithmetic average):</p>
+$$\max\left(\frac{1}{n}\sum_{i=1}^n S_{t_i} - K, 0\right)$$
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Lower premium than vanilla (reduced volatility)</li>
+<li>No closed form (use Monte Carlo)</li>
+<li>Popular for energy hedging</li>
+</ul>
+
+<hr>
+
+<h2>ENERGY COMMODITIES</h2>
+
+<h3>Crude Oil Market Structure</h3>
+
+<p><strong>Major benchmarks</strong>:</p>
+<ul>
+<li><strong>WTI</strong> (West Texas Intermediate): Light, sweet crude, Cushing OK delivery</li>
+<li><strong>Brent</strong>: North Sea crude, global benchmark</li>
+<li><strong>Dubai/Oman</strong>: Middle East/Asia pricing</li>
+</ul>
+
+<p><strong>Price relationships</strong>:</p>
+$$P_{WTI} \approx P_{Brent} + \text{Quality differential} - \text{Transport cost}$$
+
+<p><strong>Typical spread</strong>: Brent premium to WTI ($2-5/bbl normally)</p>
+
+<div class="convention-box">
+<strong>Oil Market Participants:</strong>
+<ul>
+<li><strong>Producers</strong>: Short futures (hedge production)</li>
+<li><strong>Refiners</strong>: Long crude, short products (crack spread hedge)</li>
+<li><strong>Airlines</strong>: Long jet fuel futures (hedge costs)</li>
+<li><strong>Speculators</strong>: Directional or spread trades</li>
+</ul>
+</convention-box>
+
+<h3>Natural Gas Pricing</h3>
+
+<p><strong>Henry Hub</strong>: US benchmark (Louisiana)</p>
+
+<p><strong>Seasonality</strong>: Strong winter heating demand</p>
+
+<p><strong>Storage dynamics</strong>:</p>
+<ul>
+<li>Injection season: April-October</li>
+<li>Withdrawal season: November-March</li>
+<li>Storage capacity constraints</li>
+</ul>
+
+<p><strong>Mean reversion</strong>: Faster than oil (less storable, regional)</p>
+
+<div class="example-box">
+<strong>Example:</strong> Natural gas futures curve (summer)<br>
+Summer (injection): $3/MMBtu<br>
+Winter (withdrawal): $5/MMBtu<br>
+Strong seasonal backwardation into winter
+</div>
+
+<h3>Electricity</h3>
+
+<p><strong>Unique properties</strong>:</p>
+<ul>
+<li>Cannot be stored (economically)</li>
+<li>Must balance supply-demand instantaneously</li>
+<li>Extreme volatility (spikes to $1000+/MWh)</li>
+<li>Location-specific (transmission constraints)</li>
+</ul>
+
+<p><strong>Pricing models</strong>:</p>
+
+<p><strong>Jump-diffusion</strong>:</p>
+$$dS = \kappa(\mu - S)dt + \sigma S dW + J dN$$
+
+<p>where \(dN\) = Poisson jump (captures spikes)</p>
+
+<p><strong>Regime-switching</strong>:</p>
+<ul>
+<li>Normal regime: Low volatility</li>
+<li>Spike regime: High volatility, mean reversion</li>
+</ul>
+
+<hr>
+
+<h2>METALS</h2>
+
+<h3>Precious Metals</h3>
+
+<p><strong>Gold</strong>:</p>
+<ul>
+<li>Store of value, safe haven asset</li>
+<li>Low/zero convenience yield</li>
+<li>Typically in contango (storage > convenience)</li>
+<li>Negative correlation with USD</li>
+</ul>
+
+<p><strong>Gold lease rate</strong>:</p>
+$$\text{Lease rate} = r - \frac{1}{T}\ln\frac{F}{S}$$
+
+<p>Rate to borrow gold (miners, jewelers)</p>
+
+<p><strong>Silver</strong>:</p>
+<ul>
+<li>Hybrid: Monetary + industrial use</li>
+<li>Higher volatility than gold</li>
+<li>Gold/silver ratio: Typically 50-80</li>
+</ul>
+
+<div class="example-box">
+<strong>Example:</strong> Gold = $2000/oz, Silver = $25/oz<br>
+Gold/Silver ratio = 2000/25 = <strong>80</strong><br>
+Historical mean ≈ 60-70, currently silver "cheap" relative to gold
+</div>
+
+<h3>Base Metals</h3>
+
+<p><strong>Copper</strong> ("Dr. Copper" - economic indicator):</p>
+<ul>
+<li>Industrial demand (construction, electrical)</li>
+<li>Often in backwardation (high convenience)</li>
+<li>LME (London Metal Exchange) benchmark</li>
+</ul>
+
+<p><strong>Aluminum</strong>:</p>
+<ul>
+<li>High production costs (energy-intensive)</li>
+<li>Storage costs significant</li>
+<li>Typically contango</li>
+</ul>
+
+<p><strong>LME Contract Specifications</strong>:</p>
+<ul>
+<li>3-month forward most liquid</li>
+<li>Physical delivery possible</li>
+<li>Warehouse system (Rotterdam, Singapore, etc.)</li>
+</ul>
+
+<h3>Metal Spreads</h3>
+
+<p><strong>Time spreads</strong> (same metal, different dates):</p>
+$$\text{3M-15M spread} = F_{3M} - F_{15M}$$
+
+<p><strong>Inter-commodity spreads</strong>:</p>
+<ul>
+<li>Copper/Gold: Risk-on/risk-off indicator</li>
+<li>Platinum/Palladium: Auto catalyst demand</li>
+</ul>
+
+<hr>
+
+<h2>AGRICULTURAL COMMODITIES</h2>
+
+<h3>Grain Markets</h3>
+
+<p><strong>Corn, Wheat, Soybeans</strong>:</p>
+<ul>
+<li>Planting: Spring (April-May)</li>
+<li>Growing season: Summer</li>
+<li>Harvest: Fall (September-November)</li>
+<li>Storage: Winter/Spring</li>
+</ul>
+
+<p><strong>Seasonality patterns</strong>:</p>
+<ul>
+<li><strong>Pre-harvest</strong>: High uncertainty, weather risk, backwardation</li>
+<li><strong>Harvest</strong>: Prices fall (supply surge), contango emerges</li>
+<li><strong>Post-harvest</strong>: Contango reflects storage costs</li>
+</ul>
+
+<div class="example-box">
+<strong>Example:</strong> Corn futures curve (June)<br>
+July (new crop): $4.50/bu<br>
+Dec (storage): $4.80/bu<br>
+March (pre-planting): $5.00/bu<br>
+Contango reflects storage costs ≈ 5 cents/month
+</div>
+
+<h3>Weather Risk</h3>
+
+<p><strong>Yield risk</strong>:</p>
+$$\text{Yield} = f(\text{Weather, Technology, Inputs})$$
+
+<p><strong>Critical periods</strong>:</p>
+<ul>
+<li>Planting: Soil moisture</li>
+<li>Pollination: Temperature, rain</li>
+<li>Harvest: Avoid frost, excess rain</li>
+</ul>
+
+<p><strong>Weather derivatives</strong>:</p>
+<ul>
+<li>Temperature (HDD/CDD - Heating/Cooling Degree Days)</li>
+<li>Precipitation</li>
+<li>Index-based (no delivery)</li>
+</ul>
+
+<h3>Crop Yield Models</h3>
+
+<p><strong>Trend-adjusted yield</strong>:</p>
+$$Y_t = a + bt + \epsilon_t$$
+
+<p>where \(a + bt\) = technology trend, \(\epsilon_t\) = weather shock</p>
+
+<p><strong>USDA Reports</strong> (major market movers):</p>
+<ul>
+<li><strong>WASDE</strong>: World Agricultural Supply/Demand Estimates (monthly)</li>
+<li><strong>Prospective Plantings</strong>: March (planting intentions)</li>
+<li><strong>Crop Progress</strong>: Weekly during season</li>
+</ul>
+
+<h3>Soft Commodities</h3>
+
+<p><strong>Coffee</strong>:</p>
+<ul>
+<li>Arabica (high quality) vs Robusta</li>
+<li>Brazil weather crucial (frost risk)</li>
+<li>4-5 year production cycles</li>
+</ul>
+
+<p><strong>Sugar</strong>:</p>
+<ul>
+<li>Energy linkage (ethanol production from sugarcane)</li>
+<li>Brazil, India, EU major producers</li>
+<li>Government policies significant</li>
+</ul>
+
+<p><strong>Cotton</strong>:</p>
+<ul>
+<li>Textile demand driver</li>
+<li>Competes with grains for acreage</li>
+<li>Weather-sensitive (US, China, India)</li>
+</ul>
+
+<hr>
+
+<h2>COMMODITY TRADING STRATEGIES</h2>
+
+<h3>Momentum Strategies</h3>
+
+<p><strong>Trend following</strong>:</p>
+<ul>
+<li>Commodities exhibit persistence (momentum)</li>
+<li>Time-series momentum: past 12M return predicts next 1M</li>
+<li>Cross-sectional momentum: relative performance</li>
+</ul>
+
+<p><strong>Signal</strong>:</p>
+$$\text{Position}_t = \text{sign}(R_{t-12,t-1})$$
+
+<p>Long if positive return, short if negative</p>
+
+<h3>Carry Strategies</h3>
+
+<p><strong>Long backwardation, short contango</strong>:</p>
+
+<p><strong>Carry signal</strong>:</p>
+$$\text{Carry} = \frac{F_1 - F_2}{F_2}$$
+
+<p>where \(F_1\) = near contract, \(F_2\) = far contract</p>
+
+<ul>
+<li>Positive carry (backwardation) → Long</li>
+<li>Negative carry (contango) → Short</li>
+</ul>
+
+<h3>Calendar Spreads</h3>
+
+<p><strong>Definition</strong>: Long one maturity, short another</p>
+
+<p><strong>Example</strong>: Long Dec corn, short July corn</p>
+
+<p><strong>Profit drivers</strong>:</p>
+<ul>
+<li>Change in storage costs</li>
+<li>Inventory dynamics</li>
+<li>Supply shocks</li>
+</ul>
+
+<div class="example-box">
+<strong>Example:</strong> Crude oil calendar spread<br>
+Initially: Front month $80, 6M $85 (contango $5)<br>
+Supply shock → tightness<br>
+New: Front $90, 6M $88 (backwardation $2)<br>
+Front gained $10, far gained $3<br>
+<strong>Long front, short far</strong> → profit $7/bbl
+</div>
+
+<h3>Crack Spreads</h3>
+
+<p><strong>3:2:1 Crack spread</strong>:</p>
+$$\text{Spread} = \frac{2 \times P_{gasoline} + 1 \times P_{diesel}}{3} - P_{crude}$$
+
+<p>Represents refinery margin (3 barrels crude → 2 gasoline + 1 diesel)</p>
+
+<p><strong>Hedging</strong>:</p>
+<ul>
+<li>Refiners: Long spread (long products, short crude)</li>
+<li>Speculators: Trade margin expectations</li>
+</ul>
+
+<h3>Pairs Trading</h3>
+
+<p><strong>Gold/Silver ratio</strong>:</p>
+$$\text{Ratio} = \frac{P_{gold}}{P_{silver}}$$
+
+<p>Mean-reverting around 65 historically</p>
+<ul>
+<li>Ratio high (80+): Long silver, short gold</li>
+<li>Ratio low (50-): Long gold, short silver</li>
+</ul>
+
+<p><strong>Copper/Gold</strong>:</p>
+<ul>
+<li>Risk-on: Copper outperforms (industrial demand)</li>
+<li>Risk-off: Gold outperforms (safe haven)</li>
+</ul>
+
+<hr>
+
+<h2>COMMODITY RISK MANAGEMENT</h2>
+
+<h3>Producer Hedging</h3>
+
+<p><strong>Natural position</strong>: Long physical commodity</p>
+
+<p><strong>Hedge</strong>: Short futures</p>
+
+<div class="example-box">
+<strong>Example:</strong> Oil producer expects 100k barrels in 6 months<br>
+Current 6M futures: $80/bbl<br>
+<strong>Hedge</strong>: Sell 100k barrels of 6M futures at $80<br><br>
+<strong>Scenario 1</strong>: Spot falls to $70<br>
+Physical sale: 100k × $70 = $7.0M<br>
+Futures gain: 100k × ($80-$70) = $1.0M<br>
+Total: <strong>$8.0M</strong> (locked in $80)<br><br>
+<strong>Scenario 2</strong>: Spot rises to $90<br>
+Physical sale: 100k × $90 = $9.0M<br>
+Futures loss: 100k × ($80-$90) = -$1.0M<br>
+Total: <strong>$8.0M</strong> (locked in $80)
+</div>
+
+<h3>Consumer Hedging</h3>
+
+<p><strong>Natural position</strong>: Short physical (need to buy)</p>
+
+<p><strong>Hedge</strong>: Long futures</p>
+
+<p><strong>Examples</strong>:</p>
+<ul>
+<li>Airlines: Hedge jet fuel costs</li>
+<li>Food processors: Hedge grain costs</li>
+<li>Utilities: Hedge natural gas for power generation</li>
+</ul>
+
+<h3>Minimum Variance Hedge Ratio</h3>
+
+<p><strong>Optimal hedge ratio</strong>:</p>
+
+<div class="key-formula">
+$$h^* = \rho \frac{\sigma_S}{\sigma_F}$$
+</div>
+
+<p>where \(\rho\) = correlation, \(\sigma_S\) = spot volatility, \(\sigma_F\) = futures volatility</p>
+
+<p>Alternatively (regression):</p>
+$$h^* = \frac{\text{Cov}(\Delta S, \Delta F)}{\text{Var}(\Delta F)} = \beta_{S,F}$$
+
+<div class="example-box">
+<strong>Example:</strong> Hedge 10,000 barrels crude<br>
+\(\sigma_S = 35\%\), \(\sigma_F = 30\%\), \(\rho = 0.9\)<br>
+\(h^* = 0.9 \times \frac{0.35}{0.30} = 1.05\)<br>
+Optimal hedge: Sell <strong>10,500 barrels</strong> of futures
+</div>
+
+<h3>Basis Risk</h3>
+
+<p><strong>Definition</strong>: Risk that spot-futures relationship changes</p>
+
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>Quality differences (hedge WTI with Brent)</li>
+<li>Location differences (Chicago wheat vs Kansas)</li>
+<li>Timing mismatch (hedge 3M ahead with 6M futures)</li>
+</ul>
+
+<p><strong>Hedged position value</strong>:</p>
+$$V = S + h(F - F_0) = S - hF_0 + hF$$
+
+<p>where \(F_0\) = initial futures price</p>
+
+<p>Basis risk: \(\text{Var}(S - hF)\)</p>
+
+<hr>
+
+<h2>COMMODITY INDICES</h2>
+
+<h3>Major Indices</h3>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Index</th>
+<th>Weighting</th>
+<th>Rebalancing</th>
+<th>Roll</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>S&P GSCI</b></td>
+<td>Production-weighted</td>
+<td>Annual</td>
+<td>5-9th business day</td>
+</tr>
+<tr>
+<td><b>Bloomberg Commodity</b></td>
+<td>Liquidity, diversification</td>
+<td>Annual</td>
+<td>5th-9th business day</td>
+</tr>
+<tr>
+<td><b>RICI</b> (Rogers)</td>
+<td>Fundamental importance</td>
+<td>Annual</td>
+<td>Month-end</td>
+</tr>
+<tr>
+<td><b>CRB</b></td>
+<td>Equal/tiered</td>
+<td>Annual</td>
+<td>Variable</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>S&P GSCI composition</strong> (approximate):</p>
+<ul>
+<li>Energy: ~65% (crude, gas, products)</li>
+<li>Agriculture: ~15%</li>
+<li>Industrial metals: ~10%</li>
+<li>Precious metals: ~5%</li>
+<li>Livestock: ~5%</li>
+</ul>
+
+<h3>Index Construction Issues</h3>
+
+<p><strong>Roll yield drag</strong>:</p>
+<ul>
+<li>Indices typically hold front-month contracts</li>
+<li>Must roll monthly to avoid delivery</li>
+<li>In contango: Sell low (expiring), buy high (new) → loss</li>
+<li>In backwardation: Positive roll yield</li>
+</ul>
+
+<p><strong>Roll timing predictability</strong>:</p>
+<ul>
+<li>Indices roll on fixed schedule</li>
+<li>Front-running by hedge funds</li>
+<li>Increases roll costs</li>
+</ul>
+
+<h3>Enhanced Index Strategies</h3>
+
+<p><strong>Optimal roll timing</strong>:</p>
+<ul>
+<li>Spread roll over multiple days</li>
+<li>Roll when spread narrows</li>
+</ul>
+
+<p><strong>Dynamic contract selection</strong>:</p>
+<ul>
+<li>Hold contracts with best roll yield</li>
+<li>May hold 2nd or 3rd month instead of front</li>
+</ul>
+
+<p><strong>Momentum overlay</strong>:</p>
+<ul>
+<li>Overweight commodities in uptrend</li>
+<li>Underweight/short those in downtrend</li>
+</ul>
+
+<hr>
+
+<h2>STORAGE AND INFRASTRUCTURE</h2>
+
+<h3>Storage Economics</h3>
+
+<p><strong>Optimal storage decision</strong>:</p>
+
+<p>Store if: \(F - S > u + \frac{rS}{1}\) (simplified)</p>
+
+<p>More precisely, storage value:</p>
+$$V_{storage} = \mathbb{E}[F_T - S_t] - (u \times t + r \times S_t \times t)$$
+
+<p><strong>Storage capacity constraints</strong>:</p>
+<ul>
+<li>Scarcity when near capacity → high convenience yield</li>
+<li>Contango collapses (no arbitrage possible)</li>
+<li>Seen in crude oil 2020 (negative prices)</li>
+</ul>
+
+<h3>Infrastructure Constraints</h3>
+
+<p><strong>Pipeline capacity</strong> (natural gas):</p>
+<ul>
+<li>Regional price differentials</li>
+<li>Basis risk between hubs</li>
+</ul>
+
+<p><strong>Refining bottlenecks</strong> (crude oil):</p>
+<ul>
+<li>Crude quality mismatches</li>
+<li>Seasonal maintenance (turnarounds)</li>
+</ul>
+
+<p><strong>Port/shipping constraints</strong>:</p>
+<ul>
+<li>Grain exports (limited port capacity)</li>
+<li>LNG shipping (limited vessels)</li>
+</ul>
+
+<hr>
+
+<h2>KEY FORMULAS SUMMARY</h2>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th style="width: 40%;">Concept</th>
+<th style="width: 60%;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Cost of Carry</b></td>
+<td>\(F = Se^{(r+u-c)(T-t)}\)</td>
+</tr>
+<tr>
+<td><b>Convenience Yield</b></td>
+<td>\(c = r+u - \frac{1}{T-t}\ln\frac{F}{S}\)</td>
+</tr>
+<tr>
+<td><b>Basis</b></td>
+<td>\(B = S - F\)</td>
+</tr>
+<tr>
+<td><b>Black-76 Call</b></td>
+<td>\(C = e^{-rT}[FN(d_1) - KN(d_2)]\)</td>
+</tr>
+<tr>
+<td><b>Hedge Ratio</b></td>
+<td>\(h^* = \rho\frac{\sigma_S}{\sigma_F}\)</td>
+</tr>
+<tr>
+<td><b>Spot (OU)</b></td>
+<td>\(dX = \kappa(\mu-X)dt + \sigma dW\)</td>
+</tr>
+<tr>
+<td><b>Gibson-Schwartz</b></td>
+<td>\(dS = \mu S dt + \sigma_S SdW_S\)<br>\(d\delta = \kappa(\alpha-\delta)dt + \sigma_\delta dW_\delta\)</td>
+</tr>
+<tr>
+<td><b>Roll Yield</b></td>
+<td>\(R_{roll} = \frac{F_{near} - F_{far}}{F_{far}}\)</td>
+</tr>
+<tr>
+<td><b>Crack Spread (3:2:1)</b></td>
+<td>\(\frac{2P_{gas} + P_{diesel}}{3} - P_{crude}\)</td>
+</tr>
+<tr>
+<td><b>Gold/Silver Ratio</b></td>
+<td>\(\frac{P_{gold}}{P_{silver}}\)</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>COMMON MISTAKES & TIPS</h2>
+
+<div class="warning-box">
+<strong>Common Mistakes:</strong>
+<ol>
+<li><strong>Ignoring convenience yield</strong>: Not all commodities follow simple cost-of-carry</li>
+<li><strong>Confusing contango direction</strong>: Contango = futures above spot (upward slope)</li>
+<li><strong>Roll yield sign</strong>: Backwardation gives positive roll yield, not contango</li>
+<li><strong>Storage cost units</strong>: Sometimes % of spot, sometimes $/unit/time</li>
+<li><strong>Seasonality neglect</strong>: Agriculture has strong seasonal patterns</li>
+<li><strong>Basis risk underestimation</strong>: Location, quality, timing all matter</li>
+<li><strong>Negative convenience yield</strong>: Possible but rare (abundant supply)</li>
+<li><strong>Forward vs futures</strong>: Commodities mostly futures (marked-to-market daily)</li>
+<li><strong>Physical delivery</strong>: Most contracts cash-settled, but can deliver</li>
+<li><strong>Inventory data importance</strong>: Critical for convenience yield estimation</li>
+</ol>
+</div>
+
+<div class="example-box">
+<strong>Quick Interview Tips:</strong>
+<ul>
+<li><strong>Contango intuition</strong>: Storage costs > scarcity value (abundant supply)</li>
+<li><strong>Backwardation intuition</strong>: Scarcity value > storage (tight supply)</li>
+<li><strong>Convenience yield high when</strong>: Low inventories, production disruptions</li>
+<li><strong>Gold special case</strong>: Low/zero convenience (doesn't spoil, abundant above-ground)</li>
+<li><strong>Energy mean reversion</strong>: Faster for gas than oil (less storable)</li>
+<li><strong>Agriculture seasonality</strong>: Harvest → contango, pre-harvest → backwardation</li>
+<li><strong>WTI vs Brent</strong>: Quality similar, location different (Cushing vs North Sea)</li>
+<li><strong>Electricity unique</strong>: Cannot store → extreme volatility, jump processes</li>
+<li><strong>Roll yield matters</strong>: Can dominate returns in commodity indices</li>
+<li><strong>Crack spread = refining margin</strong>: Products minus crude</li>
+<li><strong>Spark spread = power margin</strong>: Electricity minus gas (adjusted for heat rate)</li>
+<li><strong>LME 3M most liquid</strong>: Base metals standard maturity</li>
+<li><strong>USDA reports</strong>: Major market movers for agriculture</li>
+<li><strong>Minimum variance hedge</strong>: Not always 1:1 due to basis risk</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>PRACTICAL EXAMPLE: COMPLETE COMMODITY HEDGE</h2>
+
+<div class="example-box" style="column-span: all;">
+<strong>Real-World Commodity Hedging Example:</strong><br><br>
+
+<strong>Situation:</strong>
+<ul style="margin-left: 15pt;">
+<li>Airline needs to hedge jet fuel costs</li>
+<li>Expected consumption: 1 million gallons over next 6 months</li>
+<li>Current jet fuel spot: $3.00/gallon</li>
+<li>Available: Crude oil futures (no jet fuel futures)</li>
+<li>6-month crude futures: $80/barrel</li>
+<li>Jet fuel ≈ $3.00/gal = $126/barrel (42 gal/bbl)</li>
+</ul>
+
+<strong>Step 1: Calculate historical hedge ratio</strong><br><br>
+
+Historical data shows:<br>
+\(\sigma_{jet} = 40\%\), \(\sigma_{crude} = 35\%\), \(\rho = 0.85\)<br><br>
+
+Minimum variance hedge ratio:<br>
+\(h^* = 0.85 \times \frac{0.40}{0.35} = 0.971\)<br><br>
+
+Alternatively, from regression: \(\Delta P_{jet} = \alpha + 1.05 \times \Delta P_{crude} + \epsilon\)<br>
+Use \(\beta = 1.05\) as hedge ratio<br><br>
+
+<strong>Step 2: Convert gallons to barrels</strong><br><br>
+
+1 million gallons ÷ 42 gal/bbl = 23,810 barrels<br><br>
+
+<strong>Step 3: Determine futures contracts</strong><br><br>
+
+Crude futures contract size: 1,000 barrels<br>
+Adjusted for hedge ratio: 23,810 × 1.05 = 25,000 barrels<br>
+Number of contracts: 25,000 ÷ 1,000 = <strong>25 contracts</strong><br><br>
+
+<strong>Action</strong>: Buy 25 crude oil futures at $80/bbl<br><br>
+
+<strong>Step 4: Scenario analysis (6 months later)</strong><br><br>
+
+<strong>Scenario A: Prices rise</strong><br>
+Jet fuel spot: $3.60/gal ($151/bbl) - up 20%<br>
+Crude futures settlement: $95/bbl - up 18.75%<br><br>
+
+Physical purchase: 1M gal × $3.60 = <strong>-$3,600,000</strong><br>
+Futures gain: 25,000 bbl × ($95 - $80) = <strong>+$375,000</strong><br>
+Net cost: $3,600,000 - $375,000 = <strong>$3,225,000</strong><br>
+Effective price: $3.225/gal<br><br>
+
+<strong>Scenario B: Prices fall</strong><br>
+Jet fuel spot: $2.40/gal ($101/bbl) - down 20%<br>
+Crude futures settlement: $64/bbl - down 20%<br><br>
+
+Physical purchase: 1M gal × $2.40 = <strong>-$2,400,000</strong><br>
+Futures loss: 25,000 bbl × ($64 - $80) = <strong>-$400,000</strong><br>
+Net cost: $2,400,000 + $400,000 = <strong>$2,800,000</strong><br>
+Effective price: $2.80/gal<br><br>
+
+<strong>Step 5: Hedge effectiveness</strong><br><br>
+
+Without hedge:<br>
+Scenario A: $3.60/gal (up from $3.00)<br>
+Scenario B: $2.40/gal (down from $3.00)<br>
+Range: <strong>$1.20/gal</strong><br><br>
+
+With hedge:<br>
+Scenario A: $3.225/gal<br>
+Scenario B: $2.80/gal<br>
+Range: <strong>$0.425/gal</strong><br><br>
+
+<strong>Variance reduction</strong>: (1.20 - 0.425)/1.20 = <strong>64.6%</strong><br><br>
+
+Remaining risk is basis risk (jet fuel vs crude correlation imperfect)
+</div>
+
+    </div>
+</body>
+</html>

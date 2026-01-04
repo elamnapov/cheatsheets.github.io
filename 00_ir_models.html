@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQF Comprehensive Cheatsheet - Fixed Income/Interest Rates</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            padding: 0.5cm;
+            background: white;
+        }
+        
+        .content {
+            column-count: 2;
+            column-gap: 0.8cm;
+            column-rule: 1px solid #ddd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.5cm;
+            column-span: all;
+        }
+        
+        .header h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.2cm;
+        }
+        
+        .header .subtitle {
+            font-style: italic;
+            font-size: 11pt;
+            color: #555;
+        }
+        
+        h2 {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #0066cc;
+            margin-top: 0.4cm;
+            margin-bottom: 0.2cm;
+            break-after: avoid;
+            column-span: all;
+            background-color: #e8f4f8;
+            padding: 0.2cm;
+            border-left: 4px solid #0066cc;
+        }
+        
+        h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0.3cm;
+            margin-bottom: 0.15cm;
+            break-after: avoid;
+        }
+        
+        p {
+            margin-bottom: 0.15cm;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 0.5cm;
+            margin-bottom: 0.15cm;
+        }
+        
+        li {
+            margin-bottom: 0.05cm;
+        }
+        
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        hr {
+            margin: 0.3cm 0;
+            border: none;
+            border-top: 2px solid #0066cc;
+            column-span: all;
+        }
+        
+        h2, h3 {
+            break-inside: avoid;
+        }
+        
+        .formula-block {
+            background-color: #f9f9f9;
+            border-left: 3px solid #0066cc;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+        }
+        
+        .example-box {
+            background-color: #fffef0;
+            border: 1px solid #ddb;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .warning-box {
+            background-color: #fff0f0;
+            border-left: 3px solid #cc0000;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.3cm 0;
+            font-size: 9pt;
+            break-inside: avoid;
+        }
+        
+        .summary-table th {
+            background-color: #333;
+            color: white;
+            padding: 0.15cm;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .summary-table td {
+            padding: 0.1cm;
+            border: 0.5pt solid #ddd;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        .key-formula {
+            background-color: #ffffcc;
+            border: 2px solid #ff9900;
+            padding: 0.15cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-weight: bold;
+        }
+        
+        .convention-box {
+            background-color: #f0f8ff;
+            border: 1px solid #4169e1;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3cm;
+            }
+            .content {
+                column-gap: 0.6cm;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .content {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CQF Comprehensive Cheatsheet - Fixed Income</h1>
+        <div class="subtitle">Interest Rates: Bonds, Yield Curves, Swaps, Options & Term Structure Models</div>
+    </div>
+    
+    <div class="content">
+
+<h2>BOND FUNDAMENTALS</h2>
+
+<h3>Basic Bond Terminology</h3>
+
+<p><strong>Face Value/Par</strong> (\(F\)): Principal amount (typically $100 or $1000)</p>
+
+<p><strong>Coupon Rate</strong> (\(c\)): Annual interest rate on face value</p>
+
+<p><strong>Coupon Payment</strong>: \(C = c \times F\) (often paid semi-annually)</p>
+
+<p><strong>Maturity</strong> (\(T\)): Time until principal repayment</p>
+
+<p><strong>Yield to Maturity (YTM)</strong> (\(y\)): IRR of bond cash flows</p>
+
+<h3>Bond Pricing</h3>
+
+<p><strong>Discrete compounding</strong> (annual):</p>
+
+<div class="formula-block">
+$$P = \sum_{i=1}^n \frac{C}{(1+y)^{t_i}} + \frac{F}{(1+y)^T}$$
+</div>
+
+<p><strong>Semi-annual compounding</strong> (US convention):</p>
+$$P = \sum_{i=1}^{2n} \frac{C/2}{(1+y/2)^i} + \frac{F}{(1+y/2)^{2n}}$$
+
+<p><strong>Continuous compounding</strong>:</p>
+$$P = \sum_{i=1}^n C e^{-y t_i} + F e^{-yT}$$
+
+<div class="example-box">
+<strong>Example:</strong> 5-year bond, 6% coupon (annual), face $100, YTM = 5%<br>
+\(P = \frac{6}{1.05} + \frac{6}{1.05^2} + \frac{6}{1.05^3} + \frac{6}{1.05^4} + \frac{106}{1.05^5}\)<br>
+\(= 5.71 + 5.44 + 5.18 + 4.94 + 83.06 = \boxed{\$104.33}\)<br>
+Bond trades at <strong>premium</strong> (coupon > YTM)
+</div>
+
+<h3>Bond Price-Yield Relationship</h3>
+
+<ul>
+<li>\(y < c\): Bond at <strong>premium</strong> (\(P > F\))</li>
+<li>\(y = c\): Bond at <strong>par</strong> (\(P = F\))</li>
+<li>\(y > c\): Bond at <strong>discount</strong> (\(P < F\))</li>
+</ul>
+
+<p><strong>Convexity</strong>: Price-yield relationship is convex (good for bondholders)</p>
+
+<h3>Zero-Coupon Bonds</h3>
+
+<p><strong>Price</strong>:</p>
+$$P(t,T) = e^{-r(t,T)(T-t)}$$
+
+<p>or discrete:</p>
+$$P(t,T) = \frac{F}{(1+y)^{T-t}}$$
+
+<p><strong>Spot rate</strong> \(r(t,T)\): Zero-coupon yield for maturity \(T\)</p>
+
+<div class="example-box">
+<strong>Example:</strong> 10-year zero, face $100, \(y = 4\%\)<br>
+\(P = \frac{100}{1.04^{10}} = \boxed{\$67.56}\)
+</div>
+
+<h3>Accrued Interest</h3>
+
+<p><strong>Clean Price</strong>: Quoted price (without accrued)</p>
+
+<p><strong>Dirty Price (Full Price)</strong>:</p>
+
+<div class="key-formula">
+$$\text{Dirty Price} = \text{Clean Price} + \text{Accrued Interest}$$
+</div>
+
+<p><strong>Accrued Interest</strong>:</p>
+$$AI = C \times \frac{\text{Days since last coupon}}{\text{Days in coupon period}}$$
+
+<div class="convention-box">
+<strong>Day Count Conventions:</strong>
+<ul>
+<li><strong>Actual/Actual</strong>: US Treasuries</li>
+<li><strong>30/360</strong>: US Corporate bonds</li>
+<li><strong>Actual/360</strong>: Money markets</li>
+<li><strong>Actual/365</strong>: UK Gilts</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>YIELD CURVE CONSTRUCTION</h2>
+
+<h3>Spot Rates and Forward Rates</h3>
+
+<p><strong>Spot Rate</strong> \(r(0,T)\): Zero-coupon rate from now (0) to time \(T\)</p>
+
+<p><strong>Forward Rate</strong> \(f(t,T_1,T_2)\): Rate for period \([T_1, T_2]\) locked in at \(t\)</p>
+
+<p><strong>Relationship</strong> (discrete):</p>
+
+<div class="formula-block">
+$$(1+r_2)^{T_2} = (1+r_1)^{T_1}(1+f)^{T_2-T_1}$$
+</div>
+
+<p>Solving for forward:</p>
+$$f(0,T_1,T_2) = \frac{(1+r_2)^{T_2}}{(1+r_1)^{T_1}}^{\frac{1}{T_2-T_1}} - 1$$
+
+<p><strong>Continuous compounding</strong>:</p>
+$$f(0,T_1,T_2) = \frac{r_2 T_2 - r_1 T_1}{T_2 - T_1}$$
+
+<p><strong>Instantaneous forward rate</strong>:</p>
+
+<div class="key-formula">
+$$f(t,T) = -\frac{\partial \ln P(t,T)}{\partial T} = r(t,T) + (T-t)\frac{\partial r(t,T)}{\partial T}$$
+</div>
+
+<div class="example-box">
+<strong>Example:</strong> 1Y spot = 3%, 2Y spot = 4%<br>
+1Y forward 1Y ahead:<br>
+\(f = \frac{1.04^2}{1.03^1} - 1 = \frac{1.0816}{1.03} - 1 = 0.0501\) or <strong>5.01%</strong>
+</div>
+
+<h3>Bootstrapping the Curve</h3>
+
+<p><strong>Method</strong>: Extract zero rates from coupon bond prices</p>
+
+<p><strong>Steps</strong>:</p>
+<ol>
+<li>Start with shortest maturity (use directly if zero)</li>
+<li>For coupon bond, use previously solved zeros for earlier cash flows</li>
+<li>Solve for the new zero rate</li>
+<li>Move to next maturity</li>
+</ol>
+
+<div class="example-box">
+<strong>Example:</strong><br>
+<strong>Given:</strong>
+<ul>
+<li>6M T-bill: Price = $97.50, Face = $100 → \(r_{0.5} = 5.13\%\)</li>
+<li>1Y bond: Coupon = 5%, Price = $98.50</li>
+</ul>
+
+<strong>Solve for</strong> \(r_1\):<br>
+\(98.50 = \frac{2.5}{e^{0.0513 \times 0.5}} + \frac{102.5}{e^{r_1 \times 1}}\)<br>
+\(98.50 = 2.44 + 102.5e^{-r_1}\)<br>
+\(96.06 = 102.5e^{-r_1}\)<br>
+\(e^{-r_1} = 0.9372\)<br>
+\(r_1 = 0.0648\) or <strong>6.48%</strong>
+</div>
+
+<h3>Interpolation Methods</h3>
+
+<p><strong>Linear (on zero rates)</strong>:</p>
+$$r(T) = r_1 + \frac{T - T_1}{T_2 - T_1}(r_2 - r_1)$$
+
+<p><strong>Linear (on log discount factors)</strong>:</p>
+$$\ln P(0,T) = \ln P(0,T_1) + \frac{T - T_1}{T_2 - T_1}[\ln P(0,T_2) - \ln P(0,T_1)]$$
+
+<p><strong>Cubic Spline</strong>: Smooth curve through points</p>
+
+<p><strong>Nelson-Siegel</strong>:</p>
+
+<div class="formula-block">
+$$r(T) = \beta_0 + \beta_1\frac{1-e^{-T/\tau}}{T/\tau} + \beta_2\left(\frac{1-e^{-T/\tau}}{T/\tau} - e^{-T/\tau}\right)$$
+</div>
+
+<ul>
+<li>\(\beta_0\): Long-term level</li>
+<li>\(\beta_1\): Short-term component</li>
+<li>\(\beta_2\): Medium-term component (hump)</li>
+<li>\(\tau\): Decay parameter</li>
+</ul>
+
+<p><strong>Svensson Extension</strong>: Adds second hump term</p>
+
+<hr>
+
+<h2>DURATION AND CONVEXITY</h2>
+
+<h3>Macaulay Duration</h3>
+
+<p><strong>Definition</strong>: Weighted average time to receive cash flows</p>
+
+<div class="formula-block">
+$$D_{Mac} = \frac{1}{P}\sum_{i=1}^n t_i \frac{CF_i}{(1+y)^{t_i}}$$
+</div>
+
+<p>where \(CF_i\) includes both coupons and principal</p>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Measured in years</li>
+<li>Zero-coupon bond: \(D = T\)</li>
+<li>Lower coupon → higher duration</li>
+<li>Higher yield → lower duration</li>
+</ul>
+
+<h3>Modified Duration</h3>
+
+<p><strong>Definition</strong>: Price sensitivity to yield changes</p>
+
+<div class="key-formula">
+$$D_{Mod} = \frac{D_{Mac}}{1+y}$$
+</div>
+
+<p><strong>Price approximation</strong>:</p>
+$$\frac{dP}{P} \approx -D_{Mod} \cdot dy$$
+
+<p>or:</p>
+$$\Delta P \approx -D_{Mod} \times P \times \Delta y$$
+
+<div class="example-box">
+<strong>Example:</strong> Bond price = $105, \(D_{Mac} = 7.5\) years, \(y = 5\%\)<br>
+\(D_{Mod} = \frac{7.5}{1.05} = 7.14\)<br><br>
+If \(y\) increases from 5% to 5.5% (\(\Delta y = 0.005\)):<br>
+\(\Delta P \approx -7.14 \times 105 \times 0.005 = -\$3.75\)<br>
+New price ≈ $105 - $3.75 = <strong>$101.25</strong>
+</div>
+
+<h3>Dollar Duration (DV01)</h3>
+
+<p><strong>Definition</strong>: Dollar change for 1 bp (0.01%) yield change</p>
+
+$$\text{DV01} = -\frac{\partial P}{\partial y} \times 0.0001 = D_{Mod} \times P \times 0.0001$$
+
+<div class="example-box">
+<strong>Example:</strong> \(P = \$10M\), \(D_{Mod} = 7.14\)<br>
+\(\text{DV01} = 7.14 \times 10,000,000 \times 0.0001 = \boxed{\$7,140}\)<br>
+1 bp increase → lose $7,140
+</div>
+
+<h3>Convexity</h3>
+
+<p><strong>Definition</strong>: Second-order price sensitivity</p>
+
+<div class="formula-block">
+$$C = \frac{1}{P}\sum_{i=1}^n t_i(t_i+1)\frac{CF_i}{(1+y)^{t_i+2}}$$
+</div>
+
+<p><strong>Better price approximation</strong>:</p>
+
+<div class="key-formula">
+$$\frac{\Delta P}{P} \approx -D_{Mod} \cdot \Delta y + \frac{1}{2}C \cdot (\Delta y)^2$$
+</div>
+
+<p><strong>Why convexity matters</strong>:</p>
+<ul>
+<li>Duration alone underestimates price gain when yields fall</li>
+<li>Duration alone overestimates price loss when yields rise</li>
+<li>Convexity is always positive for option-free bonds</li>
+<li>Higher convexity = better (more upside, less downside)</li>
+</ul>
+
+<div class="example-box">
+<strong>Example:</strong> \(P = \$100\), \(D_{Mod} = 7\), \(C = 60\), \(\Delta y = -1\%\)<br><br>
+<strong>Duration only:</strong><br>
+\(\Delta P = -7 \times 100 \times (-0.01) = \$7.00\)<br><br>
+<strong>With convexity:</strong><br>
+\(\Delta P = -7 \times 100 \times (-0.01) + 0.5 \times 60 \times 100 \times 0.01^2\)<br>
+\(= 7.00 + 0.30 = \boxed{\$7.30}\)<br><br>
+Convexity adds $0.30 (more gain than duration predicts)
+</div>
+
+<h3>Effective Duration</h3>
+
+<p><strong>For bonds with embedded options</strong>:</p>
+
+$$D_{Eff} = \frac{P_{-\Delta y} - P_{+\Delta y}}{2 \times P_0 \times \Delta y}$$
+
+<p>where \(P_{-\Delta y}\) and \(P_{+\Delta y}\) are prices when yield shifts by \(\pm \Delta y\)</p>
+
+<hr>
+
+<h2>INTEREST RATE SWAPS</h2>
+
+<h3>Plain Vanilla IRS</h3>
+
+<p><strong>Definition</strong>: Exchange fixed rate for floating rate</p>
+
+<ul>
+<li><strong>Fixed leg</strong>: Pay/receive fixed rate \(R\)</li>
+<li><strong>Floating leg</strong>: Receive/pay LIBOR (or SOFR)</li>
+<li><strong>Notional</strong>: \(N\) (not exchanged)</li>
+<li><strong>Tenor</strong>: Swap maturity (e.g., 5Y, 10Y)</li>
+</ul>
+
+<p><strong>Fixed payer</strong> = Short bond + Long FRN</p>
+<p><strong>Fixed receiver</strong> = Long bond + Short FRN</p>
+
+<h3>Swap Rate Derivation</h3>
+
+<p><strong>Fair swap rate</strong> \(R\): Rate that makes initial swap value = 0</p>
+
+<p><strong>Fixed leg PV</strong>:</p>
+$$PV_{fixed} = R \times N \times \sum_{i=1}^n \delta_i P(0,T_i)$$
+
+<p>where \(\delta_i\) = accrual period (e.g., 0.5 for semi-annual)</p>
+
+<p><strong>Floating leg PV</strong>:</p>
+$$PV_{float} = N \times [1 - P(0,T_n)]$$
+
+<p>Key insight: Floating leg worth par at reset dates</p>
+
+<p><strong>Swap rate</strong> (sets \(PV_{fixed} = PV_{float}\)):</p>
+
+<div class="key-formula">
+$$R = \frac{1 - P(0,T_n)}{\sum_{i=1}^n \delta_i P(0,T_i)}$$
+</div>
+
+<p>The denominator is the <strong>annuity factor</strong> or <strong>PV01</strong></p>
+
+<div class="example-box">
+<strong>Example:</strong> 2-year swap, semi-annual payments<br>
+Discount factors: \(P(0,0.5)=0.975, P(0,1)=0.950, P(0,1.5)=0.925, P(0,2)=0.900\)<br><br>
+Annuity = \(0.5(0.975 + 0.950 + 0.925 + 0.900) = 1.875\)<br>
+\(R = \frac{1 - 0.900}{1.875} = \frac{0.100}{1.875} = 0.0533\) or <strong>5.33%</strong>
+</div>
+
+<h3>Swap Valuation (After Inception)</h3>
+
+<p><strong>Value to fixed payer</strong>:</p>
+
+<div class="formula-block">
+$$V_{swap} = N \times \sum_{i=1}^n \delta_i P(0,T_i)[F(0,T_{i-1},T_i) - R]$$
+</div>
+
+<p>where \(F(0,T_{i-1},T_i)\) = forward rate for period \([T_{i-1}, T_i]\)</p>
+
+<p>Alternatively:</p>
+$$V_{swap} = PV_{float} - PV_{fixed}$$
+
+<p>If rates rise → fixed payer gains (paying below market)</p>
+<p>If rates fall → fixed receiver gains</p>
+
+<h3>Swap DV01</h3>
+
+<p><strong>Definition</strong>: Change in swap value per 1 bp parallel shift</p>
+
+$$\text{DV01} = N \times 0.0001 \times \sum_{i=1}^n \delta_i P(0,T_i)$$
+
+<p>Approximately: \(\text{DV01} \approx N \times D_{Mod} \times 0.0001\)</p>
+
+<h3>Basis Swaps</h3>
+
+<p><strong>Definition</strong>: Exchange one floating rate for another</p>
+
+<p>Examples:</p>
+<ul>
+<li>3M LIBOR vs 6M LIBOR</li>
+<li>LIBOR vs SOFR (post-2021)</li>
+<li>EURIBOR vs EONIA</li>
+</ul>
+
+<p><strong>Basis spread</strong>: Adjustment to make swap fair</p>
+
+<hr>
+
+<h2>CAPS, FLOORS, AND SWAPTIONS</h2>
+
+<h3>Interest Rate Caps</h3>
+
+<p><strong>Cap</strong>: Portfolio of caplets (call options on interest rate)</p>
+
+<p><strong>Caplet Payoff</strong> (at \(T_i\)):</p>
+$$\text{Payoff} = N \times \delta \times \max(L(T_{i-1}) - K, 0)$$
+
+<p>where \(L(T_{i-1})\) = LIBOR set at \(T_{i-1}\), \(K\) = strike rate</p>
+
+<p><strong>Caplet Pricing (Black's formula)</strong>:</p>
+
+<div class="formula-block">
+$$\text{Caplet} = N \times \delta \times P(0,T_i) \times [F \cdot N(d_1) - K \cdot N(d_2)]$$
+$$d_1 = \frac{\ln(F/K) + \sigma^2 T_{i-1}/2}{\sigma\sqrt{T_{i-1}}}, \quad d_2 = d_1 - \sigma\sqrt{T_{i-1}}$$
+</div>
+
+<p>where \(F = F(0,T_{i-1},T_i)\) = forward LIBOR, \(\sigma\) = volatility</p>
+
+<p><strong>Cap value</strong>:</p>
+$$\text{Cap} = \sum_{i=1}^n \text{Caplet}_i$$
+
+<div class="example-box">
+<strong>Example:</strong> Single caplet, \(N = \$1M\), \(\delta = 0.5\), \(K = 5\%\)<br>
+\(F = 5.5\%\), \(\sigma = 20\%\), \(T = 1\), \(P(0,1.5) = 0.93\)<br><br>
+\(d_1 = \frac{\ln(0.055/0.05) + 0.02 \times 1}{0.20} = 0.5866\)<br>
+\(d_2 = 0.5866 - 0.20 = 0.3866\)<br>
+\(N(d_1) = 0.7213, N(d_2) = 0.6505\)<br><br>
+Value = \(1M \times 0.5 \times 0.93 \times [0.055 \times 0.7213 - 0.05 \times 0.6505]\)<br>
+= \(465,000 \times [0.0397 - 0.0325] = \boxed{\$3,348}\)
+</example-box>
+
+<h3>Interest Rate Floors</h3>
+
+<p><strong>Floor</strong>: Portfolio of floorlets (put options on interest rate)</p>
+
+<p><strong>Floorlet Payoff</strong>:</p>
+$$\text{Payoff} = N \times \delta \times \max(K - L(T_{i-1}), 0)$$
+
+<p><strong>Pricing</strong>: Similar to caplet, using Black's formula for puts</p>
+
+<h3>Put-Call Parity for Caps/Floors</h3>
+
+<div class="key-formula">
+$$\text{Cap} - \text{Floor} = \text{Swap}$$
+</div>
+
+<p>More precisely:</p>
+$$\text{Cap}(K) - \text{Floor}(K) = \text{Swap}_{\text{floating}} - \text{Swap}_{\text{fixed at K}}$$
+
+<h3>Swaptions</h3>
+
+<p><strong>Definition</strong>: Option to enter into swap</p>
+
+<ul>
+<li><strong>Payer swaption</strong>: Right to pay fixed in swap</li>
+<li><strong>Receiver swaption</strong>: Right to receive fixed in swap</li>
+</ul>
+
+<p><strong>Notation</strong>: \(m \times n\) swaption = option expires in \(m\) years, swap lasts \(n\) years</p>
+
+<p>Example: 2×5 payer swaption = right in 2Y to enter 5Y swap paying fixed</p>
+
+<p><strong>Swaption Payoff (payer, at expiry \(T_0\))</strong>:</p>
+
+$$\text{Payoff} = \max\left(0, N \times \sum_{i=1}^n \delta_i P(T_0, T_i)[R_{swap}(T_0) - K]\right)$$
+
+<p>where \(R_{swap}(T_0)\) = swap rate at option expiry, \(K\) = strike</p>
+
+<p><strong>Black's Formula for Swaptions</strong>:</p>
+
+<div class="formula-block">
+$$V = N \times A(0,T_0,T_n) \times [R_0 N(d_1) - K N(d_2)]$$
+$$d_1 = \frac{\ln(R_0/K) + \sigma^2 T_0/2}{\sigma\sqrt{T_0}}, \quad d_2 = d_1 - \sigma\sqrt{T_0}$$
+</div>
+
+<p>where:</p>
+<ul>
+<li>\(A(0,T_0,T_n) = \sum_{i=1}^n \delta_i P(0,T_i)\) = annuity factor</li>
+<li>\(R_0\) = forward swap rate</li>
+<li>\(\sigma\) = swaption volatility</li>
+</ul>
+
+<p><strong>Payer swaption</strong> = Call on swap rate</p>
+<p><strong>Receiver swaption</strong> = Put on swap rate</p>
+
+<div class="example-box">
+<strong>Example:</strong> 1×2 payer swaption, strike = 5%, forward swap rate = 5.5%<br>
+\(\sigma = 25\%\), \(T_0 = 1\), annuity = 1.85, notional = $10M<br><br>
+\(d_1 = \frac{\ln(0.055/0.05) + 0.03125}{0.25} = 0.5116\)<br>
+\(d_2 = 0.2616\)<br><br>
+\(V = 10M \times 1.85 \times [0.055 \times 0.6953 - 0.05 \times 0.6032]\)<br>
+= $18.5M × 0.0082 = <strong>$151,700</strong>
+</div>
+
+<hr>
+
+<h2>SHORT RATE MODELS</h2>
+
+<h3>Vasicek Model</h3>
+
+<p><strong>Short rate dynamics</strong>:</p>
+
+<div class="formula-block">
+$$dr_t = \kappa(\theta - r_t)dt + \sigma dW_t$$
+</div>
+
+<ul>
+<li>\(\kappa\): Mean reversion speed</li>
+<li>\(\theta\): Long-term mean</li>
+<li>\(\sigma\): Volatility</li>
+</ul>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Gaussian (can go negative)</li>
+<li>Mean-reverting</li>
+<li>Affine term structure</li>
+</ul>
+
+<p><strong>Bond pricing formula</strong>:</p>
+$$P(t,T) = A(t,T) e^{-B(t,T)r_t}$$
+
+<p>where:</p>
+
+$$B(t,T) = \frac{1-e^{-\kappa(T-t)}}{\kappa}$$
+
+$$\ln A(t,T) = \left(\theta - \frac{\sigma^2}{2\kappa^2}\right)[B(t,T) - (T-t)] - \frac{\sigma^2 B(t,T)^2}{4\kappa}$$
+
+<div class="example-box">
+<strong>Example:</strong> \(r_0 = 3\%\), \(\kappa = 0.5\), \(\theta = 5\%\), \(\sigma = 1\%\), \(T = 2\)<br>
+\(B(0,2) = \frac{1-e^{-1}}{0.5} = 1.2642\)<br>
+\(\ln A(0,2) = ...\) (calculation omitted)<br>
+\(P(0,2) = A \times e^{-1.2642 \times 0.03} = \boxed{0.9235}\)
+</div>
+
+<h3>Cox-Ingersoll-Ross (CIR) Model</h3>
+
+<p><strong>Dynamics</strong>:</p>
+
+<div class="formula-block">
+$$dr_t = \kappa(\theta - r_t)dt + \sigma\sqrt{r_t} dW_t$$
+</div>
+
+<p><strong>Key difference</strong>: Square-root diffusion ensures positive rates</p>
+
+<p><strong>Feller Condition</strong> (no boundary at zero):</p>
+$$2\kappa\theta \geq \sigma^2$$
+
+<p><strong>Distribution</strong>: Non-central chi-squared</p>
+
+<p><strong>Bond pricing</strong>: Also affine, but more complex formulas</p>
+
+$$P(t,T) = A(t,T) e^{-B(t,T)r_t}$$
+
+<p>where \(A(t,T)\) and \(B(t,T)\) are known but lengthy expressions</p>
+
+<h3>Hull-White Model (Extended Vasicek)</h3>
+
+<p><strong>Dynamics</strong>:</p>
+
+<div class="formula-block">
+$$dr_t = [\theta(t) - \kappa r_t]dt + \sigma dW_t$$
+</div>
+
+<p><strong>Key feature</strong>: Time-dependent \(\theta(t)\) allows calibration to initial yield curve</p>
+
+<p><strong>Calibration</strong>:</p>
+$$\theta(t) = \frac{\partial f(0,t)}{\partial t} + \kappa f(0,t) + \frac{\sigma^2}{2\kappa}(1-e^{-2\kappa t})$$
+
+<p>where \(f(0,t)\) = market instantaneous forward rate</p>
+
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Fits any initial term structure</li>
+<li>Tractable (affine structure)</li>
+<li>Widely used in practice</li>
+</ul>
+
+<h3>Black-Derman-Toy (BDT) Model</h3>
+
+<p><strong>Dynamics (lognormal)</strong>:</p>
+$$d\ln r_t = [\theta(t) - \frac{\sigma'(t)}{2}]dt + \sigma(t) dW_t$$
+
+<p>Or equivalently:</p>
+$$\frac{dr_t}{r_t} = \theta(t)dt + \sigma(t)dW_t$$
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Lognormal rates (always positive)</li>
+<li>Time-dependent volatility \(\sigma(t)\)</li>
+<li>Calibrated to term structure and volatility structure</li>
+<li>Implemented on binomial/trinomial tree</li>
+</ul>
+
+<p><strong>Calibration</strong>: Fit \(\theta(t)\) to yield curve, \(\sigma(t)\) to cap/swaption vols</p>
+
+<h3>Model Comparison</h3>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Model</th>
+<th>Rates</th>
+<th>Distribution</th>
+<th>Calibration</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Vasicek</b></td>
+<td>Can be negative</td>
+<td>Gaussian</td>
+<td>Simple</td>
+<td>Theory, ALM</td>
+</tr>
+<tr>
+<td><b>CIR</b></td>
+<td>Positive (Feller)</td>
+<td>Chi-squared</td>
+<td>Simple</td>
+<td>Credit, rates</td>
+</tr>
+<tr>
+<td><b>Hull-White</b></td>
+<td>Can be negative</td>
+<td>Gaussian</td>
+<td>Yield curve</td>
+<td>Derivatives pricing</td>
+</tr>
+<tr>
+<td><b>BDT</b></td>
+<td>Positive</td>
+<td>Lognormal</td>
+<td>Yield + vol</td>
+<td>Exotic options</td>
+</tr>
+<tr>
+<td><b>HJM</b></td>
+<td>Flexible</td>
+<td>Any</td>
+<td>Full curve</td>
+<td>Complex derivatives</td>
+</tr>
+<tr>
+<td><b>LMM</b></td>
+<td>Positive</td>
+<td>Lognormal</td>
+<td>Caps/swaptions</td>
+<td>Market standard</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>HEATH-JARROW-MORTON (HJM) FRAMEWORK</h2>
+
+<h3>HJM Setup</h3>
+
+<p><strong>Key Idea</strong>: Model entire forward rate curve, not just short rate</p>
+
+<p><strong>Forward rate dynamics</strong> (under \(\mathbb{P}\)):</p>
+
+<div class="formula-block">
+$$df(t,T) = \alpha(t,T)dt + \sigma(t,T)dW_t$$
+</div>
+
+<p>where \(f(t,T)\) = instantaneous forward rate for maturity \(T\)</p>
+
+<h3>No-Arbitrage Condition (HJM Drift Condition)</h3>
+
+<p><strong>Under risk-neutral measure</strong> \(\mathbb{Q}\):</p>
+
+<div class="key-formula">
+$$\alpha(t,T) = \sigma(t,T) \int_t^T \sigma(t,u)du$$
+</div>
+
+<p><strong>Interpretation</strong>: Drift completely determined by volatility structure</p>
+
+<p>Only need to specify \(\sigma(t,T)\); drift is then given by no-arbitrage</p>
+
+<h3>Short Rate from Forward Rates</h3>
+
+$$r_t = f(t,t)$$
+
+<p><strong>Bond price</strong>:</p>
+$$P(t,T) = \exp\left(-\int_t^T f(t,u)du\right)$$
+
+<h3>Special Cases</h3>
+
+<p><strong>Constant volatility</strong> \(\sigma(t,T) = \sigma\):</p>
+<ul><li>Leads to Ho-Lee model</li></ul>
+
+<p><strong>Exponential volatility</strong> \(\sigma(t,T) = \sigma e^{-\kappa(T-t)}\):</p>
+<ul><li>Leads to Hull-White model</li></ul>
+
+<p><strong>Multi-factor HJM</strong>:</p>
+$$df(t,T) = \alpha(t,T)dt + \sum_{i=1}^n \sigma_i(t,T)dW_t^i$$
+
+<div class="warning-box">
+<strong>HJM Challenges:</strong>
+<ul>
+<li>High-dimensional (infinite-dimensional in theory)</li>
+<li>Requires numerical methods (Monte Carlo, PDE)</li>
+<li>Volatility structure must be specified carefully</li>
+<li>Computationally intensive</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>LIBOR MARKET MODEL (LMM/BGM)</h2>
+
+<h3>LMM Framework</h3>
+
+<p><strong>Idea</strong>: Model observable forward LIBORs directly</p>
+
+<p><strong>Forward LIBOR</strong> \(L_k(t)\) for period \([T_k, T_{k+1}]\):</p>
+
+$$L_k(t) = \frac{1}{\delta_k}\left[\frac{P(t,T_k)}{P(t,T_{k+1})} - 1\right]$$
+
+<p>where \(\delta_k = T_{k+1} - T_k\) (typically 3M or 6M)</p>
+
+<h3>LMM Dynamics</h3>
+
+<p><strong>Under \(T_{k+1}\)-forward measure</strong> \(\mathbb{Q}^{k+1}\):</p>
+
+<div class="formula-block">
+$$\frac{dL_k(t)}{L_k(t)} = \sigma_k(t) dW_t^{k+1}$$
+</div>
+
+<p>\(L_k(t)\) is a martingale under its "natural" measure \(\mathbb{Q}^{k+1}\)</p>
+
+<p><strong>Under terminal measure</strong> \(\mathbb{Q}^N\):</p>
+
+$$\frac{dL_k(t)}{L_k(t)} = -\sum_{j=k+1}^{N-1} \frac{\delta_j \rho_{kj} \sigma_j(t) L_j(t)}{1 + \delta_j L_j(t)} dt + \sigma_k(t) dW_t^N$$
+
+<p>where \(\rho_{kj}\) = correlation between \(L_k\) and \(L_j\)</p>
+
+<h3>Caplet Pricing in LMM</h3>
+
+<p><strong>Black's formula</strong> (exact in LMM):</p>
+
+<div class="formula-block">
+$$\text{Caplet}_k = N \delta_k P(0,T_{k+1})[L_k(0)N(d_1) - K N(d_2)]$$
+$$d_1 = \frac{\ln(L_k(0)/K) + \frac{1}{2}\bar{\sigma}_k^2 T_k}{\bar{\sigma}_k\sqrt{T_k}}$$
+</div>
+
+<p>where \(\bar{\sigma}_k^2 = \frac{1}{T_k}\int_0^{T_k} \sigma_k^2(t)dt\)</p>
+
+<p><strong>Calibration</strong>: Choose \(\sigma_k(t)\) to match market cap volatilities</p>
+
+<h3>Swaption Approximations</h3>
+
+<p><strong>Problem</strong>: Swap rate is not lognormal in LMM</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+<li><strong>Monte Carlo</strong>: Simulate LIBOR paths, calculate payoff</li>
+<li><strong>Approximations</strong>: "Frozen drift" or other moment-matching</li>
+</ol>
+
+<h3>Volatility Structure</h3>
+
+<p><strong>Separable form</strong>:</p>
+$$\sigma_k(t) = \phi_k g(t), \quad t \leq T_k$$
+
+<ul>
+<li>\(\phi_k\): Terminal volatility (calibrated to caps)</li>
+<li>\(g(t)\): Time function (calibrated to swaptions)</li>
+</ul>
+
+<p><strong>Common choices for \(g(t)\)</strong>:</p>
+<ul>
+<li>Constant: \(g(t) = 1\)</li>
+<li>Exponential: \(g(t) = e^{-\kappa(T_k - t)}\)</li>
+<li>Piecewise constant</li>
+</ul>
+
+<h3>Correlation Structure</h3>
+
+<p><strong>Common specifications</strong>:</p>
+
+<p><strong>Exponential</strong>:</p>
+$$\rho_{ij} = e^{-\beta|T_i - T_j|}$$
+
+<p><strong>Parametric</strong>:</p>
+$$\rho_{ij} = \rho_{\infty} + (1-\rho_{\infty})e^{-\beta|i-j|}$$
+
+<hr>
+
+<h2>INTEREST RATE DERIVATIVES STRATEGIES</h2>
+
+<h3>Curve Steepeners/Flatteners</h3>
+
+<p><strong>Steepener</strong>: Profit if curve steepens (long end - short end increases)</p>
+
+<p>Strategy: Receive fixed 10Y, pay fixed 2Y</p>
+
+<p><strong>Flattener</strong>: Profit if curve flattens</p>
+
+<p>Strategy: Pay fixed 10Y, receive fixed 2Y</p>
+
+<div class="example-box">
+<strong>Example:</strong> 2Y rate = 2%, 10Y rate = 3%, spread = 100 bps<br>
+Enter 2Y-10Y steepener (notional adjusted for DV01 neutrality)<br><br>
+If spread → 120 bps, profit<br>
+If spread → 80 bps, loss
+</div>
+
+<h3>Butterfly Trades</h3>
+
+<p><strong>Setup</strong>: Combine three maturities (short, medium, long)</p>
+
+<p><strong>Long butterfly</strong>: Profit if middle matures outperforms</p>
+
+<p>Example: Long 5Y, short 2Y and 10Y (DV01-weighted)</p>
+
+<h3>Convexity Trade</h3>
+
+<p><strong>Long convexity</strong>: Buy bonds, profit from large yield moves</p>
+
+<p><strong>Short convexity</strong>: Sell options, collect premium, lose if large moves</p>
+
+<h3>Basis Trading</h3>
+
+<p><strong>LIBOR-OIS spread</strong>: Reflects bank credit risk</p>
+
+<p>Trade: If spread widens, banks perceived as riskier</p>
+
+<p><strong>Swap spread</strong>: Swap rate - Treasury yield</p>
+
+<p>Trade: Relative value between swaps and government bonds</p>
+
+<hr>
+
+<h2>LIBOR TRANSITION TO SOFR</h2>
+
+<h3>Background</h3>
+
+<p><strong>LIBOR scandal (2012)</strong>: Banks manipulating submissions</p>
+
+<p><strong>LIBOR cessation</strong>: Discontinued after 2021 (USD LIBOR by June 2023)</p>
+
+<p><strong>Replacement rates</strong>:</p>
+<ul>
+<li><strong>SOFR</strong> (USD): Secured Overnight Financing Rate</li>
+<li><strong>SONIA</strong> (GBP): Sterling Overnight Index Average</li>
+<li><strong>€STR</strong> (EUR): Euro Short-Term Rate</li>
+<li><strong>TONAR</strong> (JPY): Tokyo Overnight Average Rate</li>
+</ul>
+
+<h3>SOFR vs LIBOR</h3>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Feature</th>
+<th>LIBOR</th>
+<th>SOFR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Type</b></td>
+<td>Unsecured</td>
+<td>Secured (repo)</td>
+</tr>
+<tr>
+<td><b>Tenor</b></td>
+<td>Multiple (1M, 3M, 6M, 12M)</td>
+<td>Overnight only</td>
+</tr>
+<tr>
+<td><b>Credit risk</b></td>
+<td>Includes bank credit</td>
+<td>Risk-free (repo collateral)</td>
+</tr>
+<tr>
+<td><b>Transaction-based</b></td>
+<td>No (panel submissions)</td>
+<td>Yes (~$1T daily volume)</td>
+</tr>
+<tr>
+<td><b>Volatility</b></td>
+<td>Lower</td>
+<td>Higher (overnight rate)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Conversion Issues</h3>
+
+<p><strong>Spread Adjustment</strong>: SOFR ≈ LIBOR - credit spread</p>
+
+<p><strong>ARRC recommendation</strong>: Add credit spread adjustment when converting</p>
+
+<p>Example: 3M LIBOR + spread → SOFR + spread + adjustment</p>
+
+<p><strong>Term SOFR</strong>: Constructed from SOFR derivatives (forward-looking)</p>
+
+<hr>
+
+<h2>KEY FORMULAS SUMMARY</h2>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th style="width: 40%;">Concept</th>
+<th style="width: 60%;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Bond Price</b></td>
+<td>\(\sum C e^{-yt_i} + F e^{-yT}\)</td>
+</tr>
+<tr>
+<td><b>Forward Rate (cont.)</b></td>
+<td>\(f = \frac{r_2T_2 - r_1T_1}{T_2-T_1}\)</td>
+</tr>
+<tr>
+<td><b>Instantaneous Forward</b></td>
+<td>\(f(t,T) = -\frac{\partial \ln P(t,T)}{\partial T}\)</td>
+</tr>
+<tr>
+<td><b>Modified Duration</b></td>
+<td>\(D_{Mod} = \frac{D_{Mac}}{1+y}\)</td>
+</tr>
+<tr>
+<td><b>Price Change</b></td>
+<td>\(\frac{\Delta P}{P} \approx -D_{Mod}\Delta y + \frac{1}{2}C(\Delta y)^2\)</td>
+</tr>
+<tr>
+<td><b>DV01</b></td>
+<td>\(D_{Mod} \times P \times 0.0001\)</td>
+</tr>
+<tr>
+<td><b>Swap Rate</b></td>
+<td>\(R = \frac{1-P(0,T_n)}{\sum \delta_i P(0,T_i)}\)</td>
+</tr>
+<tr>
+<td><b>Caplet (Black)</b></td>
+<td>\(N\delta P(0,T)[FN(d_1) - KN(d_2)]\)</td>
+</tr>
+<tr>
+<td><b>Vasicek</b></td>
+<td>\(dr = \kappa(\theta-r)dt + \sigma dW\)</td>
+</tr>
+<tr>
+<td><b>CIR</b></td>
+<td>\(dr = \kappa(\theta-r)dt + \sigma\sqrt{r}dW\)</td>
+</tr>
+<tr>
+<td><b>HJM Drift</b></td>
+<td>\(\alpha(t,T) = \sigma(t,T)\int_t^T\sigma(t,u)du\)</td>
+</tr>
+<tr>
+<td><b>LMM (forward measure)</b></td>
+<td>\(\frac{dL_k}{L_k} = \sigma_k dW^{k+1}\)</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>COMMON MISTAKES & TIPS</h2>
+
+<div class="warning-box">
+<strong>Common Mistakes:</strong>
+<ol>
+<li><strong>Confusing duration types</strong>: Macaulay ≠ Modified ≠ Effective</li>
+<li><strong>DV01 sign</strong>: Price falls when yield rises (negative relationship)</li>
+<li><strong>Swap direction</strong>: Fixed payer = short bond (loses when rates fall)</li>
+<li><strong>Convexity sign</strong>: Always positive for option-free bonds</li>
+<li><strong>Forward rates vs spot rates</strong>: Forward can exceed spot in upward-sloping curve</li>
+<li><strong>Day count conventions</strong>: Critical for precise calculations</li>
+<li><strong>Clean vs dirty price</strong>: Must add accrued interest</li>
+<li><strong>Swaption terminology</strong>: "Payer" means paying fixed</li>
+<li><strong>Cap/floor parity</strong>: Must be at same strike</li>
+<li><strong>LMM measure</strong>: Each LIBOR martingale under different forward measure</li>
+</ol>
+</div>
+
+<div class="example-box">
+<strong>Quick Interview Tips:</strong>
+<ul>
+<li><strong>Duration intuition</strong>: Higher coupon → lower duration (cash sooner)</li>
+<li><strong>Convexity benefit</strong>: Asymmetric - more gain up than loss down</li>
+<li><strong>Swap fixed payer</strong>: Wants rates to rise (paying below market)</li>
+<li><strong>Why caps like calls</strong>: Benefit when rate (underlying) rises above strike</li>
+<li><strong>Swaption = option on swap</strong>: Not option on bond</li>
+<li><strong>HJM vs LMM</strong>: HJM models all forwards, LMM models discrete LIBORs</li>
+<li><strong>Vasicek negative rates</strong>: Can be feature (Europe) or bug</li>
+<li><strong>CIR always positive</strong>: If Feller condition holds</li>
+<li><strong>Hull-White advantage</strong>: Fits initial curve exactly</li>
+<li><strong>LIBOR → SOFR</strong>: SOFR lower (no credit spread), more volatile (overnight)</li>
+<li><strong>Curve steepener</strong>: Receive long, pay short</li>
+<li><strong>Basis risk</strong>: Different floating indices (3M vs 6M LIBOR)</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>PRACTICAL EXAMPLE: COMPLETE SWAP PRICING</h2>
+
+<div class="example-box" style="column-span: all;">
+<strong>Real-World Interest Rate Swap Pricing:</strong><br><br>
+
+<strong>Market Data:</strong>
+<ul style="margin-left: 15pt;">
+<li>Pricing date: Today</li>
+<li>Swap: 3-year, semi-annual, USD</li>
+<li>Notional: $10M</li>
+<li>Day count: Actual/360</li>
+<li>Discount curve (zero rates, continuous):</li>
+</ul>
+
+<table style="width: 60%; margin-left: 15pt; font-size: 8pt;">
+<tr><td>0.5Y: 2.00%</td><td>1.0Y: 2.20%</td><td>1.5Y: 2.40%</td></tr>
+<tr><td>2.0Y: 2.55%</td><td>2.5Y: 2.68%</td><td>3.0Y: 2.80%</td></tr>
+</table>
+
+<strong>Task 1: Calculate discount factors</strong><br><br>
+
+\(P(0,0.5) = e^{-0.02 \times 0.5} = 0.9900\)<br>
+\(P(0,1.0) = e^{-0.022 \times 1.0} = 0.9782\)<br>
+\(P(0,1.5) = e^{-0.024 \times 1.5} = 0.9646\)<br>
+\(P(0,2.0) = e^{-0.0255 \times 2.0} = 0.9503\)<br>
+\(P(0,2.5) = e^{-0.0268 \times 2.5} = 0.9350\)<br>
+\(P(0,3.0) = e^{-0.028 \times 3.0} = 0.9192\)<br><br>
+
+<strong>Task 2: Calculate forward rates</strong><br><br>
+
+For semi-annual period [0.5, 1.0]:<br>
+\(F(0,0.5,1.0) = \frac{P(0,0.5) - P(0,1.0)}{0.5 \times P(0,1.0)} = \frac{0.9900 - 0.9782}{0.5 \times 0.9782} = 0.0241\) or <strong>2.41%</strong><br><br>
+
+Similarly:<br>
+\(F(0,1.0,1.5) = 2.62\%\), \(F(0,1.5,2.0) = 2.79\%\)<br>
+\(F(0,2.0,2.5) = 2.94\%\), \(F(0,2.5,3.0) = 3.09\%\)<br><br>
+
+<strong>Task 3: Calculate fair swap rate</strong><br><br>
+
+Annuity factor:<br>
+\(A = 0.5 \times (0.9900 + 0.9782 + 0.9646 + 0.9503 + 0.9350 + 0.9192)\)<br>
+\(= 0.5 \times 5.7373 = 2.8687\)<br><br>
+
+Swap rate:<br>
+\(R = \frac{1 - P(0,3.0)}{A} = \frac{1 - 0.9192}{2.8687} = \frac{0.0808}{2.8687} = 0.02817\) or <strong>2.817%</strong><br><br>
+
+<strong>Task 4: Value existing swap (contract rate = 2.5%)</strong><br><br>
+
+Fixed leg PV (receiving fixed at 2.5%):<br>
+\(PV_{fixed} = 0.025 \times 10M \times 2.8687 = \$716,175\)<br><br>
+
+Floating leg PV:<br>
+\(PV_{float} = 10M \times (1 - 0.9192) = \$808,000\)<br><br>
+
+Value to fixed receiver:<br>
+\(V = \$716,175 - \$808,000 = -\$91,825\)<br><br>
+
+Fixed receiver has <strong>loss of $91,825</strong> (receiving 2.5% when market is 2.817%)<br><br>
+
+<strong>Task 5: Calculate swap DV01</strong><br><br>
+
+\(\text{DV01} = 10M \times 0.0001 \times 2.8687 = \boxed{\$2,869}\)<br><br>
+
+If rates rise 1 bp across curve, fixed payer gains ~$2,869<br><br>
+
+<strong>Task 6: Hedge with 3Y bond</strong><br><br>
+
+Need bond position with same DV01:<br>
+If 3Y bond has \(D_{Mod} = 2.85\), price = $98:<br>
+Bond notional = \(\frac{\$2,869}{2.85 \times 98 \times 0.0001} = \boxed{\$10.26M}\)<br><br>
+
+To hedge fixed receiver position: <strong>short $10.26M of 3Y bonds</strong>
+</div>
+
+    </div>
+</body>
+</html>

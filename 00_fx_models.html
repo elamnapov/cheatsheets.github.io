@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQF Comprehensive Cheatsheet - FX Module</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            padding: 0.5cm;
+            background: white;
+        }
+        
+        .content {
+            column-count: 2;
+            column-gap: 0.8cm;
+            column-rule: 1px solid #ddd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.5cm;
+            column-span: all;
+        }
+        
+        .header h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.2cm;
+        }
+        
+        .header .subtitle {
+            font-style: italic;
+            font-size: 11pt;
+            color: #555;
+        }
+        
+        h2 {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #0066cc;
+            margin-top: 0.4cm;
+            margin-bottom: 0.2cm;
+            break-after: avoid;
+            column-span: all;
+            background-color: #e8f4f8;
+            padding: 0.2cm;
+            border-left: 4px solid #0066cc;
+        }
+        
+        h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0.3cm;
+            margin-bottom: 0.15cm;
+            break-after: avoid;
+        }
+        
+        p {
+            margin-bottom: 0.15cm;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 0.5cm;
+            margin-bottom: 0.15cm;
+        }
+        
+        li {
+            margin-bottom: 0.05cm;
+        }
+        
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        hr {
+            margin: 0.3cm 0;
+            border: none;
+            border-top: 2px solid #0066cc;
+            column-span: all;
+        }
+        
+        h2, h3 {
+            break-inside: avoid;
+        }
+        
+        .formula-block {
+            background-color: #f9f9f9;
+            border-left: 3px solid #0066cc;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+        }
+        
+        .example-box {
+            background-color: #fffef0;
+            border: 1px solid #ddb;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .warning-box {
+            background-color: #fff0f0;
+            border-left: 3px solid #cc0000;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.3cm 0;
+            font-size: 9pt;
+            break-inside: avoid;
+        }
+        
+        .summary-table th {
+            background-color: #333;
+            color: white;
+            padding: 0.15cm;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .summary-table td {
+            padding: 0.1cm;
+            border: 0.5pt solid #ddd;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        .key-formula {
+            background-color: #ffffcc;
+            border: 2px solid #ff9900;
+            padding: 0.15cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-weight: bold;
+        }
+        
+        .convention-box {
+            background-color: #f0f8ff;
+            border: 1px solid #4169e1;
+            padding: 0.2cm;
+            margin: 0.2cm 0;
+            break-inside: avoid;
+            font-size: 9pt;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3cm;
+            }
+            .content {
+                column-gap: 0.6cm;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .content {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CQF Comprehensive Cheatsheet - FX Module</h1>
+        <div class="subtitle">Foreign Exchange: Spot, Forwards, Options, Volatility Surfaces & Exotic Products</div>
+    </div>
+    
+    <div class="content">
+
+<h2>FX MARKET FUNDAMENTALS</h2>
+
+<h3>Currency Pair Conventions</h3>
+
+<p><strong>Quote Convention</strong>: CCY1/CCY2 = "how many units of CCY2 per 1 unit of CCY1"</p>
+
+<ul>
+<li><strong>Base currency</strong> (CCY1): Denominator in exchange rate</li>
+<li><strong>Quote/counter currency</strong> (CCY2): Numerator</li>
+<li><strong>Example</strong>: EUR/USD = 1.10 means €1 = $1.10</li>
+</ul>
+
+<p><strong>Major Pairs</strong>:</p>
+<ul>
+<li>EUR/USD (Euro/US Dollar) - "Euro"</li>
+<li>USD/JPY (US Dollar/Japanese Yen) - "Dollar Yen"</li>
+<li>GBP/USD (British Pound/US Dollar) - "Cable"</li>
+<li>AUD/USD (Australian Dollar/US Dollar) - "Aussie"</li>
+<li>USD/CHF (US Dollar/Swiss Franc) - "Swissy"</li>
+<li>USD/CAD (US Dollar/Canadian Dollar) - "Loonie"</li>
+</ul>
+
+<p><strong>Inverted Rates</strong>:</p>
+$$\text{USD/EUR} = \frac{1}{\text{EUR/USD}}$$
+
+<div class="example-box">
+<strong>Example:</strong> If EUR/USD = 1.1000, then USD/EUR = 1/1.1000 = 0.9091
+</div>
+
+<h3>Bid-Ask Spreads</h3>
+
+<p><strong>Bid</strong>: Price at which dealer buys base currency (sells quote currency)</p>
+<p><strong>Ask/Offer</strong>: Price at which dealer sells base currency (buys quote currency)</p>
+
+<div class="convention-box">
+<strong>Market Quote:</strong> EUR/USD = 1.1000/1.1003<br>
+Dealer buys EUR at 1.1000, sells EUR at 1.1003<br>
+Spread = 3 pips (1 pip = 0.0001 for most pairs)
+</div>
+
+<p><strong>Pip</strong>: "Percentage in point" or "Price interest point"</p>
+<ul>
+<li>Most pairs: 0.0001 (4th decimal)</li>
+<li>JPY pairs: 0.01 (2nd decimal)</li>
+<li><strong>Pipette</strong>: 1/10 of a pip (fractional pip)</li>
+</ul>
+
+<h3>Cross Rates</h3>
+
+<p><strong>Definition</strong>: Exchange rate between two currencies, neither of which is USD</p>
+
+<p><strong>Calculation via USD</strong>:</p>
+
+<div class="formula-block">
+$$\frac{\text{EUR}}{\text{GBP}} = \frac{\text{EUR/USD}}{\text{GBP/USD}}$$
+</div>
+
+<div class="example-box">
+<strong>Example:</strong> EUR/USD = 1.1000, GBP/USD = 1.2500<br>
+EUR/GBP = 1.1000/1.2500 = 0.8800<br>
+(€1 = £0.88)
+</div>
+
+<p><strong>Triangular Arbitrage</strong>: Profit from inconsistent cross rates</p>
+$$S_{AC} \neq \frac{S_{AB}}{S_{CB}} \implies \text{Arbitrage opportunity}$$
+
+<hr>
+
+<h2>SPOT FX MARKET</h2>
+
+<h3>Spot Rate</h3>
+
+<p><strong>Definition</strong>: Exchange rate for immediate delivery</p>
+<p><strong>Settlement</strong>: T+2 (two business days) for most pairs</p>
+<p><strong>Exceptions</strong>:</p>
+<ul>
+<li>USD/CAD: T+1</li>
+<li>Some exotic pairs: T+2 or longer</li>
+</ul>
+
+<p><strong>Value Date</strong>: Date on which currencies are actually exchanged</p>
+
+<h3>FX Dynamics under GBM</h3>
+
+<p><strong>Spot rate</strong> \(S_t\) (domestic/foreign) follows:</p>
+$$dS_t = (r_d - r_f) S_t dt + \sigma S_t dW_t$$
+
+<p>where:</p>
+<ul>
+<li>\(r_d\) = domestic interest rate</li>
+<li>\(r_f\) = foreign interest rate</li>
+<li>\(\sigma\) = FX volatility</li>
+<li>\(r_d - r_f\) = drift under domestic risk-neutral measure</li>
+</ul>
+
+<p><strong>Interpretation</strong>: Foreign currency is like a dividend-paying stock with yield \(r_f\)</p>
+
+<h3>Interest Rate Parity</h3>
+
+<p><strong>Covered Interest Rate Parity (CIRP)</strong>:</p>
+
+<div class="key-formula">
+$$F = S \cdot \frac{1 + r_d T}{1 + r_f T}$$
+</div>
+
+<p>Or in continuous compounding:</p>
+$$F = S \cdot e^{(r_d - r_f)T}$$
+
+<p><strong>No-arbitrage condition</strong>: Forward price equals expected future spot</p>
+
+<div class="example-box">
+<strong>Example:</strong> EUR/USD spot = 1.1000, \(r_{USD} = 2\%\), \(r_{EUR} = 0.5\%\), \(T = 1\) year<br>
+\(F = 1.1000 \times e^{(0.02 - 0.005) \times 1} = 1.1000 \times e^{0.015} = 1.1166\)<br>
+Euro trades at forward <strong>premium</strong> (higher rate currency depreciates)
+</div>
+
+<p><strong>Uncovered Interest Rate Parity (UIRP)</strong>:</p>
+$$\mathbb{E}[S_{t+T}] = S_t \cdot e^{(r_d - r_f)T}$$
+
+<p>Expected spot movement equals interest differential<br>
+<em>Empirically violated</em>: "Forward premium puzzle"</p>
+
+<hr>
+
+<h2>FX FORWARDS AND SWAPS</h2>
+
+<h3>Forward Contracts</h3>
+
+<p><strong>Definition</strong>: Agreement to exchange currencies at future date \(T\) at predetermined rate \(F\)</p>
+
+<p><strong>Forward Rate</strong>:</p>
+
+<div class="formula-block">
+$$F(t,T) = S_t \cdot e^{(r_d - r_f)(T-t)}$$
+</div>
+
+<p><strong>Forward Points</strong> (swap points):</p>
+$$\text{FP} = F - S$$
+
+<p>Quoted in pips, added to spot rate</p>
+
+<div class="example-box">
+<strong>Example:</strong> Spot EUR/USD = 1.1000, 1Y forward points = +166<br>
+1Y Forward = 1.1000 + 0.0166 = 1.1166
+</div>
+
+<p><strong>Premium/Discount</strong>:</p>
+<ul>
+<li>\(r_d > r_f\): Foreign currency at forward <strong>premium</strong> (\(F > S\))</li>
+<li>\(r_d < r_f\): Foreign currency at forward <strong>discount</strong> (\(F < S\))</li>
+</ul>
+
+<h3>Forward P&L</h3>
+
+<p><strong>Long forward</strong> (agree to buy base currency at \(F\)):</p>
+
+<p>At maturity \(T\):</p>
+$$\text{P\&L} = (S_T - F) \times \text{Notional}$$
+
+<p>Before maturity at time \(t < T\):</p>
+$$\text{MTM} = (F(t,T) - F) \times \text{Notional} \times e^{-r_d(T-t)}$$
+
+<div class="example-box">
+<strong>Example:</strong> Long 1Y EUR/USD forward at \(F = 1.1166\), notional €10M<br>
+After 6 months: Spot = 1.1500, new 6M forward = 1.1583<br>
+MTM = (1.1583 - 1.1166) × 10M × \(e^{-0.02 \times 0.5}\)<br>
+= 0.0417 × 10M × 0.99 = <strong>$412,800 profit</strong>
+</div>
+
+<h3>FX Swaps</h3>
+
+<p><strong>Definition</strong>: Simultaneous spot and forward transactions in opposite directions</p>
+
+<p><strong>Typical structure</strong>:</p>
+<ol>
+<li>Spot leg: Buy EUR/sell USD at spot \(S\)</li>
+<li>Forward leg: Sell EUR/buy USD at forward \(F\)</li>
+</ol>
+
+<p><strong>Swap Points</strong>:</p>
+$$\text{Swap Points} = (F - S) \times \text{Notional}$$
+
+<p><strong>Purpose</strong>:</p>
+<ul>
+<li>Roll FX positions</li>
+<li>Funding in foreign currency</li>
+<li>Manage maturity mismatches</li>
+</ul>
+
+<p><strong>Cross-Currency Basis</strong>: Deviation from theoretical forward due to:</p>
+<ul>
+<li>Supply/demand imbalances</li>
+<li>Credit risk differences</li>
+<li>Regulatory costs</li>
+</ul>
+
+$$F_{market} = F_{theory} + \text{Basis}$$
+
+<div class="warning-box">
+<strong>Post-2008 Crisis:</strong> CIP violations common. USD funding premium led to persistent cross-currency basis, especially in EUR/USD, JPY/USD. "Basis swaps" actively traded.
+</div>
+
+<hr>
+
+<h2>FX OPTIONS - VANILLA</h2>
+
+<h3>Garman-Kohlhagen Model</h3>
+
+<p><strong>FX Option Pricing</strong> (extension of Black-Scholes for FX):</p>
+
+<p><strong>Call Option</strong> (right to buy base currency):</p>
+
+<div class="formula-block">
+$$C = S_0 e^{-r_f T} N(d_1) - K e^{-r_d T} N(d_2)$$
+$$d_1 = \frac{\ln(S_0/K) + (r_d - r_f + \sigma^2/2)T}{\sigma\sqrt{T}}$$
+$$d_2 = d_1 - \sigma\sqrt{T}$$
+</div>
+
+<p><strong>Put Option</strong> (right to sell base currency):</p>
+
+<div class="formula-block">
+$$P = K e^{-r_d T} N(-d_2) - S_0 e^{-r_f T} N(-d_1)$$
+</div>
+
+<p><strong>Put-Call Parity</strong>:</p>
+$$C - P = S_0 e^{-r_f T} - K e^{-r_d T}$$
+
+<p>Or equivalently:</p>
+$$C - P = (F - K) e^{-r_d T}$$
+
+<div class="example-box">
+<strong>Example:</strong> EUR/USD option, \(S = 1.10\), \(K = 1.12\), \(T = 0.25\), \(\sigma = 10\%\)<br>
+\(r_{USD} = 2\%\), \(r_{EUR} = 0.5\%\)<br><br>
+\(d_1 = \frac{\ln(1.10/1.12) + (0.02-0.005+0.005)0.25}{0.10\sqrt{0.25}} = -0.2851\)<br>
+\(d_2 = -0.2851 - 0.05 = -0.3351\)<br>
+\(N(d_1) = 0.3877\), \(N(d_2) = 0.3687\)<br><br>
+\(C = 1.10 \times e^{-0.005 \times 0.25} \times 0.3877 - 1.12 \times e^{-0.02 \times 0.25} \times 0.3687\)<br>
+\(= 0.4261 - 0.4110 = \boxed{0.0151}\) or <strong>151 pips</strong>
+</div>
+
+<h3>FX Option Greeks</h3>
+
+<p><strong>Delta</strong> \(\Delta = \frac{\partial V}{\partial S}\):</p>
+<ul>
+<li>Call: \(\Delta = e^{-r_f T} N(d_1) \in [0, e^{-r_f T}]\)</li>
+<li>Put: \(\Delta = -e^{-r_f T} N(-d_1) \in [-e^{-r_f T}, 0]\)</li>
+<li>ATM call delta ≈ 0.5 × \(e^{-r_f T}\) (adjusted for foreign rate)</li>
+</ul>
+
+<p><strong>Gamma</strong> \(\Gamma = \frac{\partial^2 V}{\partial S^2}\):</p>
+$$\Gamma = \frac{e^{-r_f T} N'(d_1)}{S \sigma \sqrt{T}}$$
+
+<p>Same for calls and puts</p>
+
+<p><strong>Vega</strong> \(\mathcal{V} = \frac{\partial V}{\partial \sigma}\):</p>
+$$\mathcal{V} = S e^{-r_f T} \sqrt{T} N'(d_1)$$
+
+<p><strong>Theta</strong> \(\Theta = \frac{\partial V}{\partial t}\):</p>
+
+<p>Call:</p>
+$$\Theta_C = -\frac{S e^{-r_f T} N'(d_1) \sigma}{2\sqrt{T}} + r_f S e^{-r_f T} N(d_1) - r_d K e^{-r_d T} N(d_2)$$
+
+<p><strong>Rho</strong> (dual sensitivities):</p>
+<ul>
+<li>\(\rho_d = \frac{\partial V}{\partial r_d}\): Sensitivity to domestic rate</li>
+<li>\(\rho_f = \frac{\partial V}{\partial r_f}\): Sensitivity to foreign rate</li>
+</ul>
+
+<p>Call: \(\rho_d = KT e^{-r_d T} N(d_2)\), \(\rho_f = -ST e^{-r_f T} N(d_1)\)</p>
+
+<h3>Option Quoting Conventions</h3>
+
+<p><strong>Delta Convention</strong>: Options quoted by delta, not strike</p>
+
+<ul>
+<li><strong>25-delta call</strong>: Call with \(\Delta = 0.25 e^{-r_f T}\)</li>
+<li><strong>25-delta put</strong>: Put with \(|\Delta| = 0.25 e^{-r_f T}\)</li>
+<li><strong>ATM</strong>: At-the-money (strike ≈ forward)</li>
+</ul>
+
+<p><strong>Strike from Delta</strong> (for call):</p>
+$$K = S e^{(r_d - r_f)T - \sigma\sqrt{T} N^{-1}(\Delta e^{r_f T}) + \sigma^2 T/2}$$
+
+<p><strong>ATM Strike Conventions</strong>:</p>
+<ul>
+<li><strong>ATM DNS</strong> (Delta-Neutral Straddle): \(K\) where call delta + put delta = 0</li>
+<li><strong>ATM Forward</strong>: \(K = F\)</li>
+<li><strong>ATM Spot</strong>: \(K = S\)</li>
+</ul>
+
+<p>Most liquid: <strong>ATM DNS</strong> (50-delta straddle)</p>
+
+<hr>
+
+<h2>FX VOLATILITY SURFACE</h2>
+
+<h3>Volatility Smile</h3>
+
+<p><strong>Implied Volatility</strong> \(\sigma_{imp}(K,T)\): Volatility that equates model price to market price</p>
+
+<p><strong>FX Smile Characteristics</strong>:</p>
+<ul>
+<li><strong>Symmetric smile</strong>: Higher vol for OTM puts and calls</li>
+<li><strong>Risk reversals</strong>: Measure of skew</li>
+<li><strong>Butterflies</strong>: Measure of curvature (smile vs flat)</li>
+</ul>
+
+<div class="convention-box">
+<strong>Market Quotes (for given maturity):</strong>
+<ul>
+<li><strong>ATM volatility</strong>: Vol of ATM straddle</li>
+<li><strong>25Δ Risk Reversal (RR)</strong>: \(\sigma_{25Δ Call} - \sigma_{25Δ Put}\)</li>
+<li><strong>25Δ Butterfly (BF)</strong>: \(\frac{\sigma_{25Δ Call} + \sigma_{25Δ Put}}{2} - \sigma_{ATM}\)</li>
+</ul>
+</convention-box>
+
+<p><strong>Recovering Individual Vols</strong>:</p>
+
+$$\sigma_{25Δ Call} = \sigma_{ATM} + \frac{RR}{2} + BF$$
+$$\sigma_{25Δ Put} = \sigma_{ATM} - \frac{RR}{2} + BF$$
+
+<div class="example-box">
+<strong>Example:</strong> 1M EUR/USD options<br>
+ATM = 10%, 25Δ RR = 1.5%, 25Δ BF = 0.3%<br><br>
+\(\sigma_{25Δ Call} = 10\% + 0.75\% + 0.3\% = 11.05\%\)<br>
+\(\sigma_{25Δ Put} = 10\% - 0.75\% + 0.3\% = 9.55\%\)<br><br>
+Positive RR → call vol > put vol (bullish skew)
+</example-box>
+
+<h3>Vega-Weighted Smile</h3>
+
+<p><strong>Why vega weights?</strong> Market measures smile by vega-weighted prices, not vol difference</p>
+
+<p><strong>Strangle</strong> (25Δ call + 25Δ put):</p>
+$$\text{Strangle Price} = C_{25Δ} + P_{25Δ}$$
+
+<p><strong>Market BF</strong> relates to strangle price vs ATM straddle:</p>
+$$BF \approx \frac{\text{Strangle}_{\text{mid}} - 2 \times \text{ATM}_{\text{price}}}{\text{Vega}}$$
+
+<h3>Volatility Term Structure</h3>
+
+<p><strong>Vol vs Maturity</strong>: \(\sigma(T)\) typically follows patterns:</p>
+<ul>
+<li><strong>Short end</strong> (< 1M): Higher vol (event risk, liquidity)</li>
+<li><strong>Medium term</strong> (1M-1Y): Intermediate vol</li>
+<li><strong>Long end</strong> (>1Y): Lower vol (mean reversion)</li>
+</ul>
+
+<p><strong>Vol interpolation</strong>:</p>
+<ul>
+<li>Linear in variance: \(\sigma^2(T)\)</li>
+<li>Avoid calendar arbitrage</li>
+</ul>
+
+<h3>Sticky Delta vs Sticky Strike</h3>
+
+<p><strong>Sticky Strike</strong>: Vol surface fixed in strike space</p>
+<ul><li>When spot moves, delta of option changes</li></ul>
+
+<p><strong>Sticky Delta</strong>: Vol surface fixed in delta space</p>
+<ul><li>When spot moves, implied vol adjusts to maintain delta</li></ul>
+
+<p><strong>Reality</strong>: FX markets mostly <strong>sticky delta</strong></p>
+
+<hr>
+
+<h2>EXOTIC FX OPTIONS</h2>
+
+<h3>Digital (Binary) Options</h3>
+
+<p><strong>Cash-or-Nothing Call</strong>: Pays fixed amount \(Q\) if \(S_T > K\)</p>
+
+<div class="formula-block">
+$$V = Q e^{-r_d T} N(d_2)$$
+</div>
+
+<p><strong>Asset-or-Nothing Call</strong>: Pays \(S_T\) if \(S_T > K\)</p>
+$$V = S e^{-r_f T} N(d_1)$$
+
+<p><strong>Delta</strong> of cash-or-nothing call:</p>
+$$\Delta = \frac{Q e^{-r_d T} N'(d_2)}{\sigma S \sqrt{T}}$$
+
+<p>Spikes at maturity if near strike (gamma risk)</p>
+
+<h3>Barrier Options</h3>
+
+<p><strong>Types</strong>:</p>
+<ul>
+<li><strong>Knock-Out</strong>: Option dies if barrier hit</li>
+<li><strong>Knock-In</strong>: Option activated if barrier hit</li>
+<li><strong>Up</strong>: Barrier above spot</li>
+<li><strong>Down</strong>: Barrier below spot</li>
+</ul>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Type</th>
+<th>Barrier</th>
+<th>Condition</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Up-and-Out (UOC)</b></td>
+<td>\(H > S\)</td>
+<td>KO if \(S_t \geq H\)</td>
+<td>Cheaper call, limited upside view</td>
+</tr>
+<tr>
+<td><b>Down-and-Out (DOC)</b></td>
+<td>\(H < S\)</td>
+<td>KO if \(S_t \leq H\)</td>
+<td>Cheaper call, bullish view</td>
+</tr>
+<tr>
+<td><b>Up-and-In (UIC)</b></td>
+<td>\(H > S\)</td>
+<td>Activated if \(S_t \geq H\)</td>
+<td>Bet on break above level</td>
+</tr>
+<tr>
+<td><b>Down-and-In (DIC)</b></td>
+<td>\(H < S\)</td>
+<td>Activated if \(S_t \leq H\)</td>
+<td>Protection after dip</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>In-Out Parity</strong>:</p>
+$$\text{Barrier In} + \text{Barrier Out} = \text{Vanilla}$$
+
+<p><strong>Approximate pricing</strong> (down-and-out call, \(H < S < K\)):</p>
+
+$$C_{DOC} \approx C_{vanilla} - \left(\frac{H}{S}\right)^{2\lambda} C(K', H^2/S)$$
+
+<p>where \(\lambda = \frac{r_d - r_f + \sigma^2/2}{\sigma^2}\), \(K' = H^2/K\)</p>
+
+<div class="example-box">
+<strong>Example:</strong> EUR/USD spot = 1.10, UOC strike = 1.15, barrier = 1.20<br>
+Vanilla call = 0.0200 (200 pips)<br>
+UOC ≈ 0.0150 (150 pips) - cheaper due to knockout<br>
+Rebate (payment if knocked out) can be added for compensation
+</div>
+
+<p><strong>Greeks peculiarities</strong>:</p>
+<ul>
+<li>Delta can flip sign as spot approaches barrier</li>
+<li>Large gamma near barrier</li>
+<li>Vega can be negative for out-of-money barriers</li>
+</ul>
+
+<h3>Asian Options</h3>
+
+<p><strong>Payoff</strong>: Based on average exchange rate over period</p>
+
+<p><strong>Arithmetic Average</strong>:</p>
+$$\text{Payoff} = \max\left(\bar{S} - K, 0\right), \quad \bar{S} = \frac{1}{n}\sum_{i=1}^n S_{t_i}$$
+
+<p>No closed form, use Monte Carlo or PDE</p>
+
+<p><strong>Geometric Average</strong>:</p>
+$$\bar{S}_G = \left(\prod_{i=1}^n S_{t_i}\right)^{1/n}$$
+
+<p>Closed-form exists (log-normal distribution of geometric average)</p>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Lower volatility than vanilla (averaging effect)</li>
+<li>Cheaper premium</li>
+<li>Used for hedging regular FX flows</li>
+</ul>
+
+<h3>Lookback Options</h3>
+
+<p><strong>Floating Strike Call</strong>:</p>
+$$\text{Payoff} = S_T - S_{min}$$
+
+<p>Guarantees best possible price (buying at lowest level)</p>
+
+<p><strong>Fixed Strike</strong>:</p>
+$$\text{Payoff} = \max(S_{max} - K, 0)$$
+
+<p>Expensive (hindsight perfection) but popular for structured products</p>
+
+<h3>Touch Options</h3>
+
+<p><strong>One-Touch</strong>: Pays if spot touches barrier before expiry</p>
+<ul><li>Digital with continuous monitoring</li></ul>
+
+<p><strong>No-Touch</strong>: Pays if spot never touches barrier</p>
+<ul><li>One-Touch + No-Touch = Present Value of payment</li></ul>
+
+<p><strong>Double-No-Touch (DNT)</strong>: Pays if spot stays within corridor \([L, U]\)</p>
+<ul><li>Used for range-bound views</li></ul>
+
+<div class="example-box">
+<strong>Example:</strong> 1M EUR/USD DNT, \(L = 1.08\), \(U = 1.12\), current = 1.10<br>
+Payment = $100k if spot stays in range<br>
+Implied probability ≈ 60% (from pricing)<br>
+Payout (PV) = 100k × 0.60 × \(e^{-rT}\) ≈ $59.7k
+</div>
+
+<h3>Target Redemption Forwards (TRF/TARF)</h3>
+
+<p><strong>Structure</strong>: Series of forwards that terminates when cumulative profit reaches target</p>
+
+<p><strong>Features</strong>:</p>
+<ul>
+<li>Participation ratio: Asymmetric (e.g., 1:2 leverage on wrong side)</li>
+<li>Knockout level: Target profit</li>
+<li>Popular in Asia (controversial due to client losses)</li>
+</ul>
+
+<p><strong>Risk</strong>: Unlimited loss potential with capped gains</p>
+
+<hr>
+
+<h2>FX VOLATILITY MODELING</h2>
+
+<h3>Stochastic Volatility Models</h3>
+
+<p><strong>Heston Model for FX</strong>:</p>
+
+$$dS_t = (r_d - r_f) S_t dt + \sqrt{v_t} S_t dW_t^S$$
+$$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t} dW_t^v$$
+$$dW_t^S dW_t^v = \rho dt$$
+
+<p>Negative \(\rho\) typical in FX (higher vol when currency depreciates)</p>
+
+<p><strong>Calibration</strong>: Fit to market smile (ATM, RR, BF)</p>
+
+<h3>Local Volatility Models</h3>
+
+<p><strong>Dupire Formula</strong>:</p>
+
+<div class="formula-block">
+$$\sigma_{local}^2(K,T) = \frac{\frac{\partial C}{\partial T} + (r_d - r_f) K \frac{\partial C}{\partial K} + r_d C}{\frac{1}{2}K^2 \frac{\partial^2 C}{\partial K^2}}$$
+</div>
+
+<p>Constructs volatility surface \(\sigma(S,t)\) consistent with market prices</p>
+
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Perfectly fits market vanilla options</li>
+<li>Deterministic volatility path (given spot path)</li>
+<li>Poor forward smile dynamics</li>
+</ul>
+
+<h3>SABR Model for FX</h3>
+
+<p><strong>Dynamics</strong>:</p>
+$$dF_t = \alpha_t F_t^\beta dW_t^F$$
+$$d\alpha_t = \nu \alpha_t dW_t^\alpha$$
+$$dW_t^F dW_t^\alpha = \rho dt$$
+
+<p><strong>Market standard</strong>: \(\beta = 0.5\) or \(\beta = 1\) (lognormal)</p>
+
+<p><strong>Implied Vol Approximation</strong> (Hagan et al.):</p>
+
+<p>For \(K \approx F\) (ATM):</p>
+$$\sigma_{BS} \approx \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2}{24}\frac{\alpha^2}{F^{2-2\beta}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]$$
+
+<p><strong>Calibration to market quotes</strong>:</p>
+<ol>
+<li>Use ATM vol to constrain \(\alpha\)</li>
+<li>Use RR to fit \(\rho\) (skew)</li>
+<li>Use BF to fit \(\nu\) (vol-of-vol, curvature)</li>
+</ol>
+
+<hr>
+
+<h2>FX RISK MANAGEMENT</h2>
+
+<h3>Delta Hedging</h3>
+
+<p><strong>Delta-Neutral Portfolio</strong>:</p>
+$$\text{Position} = V - \Delta \times S$$
+
+<p>where \(\Delta = \frac{\partial V}{\partial S} \times \text{Notional}\)</p>
+
+<p><strong>Rebalancing frequency</strong>: Balance between transaction costs and hedge effectiveness</p>
+
+<div class="example-box">
+<strong>Example:</strong> Short 10M EUR/USD call, delta = 0.50<br>
+Delta hedge: Buy 0.50 × €10M = <strong>€5M spot</strong><br>
+If spot moves from 1.10 → 1.11, new delta = 0.55<br>
+Additional hedge: Buy 0.05 × €10M = <strong>€500k</strong>
+</div>
+
+<h3>Vega Hedging</h3>
+
+<p><strong>Vega-Neutral</strong>: Offset volatility exposure with opposite vega position</p>
+
+<p><strong>Common approach</strong>: Hedge with ATM options (highest vega)</p>
+
+$$\text{Hedge Ratio} = \frac{\mathcal{V}_{portfolio}}{\mathcal{V}_{hedge instrument}}$$
+
+<h3>Value-at-Risk for FX</h3>
+
+<p><strong>Parametric VaR</strong> (normal returns):</p>
+$$\text{VaR}_\alpha = \text{Position} \times \sigma \sqrt{\Delta t} \times z_\alpha$$
+
+<div class="example-box">
+<strong>Example:</strong> Position = €10M (long), \(\sigma = 10\%\) p.a., 10-day horizon<br>
+\(\text{VaR}_{99\%} = 10M \times 0.10 \times \sqrt{10/252} \times 2.33\)<br>
+= 10M × 0.0198 × 2.33 = <strong>€462k</strong>
+</div>
+
+<p><strong>Historical Simulation</strong>: Apply historical returns to current position</p>
+
+<p><strong>Monte Carlo</strong>: Simulate future spot paths, calculate P&L distribution</p>
+
+<h3>Currency Exposure Types</h3>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th>Exposure Type</th>
+<th>Description</th>
+<th>Hedge Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Transaction</b></td>
+<td>Known future cash flow</td>
+<td>Forward contract</td>
+</tr>
+<tr>
+<td><b>Translation</b></td>
+<td>Foreign subsidiary balance sheet</td>
+<td>Balance sheet hedge (debt)</td>
+</tr>
+<tr>
+<td><b>Economic</b></td>
+<td>Competitive position vs FX</td>
+<td>Natural hedge, derivatives</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>FX CARRY TRADE</h2>
+
+<h3>Carry Trade Mechanics</h3>
+
+<p><strong>Strategy</strong>:</p>
+<ol>
+<li>Borrow in low-interest currency (funding currency)</li>
+<li>Invest in high-interest currency (target currency)</li>
+<li>Profit from interest differential</li>
+</ol>
+
+<p><strong>Carry</strong>:</p>
+$$\text{Carry} = r_{high} - r_{low}$$
+
+<p><strong>Total Return</strong> (unhedged):</p>
+$$R = (r_{high} - r_{low}) + \frac{\Delta S}{S}$$
+
+<p>where \(\frac{\Delta S}{S}\) is target currency appreciation</p>
+
+<div class="example-box">
+<strong>Example:</strong> Borrow JPY (0.5%), invest in AUD (4.5%)<br>
+Carry = 4.5% - 0.5% = 4.0% p.a.<br>
+If AUD/JPY unchanged: Return = 4.0%<br>
+If AUD appreciates 2%: Return = 4.0% + 2.0% = 6.0%<br>
+If AUD depreciates 5%: Return = 4.0% - 5.0% = -1.0%
+</div>
+
+<p><strong>Risk</strong>:</p>
+<ul>
+<li>Funding currency appreciation (wipes out carry)</li>
+<li>Crashes during risk-off events (2008, COVID)</li>
+<li>High kurtosis (fat tails)</li>
+</ul>
+
+<p><strong>Forward Premium Puzzle</strong>: Empirically, high-interest currencies tend to appreciate (violates UIRP)</p>
+
+<h3>Carry-to-Risk Ratio</h3>
+
+$$\text{Sharpe Ratio} = \frac{\text{Carry}}{\sigma_{FX}}$$
+
+<p>Higher ratio = better risk-adjusted carry</p>
+
+<h3>Crowded Carry Unwind</h3>
+
+<p><strong>2008 Crisis</strong>: JPY carry trades unwound violently</p>
+<ul>
+<li>USD/JPY: 110 → 87 (-21%)</li>
+<li>AUD/JPY: 107 → 55 (-49%)</li>
+<li>Liquidation spiral: Losses → margin calls → more unwinding</li>
+</ul>
+
+<hr>
+
+<h2>FX MARKET MICROSTRUCTURE</h2>
+
+<h3>Order Flow and Price Discovery</h3>
+
+<p><strong>Order Flow</strong>: Net buying pressure (buy orders - sell orders)</p>
+
+<p><strong>Empirical finding</strong>: Order flow strongly predicts short-term FX movements</p>
+
+<p><strong>Price impact</strong>:</p>
+$$\Delta S \propto \text{Order Flow} \times \sqrt{\text{Volume}}$$
+
+<h3>FX Market Participants</h3>
+
+<ul>
+<li><strong>Interbank market</strong>: Banks trading with each other</li>
+<li><strong>Prime brokers</strong>: Provide access to hedge funds</li>
+<li><strong>Electronic platforms</strong>: EBS, Reuters Matching, FXall</li>
+<li><strong>Corporates</strong>: Hedging commercial flows</li>
+<li><strong>Central banks</strong>: Intervention, reserves management</li>
+<li><strong>Retail</strong>: Via brokers, typically small size</li>
+</ul>
+
+<h3>Trading Sessions</h3>
+
+<ul>
+<li><strong>Asian session</strong>: Tokyo, Singapore, Hong Kong (00:00-09:00 GMT)</li>
+<li><strong>European session</strong>: London, Frankfurt (08:00-17:00 GMT)</li>
+<li><strong>US session</strong>: New York (13:00-22:00 GMT)</li>
+<li><strong>Overlap</strong>: London-NY (13:00-17:00 GMT) - highest liquidity</li>
+</ul>
+
+<p><strong>Volatility patterns</strong>: Highest during overlaps, lowest during Asian afternoon</p>
+
+<h3>Fixing Rates</h3>
+
+<p><strong>WM/Reuters Fix</strong>: 4pm London benchmark</p>
+<ul>
+<li>Based on order flow in 1-minute window</li>
+<li>Used for fund valuations, index rebalancing</li>
+<li>Can cause volatility spikes</li>
+</ul>
+
+<p><strong>Manipulation scandals (2013-2014)</strong>: Banks colluded to move fixing rates</p>
+
+<hr>
+
+<h2>CENTRAL BANK INTERVENTION</h2>
+
+<h3>Types of Intervention</h3>
+
+<p><strong>Direct Intervention</strong>: Central bank trades FX in market</p>
+<ul>
+<li><strong>Sterilized</strong>: Offset with domestic bonds (no money supply change)</li>
+<li><strong>Unsterilized</strong>: Changes monetary base</li>
+</ul>
+
+<p><strong>Verbal Intervention</strong>: "Jawboning" - statements to influence expectations</p>
+
+<h3>Effectiveness</h3>
+
+<p><strong>Short-term</strong>: Can move market temporarily</p>
+
+<p><strong>Long-term</strong>: Limited if fighting fundamental trends</p>
+
+<p><strong>Famous cases</strong>:</p>
+<ul>
+<li><strong>Swiss National Bank (2011-2015)</strong>: EUR/CHF floor at 1.20</li>
+<li><strong>Bank of Japan</strong>: Frequent interventions in USD/JPY</li>
+<li><strong>Plaza Accord (1985)</strong>: G5 coordination to weaken USD</li>
+</ul>
+
+<hr>
+
+<h2>KEY FORMULAS SUMMARY</h2>
+
+<table class="summary-table">
+<thead>
+<tr>
+<th style="width: 40%;">Concept</th>
+<th style="width: 60%;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Forward Rate (continuous)</b></td>
+<td>\(F = S \cdot e^{(r_d - r_f)T}\)</td>
+</tr>
+<tr>
+<td><b>Spot Dynamics</b></td>
+<td>\(dS = (r_d - r_f)S dt + \sigma S dW\)</td>
+</tr>
+<tr>
+<td><b>Call Option (GK)</b></td>
+<td>\(C = Se^{-r_fT}N(d_1) - Ke^{-r_dT}N(d_2)\)</td>
+</tr>
+<tr>
+<td><b>Put-Call Parity</b></td>
+<td>\(C - P = Se^{-r_fT} - Ke^{-r_dT}\)</td>
+</tr>
+<tr>
+<td><b>Call Delta</b></td>
+<td>\(\Delta_C = e^{-r_fT}N(d_1)\)</td>
+</tr>
+<tr>
+<td><b>Gamma</b></td>
+<td>\(\Gamma = \frac{e^{-r_fT}N'(d_1)}{S\sigma\sqrt{T}}\)</td>
+</tr>
+<tr>
+<td><b>Vega</b></td>
+<td>\(\mathcal{V} = Se^{-r_fT}\sqrt{T}N'(d_1)\)</td>
+</tr>
+<tr>
+<td><b>25Δ Call Vol</b></td>
+<td>\(\sigma_{ATM} + \frac{RR}{2} + BF\)</td>
+</tr>
+<tr>
+<td><b>25Δ Put Vol</b></td>
+<td>\(\sigma_{ATM} - \frac{RR}{2} + BF\)</td>
+</tr>
+<tr>
+<td><b>Carry Return</b></td>
+<td>\(R = (r_{high} - r_{low}) + \frac{\Delta S}{S}\)</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>COMMON MISTAKES & TIPS</h2>
+
+<div class="warning-box">
+<strong>Common Mistakes:</strong>
+<ol>
+<li><strong>Wrong currency pair convention</strong>: EUR/USD = 1.10 means €1 = $1.10, not $1 = €1.10</li>
+<li><strong>Confusing base/quote</strong>: In EUR/USD, EUR is base, USD is quote</li>
+<li><strong>Delta adjustment for foreign rate</strong>: ATM delta ≈ 0.5\(e^{-r_fT}\), not 0.5</li>
+<li><strong>Forward points</strong>: Add to spot, don't multiply</li>
+<li><strong>Forgetting foreign rate in pricing</strong>: Use \(r_d - r_f\), not just \(r_d\)</li>
+<li><strong>Sign of delta</strong>: Put delta is negative</li>
+<li><strong>Barrier direction</strong>: Down-and-out means barrier below spot</li>
+<li><strong>RR interpretation</strong>: Positive RR = call vol > put vol (not necessarily bullish)</li>
+</ol>
+</div>
+
+<div class="example-box">
+<strong>Quick Interview Tips:</strong>
+<ul>
+<li><strong>Why FX smile symmetric?</strong> Both currencies are "risky" (unlike equity/zero)</li>
+<li><strong>Sticky delta</strong>: FX market convention (vs equity sticky strike)</li>
+<li><strong>Carry trade risk</strong>: "Picking up nickels in front of a steamroller"</li>
+<li><strong>Put-call parity</strong>: Forward position = Long call + Short put</li>
+<li><strong>High yield currencies</strong>: Tend to depreciate on average (UIRP), but not always</li>
+<li><strong>Triangular arbitrage</strong>: Cross rates must be consistent</li>
+<li><strong>CIP violations post-2008</strong>: Cross-currency basis widened significantly</li>
+<li><strong>Most liquid pairs</strong>: EUR/USD > USD/JPY > GBP/USD</li>
+<li><strong>Bid-ask spread</strong>: Lower for majors (1-3 pips), higher for exotics (10-50 pips)</li>
+<li><strong>FX fixes</strong>: Can create manipulation opportunities (WM/Reuters scandal)</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>PRACTICAL EXAMPLE: COMPLETE OPTION PRICING</h2>
+
+<div class="example-box" style="column-span: all;">
+<strong>Real-World FX Option Pricing Example:</strong><br><br>
+
+<strong>Market Data:</strong>
+<ul style="margin-left: 15pt;">
+<li>Spot EUR/USD = 1.1000</li>
+<li>EUR interest rate = 0.50% p.a.</li>
+<li>USD interest rate = 2.00% p.a.</li>
+<li>Maturity = 3 months (T = 0.25)</li>
+<li>Volatility structure:</li>
+<ul style="margin-left: 15pt;">
+<li>ATM vol = 10.0%</li>
+<li>25Δ Risk Reversal = 1.5%</li>
+<li>25Δ Butterfly = 0.3%</li>
+</ul>
+</ul>
+
+<strong>Task 1: Price ATM call</strong><br><br>
+
+Forward rate: \(F = 1.1000 \times e^{(0.02-0.005) \times 0.25} = 1.1041\)<br>
+ATM strike (DNS): \(K \approx F = 1.1041\)<br><br>
+
+Using Garman-Kohlhagen with \(\sigma = 10\%\):<br>
+\(d_1 = \frac{\ln(1.1000/1.1041) + (0.02-0.005+0.005) \times 0.25}{0.10 \times 0.5} = 0.0256\)<br>
+\(d_2 = 0.0256 - 0.05 = -0.0244\)<br>
+\(N(d_1) = 0.5102\), \(N(d_2) = 0.4903\)<br><br>
+
+\(C = 1.1000 \times e^{-0.005 \times 0.25} \times 0.5102 - 1.1041 \times e^{-0.02 \times 0.25} \times 0.4903\)<br>
+\(= 0.5597 - 0.5387 = \boxed{0.0210}\) or <strong>210 pips</strong><br><br>
+
+<strong>Task 2: Construct volatility smile</strong><br><br>
+
+\(\sigma_{25Δ \text{ Call}} = 10.0\% + \frac{1.5\%}{2} + 0.3\% = 11.05\%\)<br>
+\(\sigma_{25Δ \text{ Put}} = 10.0\% - \frac{1.5\%}{2} + 0.3\% = 9.55\%\)<br><br>
+
+<strong>Task 3: Find 25Δ call strike</strong><br><br>
+
+For call delta = \(0.25 \times e^{-0.005 \times 0.25} = 0.2497\):<br>
+Using iterative solver (or approximation):<br>
+\(K_{25Δ \text{ Call}} \approx 1.1350\)<br><br>
+
+<strong>Task 4: Price 25Δ call with smile vol</strong><br><br>
+
+Using \(\sigma = 11.05\%\) (instead of flat 10%):<br>
+\(C_{25Δ} \approx \boxed{0.0092}\) or <strong>92 pips</strong><br><br>
+
+<strong>Task 5: Delta hedge</strong><br><br>
+
+Notional = €10M<br>
+ATM call delta = 0.5102 × \(e^{-0.005 \times 0.25}\) = 0.5096<br>
+Hedge: Buy <strong>€5.096M spot</strong> at 1.1000<br>
+USD amount: 5.096M × 1.10 = <strong>$5.606M</strong><br><br>
+
+<strong>Task 6: P&L after 1 week</strong><br><br>
+
+Assume spot moves to 1.1100, vol unchanged:<br>
+New option value ≈ 0.0320 (320 pips)<br>
+Spot P&L = 5.096M × (1.1100 - 1.1000) = €0.051M<br>
+Option P&L = (0.0320 - 0.0210) × 10M = €0.110M<br>
+Total = €0.110M - €0.051M × 1.11 = <strong>€0.053M profit</strong><br>
+(Positive due to gamma - delta hedge slightly underhedged)
+</div>
+
+    </div>
+</body>
+</html>

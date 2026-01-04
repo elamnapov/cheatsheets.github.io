@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQF Quantitative Finance Cheatsheet - Credit Risk Focus</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9pt;
+            line-height: 1.3;
+            padding: 0.4cm;
+            background: white;
+        }
+        
+        .content {
+            column-count: 2;
+            column-gap: 0.6cm;
+            column-rule: 1px solid #ddd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.4cm;
+            column-span: all;
+        }
+        
+        .header h1 {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 0.15cm;
+        }
+        
+        .header .subtitle {
+            font-style: italic;
+            font-size: 10pt;
+            color: #555;
+        }
+        
+        h2 {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #0066cc;
+            margin-top: 0.35cm;
+            margin-bottom: 0.15cm;
+            break-after: avoid;
+            border-bottom: 1px solid #0066cc;
+            padding-bottom: 2pt;
+        }
+        
+        h3 {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #333;
+            margin-top: 0.25cm;
+            margin-bottom: 0.1cm;
+            break-after: avoid;
+        }
+        
+        h4 {
+            font-size: 9pt;
+            font-weight: bold;
+            color: #444;
+            margin-top: 0.2cm;
+            margin-bottom: 0.08cm;
+            break-after: avoid;
+        }
+        
+        p {
+            margin-bottom: 0.1cm;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 0.4cm;
+            margin-bottom: 0.1cm;
+        }
+        
+        li {
+            margin-bottom: 0.04cm;
+        }
+        
+        strong {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        hr {
+            margin: 0.3cm 0;
+            border: none;
+            border-top: 2px solid #0066cc;
+            column-span: all;
+        }
+        
+        h2, h3, h4 {
+            break-inside: avoid;
+        }
+        
+        .formula-block {
+            background-color: #f5f5f5;
+            border-left: 3px solid #0066cc;
+            padding: 0.15cm;
+            margin: 0.15cm 0;
+            break-inside: avoid;
+        }
+        
+        .example-block {
+            background-color: #fffef0;
+            border: 1px solid #e0d080;
+            padding: 0.15cm;
+            margin: 0.15cm 0;
+            break-inside: avoid;
+            font-size: 8pt;
+        }
+        
+        .example-block strong {
+            color: #8B4513;
+        }
+        
+        .boxed {
+            display: inline-block;
+            padding: 1pt 4pt;
+            background-color: #e8f4e8;
+            border: 1pt solid #4a4;
+            font-weight: bold;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+            margin: 0.15cm 0;
+            break-inside: avoid;
+        }
+        
+        .summary-table th {
+            background-color: #333;
+            color: white;
+            padding: 3pt;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .summary-table td {
+            padding: 2pt 3pt;
+            border: 0.5pt solid #ddd;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+        
+        .tip-box {
+            background-color: #e8f8e8;
+            padding: 0.15cm;
+            margin: 0.15cm 0;
+            border: 1pt solid #4a4;
+            break-inside: avoid;
+        }
+        
+        .warning-box {
+            background-color: #fff0f0;
+            padding: 0.15cm;
+            margin: 0.15cm 0;
+            border: 1pt solid #c44;
+            break-inside: avoid;
+        }
+        
+        .section-header {
+            column-span: all;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 0.2cm;
+            margin: 0.3cm 0 0.2cm 0;
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        @media print {
+            body {
+                padding: 0.3cm;
+            }
+            .content {
+                column-gap: 0.5cm;
+            }
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .content {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CQF Quantitative Finance Cheatsheet</h1>
+        <div class="subtitle">Comprehensive Reference with Credit Risk Focus</div>
+    </div>
+    
+    <div class="content">
+
+<!-- ============================================================== -->
+<!-- SECTION: CQF SUMMARY -->
+<!-- ============================================================== -->
+
+<div class="section-header">CQF CORE SUMMARY</div>
+
+<h2>Stochastic Foundations</h2>
+
+<h3>Wiener Process \(W_t\)</h3>
+<ul>
+<li>\(W_0 = 0\), independent increments, \(W_t - W_s \sim \mathcal{N}(0, t-s)\)</li>
+<li>\(\mathbb{E}[W_t] = 0\), \(\text{Var}(W_t) = t\), \([W, W]_t = t\)</li>
+</ul>
+
+<h3>Itô's Lemma</h3>
+<p>For \(dX = \mu dt + \sigma dW\) and \(f(X,t)\):</p>
+<div class="formula-block">
+$$df = \left(\frac{\partial f}{\partial t} + \mu\frac{\partial f}{\partial X} + \frac{1}{2}\sigma^2\frac{\partial^2 f}{\partial X^2}\right)dt + \sigma\frac{\partial f}{\partial X}dW$$
+</div>
+
+<h3>Key SDEs</h3>
+
+<p><strong>GBM</strong>: \(dS = \mu S dt + \sigma S dW\)</p>
+<p>Solution: \(S_t = S_0 \exp\left[(\mu - \frac{\sigma^2}{2})t + \sigma W_t\right]\)</p>
+
+<p><strong>Ornstein-Uhlenbeck</strong>: \(dX = \kappa(\theta - X)dt + \sigma dW\)</p>
+
+<p><strong>CIR</strong>: \(dr = \kappa(\theta - r)dt + \sigma\sqrt{r}dW\)</p>
+<ul><li>Feller condition: \(2\kappa\theta \geq \sigma^2\) ensures \(r > 0\)</li></ul>
+
+<h2>Black-Scholes Framework</h2>
+
+<h3>BS PDE</h3>
+<div class="formula-block">
+$$\frac{\partial V}{\partial t} + rS\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} = rV$$
+</div>
+
+<h3>European Options</h3>
+<p><strong>Call</strong>: \(C = S_0N(d_1) - Ke^{-rT}N(d_2)\)</p>
+<p><strong>Put</strong>: \(P = Ke^{-rT}N(-d_2) - S_0N(-d_1)\)</p>
+<div class="formula-block">
+$$d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 - \sigma\sqrt{T}$$
+</div>
+
+<p><strong>Put-Call Parity</strong>: \(C - P = S_0 - Ke^{-rT}\)</p>
+
+<h3>Greeks</h3>
+<ul>
+<li>\(\Delta = \partial V/\partial S\): Call \(N(d_1)\), Put \(N(d_1)-1\)</li>
+<li>\(\Gamma = \partial^2 V/\partial S^2 = N'(d_1)/(S\sigma\sqrt{T})\)</li>
+<li>\(\mathcal{V} = \partial V/\partial \sigma = S\sqrt{T}N'(d_1)\)</li>
+<li>\(\Theta = \partial V/\partial t\), \(\rho = \partial V/\partial r\)</li>
+</ul>
+
+<h2>Risk Management</h2>
+
+<h3>VaR (Value at Risk)</h3>
+<p><strong>Parametric</strong>: \(\text{VaR}_\alpha = -(\mu + \sigma z_\alpha)\)</p>
+<p><strong>CVaR/ES</strong>: \(\text{CVaR}_\alpha = \mathbb{E}[L | L \geq \text{VaR}_\alpha]\)</p>
+
+<h3>GARCH(1,1)</h3>
+<div class="formula-block">
+$$\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2$$
+</div>
+<p>Long-run variance: \(\bar{\sigma}^2 = \omega/(1 - \alpha - \beta)\)</p>
+
+<h2>Interest Rate Models</h2>
+
+<h3>Vasicek</h3>
+<p>\(dr = a(b - r)dt + \sigma dW\)</p>
+<p>Bond: \(P(t,T) = A(t,T)e^{-B(t,T)r_t}\) where \(B = (1-e^{-a\tau})/a\)</p>
+
+<h3>Hull-White</h3>
+<p>\(dr = [\theta(t) - ar]dt + \sigma dW\)</p>
+<p>Calibrates to initial yield curve</p>
+
+<hr>
+
+<!-- ============================================================== -->
+<!-- SECTION: CREDIT RISK OVERVIEW -->
+<!-- ============================================================== -->
+
+<div class="section-header">CREDIT RISK - OVERVIEW</div>
+
+<h2>Credit Risk Summary Table</h2>
+
+<table class="summary-table">
+<thead>
+<tr><th>Concept</th><th>Formula / Definition</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Default Probability</strong></td><td>\(PD = \mathbb{P}(\tau \leq T)\)</td></tr>
+<tr><td><strong>Survival Probability</strong></td><td>\(Q(t,T) = \mathbb{P}(\tau > T | \tau > t)\)</td></tr>
+<tr><td><strong>Hazard Rate</strong></td><td>\(\lambda(t) = -\frac{d\ln Q(0,t)}{dt}\)</td></tr>
+<tr><td><strong>Recovery Rate</strong></td><td>\(R\) = fraction recovered at default</td></tr>
+<tr><td><strong>Loss Given Default</strong></td><td>\(LGD = 1 - R\)</td></tr>
+<tr><td><strong>Credit Spread</strong></td><td>\(s = (1-R)\lambda\) (approx)</td></tr>
+<tr><td><strong>Expected Loss</strong></td><td>\(EL = PD \times LGD \times EAD\)</td></tr>
+</tbody>
+</table>
+
+<h2>Hazard Rate Framework</h2>
+
+<h3>Intensity-Based Default</h3>
+<p>Default time \(\tau\) is first jump of a Poisson process with intensity \(\lambda(t)\):</p>
+
+<div class="formula-block">
+$$\mathbb{P}(\tau > T) = Q(0,T) = \exp\left(-\int_0^T \lambda(s)ds\right)$$
+</div>
+
+<p><strong>Constant hazard rate</strong> \(\lambda\):</p>
+$$Q(0,T) = e^{-\lambda T}$$
+
+<p><strong>Conditional default probability</strong> in \([t, t+dt]\):</p>
+$$\mathbb{P}(\tau \in [t, t+dt] | \tau > t) = \lambda(t)dt$$
+
+<h3>Term Structure of Hazard Rates</h3>
+<p><strong>Piecewise constant</strong>: Given hazard rates \(\lambda_1, \lambda_2, ...\) for periods \([0,T_1], [T_1,T_2], ...\):</p>
+$$Q(0,T_n) = \exp\left(-\sum_{i=1}^{n} \lambda_i (T_i - T_{i-1})\right)$$
+
+<div class="example-block">
+<strong>Example - Survival Probability</strong><br>
+Given: \(\lambda_1 = 1\%\) for [0,1], \(\lambda_2 = 1.5\%\) for [1,3], \(\lambda_3 = 2\%\) for [3,5]<br>
+\(Q(0,5) = e^{-0.01 \times 1} \times e^{-0.015 \times 2} \times e^{-0.02 \times 2}\)<br>
+\(Q(0,5) = e^{-0.01 - 0.03 - 0.04} = e^{-0.08} = \boxed{0.9231}\)
+</div>
+
+<h3>Relationship to Credit Spreads</h3>
+<div class="formula-block">
+$$\lambda \approx \frac{s}{1-R}$$
+</div>
+
+<div class="example-block">
+<strong>Example - Hazard Rate from Spread</strong><br>
+Credit spread \(s = 200\) bps = 2%, Recovery \(R = 40\%\)<br>
+\(\lambda = \frac{0.02}{1 - 0.40} = \frac{0.02}{0.60} = \boxed{3.33\%}\) per annum
+</div>
+
+<h2>Structural Models</h2>
+
+<h3>Merton Model (1974)</h3>
+<p>Firm value \(V_t\) follows GBM. Equity = call option on firm assets:</p>
+
+<div class="formula-block">
+$$E_t = V_t N(d_1) - De^{-r(T-t)}N(d_2)$$
+$$d_1 = \frac{\ln(V_t/D) + (r + \sigma_V^2/2)(T-t)}{\sigma_V\sqrt{T-t}}$$
+</div>
+
+<p><strong>Distance to Default</strong>:</p>
+$$DD = \frac{\ln(V_t/D) + (\mu - \sigma_V^2/2)(T-t)}{\sigma_V\sqrt{T-t}}$$
+
+<p><strong>Default Probability</strong>: \(PD = N(-DD)\)</p>
+
+<hr>
+
+<!-- ============================================================== -->
+<!-- SECTION: RISKY BOND PRICING -->
+<!-- ============================================================== -->
+
+<div class="section-header">RISKY BOND PRICING</div>
+
+<h2>Fundamental Pricing Framework</h2>
+
+<h3>Risk-Free vs Risky Bond</h3>
+<p><strong>Risk-free zero-coupon bond</strong>:</p>
+$$P^{RF}(t,T) = e^{-r(T-t)}$$
+
+<p><strong>Risky zero-coupon bond</strong> with default risk:</p>
+<div class="formula-block">
+$$P^{Risky}(t,T) = e^{-r(T-t)} \times \left[Q(t,T) + (1-Q(t,T)) \times R\right]$$
+</div>
+
+<p>Alternatively, using risk-adjusted discount rate:</p>
+$$P^{Risky}(t,T) = e^{-(r+s)(T-t)}$$
+
+<p>where \(s\) is the credit spread.</p>
+
+<h3>Key Pricing Equations</h3>
+
+<table class="summary-table">
+<thead>
+<tr><th>Model</th><th>Risky Bond Price</th></tr>
+</thead>
+<tbody>
+<tr><td>Constant \(\lambda\), \(R=0\)</td><td>\(P = e^{-(r+\lambda)T}\)</td></tr>
+<tr><td>Constant \(\lambda\), \(R>0\)</td><td>\(P = e^{-rT}[e^{-\lambda T} + R(1-e^{-\lambda T})]\)</td></tr>
+<tr><td>Time-varying \(\lambda(t)\)</td><td>\(P = e^{-rT}\mathbb{E}^{\mathbb{Q}}[\mathbf{1}_{\tau>T} + R\mathbf{1}_{\tau\leq T}]\)</td></tr>
+</tbody>
+</table>
+
+<h2>Zero Recovery Model</h2>
+
+<p>Simplest case: bondholder receives nothing if default occurs.</p>
+
+<div class="formula-block">
+<strong>Risky Zero Price (R=0)</strong>:
+$$\bar{P}(t,T) = e^{-r(T-t)} \times Q(t,T) = e^{-(r+\lambda)(T-t)}$$
+</div>
+
+<div class="example-block">
+<strong>Example - Zero Recovery Pricing</strong><br>
+Given: Face = $100, \(r = 5\%\), \(\lambda = 2\%\), \(T = 3\) years<br><br>
+<strong>Risk-free price</strong>: \(P^{RF} = 100 \times e^{-0.05 \times 3} = 100 \times 0.8607 = \$86.07\)<br>
+<strong>Survival prob</strong>: \(Q(0,3) = e^{-0.02 \times 3} = e^{-0.06} = 0.9418\)<br>
+<strong>Risky price</strong>: \(P^{Risky} = 86.07 \times 0.9418 = \boxed{\$81.06}\)<br><br>
+<strong>Alternative</strong>: \(P^{Risky} = 100 \times e^{-(0.05+0.02) \times 3} = 100 \times e^{-0.21} = \boxed{\$81.06}\) ✓<br>
+<strong>Credit spread</strong>: \(s = \lambda = 200\) bps
+</div>
+
+<h2>Non-Zero Recovery Model</h2>
+
+<p>Bondholder recovers fraction \(R\) of face value at default.</p>
+
+<div class="formula-block">
+<strong>Risky Zero Price (R > 0)</strong>:
+$$\bar{P}(t,T) = e^{-r(T-t)} \times \left[Q(t,T) + R \times (1-Q(t,T))\right]$$
+</div>
+
+<p>Equivalently:</p>
+$$\bar{P}(t,T) = e^{-r(T-t)} \times \left[R + (1-R)Q(t,T)\right]$$
+
+<div class="example-block">
+<strong>Example - Non-Zero Recovery</strong><br>
+Given: Face = $100, \(r = 4\%\), \(\lambda = 3\%\), \(R = 40\%\), \(T = 5\) years<br><br>
+<strong>Survival probability</strong>: \(Q = e^{-0.03 \times 5} = e^{-0.15} = 0.8607\)<br>
+<strong>Default probability</strong>: \(1 - Q = 0.1393\)<br>
+<strong>Risk-free discount</strong>: \(e^{-0.04 \times 5} = e^{-0.20} = 0.8187\)<br><br>
+<strong>Risky bond price</strong>:<br>
+\(P = 100 \times 0.8187 \times [0.8607 + 0.40 \times 0.1393]\)<br>
+\(P = 81.87 \times [0.8607 + 0.0557]\)<br>
+\(P = 81.87 \times 0.9164 = \boxed{\$75.02}\)<br><br>
+<strong>Credit spread</strong>: \(s = -\frac{1}{T}\ln(P/100) - r = -\frac{1}{5}\ln(0.7502) - 0.04\)<br>
+\(s = 0.0575 - 0.04 = 1.75\%\) = \boxed{175 \text{ bps}}
+</div>
+
+<h2>Risky Coupon Bond Pricing</h2>
+
+<h3>General Formula</h3>
+<p>For a bond paying coupons \(c\) at times \(T_1, T_2, ..., T_n\) with face \(F\) at \(T_n\):</p>
+
+<div class="formula-block">
+$$P = \sum_{i=1}^{n} c \cdot D(0,T_i) \cdot Q(0,T_i) + F \cdot D(0,T_n) \cdot Q(0,T_n) + R \cdot F \cdot \sum_{i=1}^{n} D(0,T_i) \cdot [Q(0,T_{i-1}) - Q(0,T_i)]$$
+</div>
+
+<p>where \(D(0,T_i) = e^{-rT_i}\) is the risk-free discount factor.</p>
+
+<h3>Simplified Formula (No Recovery on Accrued)</h3>
+<div class="formula-block">
+$$P = \sum_{i=1}^{n} c \cdot D(0,T_i) \cdot Q(0,T_i) + F \cdot D(0,T_n) \cdot \left[R + (1-R)Q(0,T_n)\right]$$
+</div>
+
+<div class="example-block">
+<strong>Example - Risky Coupon Bond</strong><br>
+Given: Face = $100, Annual coupon = $5 (5%), \(r = 3\%\), \(\lambda = 2\%\), \(R = 40\%\), T = 3 years<br><br>
+<strong>Discount factors</strong>:<br>
+\(D_1 = e^{-0.03} = 0.9704\), \(D_2 = e^{-0.06} = 0.9418\), \(D_3 = e^{-0.09} = 0.9139\)<br><br>
+<strong>Survival probabilities</strong>:<br>
+\(Q_1 = e^{-0.02} = 0.9802\), \(Q_2 = e^{-0.04} = 0.9608\), \(Q_3 = e^{-0.06} = 0.9418\)<br><br>
+<strong>Coupon PVs</strong>:<br>
+Year 1: \(5 \times 0.9704 \times 0.9802 = \$4.756\)<br>
+Year 2: \(5 \times 0.9418 \times 0.9608 = \$4.525\)<br>
+Year 3: \(5 \times 0.9139 \times 0.9418 = \$4.305\)<br>
+<strong>Total coupon PV</strong> = \$13.586<br><br>
+<strong>Principal PV</strong>:<br>
+\(100 \times 0.9139 \times [0.40 + 0.60 \times 0.9418] = 91.39 \times [0.40 + 0.5651]\)<br>
+\(= 91.39 \times 0.9651 = \$88.20\)<br><br>
+<strong>Total bond price</strong> = 13.586 + 88.20 = \boxed{\$101.79}
+</div>
+
+<h2>Credit Spread Relationships</h2>
+
+<h3>Spread vs Hazard Rate</h3>
+<div class="formula-block">
+$$s \approx (1-R)\lambda$$
+</div>
+
+<p><strong>Exact relationship</strong> for risky zero:</p>
+$$e^{-sT} = Q(0,T) + R(1-Q(0,T))$$
+
+<h3>Z-Spread</h3>
+<p>Constant spread \(z\) added to risk-free curve that prices the bond:</p>
+$$P_{market} = \sum_{i} CF_i \cdot e^{-(r_i + z)T_i}$$
+
+<h3>Asset Swap Spread</h3>
+<p>Spread over LIBOR paid/received to convert fixed bond to floating.</p>
+
+<h3>OAS (Option-Adjusted Spread)</h3>
+<p>Spread after removing value of embedded options.</p>
+
+<div class="example-block">
+<strong>Example - Implied Hazard Rate</strong><br>
+Given: 5-year risky zero trades at $72, Risk-free rate = 4%, Recovery = 40%<br><br>
+<strong>Risk-free 5Y zero</strong>: \(P^{RF} = 100 \times e^{-0.04 \times 5} = \$81.87\)<br>
+<strong>Risky/Risk-free ratio</strong>: \(72/81.87 = 0.8794\)<br><br>
+From \(0.8794 = R + (1-R)Q = 0.40 + 0.60 \times Q\):<br>
+\(Q = (0.8794 - 0.40)/0.60 = 0.7990\)<br><br>
+\(Q = e^{-\lambda \times 5} = 0.7990\)<br>
+\(\lambda = -\ln(0.7990)/5 = 0.2244/5 = \boxed{4.49\%}\)<br><br>
+<strong>Credit spread</strong>: \(s = (1-0.40) \times 0.0449 = \boxed{269 \text{ bps}}\)
+</div>
+
+<hr>
+
+<!-- ============================================================== -->
+<!-- SECTION: CDS PRICING -->
+<!-- ============================================================== -->
+
+<div class="section-header">CDS PRICING</div>
+
+<h2>CDS Structure</h2>
+
+<h3>Key Components</h3>
+<ul>
+<li><strong>Protection Buyer</strong>: Pays periodic premium (spread \(s\))</li>
+<li><strong>Protection Seller</strong>: Pays \((1-R)\) × Notional at default</li>
+<li><strong>Credit Event</strong>: Triggers protection payment</li>
+<li><strong>Notional</strong>: \(N\) (reference amount)</li>
+</ul>
+
+<h3>Cash Flows</h3>
+<table class="summary-table">
+<thead>
+<tr><th>Leg</th><th>Payment</th><th>Timing</th></tr>
+</thead>
+<tbody>
+<tr><td>Premium Leg</td><td>\(s \times N \times \Delta\) per period</td><td>Until default or maturity</td></tr>
+<tr><td>Accrued Premium</td><td>Prorated premium to default date</td><td>At default</td></tr>
+<tr><td>Protection Leg</td><td>\((1-R) \times N\)</td><td>At default</td></tr>
+</tbody>
+</table>
+
+<h2>CDS Pricing Formulas</h2>
+
+<h3>Premium Leg (PV of Spread Payments)</h3>
+<div class="formula-block">
+$$PV_{Premium} = s \times N \times \sum_{i=1}^{n} \Delta_i \cdot D(0,T_i) \cdot Q(0,T_i)$$
+</div>
+<p>where \(\Delta_i\) is the day count fraction for period \(i\).</p>
+
+<h3>Protection Leg (PV of Contingent Payment)</h3>
+<div class="formula-block">
+$$PV_{Protection} = (1-R) \times N \times \sum_{i=1}^{n} D(0,T_i) \cdot [Q(0,T_{i-1}) - Q(0,T_i)]$$
+</div>
+
+<p>Continuous approximation:</p>
+$$PV_{Protection} = (1-R) \times N \times \int_0^T D(0,t) \cdot Q(0,t) \cdot \lambda(t) dt$$
+
+<h3>Risky PV01 (RPV01 or Risky Duration)</h3>
+<div class="formula-block">
+$$RPV01 = \sum_{i=1}^{n} \Delta_i \cdot D(0,T_i) \cdot Q(0,T_i)$$
+</div>
+<p>This is the present value of 1 bp paid until default or maturity.</p>
+
+<h3>Par CDS Spread</h3>
+<p>At inception, CDS has zero value: \(PV_{Premium} = PV_{Protection}\)</p>
+
+<div class="formula-block">
+<strong>Par Spread</strong>:
+$$s_{par} = \frac{(1-R) \times \sum_{i=1}^{n} D(0,T_i) \cdot [Q(0,T_{i-1}) - Q(0,T_i)]}{\sum_{i=1}^{n} \Delta_i \cdot D(0,T_i) \cdot Q(0,T_i)}$$
+</div>
+
+<p>Simplified (constant \(\lambda\), continuous):</p>
+$$s_{par} \approx (1-R) \times \lambda$$
+
+<h2>CDS Valuation Examples</h2>
+
+<div class="example-block">
+<strong>Example 1 - Par CDS Spread Calculation</strong><br>
+Given: 3-year CDS, Notional = $10M, \(r = 3\%\), \(\lambda = 2\%\), \(R = 40\%\), Quarterly payments<br><br>
+<strong>For simplicity, use annual payments</strong>:<br><br>
+<strong>Discount factors</strong>: \(D_1 = 0.9704\), \(D_2 = 0.9418\), \(D_3 = 0.9139\)<br>
+<strong>Survival probs</strong>: \(Q_1 = 0.9802\), \(Q_2 = 0.9608\), \(Q_3 = 0.9418\)<br><br>
+<strong>RPV01</strong> = \(1 \times D_1 Q_1 + 1 \times D_2 Q_2 + 1 \times D_3 Q_3\)<br>
+= \(0.9704 \times 0.9802 + 0.9418 \times 0.9608 + 0.9139 \times 0.9418\)<br>
+= \(0.9512 + 0.9049 + 0.8607 = 2.7168\)<br><br>
+<strong>Protection PV per $1</strong>:<br>
+Year 1: \(D_1 \times [Q_0 - Q_1] = 0.9704 \times [1 - 0.9802] = 0.9704 \times 0.0198 = 0.01921\)<br>
+Year 2: \(D_2 \times [Q_1 - Q_2] = 0.9418 \times [0.9802 - 0.9608] = 0.9418 \times 0.0194 = 0.01827\)<br>
+Year 3: \(D_3 \times [Q_2 - Q_3] = 0.9139 \times [0.9608 - 0.9418] = 0.9139 \times 0.0190 = 0.01736\)<br>
+<strong>Total</strong> = 0.05484<br><br>
+<strong>Par spread</strong>: \(s = \frac{(1-0.40) \times 0.05484}{2.7168} = \frac{0.03290}{2.7168} = 0.01211 = \boxed{121 \text{ bps}}\)<br><br>
+<strong>Check</strong>: \(s \approx (1-R)\lambda = 0.60 \times 0.02 = 1.20\%\) ✓
+</div>
+
+<div class="example-block">
+<strong>Example 2 - CDS Mark-to-Market</strong><br>
+Existing CDS: 5Y CDS bought 2 years ago at \(s_0 = 150\) bps<br>
+Current: 3Y CDS par spread = 200 bps, \(r = 4\%\), \(\lambda = 3.33\%\), \(R = 40\%\)<br>
+Notional = $10M<br><br>
+<strong>CDS MTM</strong> = (Current spread - Contract spread) × RPV01 × Notional<br><br>
+<strong>Calculate RPV01</strong> (3Y remaining, annual):<br>
+\(D_1 = 0.9608\), \(D_2 = 0.9231\), \(D_3 = 0.8869\)<br>
+\(Q_1 = e^{-0.0333} = 0.9672\), \(Q_2 = 0.9357\), \(Q_3 = 0.9053\)<br>
+RPV01 = \(0.9608 \times 0.9672 + 0.9231 \times 0.9357 + 0.8869 \times 0.9053\)<br>
+= \(0.9293 + 0.8638 + 0.8029 = 2.596\)<br><br>
+<strong>MTM (protection buyer)</strong>:<br>
+MTM = (0.0200 - 0.0150) × 2.596 × $10M<br>
+MTM = 0.0050 × 2.596 × $10M = \boxed{\$129,800} gain
+</div>
+
+<h2>Bootstrapping Hazard Rates from CDS</h2>
+
+<h3>Procedure</h3>
+<ol>
+<li>Start with shortest maturity CDS spread</li>
+<li>Assume constant hazard rate for first period</li>
+<li>Solve for \(\lambda_1\) such that par spread is matched</li>
+<li>Move to next maturity, solve for \(\lambda_2\), etc.</li>
+</ol>
+
+<div class="example-block">
+<strong>Example - Bootstrap from CDS Spreads</strong><br>
+Given: 1Y CDS = 100 bps, 2Y CDS = 120 bps, 3Y CDS = 150 bps<br>
+\(r = 5\%\), \(R = 40\%\), annual payments<br><br>
+<strong>Step 1: Solve for \(\lambda_1\)</strong><br>
+Using \(s_1 \approx (1-R)\lambda_1\):<br>
+\(\lambda_1 = 0.01/0.60 = 1.67\%\)<br>
+\(Q_1 = e^{-0.0167} = 0.9834\)<br><br>
+<strong>Step 2: Solve for \(\lambda_2\)</strong><br>
+For 2Y CDS with spread 120 bps:<br>
+Premium PV = \(0.0120 \times [D_1 Q_1 + D_2 Q_2]\)<br>
+Protection PV = \(0.60 \times [D_1(1-Q_1) + D_2(Q_1-Q_2)]\)<br>
+With \(Q_2 = Q_1 \times e^{-\lambda_2}\), solve iteratively...<br>
+Result: \(\lambda_2 \approx 2.0\%\), \(Q_2 = 0.9834 \times e^{-0.020} = 0.9640\)<br><br>
+<strong>Step 3: Solve for \(\lambda_3\)</strong><br>
+Similar procedure gives \(\lambda_3 \approx 3.0\%\)
+</div>
+
+<h2>CDS Greeks and Sensitivities</h2>
+
+<h3>Credit DV01 (CS01)</h3>
+<p>Change in CDS value for 1 bp change in spread:</p>
+<div class="formula-block">
+$$CS01 = \frac{\partial V_{CDS}}{\partial s} \approx RPV01 \times N$$
+</div>
+
+<div class="example-block">
+<strong>Example - CS01</strong><br>
+Long protection on $10M notional, RPV01 = 4.2 years<br>
+CS01 = 4.2 × $10M × 0.0001 = \boxed{\$4,200} per bp
+</div>
+
+<h3>IR01</h3>
+<p>Sensitivity to 1 bp parallel shift in rates:</p>
+$$IR01 = \frac{\partial V_{CDS}}{\partial r} \times 0.0001$$
+
+<h3>Recovery Sensitivity</h3>
+$$\frac{\partial V_{CDS}}{\partial R} \approx -\frac{PV_{Protection}}{1-R}$$
+
+<h2>Upfront vs Running CDS</h2>
+
+<h3>Standard CDS Conventions</h3>
+<p>Post-2009 "Big Bang": CDS trade with standard coupons (100 or 500 bps) plus upfront:</p>
+
+<div class="formula-block">
+$$\text{Upfront} = (s_{par} - s_{coupon}) \times RPV01 \times N$$
+</div>
+
+<div class="example-block">
+<strong>Example - Upfront Calculation</strong><br>
+Par spread = 350 bps, Standard coupon = 500 bps, RPV01 = 4.5, Notional = $10M<br><br>
+<strong>Protection buyer receives upfront</strong>:<br>
+Upfront = (0.0350 - 0.0500) × 4.5 × $10M = -0.0150 × 4.5 × $10M<br>
+= \boxed{-\$675,000} (i.e., pays $675,000 to seller)<br><br>
+<em>Since par spread < coupon, buyer "overpays" premium so compensated upfront</em>
+</div>
+
+<h2>CDS vs Bond Basis</h2>
+
+<h3>CDS-Bond Basis</h3>
+$$\text{Basis} = \text{CDS Spread} - \text{Bond Z-Spread}$$
+
+<p><strong>Positive basis</strong>: CDS spread > Bond spread (basis trade: short CDS, long bond)</p>
+<p><strong>Negative basis</strong>: CDS spread < Bond spread (basis trade: long CDS, short bond)</p>
+
+<h3>Drivers of Basis</h3>
+<ul>
+<li>Funding costs (repo, liquidity)</li>
+<li>Counterparty risk in CDS</li>
+<li>CTD option in physical settlement</li>
+<li>Delivery squeeze risk</li>
+</ul>
+
+<hr>
+
+<h2>Quick Reference Formulas</h2>
+
+<table class="summary-table">
+<thead>
+<tr><th>Formula</th><th>Expression</th></tr>
+</thead>
+<tbody>
+<tr><td>Survival Prob (const λ)</td><td>\(Q(T) = e^{-\lambda T}\)</td></tr>
+<tr><td>Hazard from Spread</td><td>\(\lambda = s/(1-R)\)</td></tr>
+<tr><td>Par CDS Spread (approx)</td><td>\(s \approx (1-R)\lambda\)</td></tr>
+<tr><td>Risky Zero (R=0)</td><td>\(P = e^{-(r+\lambda)T}\)</td></tr>
+<tr><td>Risky Zero (R>0)</td><td>\(P = e^{-rT}[R + (1-R)e^{-\lambda T}]\)</td></tr>
+<tr><td>CDS MTM</td><td>\((s_{mkt} - s_0) \times RPV01 \times N\)</td></tr>
+<tr><td>Upfront</td><td>\((s_{par} - s_{cpn}) \times RPV01 \times N\)</td></tr>
+</tbody>
+</table>
+
+<div class="tip-box">
+<strong>Interview Tips - Credit</strong>
+<ul>
+<li>\(s \approx (1-R)\lambda\) is the most important approximation</li>
+<li>RPV01 ≈ sum of survival-weighted discount factors</li>
+<li>Protection buyer benefits from spread widening</li>
+<li>CDS vs bond basis driven by funding and liquidity</li>
+<li>Upfront = (par spread - coupon) × RPV01 × Notional</li>
+<li>CS01 ≈ RPV01 × Notional × 1 bp</li>
+</ul>
+</div>
+
+<div class="warning-box">
+<strong>Common Mistakes</strong>
+<ul>
+<li>Forgetting recovery rate in hazard rate conversion</li>
+<li>Confusing survival probability with default probability</li>
+<li>Wrong sign on upfront: buyer pays if par < coupon</li>
+<li>Not discounting default payments to appropriate time</li>
+<li>Mixing annualized spread with period spread</li>
+</ul>
+</div>
+
+    </div>
+</body>
+</html>
