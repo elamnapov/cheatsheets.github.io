@@ -27,8 +27,8 @@
             font-family: 'Segoe UI', 'Arial', sans-serif;
             line-height: 1.7;
             color: #2c3e50;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
         
         .container {
@@ -183,15 +183,189 @@
             border-radius: 4px;
             transition: width 0.3s ease;
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 30px 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                column-count: 1;
+                padding: 30px 20px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#topic-1">1. Black-Scholes Model and Assumptions</a></li>
+                <li><a href="#topic-2">2. Black-Scholes PDE Derivation</a></li>
+                <li><a href="#topic-3">3. Risk-Neutral Valuation and Martingale Pricing</a></li>
+                <li><a href="#topic-4">4. Ito's Lemma and Its Applications in Finance</a></li>
+                <li><a href="#topic-5">5. Geometric Brownian Motion (GBM) and Stochastic Calculus</a></li>
+                <li><a href="#topic-6">6. Girsanov's Theorem and Change of Measure</a></li>
+                <li><a href="#topic-7">7. Binomial Option Pricing Model (Cox-Ross-Rubinstein)</a></li>
+                <li><a href="#topic-8">8. Monte Carlo Simulation for Option Pricing</a></li>
+                <li><a href="#topic-9">9. Variance Reduction Techniques in Monte Carlo</a></li>
+                <li><a href="#topic-10">10. Finite Difference Methods for PDEs (Explicit, Implicit, Crank-Nicolson)</a></li>
+                <li><a href="#topic-11">11. Local Volatility Models (Dupire's Formula)</a></li>
+                <li><a href="#topic-12">12. Stochastic Volatility Models (Heston Model)</a></li>
+                <li><a href="#topic-13">13. SABR Model and Its Approximations</a></li>
+                <li><a href="#topic-14">14. Jump-Diffusion Models (Merton, Kou)</a></li>
+                <li><a href="#topic-15">15. Levy Processes and Their Applications in Finance</a></li>
+                <li><a href="#topic-16">16. Affine Jump-Diffusion Models</a></li>
+                <li><a href="#topic-17">17. Heath-Jarrow-Morton (HJM) Framework for Interest Rates</a></li>
+                <li><a href="#topic-18">18. Short-Rate Models (Vasicek, CIR, Hull-White)</a></li>
+                <li><a href="#topic-19">19. Libor Market Model (LMM) and Convexity Adjustments</a></li>
+                <li><a href="#topic-20">20. Credit Risk Models (Merton, Reduced-Form, Structural Models)</a></li>
+                <li><a href="#topic-21">21. Credit Valuation Adjustment (CVA) and XVA</a></li>
+                <li><a href="#topic-22">22. Copula Models for Dependency Structure</a></li>
+                <li><a href="#topic-23">23. Value-at-Risk (VaR) and Expected Shortfall (ES)</a></li>
+                <li><a href="#topic-24">24. Historical Simulation vs. Parametric VaR</a></li>
+                <li><a href="#topic-25">25. Extreme Value Theory (EVT) for Tail Risk</a></li>
+                <li><a href="#topic-26">26. Portfolio Optimization (Mean-Variance, Black-Litterman)</a></li>
+                <li><a href="#topic-27">27. Capital Asset Pricing Model (CAPM) and Factor Models</a></li>
+                <li><a href="#topic-28">28. Arbitrage Pricing Theory (APT)</a></li>
+                <li><a href="#topic-29">29. Kelly Criterion and Optimal Betting Strategies</a></li>
+                <li><a href="#topic-30">30. Stochastic Control and Merton's Portfolio Problem</a></li>
+                <li><a href="#topic-31">31. Dynamic Programming in Optimal Execution</a></li>
+                <li><a href="#topic-32">32. Almgren-Chriss Model for Optimal Trade Execution</a></li>
+                <li><a href="#topic-33">33. Market Impact Models (Temporary vs. Permanent)</a></li>
+                <li><a href="#topic-34">34. Order Book Dynamics and Limit Order Models</a></li>
+                <li><a href="#topic-35">35. High-Frequency Trading Strategies and Latency Arbitrage</a></li>
+                <li><a href="#topic-36">36. Reinforcement Learning for Algorithmic Trading</a></li>
+                <li><a href="#topic-37">37. Machine Learning for Volatility Forecasting (GARCH, LSTM)</a></li>
+                <li><a href="#topic-38">38. Principal Component Analysis (PCA) for Yield Curve Modeling</a></li>
+                <li><a href="#topic-39">39. Kalman Filter for State-Space Models in Finance</a></li>
+                <li><a href="#topic-40">40. Bayesian Methods in Financial Econometrics</a></li>
+                <li><a href="#topic-41">41. Cointegration and Pairs Trading Strategies</a></li>
+                <li><a href="#topic-42">42. Statistical Arbitrage and Mean-Reversion Strategies</a></li>
+                <li><a href="#topic-43">43. Markov Chain Monte Carlo (MCMC) for Parameter Estimation</a></li>
+                <li><a href="#topic-44">44. Fourier Transform Methods for Option Pricing (Lewis, Carr-Madan)</a></li>
+                <li><a href="#topic-45">45. Fast Fourier Transform (FFT) for Efficient Pricing</a></li>
+                <li><a href="#topic-46">46. American Option Pricing via Least Squares Monte Carlo (LSM)</a></li>
+                <li><a href="#topic-47">47. Barrier Option Pricing and Reflection Principle</a></li>
+                <li><a href="#topic-48">48. Asian Option Pricing and Moment Matching</a></li>
+                <li><a href="#topic-49">49. Basket Option Pricing and Moment-Based Approximations</a></li>
+                <li><a href="#topic-50">50. Numerical Methods for High-Dimensional PDEs (Sparse Grids, Deep Learning)</a></li>
+            </ol>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
     <div class="container">
         <h1>'Models, formulas and numerical examples for mathematical finance'</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
-<h3>Black-Scholes Model and Assumptions</h3>
+<h3 id="topic-1">Topic 1: Black-Scholes Model and Assumptions</h3>
 
 <div class="definition">
     <p><strong>Black-Scholes Model:</strong> A mathematical model for pricing European-style options, developed by Fischer Black, Myron Scholes, and Robert Merton in 1973. The model provides a theoretical estimate of the price of options and assumes a log-normal distribution of stock prices.</p>
@@ -451,7 +625,7 @@
 </div>
 
 
-<h3>Black-Scholes PDE Derivation</h3>
+<h3 id="topic-2">Topic 2: Black-Scholes PDE Derivation</h3>
 
 <div class="definition">
     <p><strong>Black-Scholes Model:</strong> A mathematical model for pricing options contracts, assuming that financial markets are efficient and that the price of the underlying asset follows a geometric Brownian motion with constant drift and volatility.</p>
@@ -642,7 +816,7 @@
 </div>
 
 
-<h3>Risk-Neutral Valuation and Martingale Pricing</h3>
+<h3 id="topic-3">Topic 3: Risk-Neutral Valuation and Martingale Pricing</h3>
 
 <div class="definition">
     <strong>Risk-Neutral Probability Measure (ℚ):</strong>
@@ -861,7 +1035,7 @@
 </div>
 
 
-<h3>Ito’s Lemma and Its Applications in Finance</h3>
+<h3 id="topic-4">Topic 4: Ito’s Lemma and Its Applications in Finance</h3>
 
 <div class="definition">
     <p><strong>Stochastic Process:</strong> A stochastic process is a collection of random variables indexed by time. In finance, it is often used to model the evolution of asset prices, interest rates, and other financial variables over time.</p>
@@ -1065,7 +1239,7 @@
 </style>
 
 
-<h3>Geometric Brownian Motion (GBM) and Stochastic Calculus</h3>
+<h3 id="topic-5">Topic 5: Geometric Brownian Motion (GBM) and Stochastic Calculus</h3>
 
 <div class="definition">
     <p><strong>Geometric Brownian Motion (GBM):</strong> A continuous-time stochastic process in which the logarithm of the randomly varying quantity follows a Brownian motion (also called a Wiener process). It is widely used in finance to model stock prices and other financial assets.</p>
@@ -1258,7 +1432,7 @@
 </style>
 
 
-<h3>Girsanov’s Theorem and Change of Measure</h3>
+<h3 id="topic-6">Topic 6: Girsanov’s Theorem and Change of Measure</h3>
 
 <div class="definition">
     <p><strong>Probability Space:</strong> A probability space is a triple \((\Omega, \mathcal{F}, \mathbb{P})\) where:
@@ -1443,7 +1617,7 @@
 </div>
 
 
-<h3>Binomial Option Pricing Model (Cox-Ross-Rubinstein)</h3>
+<h3 id="topic-7">Topic 7: Binomial Option Pricing Model (Cox-Ross-Rubinstein)</h3>
 
 <div class="definition">
     <p><strong>Binomial Option Pricing Model (BOPM):</strong> A discrete-time model for valuing options by constructing a binomial lattice (tree) representing possible price paths of the underlying asset over time. Developed by Cox, Ross, and Rubinstein (1979), it provides a numerical method to compute option prices using risk-neutral valuation.</p>
@@ -1722,7 +1896,7 @@
 </div>
 
 
-<h3>Monte Carlo Simulation for Option Pricing</h3>
+<h3 id="topic-8">Topic 8: Monte Carlo Simulation for Option Pricing</h3>
 
 <div class="definition">
     <p><strong>Monte Carlo Simulation (MCS):</strong> A computational technique used to model the probability of different outcomes in a process that cannot easily be predicted due to the intervention of random variables. In finance, it is widely used for pricing options and other derivatives by simulating the underlying asset's price paths.</p>
@@ -1968,7 +2142,7 @@
 </div>
 
 
-<h3>Variance Reduction Techniques in Monte Carlo</h3>
+<h3 id="topic-9">Topic 9: Variance Reduction Techniques in Monte Carlo</h3>
 
 <div class="definition">
     <p><strong>Monte Carlo Simulation:</strong> A computational algorithm that relies on repeated random sampling to obtain numerical results. It is often used in mathematical finance to estimate the price of complex derivatives or to assess risk.</p>
@@ -2241,7 +2415,7 @@
 </div>
 
 
-<h3>Finite Difference Methods for PDEs (Explicit, Implicit, Crank-Nicolson)</h3>
+<h3 id="topic-10">Topic 10: Finite Difference Methods for PDEs (Explicit, Implicit, Crank-Nicolson)</h3>
 
 <div class="definition">
     <p><strong>Finite Difference Methods (FDM):</strong> Numerical techniques used to approximate solutions to partial differential equations (PDEs) by discretizing the continuous domain into a finite grid and replacing derivatives with finite difference approximations.</p>
@@ -2540,7 +2714,7 @@
 </div>
 
 
-<h3>Local Volatility Models (Dupire’s Formula)</h3>
+<h3 id="topic-11">Topic 11: Local Volatility Models (Dupire’s Formula)</h3>
 
 <div class="definition">
     <p><strong>Local Volatility Model:</strong> A deterministic volatility model where the volatility of the underlying asset is a function of the current asset price \( S \) and time \( t \), denoted as \( \sigma(S, t) \). Unlike stochastic volatility models, local volatility is fully determined by the current state of the market, making it a "local" property.</p>
@@ -2697,7 +2871,7 @@
 </div>
 
 
-<h3>Stochastic Volatility Models (Heston Model)</h3>
+<h3 id="topic-12">Topic 12: Stochastic Volatility Models (Heston Model)</h3>
 
 <div class="definition">
     <p><strong>Stochastic Volatility Models:</strong> A class of financial models where the volatility of an asset's returns is itself a stochastic (random) process. Unlike the Black-Scholes model, which assumes constant volatility, stochastic volatility models allow volatility to vary over time and with the asset price, capturing the "volatility smile" and other empirical features of market data.</p>
@@ -3028,7 +3202,7 @@
 </section>
 
 
-<h3>SABR Model and Its Approximations</h3>
+<h3 id="topic-13">Topic 13: SABR Model and Its Approximations</h3>
 
 <div class="definition">
     <p><strong>SABR Model (Stochastic Alpha Beta Rho):</strong>
@@ -3265,7 +3439,7 @@
 </div>
 
 
-<h3>Jump-Diffusion Models (Merton, Kou)</h3>
+<h3 id="topic-14">Topic 14: Jump-Diffusion Models (Merton, Kou)</h3>
 
 <div class="definition">
     <p><strong>Jump-Diffusion Models:</strong> A class of stochastic processes that combine continuous diffusion (modeled by Brownian motion) with discontinuous jumps (modeled by a compound Poisson process). These models are used to capture sudden, large movements in asset prices that cannot be explained by pure diffusion processes.</p>
@@ -3531,7 +3705,7 @@
 </div>
 
 
-<h3>Levy Processes and Their Applications in Finance</h3>
+<h3 id="topic-15">Topic 15: Levy Processes and Their Applications in Finance</h3>
 
 <div class="definition">
     <p><strong>Levy Process:</strong> A stochastic process \( X = \{X_t : t \geq 0\} \) defined on a probability space \((\Omega, \mathcal{F}, \mathbb{P})\) is called a <em>Levy process</em> if it satisfies the following properties:</p>
@@ -3828,7 +4002,7 @@
 </div>
 
 
-<h3>Affine Jump-Diffusion Models</h3>
+<h3 id="topic-16">Topic 16: Affine Jump-Diffusion Models</h3>
 
 <div class="definition">
     <p><strong>Affine Jump-Diffusion (AJD) Models:</strong> A class of stochastic processes that combine continuous diffusion dynamics with discontinuous jump components, where the characteristic function (or Laplace transform) of the process has an exponential-affine form in the state variables. These models are widely used in finance to capture both smooth price movements and sudden shocks (e.g., market crashes, credit events).</p>
@@ -4036,7 +4210,7 @@
 </div>
 
 
-<h3>Heath-Jarrow-Morton (HJM) Framework for Interest Rates</h3>
+<h3 id="topic-17">Topic 17: Heath-Jarrow-Morton (HJM) Framework for Interest Rates</h3>
 
 <div class="definition">
     <p><strong>Heath-Jarrow-Morton (HJM) Framework:</strong> A general framework for modeling the evolution of the entire forward rate curve in a no-arbitrage setting. Unlike short-rate models, the HJM framework models the dynamics of the entire yield curve simultaneously, providing a more comprehensive approach to interest rate modeling.</p>
@@ -4215,7 +4389,7 @@
 </div>
 
 
-<h3>Short-Rate Models (Vasicek, CIR, Hull-White)</h3>
+<h3 id="topic-18">Topic 18: Short-Rate Models (Vasicek, CIR, Hull-White)</h3>
 
 <div class="definition">
     <p><strong>Short-Rate Models:</strong> Short-rate models are a class of interest rate models that describe the evolution of the instantaneous interest rate (short rate) over time. These models are fundamental in fixed income markets for pricing bonds, interest rate derivatives, and managing interest rate risk. The short rate, denoted \( r(t) \), is the continuously compounded, annualized interest rate for an infinitesimally short period of time.</p>
@@ -4444,7 +4618,7 @@
 </div>
 
 
-<h3>Libor Market Model (LMM) and Convexity Adjustments</h3>
+<h3 id="topic-19">Topic 19: Libor Market Model (LMM) and Convexity Adjustments</h3>
 
 <div class="definition">
     <p><strong>Libor Market Model (LMM):</strong> A forward rate model used to simulate the evolution of interest rates in the interbank market. It models the dynamics of forward Libor rates under their respective forward measures, making it particularly useful for pricing interest rate derivatives like caps, floors, and swaptions.</p>
@@ -4633,7 +4807,7 @@
 </style>
 
 
-<h3>Credit Risk Models (Merton, Reduced-Form, Structural Models)</h3>
+<h3 id="topic-20">Topic 20: Credit Risk Models (Merton, Reduced-Form, Structural Models)</h3>
 
 <div class="definition">
     <p><strong>Credit Risk:</strong> The risk of loss due to a debtor's non-payment of a loan or other line of credit (either the principal or interest or both). Credit risk models aim to quantify the likelihood and potential magnitude of such losses.</p>
@@ -4982,7 +5156,7 @@
 </style>
 
 
-<h3>Credit Valuation Adjustment (CVA) and XVA</h3>
+<h3 id="topic-21">Topic 21: Credit Valuation Adjustment (CVA) and XVA</h3>
 
 <div class="definition">
     <p><strong>Credit Valuation Adjustment (CVA):</strong> The difference between the risk-free portfolio value and the true portfolio value that accounts for the possibility of a counterparty's default. It represents the market value of counterparty credit risk.</p>
@@ -5184,7 +5358,7 @@
 </div>
 
 
-<h3>Copula Models for Dependency Structure</h3>
+<h3 id="topic-22">Topic 22: Copula Models for Dependency Structure</h3>
 
 <div class="definition">
     <p><strong>Copula:</strong> A copula is a multivariate cumulative distribution function (CDF) \( C: [0,1]^n \rightarrow [0,1] \) with uniform marginals, used to describe the dependence structure between random variables. Formally, for random variables \( X_1, X_2, \dots, X_n \) with marginal CDFs \( F_1, F_2, \dots, F_n \), the joint CDF \( F \) can be expressed as:</p>
@@ -5383,7 +5557,7 @@
 </div>
 
 
-<h3>Value-at-Risk (VaR) and Expected Shortfall (ES)</h3>
+<h3 id="topic-23">Topic 23: Value-at-Risk (VaR) and Expected Shortfall (ES)</h3>
 
 <div class="definition">
     <p><strong>Value-at-Risk (VaR):</strong> VaR is a statistical measure that quantifies the potential loss in value of a risky asset or portfolio over a defined period for a given confidence interval. Formally, for a confidence level \( \alpha \in (0,1) \), the VaR is the smallest number \( l \) such that the probability that the loss \( L \) exceeds \( l \) is no larger than \( 1 - \alpha \). Mathematically:</p>
@@ -5560,7 +5734,7 @@
 </div>
 
 
-<h3>Historical Simulation vs. Parametric VaR</h3>
+<h3 id="topic-24">Topic 24: Historical Simulation vs. Parametric VaR</h3>
 
 <div class="definition">
     <p><strong>Value at Risk (VaR):</strong> A measure of the potential loss in value of a risky asset or portfolio over a defined period for a given confidence interval. Formally, for a confidence level \( \alpha \) (e.g., 95% or 99%), VaR is the smallest number \( \ell \) such that the probability that the loss \( L \) exceeds \( \ell \) is no larger than \( 1-\alpha \):</p>
@@ -5820,7 +5994,7 @@
 </div>
 
 
-<h3>Extreme Value Theory (EVT) for Tail Risk</h3>
+<h3 id="topic-25">Topic 25: Extreme Value Theory (EVT) for Tail Risk</h3>
 
 <div class="definition">
     <p><strong>Extreme Value Theory (EVT):</strong> A branch of statistics dealing with the extreme deviations from the median of probability distributions. It seeks to assess the probability of events that are more extreme than any previously observed, focusing on the tail behavior of distributions.</p>
@@ -6031,7 +6205,7 @@
 </div>
 
 
-<h3>Portfolio Optimization (Mean-Variance, Black-Litterman)</h3>
+<h3 id="topic-26">Topic 26: Portfolio Optimization (Mean-Variance, Black-Litterman)</h3>
 
 <div class="definition">
     <p><strong>Portfolio Optimization:</strong> The process of selecting the best portfolio (asset distribution) out of the set of all portfolios being considered, according to some objective. The objective typically maximizes factors such as expected return and minimizes costs like financial risk.</p>
@@ -6283,7 +6457,7 @@
 </div>
 
 
-<h3>Capital Asset Pricing Model (CAPM) and Factor Models</h3>
+<h3 id="topic-27">Topic 27: Capital Asset Pricing Model (CAPM) and Factor Models</h3>
 
 <div class="definition">
     <p><strong>Capital Asset Pricing Model (CAPM):</strong> A model that describes the relationship between systematic risk and expected return for assets, particularly stocks. CAPM is widely used in finance for pricing risky securities and generating expected returns for assets given the risk of those assets and the cost of capital.</p>
@@ -6500,7 +6674,7 @@
 </div>
 
 
-<h3>Arbitrage Pricing Theory (APT)</h3>
+<h3 id="topic-28">Topic 28: Arbitrage Pricing Theory (APT)</h3>
 
 <div class="definition">
     <p><strong>Arbitrage Pricing Theory (APT):</strong> A multi-factor asset pricing model that describes the relationship between the expected return of an asset and its risk, based on the principle of no-arbitrage. Unlike the Capital Asset Pricing Model (CAPM), APT assumes that returns are driven by multiple systematic risk factors, rather than a single market factor.</p>
@@ -6667,7 +6841,7 @@
 </div>
 
 
-<h3>Kelly Criterion and Optimal Betting Strategies</h3>
+<h3 id="topic-29">Topic 29: Kelly Criterion and Optimal Betting Strategies</h3>
 
 <div class="definition">
     <p><strong>Kelly Criterion:</strong> A formula used to determine the optimal size of a series of bets to maximize logarithmic utility (i.e., long-term growth rate) of wealth. It balances the trade-off between risk and reward by specifying the fraction of capital to wager on each bet.</p>
@@ -6886,7 +7060,7 @@
 </div>
 
 
-<h3>Stochastic Control and Merton’s Portfolio Problem</h3>
+<h3 id="topic-30">Topic 30: Stochastic Control and Merton’s Portfolio Problem</h3>
 
 <div class="definition">
     <p><strong>Stochastic Control:</strong> A branch of control theory that deals with systems influenced by random noise. In mathematical finance, it is used to model and optimize dynamic decision-making under uncertainty, such as portfolio allocation over time.</p>
@@ -7123,7 +7297,7 @@
 </div>
 
 
-<h3>Dynamic Programming in Optimal Execution</h3>
+<h3 id="topic-31">Topic 31: Dynamic Programming in Optimal Execution</h3>
 
 <div class="definition">
     <p><strong>Optimal Execution Problem:</strong> The optimal execution problem involves determining the best strategy to buy or sell a large quantity of an asset over a given time horizon, minimizing costs (e.g., market impact, timing risk) or maximizing profits. Dynamic programming (DP) is a powerful tool for solving such problems by breaking them into smaller subproblems and solving them recursively.</p>
@@ -7337,7 +7511,7 @@
 </div>
 
 
-<h3>Almgren-Chriss Model for Optimal Trade Execution</h3>
+<h3 id="topic-32">Topic 32: Almgren-Chriss Model for Optimal Trade Execution</h3>
 
 <div class="definition">
     <p><strong>Almgren-Chriss Model:</strong> A foundational framework in algorithmic trading that provides a mathematical approach to optimally execute large orders by balancing market impact costs and timing risk. The model assumes a trade-off between the urgency of execution (which increases market impact) and the desire to minimize risk (which favors slower execution).</p>
@@ -7609,7 +7783,7 @@
 </div>
 
 
-<h3>Market Impact Models (Temporary vs. Permanent)</h3>
+<h3 id="topic-33">Topic 33: Market Impact Models (Temporary vs. Permanent)</h3>
 
 <div class="definition">
     <p><strong>Market Impact:</strong> The effect that a trader's activity has on the price of a security. Market impact can be decomposed into two main components: <strong>temporary impact</strong> and <strong>permanent impact</strong>.</p>
@@ -7747,7 +7921,7 @@
 </div>
 
 
-<h3>Order Book Dynamics and Limit Order Models</h3>
+<h3 id="topic-34">Topic 34: Order Book Dynamics and Limit Order Models</h3>
 
 <div class="definition">
     <strong>Order Book:</strong> An electronic list of buy and sell orders for a specific security or financial instrument, organized by price level. The order book lists the number of shares (or contracts) being bid or offered at each price point.
@@ -7963,7 +8137,7 @@
 </div>
 
 
-<h3>High-Frequency Trading Strategies and Latency Arbitrage</h3>
+<h3 id="topic-35">Topic 35: High-Frequency Trading Strategies and Latency Arbitrage</h3>
 
 <div class="definition">
     <strong>High-Frequency Trading (HFT):</strong>
@@ -8288,7 +8462,7 @@
 </div>
 
 
-<h3>Reinforcement Learning for Algorithmic Trading</h3>
+<h3 id="topic-36">Topic 36: Reinforcement Learning for Algorithmic Trading</h3>
 
 <div class="definition">
     <p><strong>Reinforcement Learning (RL):</strong> A branch of machine learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative reward. The agent learns from the consequences of its actions, rather than from being explicitly taught.</p>
@@ -8445,7 +8619,7 @@
 </div>
 
 
-<h3>Machine Learning for Volatility Forecasting (GARCH, LSTM)</h3>
+<h3 id="topic-37">Topic 37: Machine Learning for Volatility Forecasting (GARCH, LSTM)</h3>
 
 <div class="definition">
     <p><strong>Volatility:</strong> A statistical measure of the dispersion of returns for a given security or market index. It is often measured using the standard deviation or variance of returns.</p>
@@ -8660,7 +8834,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Principal Component Analysis (PCA) for Yield Curve Modeling</h3>
+<h3 id="topic-38">Topic 38: Principal Component Analysis (PCA) for Yield Curve Modeling</h3>
 
 <div class="definition">
     <p><strong>Principal Component Analysis (PCA):</strong> A dimensionality reduction technique that transforms a set of correlated variables into a smaller set of uncorrelated variables (principal components) while retaining most of the original variance. In yield curve modeling, PCA is used to identify the dominant factors driving interest rate movements.</p>
@@ -8944,7 +9118,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Kalman Filter for State-Space Models in Finance</h3>
+<h3 id="topic-39">Topic 39: Kalman Filter for State-Space Models in Finance</h3>
 
 <div class="definition">
     <p><strong>State-Space Model (SSM):</strong> A mathematical representation of a dynamic system where the state of the system evolves over time according to a set of equations. In finance, SSMs are used to model latent (unobserved) variables such as volatility, risk premia, or factor exposures. A general linear Gaussian SSM consists of two equations:</p>
@@ -9175,7 +9349,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Bayesian Methods in Financial Econometrics</h3>
+<h3 id="topic-40">Topic 40: Bayesian Methods in Financial Econometrics</h3>
 
 <div class="definition">
     <p><strong>Bayesian Inference:</strong> A method of statistical inference in which Bayes' theorem is used to update the probability for a hypothesis as more evidence or information becomes available. In financial econometrics, Bayesian methods provide a coherent framework for incorporating prior beliefs and dealing with parameter uncertainty.</p>
@@ -9369,7 +9543,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Cointegration and Pairs Trading Strategies</h3>
+<h3 id="topic-41">Topic 41: Cointegration and Pairs Trading Strategies</h3>
 
 <div class="definition">
     <p><strong>Cointegration:</strong> A statistical property of a collection of time series variables. Two or more time series are cointegrated if a linear combination of them is stationary, even though the individual series themselves may be non-stationary (e.g., contain unit roots). Cointegration implies a long-term equilibrium relationship between the variables.</p>
@@ -9546,7 +9720,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Statistical Arbitrage and Mean-Reversion Strategies</h3>
+<h3 id="topic-42">Topic 42: Statistical Arbitrage and Mean-Reversion Strategies</h3>
 
 <div class="definition">
     <strong>Statistical Arbitrage (Stat Arb):</strong>
@@ -9812,7 +9986,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Markov Chain Monte Carlo (MCMC) for Parameter Estimation</h3>
+<h3 id="topic-43">Topic 43: Markov Chain Monte Carlo (MCMC) for Parameter Estimation</h3>
 
 <div class="definition">
     <p><strong>Markov Chain Monte Carlo (MCMC):</strong> A class of algorithms for sampling from a probability distribution based on constructing a Markov chain that has the desired distribution as its equilibrium distribution. The state of the chain after a large number of steps is then used as a sample from the desired distribution.</p>
@@ -9984,7 +10158,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Fourier Transform Methods for Option Pricing (Lewis, Carr-Madan)</h3>
+<h3 id="topic-44">Topic 44: Fourier Transform Methods for Option Pricing (Lewis, Carr-Madan)</h3>
 
 <div class="definition">
     <p><strong>Fourier Transform in Option Pricing:</strong>
@@ -10325,7 +10499,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Fast Fourier Transform (FFT) for Efficient Pricing</h3>
+<h3 id="topic-45">Topic 45: Fast Fourier Transform (FFT) for Efficient Pricing</h3>
 
 <div class="definition">
     <p><strong>Fast Fourier Transform (FFT):</strong> An algorithm to compute the Discrete Fourier Transform (DFT) and its inverse efficiently. The FFT reduces the computational complexity from \(O(N^2)\) to \(O(N \log N)\), making it practical for large-scale computations in mathematical finance.</p>
@@ -10476,7 +10650,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>American Option Pricing via Least Squares Monte Carlo (LSM)</h3>
+<h3 id="topic-46">Topic 46: American Option Pricing via Least Squares Monte Carlo (LSM)</h3>
 
 <div class="definition">
     <p><strong>American Option:</strong> A financial derivative that can be exercised at any time up to and including its expiration date \( T \). This early exercise feature distinguishes it from European options, which can only be exercised at expiration.</p>
@@ -10717,7 +10891,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Barrier Option Pricing and Reflection Principle</h3>
+<h3 id="topic-47">Topic 47: Barrier Option Pricing and Reflection Principle</h3>
 
 <div class="definition">
     <p><strong>Barrier Option:</strong> A type of exotic option where the payoff depends on whether the underlying asset's price reaches a certain level (the barrier) during the option's life. There are two main types:</p>
@@ -10960,7 +11134,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Asian Option Pricing and Moment Matching</h3>
+<h3 id="topic-48">Topic 48: Asian Option Pricing and Moment Matching</h3>
 
 <div class="definition">
     <p><strong>Asian Option:</strong> An Asian option (or average option) is a type of exotic option where the payoff depends on the <em>average</em> price of the underlying asset over a certain period of time, rather than its price at a single point in time (as in European or American options). The averaging can be arithmetic or geometric, and the option can be based on the average price (average price option) or the average strike (average strike option).</p>
@@ -11325,7 +11499,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Basket Option Pricing and Moment-Based Approximations</h3>
+<h3 id="topic-49">Topic 49: Basket Option Pricing and Moment-Based Approximations</h3>
 
 <div class="definition">
     <p><strong>Basket Option:</strong> A financial derivative whose payoff depends on the value of a portfolio (or "basket") of assets, rather than a single underlying asset. Basket options are commonly used for hedging or speculating on the performance of a group of assets, such as stocks in an index, currencies, or commodities.</p>
@@ -11525,7 +11699,7 @@ model.compile(optimizer='adam', loss='mse')
 </div>
 
 
-<h3>Numerical Methods for High-Dimensional PDEs (Sparse Grids, Deep Learning)</h3>
+<h3 id="topic-50">Topic 50: Numerical Methods for High-Dimensional PDEs (Sparse Grids, Deep Learning)</h3>
 
 <div class="definition">
     <strong>High-Dimensional Partial Differential Equations (PDEs):</strong>
@@ -11780,5 +11954,54 @@ model.compile(optimizer='adam', loss='mse')
 
         
     </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking on a link (mobile)
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('h3[id^="topic-"]');
+            const navLinks = document.querySelectorAll('.toc-list a');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 0) {
+                    currentSection = section.id;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Update on scroll
+        window.addEventListener('scroll', highlightActiveSection);
+        // Initial highlight
+        highlightActiveSection();
+    </script>
 </body>
 </html>

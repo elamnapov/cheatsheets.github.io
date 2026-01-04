@@ -183,15 +183,196 @@
             border-radius: 4px;
             transition: width 0.3s ease;
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                column-count: 1;
+                padding: 20px;
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#topic-1">1. Linear Regression: Closed-Form Solution vs. Gradient Descent</a></li>
+                <li><a href="#topic-2">2. Ridge and Lasso Regression: L1/L2 Regularization and Bayesian Interpretation</a></li>
+                <li><a href="#topic-3">3. Logistic Regression: MLE Derivation and Probabilistic Interpretation</a></li>
+                <li><a href="#topic-4">4. Softmax Regression: Multi-Class Generalization and Cross-Entropy Loss</a></li>
+                <li><a href="#topic-5">5. Bias-Variance Tradeoff: Mathematical Formulation and Model Complexity</a></li>
+                <li><a href="#topic-6">6. K-Nearest Neighbors (KNN): Distance Metrics and Curse of Dimensionality</a></li>
+                <li><a href="#topic-7">7. Decision Trees: Gini Impurity, Entropy, and Information Gain</a></li>
+                <li><a href="#topic-8">8. Random Forests: Bagging, Feature Randomness, and Out-of-Bag Error</a></li>
+                <li><a href="#topic-9">9. Gradient Boosting Machines (GBM): AdaBoost, XGBoost, LightGBM, and CatBoost</a></li>
+                <li><a href="#topic-10">10. Support Vector Machines (SVM): Hard/Soft Margin, Kernel Trick, and Dual Formulation</a></li>
+                <li><a href="#topic-11">11. Naive Bayes: Gaussian, Multinomial, and Bernoulli Variants</a></li>
+                <li><a href="#topic-12">12. Principal Component Analysis (PCA): Eigenvalue Decomposition and Variance Explained</a></li>
+                <li><a href="#topic-13">13. Singular Value Decomposition (SVD): Low-Rank Approximation and Applications</a></li>
+                <li><a href="#topic-14">14. Independent Component Analysis (ICA): FastICA and Blind Source Separation</a></li>
+                <li><a href="#topic-15">15. k-Means Clustering: Lloyd's Algorithm and Elbow Method</a></li>
+                <li><a href="#topic-16">16. Gaussian Mixture Models (GMM): EM Algorithm and AIC/BIC for Model Selection</a></li>
+                <li><a href="#topic-17">17. Hierarchical Clustering: Agglomerative vs. Divisive Methods and Dendrograms</a></li>
+                <li><a href="#topic-18">18. DBSCAN: Density-Based Clustering and Core/Border/Noise Points</a></li>
+                <li><a href="#topic-19">19. Neural Networks: Forward/Backward Propagation and Chain Rule</a></li>
+                <li><a href="#topic-20">20. Activation Functions: Sigmoid, Tanh, ReLU, Leaky ReLU, and Swish</a></li>
+                <li><a href="#topic-21">21. Loss Functions: MSE, Cross-Entropy, Hinge, and KL Divergence</a></li>
+                <li><a href="#topic-22">22. Optimizers: SGD, Momentum, Adam, RMSprop, and Learning Rate Schedules</a></li>
+                <li><a href="#topic-23">23. Batch Normalization: Internal Covariate Shift and Training Dynamics</a></li>
+                <li><a href="#topic-24">24. Dropout: Regularization Mechanism and Inverted Scaling</a></li>
+                <li><a href="#topic-25">25. Convolutional Neural Networks (CNNs): Kernels, Strides, and Pooling</a></li>
+                <li><a href="#topic-26">26. Recurrent Neural Networks (RNNs): Vanishing/Exploding Gradients and LSTM/GRU</a></li>
+                <li><a href="#topic-27">27. Attention Mechanisms: Self-Attention, Multi-Head Attention, and Transformers</a></li>
+                <li><a href="#topic-28">28. Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</a></li>
+                <li><a href="#topic-29">29. Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</a></li>
+                <li><a href="#topic-30">30. Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</a></li>
+                <li><a href="#topic-31">31. Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</a></li>
+                <li><a href="#topic-32">32. Time Series Models: ARIMA, SARIMA, and State Space Models</a></li>
+                <li><a href="#topic-33">33. Kalman Filters: Prediction and Update Equations for Dynamic Systems</a></li>
+                <li><a href="#topic-34">34. Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</a></li>
+                <li><a href="#topic-35">35. Bayesian Networks: Conditional Independence and Inference Algorithms</a></li>
+                <li><a href="#topic-36">36. Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</a></li>
+                <li><a href="#topic-37">37. Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito's Lemma</a></li>
+                <li><a href="#topic-38">38. Black-Litterman Model: Combining Market Equilibrium and Views</a></li>
+                <li><a href="#topic-39">39. Factor Models: Fama-French, PCA-Based, and Latent Factor Models</a></li>
+                <li><a href="#topic-40">40. Portfolio Optimization: Mean-Variance, Black-Litterman, and Risk Parity</a></li>
+                <li><a href="#topic-41">41. Risk Metrics: VaR, CVaR, and Expected Shortfall</a></li>
+                <li><a href="#topic-42">42. Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</a></li>
+                <li><a href="#topic-43">43. Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</a></li>
+                <li><a href="#topic-44">44. Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</a></li>
+                <li><a href="#topic-45">45. Cross-Validation: k-Fold, Stratified, and Time Series CV</a></li>
+                <li><a href="#topic-46">46. Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</a></li>
+                <li><a href="#topic-47">47. Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</a></li>
+                <li><a href="#topic-48">48. PyTorch Autograd: Computational Graphs and Automatic Differentiation</a></li>
+                <li><a href="#topic-49">49. Scikit-Learn Pipeline: Custom Transformers and Column Transformers</a></li>
+                <li><a href="#topic-50">50. Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</a></li>
+            </ol>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
         <h1>'machine_learning_models_algorithms_pytorch_scikit_learn_for_interview_questions'</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
-<h3>Linear Regression: Closed-Form Solution vs. Gradient Descent</h3>
+<h3 id="topic-1">Topic 1: Linear Regression: Closed-Form Solution vs. Gradient Descent</h3>
 
 <div class="definition">
     <p><strong>Linear Regression:</strong> A supervised learning algorithm that models the relationship between a dependent variable (target) \( y \) and one or more independent variables (features) \( X \) by fitting a linear equation to observed data. The model assumes a linear relationship of the form:</p>
@@ -434,7 +615,7 @@ for epoch in range(1000):
 </div>
 
 
-<h3>Ridge and Lasso Regression: L1/L2 Regularization and Bayesian Interpretation</h3>
+<h3 id="topic-2">Topic 2: Ridge and Lasso Regression: L1/L2 Regularization and Bayesian Interpretation</h3>
 
 <div class="definition">
     <p><strong>Linear Regression:</strong> A fundamental statistical and machine learning method that models the relationship between a dependent variable \( y \) and one or more independent variables \( X \) by fitting a linear equation to observed data. The model assumes:</p>
@@ -835,7 +1016,7 @@ for epoch in range(1000):
 </div>
 
 
-<h3>Logistic Regression: MLE Derivation and Probabilistic Interpretation</h3>
+<h3 id="topic-3">Topic 3: Logistic Regression: MLE Derivation and Probabilistic Interpretation</h3>
 
 <div class="definition">
     <strong>Logistic Regression:</strong> A statistical method for predicting binary outcomes from data. It models the probability that a given input point belongs to a particular class using the logistic function (sigmoid function).
@@ -1155,7 +1336,7 @@ print(f'Intercept: {model.intercept_}')
 </div>
 
 
-<h3>Softmax Regression: Multi-Class Generalization and Cross-Entropy Loss</h3>
+<h3 id="topic-4">Topic 4: Softmax Regression: Multi-Class Generalization and Cross-Entropy Loss</h3>
 
 <div class="definition">
     <p><strong>Softmax Regression (Multinomial Logistic Regression):</strong> A generalization of logistic regression that handles multi-class classification problems. It models the probability distribution over multiple classes using the softmax function and is trained using cross-entropy loss.</p>
@@ -1451,7 +1632,7 @@ print(f"Test Accuracy: {accuracy:.4f}")</code></pre>
 </section>
 
 
-<h3>Bias-Variance Tradeoff: Mathematical Formulation and Model Complexity</h3>
+<h3 id="topic-5">Topic 5: Bias-Variance Tradeoff: Mathematical Formulation and Model Complexity</h3>
 
 <div class="definition">
     <p><strong>Bias-Variance Tradeoff:</strong> A fundamental concept in machine learning that describes the tension between a model's ability to fit the training data well (low bias) and its ability to generalize to unseen data (low variance). The tradeoff arises because decreasing bias typically increases variance, and vice versa.</p>
@@ -1650,7 +1831,7 @@ print(f"Test Accuracy: {accuracy:.4f}")</code></pre>
 </div>
 
 
-<h3>K-Nearest Neighbors (KNN): Distance Metrics and Curse of Dimensionality</h3>
+<h3 id="topic-6">Topic 6: K-Nearest Neighbors (KNN): Distance Metrics and Curse of Dimensionality</h3>
 
 <div class="definition">
     <p><strong>K-Nearest Neighbors (KNN):</strong> A non-parametric, instance-based learning algorithm used for classification and regression. KNN makes predictions based on the <em>k</em> closest training examples in the feature space, where <em>k</em> is a user-defined constant.</p>
@@ -1918,7 +2099,7 @@ print(y_pred)</code></pre>
 </section>
 
 
-<h3>Decision Trees: Gini Impurity, Entropy, and Information Gain</h3>
+<h3 id="topic-7">Topic 7: Decision Trees: Gini Impurity, Entropy, and Information Gain</h3>
 
 <div class="definition">
     <p><strong>Decision Tree:</strong> A supervised machine learning algorithm that recursively splits the data into subsets based on feature values to make predictions. It consists of nodes (decision points), branches (outcomes of decisions), and leaves (final predictions).</p>
@@ -2125,7 +2306,7 @@ clf_entropy = DecisionTreeClassifier(criterion='entropy')</code></pre>
 </div>
 
 
-<h3>Random Forests: Bagging, Feature Randomness, and Out-of-Bag Error</h3>
+<h3 id="topic-8">Topic 8: Random Forests: Bagging, Feature Randomness, and Out-of-Bag Error</h3>
 
 <div class="definition">
     <p><strong>Random Forest:</strong> An ensemble learning method for classification, regression, and other tasks that operates by constructing a multitude of decision trees during training and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.</p>
@@ -2523,7 +2704,7 @@ y_pred = rf.predict(X[:10])</code></pre>
 </div>
 
 
-<h3>Gradient Boosting Machines (GBM): AdaBoost, XGBoost, LightGBM, and CatBoost</h3>
+<h3 id="topic-9">Topic 9: Gradient Boosting Machines (GBM): AdaBoost, XGBoost, LightGBM, and CatBoost</h3>
 
 <div class="definition">
     <p><strong>Gradient Boosting Machines (GBM):</strong> A class of ensemble machine learning algorithms that build models sequentially, where each new model attempts to correct the errors made by the previous ones. GBMs combine weak learners (typically decision trees) into a strong learner by optimizing a differentiable loss function.</p>
@@ -2934,7 +3115,7 @@ model.fit(
 </div>
 
 
-<h3>Support Vector Machines (SVM): Hard/Soft Margin, Kernel Trick, and Dual Formulation</h3>
+<h3 id="topic-10">Topic 10: Support Vector Machines (SVM): Hard/Soft Margin, Kernel Trick, and Dual Formulation</h3>
 
 <div class="definition">
     <p><strong>Support Vector Machine (SVM):</strong> A supervised machine learning algorithm used for classification and regression tasks. SVMs aim to find the optimal hyperplane that best separates data points of different classes in a high-dimensional space. The "support vectors" are the data points that lie closest to the decision boundary and have the most influence on its position.</p>
@@ -3224,7 +3405,7 @@ print(f"Test Accuracy: {accuracy:.2f}")</code></pre>
 </style>
 
 
-<h3>Naive Bayes: Gaussian, Multinomial, and Bernoulli Variants</h3>
+<h3 id="topic-11">Topic 11: Naive Bayes: Gaussian, Multinomial, and Bernoulli Variants</h3>
 
 <div class="definition">
     <p><strong>Naive Bayes Classifier:</strong> A family of probabilistic classifiers based on Bayes' theorem with a "naive" assumption of conditional independence between every pair of features given the class label. Despite this simplifying assumption, Naive Bayes classifiers often perform well in practice and are particularly suited for high-dimensional datasets.</p>
@@ -3490,7 +3671,7 @@ class GaussianNaiveBayes:
 </div>
 
 
-<h3>Principal Component Analysis (PCA): Eigenvalue Decomposition and Variance Explained</h3>
+<h3 id="topic-12">Topic 12: Principal Component Analysis (PCA): Eigenvalue Decomposition and Variance Explained</h3>
 
 <div class="definition">
     <p><strong>Principal Component Analysis (PCA):</strong> A dimensionality reduction technique that transforms high-dimensional data into a lower-dimensional space while retaining most of the variance. It achieves this by identifying directions (principal components) that maximize variance in the data.</p>
@@ -3713,7 +3894,7 @@ print("Total variance explained:", sum(variance_explained[:2]))</code></pre>
 </div>
 
 
-<h3>Singular Value Decomposition (SVD): Low-Rank Approximation and Applications</h3>
+<h3 id="topic-13">Topic 13: Singular Value Decomposition (SVD): Low-Rank Approximation and Applications</h3>
 
 <div class="definition">
     <p><strong>Singular Value Decomposition (SVD):</strong> A matrix factorization technique that decomposes any real or complex \( m \times n \) matrix \( A \) into three matrices:</p>
@@ -3974,7 +4155,7 @@ print("Explained variance ratio:", svd.explained_variance_ratio_)</code></pre>
 </div>
 
 
-<h3>Independent Component Analysis (ICA): FastICA and Blind Source Separation</h3>
+<h3 id="topic-14">Topic 14: Independent Component Analysis (ICA): FastICA and Blind Source Separation</h3>
 
 <div class="definition">
     <p><strong>Independent Component Analysis (ICA):</strong> A computational method for separating a multivariate signal into additive subcomponents that are maximally independent. ICA assumes that the observed signals are linear mixtures of independent source signals and seeks to recover these original sources.</p>
@@ -4228,7 +4409,7 @@ S_ = ica.fit_transform(X)  # Reconstruct signals</code></pre>
 </section>
 
 
-<h3>k-Means Clustering: Lloyd’s Algorithm and Elbow Method</h3>
+<h3 id="topic-15">Topic 15: k-Means Clustering: Lloyd’s Algorithm and Elbow Method</h3>
 
 <div class="definition">
     <p><strong>k-Means Clustering:</strong> An unsupervised machine learning algorithm that partitions a dataset into <em>k</em> distinct, non-overlapping clusters. Each data point belongs to the cluster with the nearest mean (centroid), which serves as the prototype of the cluster.</p>
@@ -4498,7 +4679,7 @@ labels, centroids = kmeans_pytorch(X, k=2)</code></pre>
 </section>
 
 
-<h3>Gaussian Mixture Models (GMM): EM Algorithm and AIC/BIC for Model Selection</h3>
+<h3 id="topic-16">Topic 16: Gaussian Mixture Models (GMM): EM Algorithm and AIC/BIC for Model Selection</h3>
 
 <div class="definition">
     <p><strong>Gaussian Mixture Model (GMM):</strong> A probabilistic model that assumes all data points are generated from a mixture of a finite number of Gaussian distributions with unknown parameters. GMMs are a type of <em>soft clustering</em> algorithm, where each data point has a probability of belonging to each cluster.</p>
@@ -4717,7 +4898,7 @@ def e_step(X, pi, mu, sigma):
 </div>
 
 
-<h3>Hierarchical Clustering: Agglomerative vs. Divisive Methods and Dendrograms</h3>
+<h3 id="topic-17">Topic 17: Hierarchical Clustering: Agglomerative vs. Divisive Methods and Dendrograms</h3>
 
 <div class="definition">
     <strong>Hierarchical Clustering:</strong> A family of clustering algorithms that build nested clusters by successively merging or splitting them. The result is a tree-like diagram (dendrogram) that represents the hierarchy of clusters.
@@ -5003,7 +5184,7 @@ plt.show()
 </div>
 
 
-<h3>DBSCAN: Density-Based Clustering and Core/Border/Noise Points</h3>
+<h3 id="topic-18">Topic 18: DBSCAN: Density-Based Clustering and Core/Border/Noise Points</h3>
 
 <div class="definition">
     <p><strong>DBSCAN (Density-Based Spatial Clustering of Applications with Noise):</strong>
@@ -5203,7 +5384,7 @@ clusters = dbscan.fit_predict(distances.numpy())
 </div>
 
 
-<h3>Neural Networks: Forward/Backward Propagation and Chain Rule</h3>
+<h3 id="topic-19">Topic 19: Neural Networks: Forward/Backward Propagation and Chain Rule</h3>
 
 <div class="definition">
     <p><strong>Neural Network (NN):</strong> A computational model inspired by biological neural networks, consisting of interconnected nodes (neurons) organized in layers. Typically comprises an input layer, one or more hidden layers, and an output layer.</p>
@@ -5516,7 +5697,7 @@ print("Test accuracy:", mlp.score(X_test, y_test))
 </section>
 
 
-<h3>Activation Functions: Sigmoid, Tanh, ReLU, Leaky ReLU, and Swish</h3>
+<h3 id="topic-20">Topic 20: Activation Functions: Sigmoid, Tanh, ReLU, Leaky ReLU, and Swish</h3>
 
 <div class="definition">
     <p><strong>Activation Function:</strong> A mathematical function applied to the output of a neuron in a neural network. It introduces non-linearity, enabling the network to learn complex patterns. Without activation functions, a neural network would behave like a linear regression model regardless of its depth.</p>
@@ -6020,7 +6201,7 @@ mlp.fit(X_train, y_train)</code></pre>
 </section>
 
 
-<h3>Loss Functions: MSE, Cross-Entropy, Hinge, and KL Divergence</h3>
+<h3 id="topic-21">Topic 21: Loss Functions: MSE, Cross-Entropy, Hinge, and KL Divergence</h3>
 
 <div class="definition">
     <p><strong>Loss Function:</strong> A loss function (or cost function) quantifies the difference between the predicted output of a model and the true target values. It serves as the objective to minimize during training, guiding the optimization process (e.g., gradient descent). The choice of loss function depends on the problem type (regression, classification, etc.) and the underlying assumptions about the data.</p>
@@ -6293,7 +6474,7 @@ mlp.fit(X_train, y_train)</code></pre>
 </div>
 
 
-<h3>Optimizers: SGD, Momentum, Adam, RMSprop, and Learning Rate Schedules</h3>
+<h3 id="topic-22">Topic 22: Optimizers: SGD, Momentum, Adam, RMSprop, and Learning Rate Schedules</h3>
 
 <div class="definition">
     <p><strong>Optimizer:</strong> An algorithm or method used to update the parameters of a model in order to minimize the loss function. Optimizers adjust the weights and biases of the model iteratively based on the gradients of the loss function with respect to the parameters.</p>
@@ -6499,7 +6680,7 @@ scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)
 </div>
 
 
-<h3>Batch Normalization: Internal Covariate Shift and Training Dynamics</h3>
+<h3 id="topic-23">Topic 23: Batch Normalization: Internal Covariate Shift and Training Dynamics</h3>
 
 <div class="definition">
     <p><strong>Batch Normalization (BatchNorm):</strong> A technique used to improve the training speed, stability, and performance of deep neural networks by normalizing the inputs of each layer for each mini-batch during training. It addresses the problem of <em>Internal Covariate Shift</em>.</p>
@@ -6731,7 +6912,7 @@ with torch.no_grad():
 </section>
 
 
-<h3>Dropout: Regularization Mechanism and Inverted Scaling</h3>
+<h3 id="topic-24">Topic 24: Dropout: Regularization Mechanism and Inverted Scaling</h3>
 
 <div class="definition">
     <p><strong>Dropout:</strong> A regularization technique used in neural networks to prevent overfitting by randomly "dropping out" (i.e., temporarily removing) a fraction of neurons during training. This forces the network to learn more robust features that are not reliant on any single neuron.</p>
@@ -6955,7 +7136,7 @@ nn.Sequential(
 </section>
 
 
-<h3>Convolutional Neural Networks (CNNs): Kernels, Strides, and Pooling</h3>
+<h3 id="topic-25">Topic 25: Convolutional Neural Networks (CNNs): Kernels, Strides, and Pooling</h3>
 
 <div class="definition">
     <p><strong>Convolutional Neural Network (CNN):</strong> A specialized type of neural network designed for processing data with a grid-like topology, such as images. CNNs leverage three key ideas: local receptive fields, shared weights, and spatial subsampling (pooling).</p>
@@ -7133,7 +7314,7 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 </div>
 
 
-<h3>Recurrent Neural Networks (RNNs): Vanishing/Exploding Gradients and LSTM/GRU</h3>
+<h3 id="topic-26">Topic 26: Recurrent Neural Networks (RNNs): Vanishing/Exploding Gradients and LSTM/GRU</h3>
 
 <div class="definition">
     <p><strong>Recurrent Neural Networks (RNNs):</strong> A class of neural networks designed to work with sequential data by maintaining a hidden state that acts as memory of previous inputs. RNNs process sequences one element at a time, updating their hidden state at each step.</p>
@@ -7340,7 +7521,7 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 </div>
 
 
-<h3>Attention Mechanisms: Self-Attention, Multi-Head Attention, and Transformers</h3>
+<h3 id="topic-27">Topic 27: Attention Mechanisms: Self-Attention, Multi-Head Attention, and Transformers</h3>
 
 <div class="definition">
     <strong>Attention Mechanism:</strong> A technique that enables models to focus on specific parts of the input data, dynamically weighting the importance of different elements. It mimics cognitive attention, allowing the model to prioritize relevant information.
@@ -7623,7 +7804,7 @@ attn_output, attn_weights = multihead_attn(query, key, value)</code></pre>
 </div>
 
 
-<h3>Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</h3>
+<h3 id="topic-28">Topic 28: Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</h3>
 
 <div class="definition">
     <p><strong>Autoencoder (AE):</strong> A type of neural network used for unsupervised learning that aims to learn efficient data codings. It consists of two main parts: an encoder that maps the input to a latent space, and a decoder that reconstructs the input from the latent representation.</p>
@@ -7960,7 +8141,7 @@ for epoch in range(epochs):
 </div>
 
 
-<h3>Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</h3>
+<h3 id="topic-29">Topic 29: Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</h3>
 
 <div class="definition">
     <strong>Generative Adversarial Networks (GANs):</strong>
@@ -8174,7 +8355,7 @@ for epoch in range(epochs):
 </div>
 
 
-<h3>Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</h3>
+<h3 id="topic-30">Topic 30: Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</h3>
 
 <div class="definition">
     <p><strong>Reinforcement Learning (RL):</strong> A paradigm of machine learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative reward. The agent learns from the consequences of its actions, rather than from being explicitly taught.</p>
@@ -8628,7 +8809,7 @@ class A2CAgent:
 </div>
 
 
-<h3>Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</h3>
+<h3 id="topic-31">Topic 31: Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</h3>
 
 <div class="definition">
     <p><strong>Markov Decision Process (MDP):</strong> A mathematical framework for modeling decision-making in situations where outcomes are partly random and partly under the control of a decision-maker. An MDP is defined by the tuple \((S, A, P, R, \gamma)\) where:</p>
@@ -8796,7 +8977,7 @@ class A2CAgent:
 </div>
 
 
-<h3>Time Series Models: ARIMA, SARIMA, and State Space Models</h3>
+<h3 id="topic-32">Topic 32: Time Series Models: ARIMA, SARIMA, and State Space Models</h3>
 
 <div class="definition">
     <p><strong>Time Series:</strong> A sequence of data points indexed in time order, typically consisting of successive measurements made over a time interval. Examples include stock prices, temperature readings, and sales data.</p>
@@ -9095,7 +9276,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Kalman Filters: Prediction and Update Equations for Dynamic Systems</h3>
+<h3 id="topic-33">Topic 33: Kalman Filters: Prediction and Update Equations for Dynamic Systems</h3>
 
 <div class="definition">
     <p><strong>Kalman Filter:</strong> A recursive algorithm that estimates the state of a linear dynamic system from a series of noisy measurements. It operates in two steps: <em>prediction</em> (time update) and <em>update</em> (measurement update). The filter is optimal for linear Gaussian systems, minimizing the mean squared error of the estimated state.</p>
@@ -9321,7 +9502,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</h3>
+<h3 id="topic-34">Topic 34: Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</h3>
 
 <div class="definition">
     <p><strong>Hidden Markov Model (HMM):</strong> A statistical model where the system being modeled is assumed to be a Markov process with unobserved (hidden) states. An HMM is characterized by:</p>
@@ -9593,7 +9774,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Bayesian Networks: Conditional Independence and Inference Algorithms</h3>
+<h3 id="topic-35">Topic 35: Bayesian Networks: Conditional Independence and Inference Algorithms</h3>
 
 <div class="definition">
     <p><strong>Bayesian Network (BN):</strong> A probabilistic graphical model that represents a set of random variables and their conditional dependencies via a directed acyclic graph (DAG). Each node in the graph represents a random variable, and edges represent conditional dependencies.</p>
@@ -9844,7 +10025,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</h3>
+<h3 id="topic-36">Topic 36: Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</h3>
 
 <div class="definition">
     <p><strong>Monte Carlo Methods:</strong> A class of computational algorithms that rely on repeated random sampling to obtain numerical results. The underlying concept is to use randomness to solve problems that might be deterministic in principle. They are often used in physical and mathematical problems and are most useful when it is difficult or impossible to use other approaches.</p>
@@ -10033,7 +10214,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito’s Lemma</h3>
+<h3 id="topic-37">Topic 37: Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito’s Lemma</h3>
 
 <div class="definition">
     <p><strong>Stochastic Process:</strong> A collection of random variables \(\{X_t\}_{t \in T}\) indexed by time \(t\), where \(T\) is a set of time points (discrete or continuous). Each random variable \(X_t\) represents the state of the process at time \(t\).</p>
@@ -10271,7 +10452,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3>Black-Litterman Model: Combining Market Equilibrium and Views</h3>
+<h3 id="topic-38">Topic 38: Black-Litterman Model: Combining Market Equilibrium and Views</h3>
 
 <div class="definition">
     <p><strong>Black-Litterman Model:</strong> A sophisticated portfolio allocation model that combines market equilibrium (derived from the Capital Asset Pricing Model, CAPM) with investor views to produce a posterior estimate of expected returns. The model addresses the instability and extreme weights often produced by mean-variance optimization by anchoring estimates to market equilibrium and incorporating subjective views in a Bayesian framework.</p>
@@ -10645,7 +10826,7 @@ print(results.summary())</code></pre>
 </section>
 
 
-<h3>Factor Models: Fama-French, PCA-Based, and Latent Factor Models</h3>
+<h3 id="topic-39">Topic 39: Factor Models: Fama-French, PCA-Based, and Latent Factor Models</h3>
 
 <div class="definition">
     <p><strong>Factor Models:</strong> Statistical models that explain the returns of assets through a set of common factors. These models decompose asset returns into systematic (factor-driven) and idiosyncratic (asset-specific) components.</p>
@@ -10928,7 +11109,7 @@ returns = model(factors)</code></pre>
 </div>
 
 
-<h3>Portfolio Optimization: Mean-Variance, Black-Litterman, and Risk Parity</h3>
+<h3 id="topic-40">Topic 40: Portfolio Optimization: Mean-Variance, Black-Litterman, and Risk Parity</h3>
 
 <div class="definition">
     <p><strong>Portfolio Optimization:</strong> The process of selecting the best portfolio (asset distribution) out of the set of all portfolios being considered, according to some objective. The objective typically maximizes factors such as expected return and minimizes costs like financial risk.</p>
@@ -11275,7 +11456,7 @@ print("Risk parity weights:", result.x)
 </div>
 
 
-<h3>Risk Metrics: VaR, CVaR, and Expected Shortfall</h3>
+<h3 id="topic-41">Topic 41: Risk Metrics: VaR, CVaR, and Expected Shortfall</h3>
 
 <div class="definition">
     <p><strong>Value at Risk (VaR):</strong> VaR is a statistical measure that quantifies the potential loss in value of a risky asset or portfolio over a defined period for a given confidence interval. It answers the question: "What is the maximum loss over a given period with <em>x</em>% confidence?"</p>
@@ -11420,7 +11601,7 @@ print(f"Historical CVaR at {alpha*100}% confidence: {historical_cvar:.2f}")
 </div>
 
 
-<h3>Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</h3>
+<h3 id="topic-42">Topic 42: Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</h3>
 
 <div class="definition">
     <p><strong>Copula:</strong> A copula is a multivariate cumulative distribution function (CDF) defined on the unit hypercube \([0,1]^d\) such that every marginal distribution is uniform on \([0,1]\). Copulas allow us to model the dependence structure of random variables separately from their marginal distributions. Formally, for a \(d\)-dimensional random vector \(\mathbf{U} = (U_1, \ldots, U_d)\) with uniform marginals, the copula \(C\) is defined as:</p>
@@ -11589,7 +11770,7 @@ print(f"Estimated theta: {clayton.params[0]:.3f}")  # Should be close to 2.0</co
 </div>
 
 
-<h3>Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</h3>
+<h3 id="topic-43">Topic 43: Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</h3>
 
 <div class="definition">
     <p><strong>Survival Analysis:</strong> A branch of statistics that deals with the analysis of time-to-event data. The goal is to estimate the time until an event of interest occurs (e.g., death, failure, relapse). Key challenges include handling <em>censoring</em> (incomplete observations) and <em>time-dependent covariates</em>.</p>
@@ -11892,7 +12073,7 @@ print("Concordance index:", model.score(X_test, y_test))</code></pre>
 </div>
 
 
-<h3>Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</h3>
+<h3 id="topic-44">Topic 44: Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</h3>
 
 <div class="definition">
     <p><strong>Hyperparameter Tuning:</strong> The process of systematically searching for the optimal hyperparameters of a machine learning model to improve its performance. Unlike model parameters, hyperparameters are set before training and control the learning process.</p>
@@ -12209,7 +12390,7 @@ print("Best score:", study.best_value)</code></pre>
 </div>
 
 
-<h3>Cross-Validation: k-Fold, Stratified, and Time Series CV</h3>
+<h3 id="topic-45">Topic 45: Cross-Validation: k-Fold, Stratified, and Time Series CV</h3>
 
 <div class="definition">
     <p><strong>Cross-Validation (CV):</strong> A statistical technique used to evaluate machine learning models by partitioning the dataset into subsets, training the model on some subsets (training set), and validating it on the remaining subsets (validation set). The goal is to assess how well a model generalizes to an independent dataset.</p>
@@ -12413,7 +12594,7 @@ print(f"Nested CV Score: {scores.mean():.3f}")</code></pre>
 </div>
 
 
-<h3>Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</h3>
+<h3 id="topic-46">Topic 46: Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</h3>
 
 <div class="definition">
     <p><strong>Feature Selection:</strong> The process of selecting a subset of relevant features (variables, predictors) for use in model construction. It improves model performance, reduces overfitting, and enhances interpretability.</p>
@@ -12655,7 +12836,7 @@ print("Feature rankings:", rfe.ranking_)</code></pre>
 </div>
 
 
-<h3>Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</h3>
+<h3 id="topic-47">Topic 47: Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</h3>
 
 <div class="definition">
     <p><strong>Imbalanced Learning:</strong> A scenario in machine learning where the distribution of classes in the training data is highly skewed. Typically, one class (the minority class) has significantly fewer instances than the other(s) (the majority class). This imbalance can lead to poor model performance, especially for the minority class.</p>
@@ -12847,7 +13028,7 @@ X_resampled, y_resampled = smote.fit_resample(X_train, y_train)</code></pre>
 </div>
 
 
-<h3>PyTorch Autograd: Computational Graphs and Automatic Differentiation</h3>
+<h3 id="topic-48">Topic 48: PyTorch Autograd: Computational Graphs and Automatic Differentiation</h3>
 
 <div class="definition">
     <p><strong>Autograd:</strong> PyTorch's automatic differentiation engine that powers neural network training. It tracks operations on tensors to build a computational graph, then computes gradients via backpropagation.</p>
@@ -13068,7 +13249,7 @@ def forward_with_checkpoint(x):
 </div>
 
 
-<h3>Scikit-Learn Pipeline: Custom Transformers and Column Transformers</h3>
+<h3 id="topic-49">Topic 49: Scikit-Learn Pipeline: Custom Transformers and Column Transformers</h3>
 
 <div class="definition">
     <p><strong>Scikit-Learn Pipeline:</strong> A tool in scikit-learn that sequentially applies a series of data transformations and a final estimator. Pipelines help streamline workflows by chaining multiple steps into a single object, ensuring that intermediate steps (e.g., imputation, scaling) are correctly applied during cross-validation and prediction.</p>
@@ -13292,7 +13473,7 @@ loaded_model = load('model_pipeline.joblib')
 </div>
 
 
-<h3>Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</h3>
+<h3 id="topic-50">Topic 50: Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</h3>
 
 <div class="definition">
     <p><strong>Model Interpretability:</strong> The degree to which a human can understand the cause of a decision made by a machine learning model. Interpretability methods help explain <em>why</em> a model makes certain predictions, which is crucial for debugging, fairness, and regulatory compliance.</p>
@@ -13618,5 +13799,52 @@ shap.summary_plot(shap_values, X_test)</code></pre>
 
         
     </div>
+        
+    </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking on a link (mobile)
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-100px 0px -66%',
+            threshold: 0
+        });
+
+        // Observe all h3 headings
+        document.querySelectorAll('h3[id^="topic-"]').forEach(heading => {
+            observer.observe(heading);
+        });
+    </script>
 </body>
 </html>
