@@ -12,9 +12,33 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
+            },
+            chtml: {
+                matchFontHeight: false,
+                displayAlign: 'left',
+                displayIndent: '0',
+                scale: 0.9
+            },
+            options: {
+                enableMenu: false
+            },
+            svg: {
+                fontCache: 'global'
             }
         };
     </script>
+    <style>
+        /* Enable formula line breaking */
+        mjx-container {
+            overflow-wrap: anywhere !important;
+            word-break: break-word !important;
+            max-width: 100% !important;
+        }
+        mjx-container[display="true"] {
+            overflow-x: visible !important;
+            overflow-y: visible !important;
+        }
+    </style>
     
     <style>
         * {
@@ -86,18 +110,22 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            overflow: visible;
         }
-        
+
         .formula {
             background: #f8f9fa;
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
             border: 2px solid #e0e0e0;
-            overflow-x: auto;
             break-inside: avoid;
+            max-width: 100%;
+            overflow: visible;
         }
-        
+
         .example {
             background: linear-gradient(135deg, #e8f8f5 0%, #d4f1e8 100%);
             border-left: 5px solid #1abc9c;
@@ -106,8 +134,11 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            overflow: visible;
         }
-        
+
         .note {
             background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
             border-left: 5px solid #e67e22;
@@ -115,8 +146,11 @@
             margin: 20px 0;
             border-radius: 8px;
             break-inside: avoid;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            overflow: visible;
         }
-        
+
         .theorem {
             background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
             border-left: 5px solid #f39c12;
@@ -125,6 +159,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            overflow: visible;
         }
         
         ul, ol {
