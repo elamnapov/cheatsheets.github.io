@@ -12,36 +12,10 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
-            },
-            chtml: {
-                matchFontHeight: false,
-                scale: 0.85,
-                linebreaks: {
-                    automatic: true,
-                    width: 'container'
-                }
-            },
-            options: {
-                enableMenu: false,
-                renderActions: {
-                    addMenu: []
-                }
             }
         };
     </script>
-    <style>
-        /* MathJax containers with scrolling fallback */
-        mjx-container {
-            max-width: 100% !important;
-            display: block !important;
-        }
-        mjx-container[display="true"] {
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            max-width: 100%;
-        }
-    </style>
-    
+
     <style>
         * {
             margin: 0;
@@ -114,7 +88,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .formula {
@@ -125,7 +99,7 @@
             border: 2px solid #e0e0e0;
             break-inside: avoid;
             max-width: 100%;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .example {
@@ -138,7 +112,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .note {
@@ -150,7 +124,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .theorem {
@@ -163,7 +137,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
         
         ul, ol {
