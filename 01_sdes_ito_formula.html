@@ -12,9 +12,33 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
+            },
+            chtml: {
+                matchFontHeight: false,
+                displayAlign: 'left',
+                displayIndent: '0',
+                scale: 0.9
+            },
+            options: {
+                enableMenu: false
+            },
+            svg: {
+                fontCache: 'global'
             }
         };
     </script>
+    <style>
+        /* Enable formula line breaking */
+        mjx-container {
+            overflow-wrap: anywhere !important;
+            word-break: break-word !important;
+            max-width: 100% !important;
+        }
+        mjx-container[display="true"] {
+            overflow-x: visible !important;
+            overflow-y: visible !important;
+        }
+    </style>
     
     <style>
         * {
@@ -86,9 +110,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
-            overflow-x: auto;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            overflow: visible;
         }
 
         .formula {
@@ -97,10 +121,9 @@
             margin: 20px 0;
             border-radius: 8px;
             border: 2px solid #e0e0e0;
-            overflow-x: auto;
-            overflow-y: hidden;
             break-inside: avoid;
             max-width: 100%;
+            overflow: visible;
         }
 
         .example {
@@ -111,9 +134,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
-            overflow-x: auto;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            overflow: visible;
         }
 
         .note {
@@ -123,9 +146,9 @@
             margin: 20px 0;
             border-radius: 8px;
             break-inside: avoid;
-            overflow-x: auto;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            overflow: visible;
         }
 
         .theorem {
@@ -136,26 +159,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             break-inside: avoid;
-            overflow-x: auto;
             overflow-wrap: break-word;
             word-wrap: break-word;
-        }
-
-        /* Better overflow handling for MathJax formulas */
-        .definition .MJXc-display,
-        .formula .MJXc-display,
-        .example .MJXc-display,
-        .note .MJXc-display,
-        .theorem .MJXc-display {
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        /* Ensure MathJax containers don't overflow */
-        .mjx-chtml {
-            max-width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
+            overflow: visible;
         }
         
         ul, ol {
