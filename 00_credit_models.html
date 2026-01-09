@@ -24,25 +24,48 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Times New Roman', serif;
-            font-size: 9pt;
-            line-height: 1.3;
-            padding: 0.4cm;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
             background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
+
         .content {
-            column-count: 2;
-            column-gap: 0.6cm;
-            column-rule: 1px solid #ddd;
+            /* Single column layout - removed column-count */
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 0.4cm;
-            column-span: all;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
         .header h1 {
@@ -215,12 +238,15 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>CQF Quantitative Finance Cheatsheet</h1>
-        <div class="subtitle">Comprehensive Reference with Credit Risk Focus</div>
-    </div>
-    
-    <div class="content">
+    <div class="container">
+        <a href="index.html" class="home-button">← Back to Home</a>
+
+        <div class="header">
+            <h1>CQF Quantitative Finance Cheatsheet</h1>
+            <div class="subtitle">Comprehensive Reference with Credit Risk Focus</div>
+        </div>
+
+        <div class="content">
 
 <!-- ============================================================== -->
 <!-- SECTION: CQF SUMMARY -->
@@ -747,6 +773,7 @@ $$\text{Basis} = \text{CDS Spread} - \text{Bond Z-Spread}$$
 </ul>
 </div>
 
+        </div>
     </div>
 </body>
 </html>
