@@ -24,25 +24,48 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Times New Roman', serif;
-            font-size: 9pt;
-            line-height: 1.3;
-            padding: 0.4cm;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
             background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
+
         .content {
-            column-count: 2;
-            column-gap: 0.6cm;
-            column-rule: 1px solid #ddd;
+            /* Single column layout - removed column-count */
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 0.4cm;
-            column-span: all;
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
         .header h1 {
@@ -186,7 +209,18 @@
             border: 1pt solid #c44;
             break-inside: avoid;
         }
-        
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 5pt;
+            margin: 6pt 0;
+            border-left: 3pt solid #667eea;
+            font-size: 7.5pt;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
+
         .section-header {
             column-span: all;
             background-color: #1a1a1a;
@@ -212,15 +246,188 @@
                 column-count: 1;
             }
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1 !important;
+            background-color: transparent !important;
+            font-size: 1.3em;
+            margin: 0 0 20px 0;
+            padding: 0 0 15px 0;
+            border: none;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>CQF Quantitative Finance Cheatsheet</h1>
-        <div class="subtitle">Comprehensive Reference with Credit Risk Focus</div>
-    </div>
-    
-    <div class="content">
+    <a href="index.html" class="home-button">← Home</a>
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#section-1">1. Stochastic Foundations</a></li>
+                <li><a href="#section-2">2. Black-Scholes Framework</a></li>
+                <li><a href="#section-3">3. Risk Management</a></li>
+                <li><a href="#section-4">4. Interest Rate Models</a></li>
+                <li><a href="#section-5">5. Credit Risk Summary Table</a></li>
+                <li><a href="#section-6">6. Hazard Rate Framework</a></li>
+                <li><a href="#section-7">7. Structural Models</a></li>
+                <li><a href="#section-8">8. Fundamental Pricing Framework</a></li>
+                <li><a href="#section-9">9. Zero Recovery Model</a></li>
+                <li><a href="#section-10">10. Non-Zero Recovery Model</a></li>
+                <li><a href="#section-11">11. Risky Coupon Bond Pricing</a></li>
+                <li><a href="#section-12">12. Credit Spread Relationships</a></li>
+                <li><a href="#section-13">13. CDS Structure</a></li>
+                <li><a href="#section-14">14. CDS Pricing Formulas</a></li>
+                <li><a href="#section-15">15. CDS Valuation Examples</a></li>
+                <li><a href="#section-16">16. Bootstrapping Hazard Rates from CDS</a></li>
+                <li><a href="#section-17">17. CDS Greeks and Sensitivities</a></li>
+                <li><a href="#section-18">18. Upfront vs Running CDS</a></li>
+                <li><a href="#section-19">19. CDS vs Bond Basis</a></li>
+                <li><a href="#section-20">20. Quick Reference Formulas</a></li>
+            </ol>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
+
+                <div class="header">
+                    <h1>CQF Quantitative Finance Cheatsheet</h1>
+                    <div class="subtitle">Comprehensive Reference with Credit Risk Focus</div>
+                </div>
+
+                <div class="content">
 
 <!-- ============================================================== -->
 <!-- SECTION: CQF SUMMARY -->
@@ -228,7 +435,7 @@
 
 <div class="section-header">CQF CORE SUMMARY</div>
 
-<h2>Stochastic Foundations</h2>
+<h2 id="section-1">Stochastic Foundations</h2>
 
 <h3>Wiener Process \(W_t\)</h3>
 <ul>
@@ -252,7 +459,7 @@ $$df = \left(\frac{\partial f}{\partial t} + \mu\frac{\partial f}{\partial X} + 
 <p><strong>CIR</strong>: \(dr = \kappa(\theta - r)dt + \sigma\sqrt{r}dW\)</p>
 <ul><li>Feller condition: \(2\kappa\theta \geq \sigma^2\) ensures \(r > 0\)</li></ul>
 
-<h2>Black-Scholes Framework</h2>
+<h2 id="section-2">Black-Scholes Framework</h2>
 
 <h3>BS PDE</h3>
 <div class="formula-block">
@@ -276,7 +483,7 @@ $$d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}}, \quad d_2 = d_1 -
 <li>\(\Theta = \partial V/\partial t\), \(\rho = \partial V/\partial r\)</li>
 </ul>
 
-<h2>Risk Management</h2>
+<h2 id="section-3">Risk Management</h2>
 
 <h3>VaR (Value at Risk)</h3>
 <p><strong>Parametric</strong>: \(\text{VaR}_\alpha = -(\mu + \sigma z_\alpha)\)</p>
@@ -288,7 +495,7 @@ $$\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2$$
 </div>
 <p>Long-run variance: \(\bar{\sigma}^2 = \omega/(1 - \alpha - \beta)\)</p>
 
-<h2>Interest Rate Models</h2>
+<h2 id="section-4">Interest Rate Models</h2>
 
 <h3>Vasicek</h3>
 <p>\(dr = a(b - r)dt + \sigma dW\)</p>
@@ -306,7 +513,7 @@ $$\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2$$
 
 <div class="section-header">CREDIT RISK - OVERVIEW</div>
 
-<h2>Credit Risk Summary Table</h2>
+<h2 id="section-5">Credit Risk Summary Table</h2>
 
 <table class="summary-table">
 <thead>
@@ -323,7 +530,7 @@ $$\sigma_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta \sigma_{t-1}^2$$
 </tbody>
 </table>
 
-<h2>Hazard Rate Framework</h2>
+<h2 id="section-6">Hazard Rate Framework</h2>
 
 <h3>Intensity-Based Default</h3>
 <p>Default time \(\tau\) is first jump of a Poisson process with intensity \(\lambda(t)\):</p>
@@ -360,7 +567,14 @@ Credit spread \(s = 200\) bps = 2%, Recovery \(R = 40\%\)<br>
 \(\lambda = \frac{0.02}{1 - 0.40} = \frac{0.02}{0.60} = \boxed{3.33\%}\) per annum
 </div>
 
-<h2>Structural Models</h2>
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Credit_risk" target="_blank">Wikipedia: Credit Risk</a> |
+    <a href="https://www.investopedia.com/terms/h/hazard-rate.asp" target="_blank">Investopedia: Hazard Rate</a> |
+    <a href="https://www.risk.net/definition/hazard-rate" target="_blank">Risk.net: Hazard Rate Definition</a>
+</div>
+
+<h2 id="section-7">Structural Models</h2>
 
 <h3>Merton Model (1974)</h3>
 <p>Firm value \(V_t\) follows GBM. Equity = call option on firm assets:</p>
@@ -375,6 +589,13 @@ $$DD = \frac{\ln(V_t/D) + (\mu - \sigma_V^2/2)(T-t)}{\sigma_V\sqrt{T-t}}$$
 
 <p><strong>Default Probability</strong>: \(PD = N(-DD)\)</p>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Merton_model" target="_blank">Wikipedia: Merton Model</a> |
+    <a href="https://www.investopedia.com/terms/m/mertonmodel.asp" target="_blank">Investopedia: Merton Model</a> |
+    <a href="https://corporatefinanceinstitute.com/resources/commercial-lending/distance-to-default/" target="_blank">CFI: Distance to Default</a>
+</div>
+
 <hr>
 
 <!-- ============================================================== -->
@@ -383,7 +604,7 @@ $$DD = \frac{\ln(V_t/D) + (\mu - \sigma_V^2/2)(T-t)}{\sigma_V\sqrt{T-t}}$$
 
 <div class="section-header">RISKY BOND PRICING</div>
 
-<h2>Fundamental Pricing Framework</h2>
+<h2 id="section-8">Fundamental Pricing Framework</h2>
 
 <h3>Risk-Free vs Risky Bond</h3>
 <p><strong>Risk-free zero-coupon bond</strong>:</p>
@@ -412,7 +633,7 @@ $$P^{Risky}(t,T) = e^{-(r+s)(T-t)}$$
 </tbody>
 </table>
 
-<h2>Zero Recovery Model</h2>
+<h2 id="section-9">Zero Recovery Model</h2>
 
 <p>Simplest case: bondholder receives nothing if default occurs.</p>
 
@@ -431,7 +652,7 @@ Given: Face = $100, \(r = 5\%\), \(\lambda = 2\%\), \(T = 3\) years<br><br>
 <strong>Credit spread</strong>: \(s = \lambda = 200\) bps
 </div>
 
-<h2>Non-Zero Recovery Model</h2>
+<h2 id="section-10">Non-Zero Recovery Model</h2>
 
 <p>Bondholder recovers fraction \(R\) of face value at default.</p>
 
@@ -457,7 +678,7 @@ Given: Face = $100, \(r = 4\%\), \(\lambda = 3\%\), \(R = 40\%\), \(T = 5\) year
 \(s = 0.0575 - 0.04 = 1.75\%\) = \boxed{175 \text{ bps}}
 </div>
 
-<h2>Risky Coupon Bond Pricing</h2>
+<h2 id="section-11">Risky Coupon Bond Pricing</h2>
 
 <h3>General Formula</h3>
 <p>For a bond paying coupons \(c\) at times \(T_1, T_2, ..., T_n\) with face \(F\) at \(T_n\):</p>
@@ -491,7 +712,7 @@ Year 3: \(5 \times 0.9139 \times 0.9418 = \$4.305\)<br>
 <strong>Total bond price</strong> = 13.586 + 88.20 = \boxed{\$101.79}
 </div>
 
-<h2>Credit Spread Relationships</h2>
+<h2 id="section-12">Credit Spread Relationships</h2>
 
 <h3>Spread vs Hazard Rate</h3>
 <div class="formula-block">
@@ -523,6 +744,13 @@ From \(0.8794 = R + (1-R)Q = 0.40 + 0.60 \times Q\):<br>
 <strong>Credit spread</strong>: \(s = (1-0.40) \times 0.0449 = \boxed{269 \text{ bps}}\)
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Credit_spread_(bond)" target="_blank">Wikipedia: Credit Spread</a> |
+    <a href="https://www.investopedia.com/terms/c/creditspread.asp" target="_blank">Investopedia: Credit Spread</a> |
+    <a href="https://www.risk.net/definition/z-spread" target="_blank">Risk.net: Z-Spread</a>
+</div>
+
 <hr>
 
 <!-- ============================================================== -->
@@ -531,7 +759,7 @@ From \(0.8794 = R + (1-R)Q = 0.40 + 0.60 \times Q\):<br>
 
 <div class="section-header">CDS PRICING</div>
 
-<h2>CDS Structure</h2>
+<h2 id="section-13">CDS Structure</h2>
 
 <h3>Key Components</h3>
 <ul>
@@ -553,7 +781,7 @@ From \(0.8794 = R + (1-R)Q = 0.40 + 0.60 \times Q\):<br>
 </tbody>
 </table>
 
-<h2>CDS Pricing Formulas</h2>
+<h2 id="section-14">CDS Pricing Formulas</h2>
 
 <h3>Premium Leg (PV of Spread Payments)</h3>
 <div class="formula-block">
@@ -586,7 +814,7 @@ $$s_{par} = \frac{(1-R) \times \sum_{i=1}^{n} D(0,T_i) \cdot [Q(0,T_{i-1}) - Q(0
 <p>Simplified (constant \(\lambda\), continuous):</p>
 $$s_{par} \approx (1-R) \times \lambda$$
 
-<h2>CDS Valuation Examples</h2>
+<h2 id="section-15">CDS Valuation Examples</h2>
 
 <div class="example-block">
 <strong>Example 1 - Par CDS Spread Calculation</strong><br>
@@ -606,6 +834,13 @@ Year 3: \(D_3 \times [Q_2 - Q_3] = 0.9139 \times [0.9608 - 0.9418] = 0.9139 \tim
 <strong>Check</strong>: \(s \approx (1-R)\lambda = 0.60 \times 0.02 = 1.20\%\) ✓
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Credit_default_swap" target="_blank">Wikipedia: Credit Default Swap</a> |
+    <a href="https://www.investopedia.com/terms/c/creditdefaultswap.asp" target="_blank">Investopedia: CDS Explained</a> |
+    <a href="https://www.cmegroup.com/education/courses/introduction-to-credit-default-swaps.html" target="_blank">CME: Introduction to CDS</a>
+</div>
+
 <div class="example-block">
 <strong>Example 2 - CDS Mark-to-Market</strong><br>
 Existing CDS: 5Y CDS bought 2 years ago at \(s_0 = 150\) bps<br>
@@ -622,7 +857,7 @@ MTM = (0.0200 - 0.0150) × 2.596 × $10M<br>
 MTM = 0.0050 × 2.596 × $10M = \boxed{\$129,800} gain
 </div>
 
-<h2>Bootstrapping Hazard Rates from CDS</h2>
+<h2 id="section-16">Bootstrapping Hazard Rates from CDS</h2>
 
 <h3>Procedure</h3>
 <ol>
@@ -650,7 +885,7 @@ Result: \(\lambda_2 \approx 2.0\%\), \(Q_2 = 0.9834 \times e^{-0.020} = 0.9640\)
 Similar procedure gives \(\lambda_3 \approx 3.0\%\)
 </div>
 
-<h2>CDS Greeks and Sensitivities</h2>
+<h2 id="section-17">CDS Greeks and Sensitivities</h2>
 
 <h3>Credit DV01 (CS01)</h3>
 <p>Change in CDS value for 1 bp change in spread:</p>
@@ -671,7 +906,7 @@ $$IR01 = \frac{\partial V_{CDS}}{\partial r} \times 0.0001$$
 <h3>Recovery Sensitivity</h3>
 $$\frac{\partial V_{CDS}}{\partial R} \approx -\frac{PV_{Protection}}{1-R}$$
 
-<h2>Upfront vs Running CDS</h2>
+<h2 id="section-18">Upfront vs Running CDS</h2>
 
 <h3>Standard CDS Conventions</h3>
 <p>Post-2009 "Big Bang": CDS trade with standard coupons (100 or 500 bps) plus upfront:</p>
@@ -689,7 +924,7 @@ Upfront = (0.0350 - 0.0500) × 4.5 × $10M = -0.0150 × 4.5 × $10M<br>
 <em>Since par spread < coupon, buyer "overpays" premium so compensated upfront</em>
 </div>
 
-<h2>CDS vs Bond Basis</h2>
+<h2 id="section-19">CDS vs Bond Basis</h2>
 
 <h3>CDS-Bond Basis</h3>
 $$\text{Basis} = \text{CDS Spread} - \text{Bond Z-Spread}$$
@@ -705,9 +940,15 @@ $$\text{Basis} = \text{CDS Spread} - \text{Bond Z-Spread}$$
 <li>Delivery squeeze risk</li>
 </ul>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://www.risk.net/definition/cds-bond-basis" target="_blank">Risk.net: CDS-Bond Basis</a> |
+    <a href="https://www.investopedia.com/terms/b/basis-trading.asp" target="_blank">Investopedia: Basis Trading</a>
+</div>
+
 <hr>
 
-<h2>Quick Reference Formulas</h2>
+<h2 id="section-20">Quick Reference Formulas</h2>
 
 <table class="summary-table">
 <thead>
@@ -747,6 +988,15 @@ $$\text{Basis} = \text{CDS Spread} - \text{Bond Z-Spread}$$
 </ul>
 </div>
 
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

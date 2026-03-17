@@ -24,7 +24,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             width: 100%;
             background: white;
             padding: 50px;
@@ -46,12 +46,29 @@
             font-size: 1.1em;
         }
 
+        .columns-wrapper {
+            display: flex;
+            gap: 40px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .column-header {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
         .cheatsheet-list {
             list-style: none;
         }
 
         .cheatsheet-item {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-left: 4px solid #667eea;
             background: #f8f9fa;
             transition: all 0.3s ease;
@@ -65,7 +82,7 @@
 
         .cheatsheet-item a {
             display: block;
-            padding: 20px;
+            padding: 15px;
             color: #2c3e50;
             text-decoration: none;
         }
@@ -75,14 +92,14 @@
         }
 
         .cheatsheet-title {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: 600;
             margin-bottom: 5px;
         }
 
         .cheatsheet-desc {
             color: #7f8c8d;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         footer {
@@ -93,36 +110,84 @@
             color: #95a5a6;
             font-size: 0.9em;
         }
+
+        @media (max-width: 768px) {
+            .columns-wrapper {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📚 Cheatsheets Library</h1>
+        <h1>Cheatsheets Library</h1>
         <p class="subtitle">Library of summaries and cheatsheets on various topics</p>
 
-        <ul class="cheatsheet-list">
-            <li class="cheatsheet-item">
-                <a href="01_sdes_ito_formula.html">
-                    <div class="cheatsheet-title">Stochastic Differential Equations & Ito Formula</div>
-                    <div class="cheatsheet-desc">Applications and quant interview most asked questions (50 topics)</div>
-                </a>
-            </li>
-            <li class="cheatsheet-item">
-                <a href="02_math_finance_models.html">
-                    <div class="cheatsheet-title">Mathematical Finance Models</div>
-                    <div class="cheatsheet-desc">Black-Scholes, stochastic calculus, derivatives pricing, and risk models (50 topics)</div>
-                </a>
-            </li>
-            <li class="cheatsheet-item">
-                <a href="03_scikitlearn_pytorch_algos_models.html">
-                    <div class="cheatsheet-title">Scikit-Learn & PyTorch: ML Algorithms & Models</div>
-                    <div class="cheatsheet-desc">Machine learning, deep learning, and statistical modeling techniques (50 topics)</div>
-                </a>
-            </li>
-        </ul>
+        <div class="columns-wrapper">
+            <div class="column">
+                <h2 class="column-header">Short Cheatsheets</h2>
+                <ul class="cheatsheet-list">
+                    <li class="cheatsheet-item">
+                        <a href="00_sdes.html">
+                            <div class="cheatsheet-title">Stochastic Finance</div>
+                            <div class="cheatsheet-desc">Enhanced cheatsheet on stochastic processes and financial mathematics</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="00_credit_models.html">
+                            <div class="cheatsheet-title">Credit Risk Models</div>
+                            <div class="cheatsheet-desc">CQF quantitative finance cheatsheet focused on credit risk modeling</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="00_fx_models.html">
+                            <div class="cheatsheet-title">FX Models</div>
+                            <div class="cheatsheet-desc">CQF comprehensive cheatsheet for foreign exchange modeling</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="00_ir_models.html">
+                            <div class="cheatsheet-title">Fixed Income & Interest Rate Models</div>
+                            <div class="cheatsheet-desc">CQF comprehensive cheatsheet on interest rate and fixed income modeling</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="00_commodities_models.html">
+                            <div class="cheatsheet-title">Commodities Models</div>
+                            <div class="cheatsheet-desc">CQF comprehensive cheatsheet for commodities modeling</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="column">
+                <h2 class="column-header">Comprehensive Cheatsheets (50 Topics)</h2>
+                <ul class="cheatsheet-list">
+                    <li class="cheatsheet-item">
+                        <a href="01_sdes_ito_formula.html">
+                            <div class="cheatsheet-title">Stochastic Differential Equations & Ito Formula</div>
+                            <div class="cheatsheet-desc">Applications and quant interview most asked questions</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="02_math_finance_models.html">
+                            <div class="cheatsheet-title">Mathematical Finance Models</div>
+                            <div class="cheatsheet-desc">Black-Scholes, stochastic calculus, derivatives pricing, and risk models</div>
+                        </a>
+                    </li>
+                    <li class="cheatsheet-item">
+                        <a href="03_scikitlearn_pytorch_algos_models.html">
+                            <div class="cheatsheet-title">Scikit-Learn & PyTorch: ML Algorithms & Models</div>
+                            <div class="cheatsheet-desc">Machine learning, deep learning, and statistical modeling techniques</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <footer>
-            3 comprehensive cheatsheets available – 150 topics total!
+            8 comprehensive cheatsheets available!
         </footer>
     </div>
 </body>

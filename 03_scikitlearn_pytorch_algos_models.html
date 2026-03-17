@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>'machine_learning_models_algorithms_pytorch_scikit_learn_for_interview_questions' - Interview Cheatsheet</title>
+    <title>Scikit-Learn & PyTorch: ML Algorithms & Models - Interview Cheatsheet</title>
     
     <!-- MathJax for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -12,35 +12,9 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
-            },
-            chtml: {
-                matchFontHeight: false,
-                scale: 0.85,
-                linebreaks: {
-                    automatic: true,
-                    width: 'container'
-                }
-            },
-            options: {
-                enableMenu: false,
-                renderActions: {
-                    addMenu: []
-                }
             }
         };
     </script>
-    <style>
-        /* MathJax containers with scrolling fallback */
-        mjx-container {
-            max-width: 100% !important;
-            display: block !important;
-        }
-        mjx-container[display="true"] {
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            max-width: 100%;
-        }
-    </style>
 
     <style>
         * {
@@ -58,34 +32,28 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
-            padding: 50px;
+            padding: 40px 60px;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            
-            /* Two-column layout */
-            column-count: 2;
-            column-gap: 40px;
         }
-        
+
         h1 {
             color: #667eea;
             font-size: 2.5em;
             margin-bottom: 10px;
             border-bottom: 4px solid #667eea;
             padding-bottom: 15px;
-            column-span: all;
         }
-        
+
         .subtitle {
             color: #7f8c8d;
             font-size: 1.2em;
             margin-bottom: 40px;
-            column-span: all;
         }
-        
+
         h2 {
             color: #764ba2;
             font-size: 2em;
@@ -93,7 +61,6 @@
             margin-bottom: 20px;
             padding-left: 15px;
             border-left: 5px solid #764ba2;
-            column-span: all;
         }
         
         h3 {
@@ -114,7 +81,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .formula {
@@ -125,7 +92,7 @@
             border: 2px solid #e0e0e0;
             break-inside: avoid;
             max-width: 100%;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .example {
@@ -138,7 +105,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .note {
@@ -150,7 +117,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .theorem {
@@ -163,7 +130,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
         
         ul, ol {
@@ -188,14 +155,13 @@
             font-family: 'Courier New', monospace;
         }
         
-        /* Responsive: single column on mobile */
+        /* Responsive: mobile adjustments */
         @media (max-width: 768px) {
             .container {
-                column-count: 1;
                 padding: 20px;
             }
         }
-        
+
         @media print {
             body {
                 background: white;
@@ -204,7 +170,6 @@
             .container {
                 box-shadow: none;
                 padding: 20px;
-                column-count: 1;
             }
         }
         
@@ -343,9 +308,42 @@
                 margin-top: 60px;
             }
         }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-button">← Home</a>
     <div class="page-wrapper">
         <nav class="sidebar" id="sidebar">
             <h2 class="sidebar-header">Table of Contents</h2>
@@ -407,7 +405,7 @@
 
         <div class="main-content">
             <div class="container">
-        <h1>'machine_learning_models_algorithms_pytorch_scikit_learn_for_interview_questions'</h1>
+        <h1>Scikit-Learn & PyTorch: ML Algorithms & Models</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
@@ -1867,6 +1865,15 @@ print(f"Test Accuracy: {accuracy:.4f}")</code></pre>
             <p><strong>A:</strong> See the step-by-step derivation in the <a href="#derivation">Derivation of the Bias-Variance Decomposition</a> section above.</p>
         </li>
     </ol>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 1-5: Regression & Fundamentals):</b>
+    <a href="https://en.wikipedia.org/wiki/Linear_regression" target="_blank">Wikipedia: Linear Regression</a> |
+    <a href="https://en.wikipedia.org/wiki/Lasso_(statistics)" target="_blank">Wikipedia: Lasso</a> |
+    <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank">Wikipedia: Logistic Regression</a> |
+    <a href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff" target="_blank">Wikipedia: Bias-Variance Tradeoff</a> |
+    <a href="https://scikit-learn.org/stable/modules/linear_model.html" target="_blank">Scikit-Learn: Linear Models</a>
 </div>
 
 
@@ -3394,6 +3401,16 @@ print(f"Test Accuracy: {accuracy:.2f}")</code></pre>
     </div>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 6-10: Classical ML Algorithms):</b>
+    <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">Wikipedia: KNN</a> |
+    <a href="https://en.wikipedia.org/wiki/Decision_tree_learning" target="_blank">Wikipedia: Decision Trees</a> |
+    <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank">Wikipedia: Random Forest</a> |
+    <a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank">Wikipedia: Gradient Boosting</a> |
+    <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">Wikipedia: SVM</a> |
+    <a href="https://scikit-learn.org/stable/modules/ensemble.html" target="_blank">Scikit-Learn: Ensemble Methods</a>
+</div>
+
 <style>
     .section {
         margin-bottom: 20px;
@@ -4447,8 +4464,17 @@ S_ = ica.fit_transform(X)  # Reconstruct signals</code></pre>
     </div>
 </section>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 11-14: Probabilistic Models & Dimensionality Reduction):</b>
+    <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier" target="_blank">Wikipedia: Naive Bayes</a> |
+    <a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank">Wikipedia: PCA</a> |
+    <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank">Wikipedia: SVD</a> |
+    <a href="https://en.wikipedia.org/wiki/Independent_component_analysis" target="_blank">Wikipedia: ICA</a> |
+    <a href="https://scikit-learn.org/stable/modules/decomposition.html" target="_blank">Scikit-Learn: Decomposition</a>
+</div>
 
-<h3 id="topic-15">Topic 15: k-Means Clustering: Lloyd’s Algorithm and Elbow Method</h3>
+
+<h3 id="topic-15">Topic 15: k-Means Clustering: Lloyd's Algorithm and Elbow Method</h3>
 
 <div class="definition">
     <p><strong>k-Means Clustering:</strong> An unsupervised machine learning algorithm that partitions a dataset into <em>k</em> distinct, non-overlapping clusters. Each data point belongs to the cluster with the nearest mean (centroid), which serves as the prototype of the cluster.</p>
@@ -5420,6 +5446,15 @@ from sklearn.cluster import DBSCAN
 dbscan = DBSCAN(eps=0.5, min_samples=5, metric='precomputed')
 clusters = dbscan.fit_predict(distances.numpy())
     </pre>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 15-18: Clustering Algorithms):</b>
+    <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">Wikipedia: k-Means</a> |
+    <a href="https://en.wikipedia.org/wiki/Mixture_model" target="_blank">Wikipedia: Gaussian Mixture Models</a> |
+    <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering" target="_blank">Wikipedia: Hierarchical Clustering</a> |
+    <a href="https://en.wikipedia.org/wiki/DBSCAN" target="_blank">Wikipedia: DBSCAN</a> |
+    <a href="https://scikit-learn.org/stable/modules/clustering.html" target="_blank">Scikit-Learn: Clustering</a>
 </div>
 
 
@@ -7174,6 +7209,15 @@ nn.Sequential(
     </div>
 </section>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 19-24: Neural Network Fundamentals):</b>
+    <a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank">Wikipedia: Neural Networks</a> |
+    <a href="https://en.wikipedia.org/wiki/Backpropagation" target="_blank">Wikipedia: Backpropagation</a> |
+    <a href="https://en.wikipedia.org/wiki/Activation_function" target="_blank">Wikipedia: Activation Functions</a> |
+    <a href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank">Wikipedia: Batch Normalization</a> |
+    <a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank">PyTorch: Neural Network Basics</a>
+</div>
+
 
 <h3 id="topic-25">Topic 25: Convolutional Neural Networks (CNNs): Kernels, Strides, and Pooling</h3>
 
@@ -8393,6 +8437,16 @@ for epoch in range(epochs):
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 25-29: Deep Learning Architectures):</b>
+    <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank">Wikipedia: CNNs</a> |
+    <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network" target="_blank">Wikipedia: RNNs</a> |
+    <a href="https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)" target="_blank">Wikipedia: Transformers</a> |
+    <a href="https://en.wikipedia.org/wiki/Variational_autoencoder" target="_blank">Wikipedia: VAEs</a> |
+    <a href="https://en.wikipedia.org/wiki/Generative_adversarial_network" target="_blank">Wikipedia: GANs</a> |
+    <a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" target="_blank">PyTorch: Deep Learning Blitz</a>
+</div>
+
 
 <h3 id="topic-30">Topic 30: Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</h3>
 
@@ -9013,6 +9067,15 @@ class A2CAgent:
 <div class="note">
     <h4>Connection to Reinforcement Learning</h4>
     <p>MDPs are the theoretical foundation of reinforcement learning (RL). While MDPs assume full knowledge of the transition probabilities \(P\) and rewards \(R\), RL deals with learning these from interactions with the environment. Algorithms like Q-learning and SARSA are RL methods that approximate the Bellman equations in the absence of a known model.</p>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 30-31: Reinforcement Learning):</b>
+    <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Wikipedia: Reinforcement Learning</a> |
+    <a href="https://en.wikipedia.org/wiki/Q-learning" target="_blank">Wikipedia: Q-Learning</a> |
+    <a href="https://en.wikipedia.org/wiki/Markov_decision_process" target="_blank">Wikipedia: MDP</a> |
+    <a href="https://en.wikipedia.org/wiki/Bellman_equation" target="_blank">Wikipedia: Bellman Equation</a> |
+    <a href="https://spinningup.openai.com/" target="_blank">OpenAI Spinning Up</a>
 </div>
 
 
@@ -10252,8 +10315,17 @@ print(results.summary())</code></pre>
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 32-36: Time Series & Probabilistic Models):</b>
+    <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average" target="_blank">Wikipedia: ARIMA</a> |
+    <a href="https://en.wikipedia.org/wiki/Kalman_filter" target="_blank">Wikipedia: Kalman Filter</a> |
+    <a href="https://en.wikipedia.org/wiki/Hidden_Markov_model" target="_blank">Wikipedia: HMM</a> |
+    <a href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank">Wikipedia: Bayesian Networks</a> |
+    <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method" target="_blank">Wikipedia: Monte Carlo Methods</a>
+</div>
 
-<h3 id="topic-37">Topic 37: Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito’s Lemma</h3>
+
+<h3 id="topic-37">Topic 37: Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito's Lemma</h3>
 
 <div class="definition">
     <p><strong>Stochastic Process:</strong> A collection of random variables \(\{X_t\}_{t \in T}\) indexed by time \(t\), where \(T\) is a set of time points (discrete or continuous). Each random variable \(X_t\) represents the state of the process at time \(t\).</p>
@@ -11808,6 +11880,15 @@ print(f"Estimated theta: {clayton.params[0]:.3f}")  # Should be close to 2.0</co
     <p>This example generates synthetic data from a Clayton copula with \(\theta = 2\) and fits the copula to the data, recovering the parameter.</p>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 37-42: Quantitative Finance):</b>
+    <a href="https://en.wikipedia.org/wiki/Brownian_motion" target="_blank">Wikipedia: Brownian Motion</a> |
+    <a href="https://en.wikipedia.org/wiki/Black%E2%80%93Litterman_model" target="_blank">Wikipedia: Black-Litterman</a> |
+    <a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory" target="_blank">Wikipedia: Portfolio Theory</a> |
+    <a href="https://en.wikipedia.org/wiki/Value_at_risk" target="_blank">Wikipedia: VaR</a> |
+    <a href="https://en.wikipedia.org/wiki/Copula_(probability_theory)" target="_blank">Wikipedia: Copulas</a>
+</div>
+
 
 <h3 id="topic-43">Topic 43: Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</h3>
 
@@ -13066,6 +13147,15 @@ smote = SMOTE(random_state=42)
 X_resampled, y_resampled = smote.fit_resample(X_train, y_train)</code></pre>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 43-47: Applied ML Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/Survival_analysis" target="_blank">Wikipedia: Survival Analysis</a> |
+    <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization" target="_blank">Wikipedia: Hyperparameter Tuning</a> |
+    <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">Wikipedia: Cross-Validation</a> |
+    <a href="https://en.wikipedia.org/wiki/Feature_selection" target="_blank">Wikipedia: Feature Selection</a> |
+    <a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank">Scikit-Learn: Model Evaluation</a>
+</div>
+
 
 <h3 id="topic-48">Topic 48: PyTorch Autograd: Computational Graphs and Automatic Differentiation</h3>
 
@@ -13835,8 +13925,17 @@ shap_values = explainer.shap_values(torch.tensor(X_test.values, dtype=torch.floa
 shap.summary_plot(shap_values, X_test)</code></pre>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 48-50: Tools & Interpretability):</b>
+    <a href="https://pytorch.org/docs/stable/autograd.html" target="_blank">PyTorch: Autograd</a> |
+    <a href="https://scikit-learn.org/stable/modules/compose.html" target="_blank">Scikit-Learn: Pipelines</a> |
+    <a href="https://shap.readthedocs.io/" target="_blank">SHAP Documentation</a> |
+    <a href="https://github.com/marcotcr/lime" target="_blank">LIME GitHub</a> |
+    <a href="https://christophm.github.io/interpretable-ml-book/" target="_blank">Interpretable ML Book</a>
+</div>
 
-        
+
+
     </div>
         
     </div>

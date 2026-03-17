@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>'Models, formulas and numerical examples for mathematical finance' - Interview Cheatsheet</title>
+    <title>Mathematical Finance Models - Interview Cheatsheet</title>
     
     <!-- MathJax for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -12,35 +12,9 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
-            },
-            chtml: {
-                matchFontHeight: false,
-                scale: 0.85,
-                linebreaks: {
-                    automatic: true,
-                    width: 'container'
-                }
-            },
-            options: {
-                enableMenu: false,
-                renderActions: {
-                    addMenu: []
-                }
             }
         };
     </script>
-    <style>
-        /* MathJax containers with scrolling fallback */
-        mjx-container {
-            max-width: 100% !important;
-            display: block !important;
-        }
-        mjx-container[display="true"] {
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            max-width: 100%;
-        }
-    </style>
 
     <style>
         * {
@@ -58,34 +32,28 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
-            padding: 50px;
+            padding: 40px 60px;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            
-            /* Two-column layout */
-            column-count: 2;
-            column-gap: 40px;
         }
-        
+
         h1 {
             color: #667eea;
             font-size: 2.5em;
             margin-bottom: 10px;
             border-bottom: 4px solid #667eea;
             padding-bottom: 15px;
-            column-span: all;
         }
-        
+
         .subtitle {
             color: #7f8c8d;
             font-size: 1.2em;
             margin-bottom: 40px;
-            column-span: all;
         }
-        
+
         h2 {
             color: #764ba2;
             font-size: 2em;
@@ -93,7 +61,6 @@
             margin-bottom: 20px;
             padding-left: 15px;
             border-left: 5px solid #764ba2;
-            column-span: all;
         }
         
         h3 {
@@ -114,7 +81,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .formula {
@@ -125,7 +92,7 @@
             border: 2px solid #e0e0e0;
             break-inside: avoid;
             max-width: 100%;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .example {
@@ -138,7 +105,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .note {
@@ -150,8 +117,20 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
 
         .theorem {
             background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
@@ -163,7 +142,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
         
         ul, ol {
@@ -188,14 +167,13 @@
             font-family: 'Courier New', monospace;
         }
         
-        /* Responsive: single column on mobile */
+        /* Responsive: mobile adjustments */
         @media (max-width: 768px) {
             .container {
-                column-count: 1;
                 padding: 20px;
             }
         }
-        
+
         @media print {
             body {
                 background: white;
@@ -204,7 +182,6 @@
             .container {
                 box-shadow: none;
                 padding: 20px;
-                column-count: 1;
             }
         }
         
@@ -336,9 +313,30 @@
                 padding: 30px 20px;
             }
         }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-button">← Home</a>
     <div class="page-wrapper">
         <nav class="sidebar" id="sidebar">
             <h2 class="sidebar-header">Table of Contents</h2>
@@ -400,7 +398,7 @@
 
         <div class="main-content">
     <div class="container">
-        <h1>'Models, formulas and numerical examples for mathematical finance'</h1>
+        <h1>Mathematical Finance Models</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
@@ -1655,6 +1653,13 @@
     Under \(\mathbb{Q}^S\), the discounted stock price \(S_t / B_t\) is a martingale. This change of measure is useful for pricing options where the payoff is a function of the ratio \(S_T / S_t\).</p>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 1-6: Black-Scholes & Stochastic Calculus):</b>
+    <a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model" target="_blank">Wikipedia: Black-Scholes</a> |
+    <a href="https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma" target="_blank">Wikipedia: Itô's Lemma</a> |
+    <a href="https://en.wikipedia.org/wiki/Girsanov_theorem" target="_blank">Wikipedia: Girsanov's Theorem</a> |
+    <a href="https://www.quantstart.com/articles/Derivation-of-the-Black-Scholes-Equation/" target="_blank">QuantStart: Black-Scholes</a>
+</div>
 
 <h3 id="topic-7">Topic 7: Binomial Option Pricing Model (Cox-Ross-Rubinstein)</h3>
 
@@ -2752,8 +2757,15 @@
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 7-10: Numerical Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/Binomial_options_pricing_model" target="_blank">Wikipedia: Binomial Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Monte_Carlo_methods_in_finance" target="_blank">Wikipedia: Monte Carlo Finance</a> |
+    <a href="https://en.wikipedia.org/wiki/Finite_difference_methods_for_option_pricing" target="_blank">Wikipedia: FDM Options</a> |
+    <a href="https://www.quantstart.com/articles/Monte-Carlo-Simulation-of-SDEs/" target="_blank">QuantStart: Monte Carlo</a>
+</div>
 
-<h3 id="topic-11">Topic 11: Local Volatility Models (Dupire’s Formula)</h3>
+<h3 id="topic-11">Topic 11: Local Volatility Models (Dupire's Formula)</h3>
 
 <div class="definition">
     <p><strong>Local Volatility Model:</strong> A deterministic volatility model where the volatility of the underlying asset is a function of the current asset price \( S \) and time \( t \), denoted as \( \sigma(S, t) \). Unlike stochastic volatility models, local volatility is fully determined by the current state of the market, making it a "local" property.</p>
@@ -4040,6 +4052,13 @@
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 11-15: Volatility & Jump Models):</b>
+    <a href="https://en.wikipedia.org/wiki/Local_volatility" target="_blank">Wikipedia: Local Volatility</a> |
+    <a href="https://en.wikipedia.org/wiki/Heston_model" target="_blank">Wikipedia: Heston Model</a> |
+    <a href="https://en.wikipedia.org/wiki/SABR_volatility_model" target="_blank">Wikipedia: SABR Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Jump_diffusion" target="_blank">Wikipedia: Jump-Diffusion</a>
+</div>
 
 <h3 id="topic-16">Topic 16: Affine Jump-Diffusion Models</h3>
 
@@ -4801,6 +4820,14 @@
         <li><strong>Numerical Implementation:</strong> Simulating LMM requires careful handling of the forward measure and the numéraire. Monte Carlo methods are commonly used but can be computationally intensive.</li>
         <li><strong>Day Count Conventions:</strong> Ensure that day count fractions \( \delta_i \) are correctly specified, as they affect the definition of forward rates and the pricing of derivatives.</li>
     </ul>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 16-19: Interest Rate Models):</b>
+    <a href="https://en.wikipedia.org/wiki/Heath%E2%80%93Jarrow%E2%80%93Morton_framework" target="_blank">Wikipedia: HJM Framework</a> |
+    <a href="https://en.wikipedia.org/wiki/Vasicek_model" target="_blank">Wikipedia: Vasicek Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Hull%E2%80%93White_model" target="_blank">Wikipedia: Hull-White</a> |
+    <a href="https://en.wikipedia.org/wiki/LIBOR_market_model" target="_blank">Wikipedia: LIBOR Market Model</a>
 </div>
 
 <style>
@@ -5595,6 +5622,13 @@
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 20-22: Credit Risk):</b>
+    <a href="https://en.wikipedia.org/wiki/Merton_model" target="_blank">Wikipedia: Merton Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Credit_valuation_adjustment" target="_blank">Wikipedia: CVA</a> |
+    <a href="https://en.wikipedia.org/wiki/Copula_(probability_theory)" target="_blank">Wikipedia: Copulas</a> |
+    <a href="https://www.investopedia.com/terms/c/creditrisk.asp" target="_blank">Investopedia: Credit Risk</a>
+</div>
 
 <h3 id="topic-23">Topic 23: Value-at-Risk (VaR) and Expected Shortfall (ES)</h3>
 
@@ -6243,6 +6277,13 @@
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 23-25: Risk Management):</b>
+    <a href="https://en.wikipedia.org/wiki/Value_at_risk" target="_blank">Wikipedia: Value-at-Risk</a> |
+    <a href="https://en.wikipedia.org/wiki/Expected_shortfall" target="_blank">Wikipedia: Expected Shortfall</a> |
+    <a href="https://en.wikipedia.org/wiki/Extreme_value_theory" target="_blank">Wikipedia: EVT</a> |
+    <a href="https://www.investopedia.com/terms/v/var.asp" target="_blank">Investopedia: VaR</a>
+</div>
 
 <h3 id="topic-26">Topic 26: Portfolio Optimization (Mean-Variance, Black-Litterman)</h3>
 
@@ -7098,8 +7139,17 @@
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 26-29: Portfolio Theory):</b>
+    <a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory" target="_blank">Wikipedia: Modern Portfolio Theory</a> |
+    <a href="https://en.wikipedia.org/wiki/Black%E2%80%93Litterman_model" target="_blank">Wikipedia: Black-Litterman Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Capital_asset_pricing_model" target="_blank">Wikipedia: CAPM</a> |
+    <a href="https://en.wikipedia.org/wiki/Kelly_criterion" target="_blank">Wikipedia: Kelly Criterion</a> |
+    <a href="https://www.investopedia.com/terms/m/modernportfoliotheory.asp" target="_blank">Investopedia: MPT</a>
+</div>
 
-<h3 id="topic-30">Topic 30: Stochastic Control and Merton’s Portfolio Problem</h3>
+
+<h3 id="topic-30">Topic 30: Stochastic Control and Merton's Portfolio Problem</h3>
 
 <div class="definition">
     <p><strong>Stochastic Control:</strong> A branch of control theory that deals with systems influenced by random noise. In mathematical finance, it is used to model and optimize dynamic decision-making under uncertainty, such as portfolio allocation over time.</p>
@@ -8173,6 +8223,15 @@
         <li>Cont, R., Stoikov, S., & Talreja, R. (2010). <em>A stochastic model for order book dynamics</em>. Operations Research, 58(3), 549-563.</li>
         <li>Gould, M. D., Porter, M. A., Williams, S., McDonald, M., Fenn, D. J., & Howison, S. D. (2013). <em>Limit order books</em>. Quantitative Finance, 13(11), 1709-1742.</li>
     </ul>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 30-34: Stochastic Control & Market Microstructure):</b>
+    <a href="https://en.wikipedia.org/wiki/Merton%27s_portfolio_problem" target="_blank">Wikipedia: Merton's Portfolio Problem</a> |
+    <a href="https://en.wikipedia.org/wiki/Optimal_execution" target="_blank">Wikipedia: Optimal Execution</a> |
+    <a href="https://en.wikipedia.org/wiki/Market_microstructure" target="_blank">Wikipedia: Market Microstructure</a> |
+    <a href="https://en.wikipedia.org/wiki/Order_book" target="_blank">Wikipedia: Order Book</a> |
+    <a href="https://www.investopedia.com/terms/m/marketmicrostructure.asp" target="_blank">Investopedia: Market Microstructure</a>
 </div>
 
 
@@ -9581,6 +9640,15 @@ model.compile(optimizer='adam', loss='mse')
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 35-40: HFT & Quantitative Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/High-frequency_trading" target="_blank">Wikipedia: High-Frequency Trading</a> |
+    <a href="https://en.wikipedia.org/wiki/Algorithmic_trading" target="_blank">Wikipedia: Algorithmic Trading</a> |
+    <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank">Wikipedia: Machine Learning</a> |
+    <a href="https://en.wikipedia.org/wiki/Bayesian_inference" target="_blank">Wikipedia: Bayesian Inference</a> |
+    <a href="https://www.quantstart.com/articles/Bayesian-Statistics-An-Introduction/" target="_blank">QuantStart: Bayesian Statistics</a>
+</div>
+
 
 <h3 id="topic-41">Topic 41: Cointegration and Pairs Trading Strategies</h3>
 
@@ -10194,6 +10262,15 @@ model.compile(optimizer='adam', loss='mse')
         <li><strong>Credit Risk Modeling:</strong> Estimate default probabilities and correlations in credit risk models (e.g., CreditMetrics) using MCMC.</li>
         <li><strong>Volatility Modeling:</strong> Estimate time-varying volatility models (e.g., GARCH) or stochastic volatility models using MCMC.</li>
     </ul>
+</div>
+
+<div class="further-reading">
+    <b>Further Reading (Topics 41-43: Statistical Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/Cointegration" target="_blank">Wikipedia: Cointegration</a> |
+    <a href="https://en.wikipedia.org/wiki/Pairs_trade" target="_blank">Wikipedia: Pairs Trading</a> |
+    <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo" target="_blank">Wikipedia: MCMC</a> |
+    <a href="https://en.wikipedia.org/wiki/Kalman_filter" target="_blank">Wikipedia: Kalman Filter</a> |
+    <a href="https://www.quantstart.com/articles/Pairs-Trading-Strategy/" target="_blank">QuantStart: Pairs Trading</a>
 </div>
 
 
@@ -11990,8 +12067,17 @@ model.compile(optimizer='adam', loss='mse')
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 44-50: Advanced Pricing Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/Fourier_transform" target="_blank">Wikipedia: Fourier Transform</a> |
+    <a href="https://en.wikipedia.org/wiki/Characteristic_function_(probability_theory)" target="_blank">Wikipedia: Characteristic Function</a> |
+    <a href="https://en.wikipedia.org/wiki/Rough_volatility" target="_blank">Wikipedia: Rough Volatility</a> |
+    <a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank">Wikipedia: Deep Learning</a> |
+    <a href="https://www.quantstart.com/articles/Option-Pricing-using-Fourier-Methods/" target="_blank">QuantStart: Fourier Pricing</a>
+</div>
 
-        
+
+
     </div>
         </div>
     </div>

@@ -7,7 +7,6 @@
     
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     
     <style>
         * {
@@ -17,19 +16,39 @@
         }
         
         body {
-            font-family: 'Times New Roman', serif;
-            font-size: 9pt;
-            line-height: 1.3;
-            color: #000;
-            background-color: #fff;
-            padding: 0.4in;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
         }
-        
+
         .container {
-            max-width: 11in;
+            max-width: 1600px;
             margin: 0 auto;
+            background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
+        .home-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
         h1 {
             text-align: center;
             font-size: 16pt;
@@ -56,9 +75,11 @@
         }
         
         .two-column {
-            column-count: 2;
-            column-gap: 0.3in;
-            column-rule: 1px solid #ccc;
+            /* Single column layout - removed column-count */
+        }
+
+        .content {
+            /* Single column layout - removed column-count */
         }
         
         .model-section {
@@ -126,9 +147,56 @@
         
         .plot-container {
             width: 100%;
-            height: 200px;
+            min-height: 220px;
             margin: 6pt 0;
             break-inside: avoid;
+            overflow: hidden;
+            box-sizing: border-box;
+            border: 1pt solid #d9e1ec;
+            border-radius: 8px;
+            background: #fff;
+            padding: 6pt;
+        }
+
+        .plot-container svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .plot-title {
+            font-size: 8pt;
+            font-weight: bold;
+            fill: #2c3e50;
+        }
+
+        .plot-axis-label,
+        .plot-tick-label,
+        .plot-legend-label {
+            font-size: 7pt;
+            fill: #455a64;
+        }
+
+        .plot-grid {
+            stroke: #e5ebf3;
+            stroke-width: 1;
+        }
+
+        .plot-axis {
+            stroke: #607d8b;
+            stroke-width: 1.2;
+        }
+
+        .plot-line {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .plot-point {
+            stroke: none;
         }
         
         .boxed {
@@ -157,12 +225,31 @@
             padding: 6pt;
             margin: 6pt 0;
             border: 1pt solid #4a4;
-            column-span: all;
             break-inside: avoid;
         }
-        
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 5pt;
+            margin: 6pt 0;
+            border-left: 3pt solid #667eea;
+            font-size: 7.5pt;
+        }
+
+        .further-reading b {
+            color: #667eea;
+        }
+
+        .further-reading a {
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .further-reading a:hover {
+            text-decoration: underline;
+        }
+
         .summary-table {
-            column-span: all;
             margin-bottom: 10pt;
         }
         
@@ -175,7 +262,6 @@
         }
         
         .section-break {
-            column-span: all;
             border-top: 2px solid #000;
             margin: 10pt 0;
         }
@@ -193,10 +279,178 @@
                 padding: 0.3in;
             }
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1 !important;
+            background-color: transparent !important;
+            font-size: 1.3em;
+            margin: 0 0 20px 0;
+            padding: 0 0 15px 0;
+            border: none;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .plot-container {
+                min-height: 190px;
+                padding: 5pt;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <a href="index.html" class="home-button">← Home</a>
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#section-1">1. Black-Scholes / GBM</a></li>
+                <li><a href="#section-2">2. Ornstein-Uhlenbeck</a></li>
+                <li><a href="#section-3">3. Vasicek</a></li>
+                <li><a href="#section-4">4. Cox-Ingersoll-Ross</a></li>
+                <li><a href="#section-5">5. Heston Stochastic Volatility</a></li>
+                <li><a href="#section-6">6. SABR Model</a></li>
+                <li><a href="#section-7">7. Short-Rate Models and Discount Factors</a></li>
+                <li><a href="#section-8">8. Merton Jump-Diffusion</a></li>
+                <li><a href="#section-9">9. GARCH(1,1)</a></li>
+                <li><a href="#section-10">10. Detailed SDE Derivations</a></li>
+                <li><a href="#section-11">11. Classic Interview Problems</a></li>
+            </ol>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
+
         <h1>Enhanced Stochastic Mathematical Finance Cheatsheet</h1>
         <p style="text-align: center; font-style: italic; margin-bottom: 10pt;">With Detailed Derivations & Interview Examples</p>
         
@@ -215,8 +469,8 @@
                     <tr><td><b>Ornstein-Uhlenbeck</b></td><td>\(dX = \theta(\mu - X)dt + \sigma dW\)</td><td>Mean reversion</td><td>Gaussian stationary</td></tr>
                     <tr><td><b>Vasicek</b></td><td>\(dr = a(b - r)dt + \sigma dW\)</td><td>Interest rates</td><td>Affine term structure</td></tr>
                     <tr><td><b>CIR</b></td><td>\(dr = a(b - r)dt + \sigma\sqrt{r} dW\)</td><td>Interest rates (+)</td><td>Non-central χ²</td></tr>
-                    <tr><td><b>Heston</b></td><td>\(dv = \kappa(\theta - v)dt + \xi\sqrt{v} dW\)</td><td>Stochastic vol</td><td>Semi-closed form</td></tr>
-                    <tr><td><b>SABR</b></td><td>\(d\alpha = \nu\alpha^\beta dW^\alpha\)</td><td>Vol smile</td><td>CEV dynamics</td></tr>
+                    <tr><td><b>Heston</b></td><td>\(dS_t = \mu S_t dt + \sqrt{v_t} S_t dW_t^S\)<br>\(dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t} dW_t^v\)<br>\(\langle dW_t^S, dW_t^v \rangle = \rho dt\)</td><td>Stochastic vol</td><td>Semi-closed form</td></tr>
+                    <tr><td><b>SABR</b></td><td>\(dF_t = \alpha_t F_t^\beta dW_t^F\)<br>\(d\alpha_t = \nu\alpha_t dW_t^\alpha\)<br>\(\langle dW_t^F, dW_t^\alpha \rangle = \rho dt\)</td><td>Vol smile</td><td>CEV dynamics</td></tr>
                     <tr><td><b>Merton Jump</b></td><td>\(dS = \mu S dt + \sigma S dW + S dJ\)</td><td>Jumps</td><td>Compound Poisson</td></tr>
                     <tr><td><b>GARCH(1,1)</b></td><td>\(\sigma_t^2 = \omega + \alpha\varepsilon_{t-1}^2 + \beta\sigma_{t-1}^2\)</td><td>Vol forecasting</td><td>Discrete time</td></tr>
                 </tbody>
@@ -226,7 +480,7 @@
         <div class="two-column">
             <!-- BLACK-SCHOLES -->
             <div class="model-section">
-                <h2>1. Black-Scholes / GBM</h2>
+                <h2 id="section-1">1. Black-Scholes / GBM</h2>
                 <div class="eq">$$dS_t = \mu S_t dt + \sigma S_t dW_t$$</div>
                 <p><b>Solution:</b> \(S_t = S_0 \exp[(\mu - \sigma^2/2)t + \sigma W_t]\)</p>
                 
@@ -266,13 +520,20 @@
                     <li>\(\mathcal{V}=\partial V/\partial\sigma = S\sqrt{T}N'(d_1)\)</li>
                     <li>\(\Theta=\partial V/\partial t\) (negative for long options)</li>
                 </ul>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/Black–Scholes_model" target="_blank">Wikipedia: Black-Scholes</a> |
+                    <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion" target="_blank">Wikipedia: GBM</a> |
+                    <a href="https://www.columbia.edu/~ks20/FE-Notes/4700-07-Notes-GBM.pdf" target="_blank">Columbia Notes (Karl Sigman)</a>
+                </div>
             </div>
-            
+
             <div id="plot-gbm" class="plot-container"></div>
-            
+
             <!-- ORNSTEIN-UHLENBECK -->
             <div class="model-section">
-                <h2>2. Ornstein-Uhlenbeck</h2>
+                <h2 id="section-2">2. Ornstein-Uhlenbeck</h2>
                 <div class="eq">$$dX_t = \theta(\mu - X_t)dt + \sigma dW_t$$</div>
                 <p><b>Solution:</b> \(X_t = X_0e^{-\theta t} + \mu(1-e^{-\theta t}) + \sigma\int_0^t e^{-\theta(t-s)}dW_s\)</p>
                 <p><b>Properties:</b> \(\mathbb{E}[X_t] \to \mu\), \(\text{Var}[X_t] \to \sigma^2/(2\theta)\)</p>
@@ -294,36 +555,45 @@
                     <b>INTERVIEW Q4:</b> Why is O-U Gaussian but CIR isn't?<br>
                     <b>Solution:</b> O-U has <b>additive noise</b> (\(\sigma dW\)), so it's a linear transformation of Brownian motion, which is Gaussian. CIR has <b>multiplicative noise</b> (\(\sigma\sqrt{r}dW\)), making the distribution non-Gaussian (specifically, non-central chi-squared).
                 </div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/Ornstein–Uhlenbeck_process" target="_blank">Wikipedia: O-U Process</a> |
+                    <a href="https://www.quantstart.com/articles/ornstein-uhlenbeck-simulation-with-python/" target="_blank">QuantStart: Python Simulation</a> |
+                    <a href="https://medium.com/the-quant-journey/ornstein-uhlenbeck-mean-reversion-process-3da2f8d19a0" target="_blank">The Quant Journey</a>
+                </div>
             </div>
-            
+
             <div id="plot-ou" class="plot-container"></div>
-            
+
             <!-- VASICEK -->
             <div class="model-section">
-                <h2>3. Vasicek</h2>
+                <h2 id="section-3">3. Vasicek</h2>
                 <div class="eq">$$dr_t = a(b - r_t)dt + \sigma dW_t$$</div>
-                <p><b>Bond Price:</b> \(P(t,T) = A(t,T)e^{-B(t,T)r_t}\)</p>
-                <div class="eq">$$B(t,T)=\frac{1-e^{-a(T-t)}}{a}$$
-                $$\ln A(t,T) = (b-\frac{\sigma^2}{2a^2})(B(t,T)-(T-t)) - \frac{\sigma^2 B(t,T)^2}{4a}$$</div>
+                <p><b>Solution:</b> \(r_t = r_0e^{-at} + b(1-e^{-at}) + \sigma\int_0^t e^{-a(t-s)}dW_s\)</p>
+                <p><b>Properties:</b> \(\mathbb{E}[r_t] = r_0e^{-at} + b(1-e^{-at})\), \(\mathrm{Var}(r_t) = \frac{\sigma^2}{2a}(1-e^{-2at})\)</p>
                 
                 <div class="warning-box">
                     <b>Warning:</b> Rates can go negative! This was acceptable pre-2008 but became problematic during negative rate regimes. Modern use: short-term modeling only.
                 </div>
                 
-                <div class="interview-question">
-                    <b>INTERVIEW Q5:</b> Given Vasicek parameters \(a=0.2, b=0.05, \sigma=0.01, r_0=0.03\), price a 5-year zero-coupon bond.<br>
-                    <b>Solution:</b><br>
-                    \(B(0,5) = \frac{1-e^{-0.2(5)}}{0.2} = \frac{1-e^{-1}}{0.2} = \frac{1-0.368}{0.2} = 3.16\)<br>
-                    \(\ln A = (0.05-\frac{0.0001}{2(0.04)})(3.16-5) - \frac{0.0001(3.16)^2}{4(0.2)}\)<br>
-                    \(= (0.05-0.00125)(-1.84) - 0.00125 = -0.0897 - 0.00125 = -0.091\)<br>
-                    \(A = e^{-0.091} = 0.913\)<br>
-                    \(P(0,5) = 0.913 \cdot e^{-3.16(0.03)} = 0.913 \cdot e^{-0.0948} = 0.913 \cdot 0.910 = \boxed{0.831}\)
+                <div class="example">
+                    <b>Example:</b> \(r_0=3\%, a=0.2, b=5\%, \sigma=1\%, t=2\)<br>
+                    \(\mathbb{E}[r_2] = 0.03e^{-0.4} + 0.05(1-e^{-0.4}) = 2.01\% + 1.65\% = \boxed{3.66\%}\)<br>
+                    Long-run mean is \(b=5\%\); half-life of mean reversion is \(\ln 2/a \approx 3.47\) years.
+                </div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/Vasicek_model" target="_blank">Wikipedia: Vasicek Model</a> |
+                    <a href="https://www.quantstart.com/articles/vasicek-model-simulation-with-python/" target="_blank">QuantStart: Python Implementation</a> |
+                    <a href="https://hannoreuvers.github.io/post/vasicek/" target="_blank">Hanno Reuvers: Bond Pricing</a>
                 </div>
             </div>
-            
+
             <!-- CIR -->
             <div class="model-section">
-                <h2>4. Cox-Ingersoll-Ross</h2>
+                <h2 id="section-4">4. Cox-Ingersoll-Ross</h2>
                 <div class="eq">$$dr_t = a(b - r_t)dt + \sigma\sqrt{r_t} dW_t$$</div>
                 <p><b>Feller Condition:</b> \(2ab \geq \sigma^2\) ensures \(r_t > 0\) always</p>
                 <p><b>Distribution:</b> \(r_t \sim \frac{\sigma^2(1-e^{-at})}{4a}\chi'^2_{\nu}(\lambda)\) where \(\nu=\frac{4ab}{\sigma^2}\), \(\lambda=\frac{4ae^{-at}r_0}{\sigma^2(1-e^{-at})}\)</p>
@@ -348,13 +618,20 @@
                     <b>Feller condition:</b> \(2ab = 2(0.8)(0.06) = 0.096\) vs \(\sigma^2 = 0.0225\)<br>
                     Since \(0.096 > 0.0225\), Feller holds → rates stay strictly positive ✓
                 </div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/Cox–Ingersoll–Ross_model" target="_blank">Wikipedia: CIR Model</a> |
+                    <a href="https://www.tidy-finance.org/blog/cir-calibration/" target="_blank">Tidy Finance: CIR Calibration</a> |
+                    <a href="https://financetrainingcourse.com/education/2012/06/cox-ingersoll-ross-cir-interest-rate-model-parameter-calibration-short-rates-simulation-and-modeling-of-longer-term-interest-rates-an-example/" target="_blank">FinanceTrainingCourse</a>
+                </div>
             </div>
-            
+
             <div id="plot-cir" class="plot-container"></div>
-            
+
             <!-- HESTON -->
             <div class="model-section">
-                <h2>5. Heston Stochastic Volatility</h2>
+                <h2 id="section-5">5. Heston Stochastic Volatility</h2>
                 <div class="eq">$$dS_t = \mu S_t dt + \sqrt{v_t} S_t dW_t^S$$
                 $$dv_t = \kappa(\theta - v_t)dt + \xi\sqrt{v_t} dW_t^v$$
                 $$\langle dW_t^S, dW_t^v \rangle = \rho dt$$</div>
@@ -390,13 +667,20 @@
                 </div>
                 
                 <p><b>Characteristic Function:</b> Semi-closed form exists, used for fast FFT pricing of European options.</p>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/Heston_model" target="_blank">Wikipedia: Heston Model</a> |
+                    <a href="https://www.codearmo.com/python-tutorial/heston-model-simulation-python" target="_blank">Codearmo: Heston Simulation in Python</a> |
+                    <a href="https://quant.stackexchange.com/questions/18684/heston-model-calibration" target="_blank">QuantStackExchange: Heston Calibration</a>
+                </div>
             </div>
-            
+
             <div id="plot-heston" class="plot-container"></div>
             
             <!-- SABR -->
             <div class="model-section">
-                <h2>6. SABR Model</h2>
+                <h2 id="section-6">6. SABR Model</h2>
                 <div class="eq">$$dF_t = \alpha_t F_t^\beta dW_t^F$$
                 $$d\alpha_t = \nu\alpha_t dW_t^\alpha$$
                 $$\langle dW_t^F, dW_t^\alpha \rangle = \rho dt$$</div>
@@ -436,13 +720,68 @@
                 
                 <p><b>Hagan Approximation (ATM):</b></p>
                 <div class="eq" style="font-size: 7pt;">$$\sigma_{ATM} \approx \frac{\alpha}{F^{1-\beta}}\left[1 + \left(\frac{(1-\beta)^2\alpha^2}{24F^{2-2\beta}} + \frac{\rho\beta\nu\alpha}{4F^{1-\beta}} + \frac{2-3\rho^2}{24}\nu^2\right)T\right]$$</div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://en.wikipedia.org/wiki/SABR_volatility_model" target="_blank">Wikipedia: SABR Volatility Model</a> |
+                    <a href="https://www.bsic.it/the-sabr-model/" target="_blank">BSIC: The SABR Model Explained</a> |
+                    <a href="https://github.com/ynouri/pysabr" target="_blank">GitHub: pySABR Implementation</a>
+                </div>
             </div>
-            
+
             <div id="plot-sabr" class="plot-container"></div>
+
+            <!-- SHORT-RATE MODELS -->
+            <div class="model-section">
+                <h2 id="section-7">7. Short-Rate Models and Discount Factors</h2>
+                <p><b>Pathwise discount factor in a short-rate model:</b></p>
+                <div class="eq">$$D(t,T)=\exp\left(-\int_t^T r_s\,ds\right)$$</div>
+                <p>Interpretation: discounting is random because the future short rate path is random.</p>
+
+                <p><b>Zero-coupon bond price under \(\mathbb{Q}\):</b></p>
+                <div class="eq">$$P(t,T)=\mathbb{E}^{\mathbb{Q}}\left[\exp\left(-\int_t^T r_s\,ds\right)\middle|\mathcal{F}_t\right]$$</div>
+                <p>So a short-rate model is useful when it specifies \(r_t\) directly and therefore induces discount factors and the full ZCB curve.</p>
+
+                <div class="warning-box">
+                    <b>SABR is different:</b> SABR models a forward rate and its volatility smile, not the short rate itself. It is excellent for swaption vol surfaces, but it does <b>not</b> directly output \(D(t,T)\) or \(P(t,T)\) without being embedded in a larger rates framework.
+                </div>
+
+                <p><b>Vasicek under \(\mathbb{Q}\):</b></p>
+                <div class="eq">$$dr_t = a(b-r_t)dt + \sigma dW_t$$
+                $$P(t,T)=A(t,T)e^{-B(t,T)r_t}$$
+                $$B(t,T)=\frac{1-e^{-a(T-t)}}{a}$$</div>
+                <p><b>Concise derivation summary:</b> start from the bond-pricing PDE under \(\mathbb{Q}\), try the affine ansatz \(P(t,T)=A(t,T)e^{-B(t,T)r_t}\), then match coefficients of \(1\) and \(r_t\). This yields ODEs for \(A\) and \(B\), with \(B\) solved first and \(A\) obtained by integration.</p>
+
+                <p><b>Dimensional analysis:</b></p>
+                <ul>
+                    <li>\(r_t\), \(a\), \(b\), \(\sigma\) all carry rate/time-compatible units; \(a\) has units \(1/\text{time}\).</li>
+                    <li>\(B(t,T)\) has units of time, so \(B r_t\) is dimensionless as required in \(e^{-B r_t}\).</li>
+                    <li>\(\int_t^T r_s ds\) is dimensionless, which is why both \(D(t,T)\) and \(P(t,T)\) are pure numbers in \((0,1]\).</li>
+                </ul>
+
+                <div class="interview-question">
+                    <b>INTERVIEW Q12:</b> Given Vasicek parameters \(a=0.2, b=0.05, \sigma=0.01, r_0=0.03\), price a 5-year zero-coupon bond.<br>
+                    <b>Solution:</b><br>
+                    \(B(0,5) = \frac{1-e^{-0.2(5)}}{0.2} = \frac{1-e^{-1}}{0.2} = \frac{1-0.368}{0.2} = 3.16\)<br>
+                    \(\ln A = (0.05-\frac{0.0001}{2(0.04)})(3.16-5) - \frac{0.0001(3.16)^2}{4(0.2)}\)<br>
+                    \(= (0.05-0.00125)(-1.84) - 0.00125 = -0.0897 - 0.00125 = -0.091\)<br>
+                    \(A = e^{-0.091} = 0.913\)<br>
+                    \(P(0,5) = 0.913 \cdot e^{-3.16(0.03)} = 0.913 \cdot e^{-0.0948} = 0.913 \cdot 0.910 = \boxed{0.831}\)
+                </div>
+
+                <p><b>Major short-rate models:</b></p>
+                <ul>
+                    <li><b>Vasicek:</b> fully tractable affine benchmark; downside is possible negative rates.</li>
+                    <li><b>Hull-White 1F:</b> fits today’s curve exactly via time-dependent drift; downside is extra calibration structure.</li>
+                    <li><b>CIR:</b> positive-rate tendency and affine bond pricing; downside is less tractable than Vasicek.</li>
+                    <li><b>Black-Karasinski:</b> lognormal short rate keeps rates positive; downside is weaker closed-form convenience.</li>
+                    <li><b>G2++:</b> two-factor Gaussian model improves curve/correlation fit; downside is more parameters and model risk.</li>
+                </ul>
+            </div>
             
             <!-- MERTON JUMP -->
             <div class="model-section">
-                <h2>7. Merton Jump-Diffusion</h2>
+                <h2 id="section-8">8. Merton Jump-Diffusion</h2>
                 <div class="eq">$$dS_t = \mu S_t dt + \sigma S_t dW_t + S_t dJ_t$$
                 $$dJ_t = (e^Y - 1)dN_t$$
                 $$Y \sim N(\mu_J, \sigma_J^2), \; N_t \sim \text{Poisson}(\lambda t)$$</div>
@@ -465,7 +804,7 @@
                 </div>
                 
                 <div class="interview-question">
-                    <b>INTERVIEW Q12:</b> S&P 500 drops 5% on news. Model as GBM vs Jump-Diffusion - which is better?<br>
+                    <b>INTERVIEW Q13:</b> S&P 500 drops 5% on news. Model as GBM vs Jump-Diffusion - which is better?<br>
                     <b>Solution:</b><br>
                     <b>GBM:</b> Would require \(\sigma W_T \approx -0.05\) over short time → implies huge implied vol spike, inconsistent with VIX behavior.<br>
                     <b>Jump:</b> Natural explanation: single jump with \(Y \approx \ln(0.95) = -0.0513\). Matches observed "jump risk premium" in options.<br>
@@ -473,7 +812,7 @@
                 </div>
                 
                 <div class="interview-question">
-                    <b>INTERVIEW Q13:</b> Under risk-neutral measure, how does drift change with jumps?<br>
+                    <b>INTERVIEW Q14:</b> Under risk-neutral measure, how does drift change with jumps?<br>
                     <b>Solution:</b> Must compensate for jump risk. Replace \(\mu\) with \(r - \lambda m\) where \(m = e^{\mu_J+\sigma_J^2/2}-1\).<br>
                     <b>Example:</b> \(r=5\%, \lambda=3, \mu_J=-0.05, \sigma_J=0.1\)<br>
                     \(m = e^{-0.05+0.005}-1 = e^{-0.045}-1 = -0.044\)<br>
@@ -483,13 +822,20 @@
                 
                 <p><b>Option Pricing:</b> Weighted sum of BS prices over jump counts</p>
                 <div class="eq" style="font-size: 8pt;">$$V = \sum_{n=0}^\infty e^{-\lambda T}\frac{(\lambda T)^n}{n!}V_{BS}(\sigma_n^2, \mu_n)$$</div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://www.codearmo.com/python-tutorial/merton-jump-diffusion-model-python" target="_blank">Codearmo: Merton Jump-Diffusion in Python</a> |
+                    <a href="https://www.quantstart.com/articles/Jump-Diffusion-Models-for-European-Options-Pricing-in-Python/" target="_blank">QuantStart: Jump-Diffusion Models</a> |
+                    <a href="https://en.wikipedia.org/wiki/Jump_diffusion" target="_blank">Wikipedia: Jump Diffusion</a>
+                </div>
             </div>
-            
+
             <div id="plot-jump" class="plot-container"></div>
             
             <!-- GARCH -->
             <div class="model-section">
-                <h2>8. GARCH(1,1)</h2>
+                <h2 id="section-9">9. GARCH(1,1)</h2>
                 <div class="eq">$$r_t = \mu + \varepsilon_t, \; \varepsilon_t = \sigma_t z_t, \; z_t \sim N(0,1)$$
                 $$\sigma_t^2 = \omega + \alpha\varepsilon_{t-1}^2 + \beta\sigma_{t-1}^2$$</div>
                 
@@ -512,7 +858,7 @@
                 </div>
                 
                 <div class="interview-question">
-                    <b>INTERVIEW Q14:</b> Yesterday's return was -2%, today's is +1.5%. Estimate tomorrow's volatility using GARCH(1,1) with \(\omega=0.000001, \alpha=0.1, \beta=0.85\), given \(\sigma_{yesterday}=1.2\%\).<br>
+                    <b>INTERVIEW Q15:</b> Yesterday's return was -2%, today's is +1.5%. Estimate tomorrow's volatility using GARCH(1,1) with \(\omega=0.000001, \alpha=0.1, \beta=0.85\), given \(\sigma_{yesterday}=1.2\%\).<br>
                     <b>Solution:</b><br>
                     <b>Step 1:</b> Calculate \(\sigma_{today}^2\) using yesterday's shock:<br>
                     \(\varepsilon_{yesterday} = -0.02\) (assuming μ=0)<br>
@@ -527,7 +873,7 @@
                 </div>
                 
                 <div class="interview-question">
-                    <b>INTERVIEW Q15:</b> GARCH shows \(\alpha=0.05, \beta=0.94\). What's the half-life of volatility shocks?<br>
+                    <b>INTERVIEW Q16:</b> GARCH shows \(\alpha=0.05, \beta=0.94\). What's the half-life of volatility shocks?<br>
                     <b>Solution:</b> Persistence = \(\alpha+\beta=0.99\) (very high!)<br>
                     Shock decays as \((\alpha+\beta)^n\). For half-life:<br>
                     \(0.99^n = 0.5 \Rightarrow n = \frac{\ln(0.5)}{\ln(0.99)} = \frac{-0.693}{-0.01005} = \boxed{69 \text{ days}}\)<br>
@@ -537,14 +883,21 @@
                 <div class="warning-box">
                     <b>Common Mistake:</b> Confusing \(\varepsilon_t\) (shock) with \(r_t\) (return). Use \(\varepsilon_t = r_t - \mu\) in the recursion!
                 </div>
+
+                <div class="further-reading">
+                    <b>Further Reading:</b>
+                    <a href="https://vlab.stern.nyu.edu/docs/volatility/GARCH" target="_blank">NYU V-Lab: GARCH Documentation</a> |
+                    <a href="https://nixtlaverse.nixtla.io/statsforecast/docs/models/garch.html" target="_blank">Nixtla: GARCH Implementation</a> |
+                    <a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity" target="_blank">Wikipedia: ARCH/GARCH</a>
+                </div>
             </div>
-            
+
             <div id="plot-garch" class="plot-container"></div>
         </div>
         
         <div class="section-break"></div>
         
-        <h2 style="column-span: all; text-align: center; margin-top: 10pt;">Detailed SDE Derivations</h2>
+        <h2 id="section-10" style="column-span: all; text-align: center; margin-top: 10pt;">Detailed SDE Derivations</h2>
         
         <div class="two-column">
             <!-- ITO'S LEMMA -->
@@ -1393,7 +1746,7 @@
         
         <div class="section-break"></div>
         
-        <h2 style="column-span: all; text-align: center;">Classic Interview Problems</h2>
+        <h2 id="section-11" style="column-span: all; text-align: center;">Classic Interview Problems</h2>
         
         <div class="two-column">
             <div class="interview-question">
@@ -1713,10 +2066,330 @@
             </div>
         </div>
     </div>
-    
+            </div>
+        </div>
+    </div>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
     <script>
         // Wait for page to load
         window.addEventListener('load', function() {
+            function createRng(seed) {
+                let state = seed >>> 0;
+                return function() {
+                    state = (1664525 * state + 1013904223) >>> 0;
+                    return state / 4294967296;
+                };
+            }
+
+            function randomSymmetric(rng) {
+                return (rng() * 2 - 1) * Math.sqrt(3);
+            }
+
+            function linspace(start, end, n) {
+                return Array.from({length: n}, (_, i) => start + (end - start) * i / (n - 1));
+            }
+
+            function expandRange(min, max) {
+                if (min === max) {
+                    const pad = Math.abs(min || 1) * 0.1;
+                    return [min - pad, max + pad];
+                }
+                const pad = (max - min) * 0.08;
+                return [min - pad, max + pad];
+            }
+
+            function buildPath(points, xScale, yScale) {
+                return points.map(function(point, idx) {
+                    const cmd = idx === 0 ? 'M' : 'L';
+                    return cmd + xScale(point.x).toFixed(2) + ' ' + yScale(point.y).toFixed(2);
+                }).join(' ');
+            }
+
+            function renderStaticPlot(containerId, config) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                const width = 520;
+                const height = 236;
+                const margin = {top: 26, right: config.rightAxis ? 42 : 18, bottom: 46, left: 42};
+                const plotWidth = width - margin.left - margin.right;
+                const plotHeight = height - margin.top - margin.bottom;
+                const leftSeries = config.series.filter(function(s) { return (s.axis || 'left') === 'left'; });
+                const rightSeries = config.series.filter(function(s) { return s.axis === 'right'; });
+                const xValues = config.series.flatMap(function(s) { return s.points.map(function(p) { return p.x; }); });
+                const leftValues = leftSeries.flatMap(function(s) { return s.points.map(function(p) { return p.y; }); });
+                const rightValues = rightSeries.flatMap(function(s) { return s.points.map(function(p) { return p.y; }); });
+                const xRange = expandRange(Math.min.apply(null, xValues), Math.max.apply(null, xValues));
+                const leftRange = expandRange(Math.min.apply(null, leftValues), Math.max.apply(null, leftValues));
+                const rightRange = rightSeries.length ? expandRange(Math.min.apply(null, rightValues), Math.max.apply(null, rightValues)) : null;
+                const xScale = function(x) { return margin.left + (x - xRange[0]) / (xRange[1] - xRange[0]) * plotWidth; };
+                const leftScale = function(y) { return margin.top + plotHeight - (y - leftRange[0]) / (leftRange[1] - leftRange[0]) * plotHeight; };
+                const rightScale = rightRange ? function(y) { return margin.top + plotHeight - (y - rightRange[0]) / (rightRange[1] - rightRange[0]) * plotHeight; } : null;
+                const xTicks = 4;
+                const yTicks = 4;
+                const legendY = height - 22;
+                let svg = '<svg viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="' + config.title + '">';
+                svg += '<text x="' + (width / 2) + '" y="14" text-anchor="middle" class="plot-title">' + config.title + '</text>';
+
+                for (let i = 0; i <= yTicks; i++) {
+                    const y = margin.top + plotHeight * i / yTicks;
+                    svg += '<line x1="' + margin.left + '" y1="' + y + '" x2="' + (margin.left + plotWidth) + '" y2="' + y + '" class="plot-grid"></line>';
+                    const leftValue = leftRange[1] - (leftRange[1] - leftRange[0]) * i / yTicks;
+                    svg += '<text x="' + (margin.left - 6) + '" y="' + (y + 3) + '" text-anchor="end" class="plot-tick-label">' + leftValue.toFixed(config.leftDecimals || 2) + '</text>';
+                    if (rightRange) {
+                        const rightValue = rightRange[1] - (rightRange[1] - rightRange[0]) * i / yTicks;
+                        svg += '<text x="' + (margin.left + plotWidth + 6) + '" y="' + (y + 3) + '" text-anchor="start" class="plot-tick-label">' + rightValue.toFixed(config.rightDecimals || 2) + '</text>';
+                    }
+                }
+
+                for (let i = 0; i <= xTicks; i++) {
+                    const x = margin.left + plotWidth * i / xTicks;
+                    const value = xRange[0] + (xRange[1] - xRange[0]) * i / xTicks;
+                    svg += '<line x1="' + x + '" y1="' + margin.top + '" x2="' + x + '" y2="' + (margin.top + plotHeight) + '" class="plot-grid"></line>';
+                    svg += '<text x="' + x + '" y="' + (margin.top + plotHeight + 16) + '" text-anchor="middle" class="plot-tick-label">' + value.toFixed(config.xDecimals || 1) + '</text>';
+                }
+
+                svg += '<line x1="' + margin.left + '" y1="' + (margin.top + plotHeight) + '" x2="' + (margin.left + plotWidth) + '" y2="' + (margin.top + plotHeight) + '" class="plot-axis"></line>';
+                svg += '<line x1="' + margin.left + '" y1="' + margin.top + '" x2="' + margin.left + '" y2="' + (margin.top + plotHeight) + '" class="plot-axis"></line>';
+                if (rightRange) {
+                    svg += '<line x1="' + (margin.left + plotWidth) + '" y1="' + margin.top + '" x2="' + (margin.left + plotWidth) + '" y2="' + (margin.top + plotHeight) + '" class="plot-axis"></line>';
+                }
+
+                config.series.forEach(function(series) {
+                    const yScale = series.axis === 'right' ? rightScale : leftScale;
+                    svg += '<path d="' + buildPath(series.points, xScale, yScale) + '" class="plot-line" style="stroke:' + series.color + ';';
+                    if (series.dashed) svg += 'stroke-dasharray:5 4;';
+                    svg += '"></path>';
+                    if (series.showPoints) {
+                        series.points.forEach(function(point) {
+                            svg += '<circle cx="' + xScale(point.x).toFixed(2) + '" cy="' + yScale(point.y).toFixed(2) + '" r="2.3" class="plot-point" style="fill:' + series.color + ';"></circle>';
+                        });
+                    }
+                });
+
+                svg += '<text x="' + (margin.left + plotWidth / 2) + '" y="' + (height - 6) + '" text-anchor="middle" class="plot-axis-label">' + config.xLabel + '</text>';
+                svg += '<text x="12" y="' + (margin.top + plotHeight / 2) + '" text-anchor="middle" class="plot-axis-label" transform="rotate(-90 12 ' + (margin.top + plotHeight / 2) + ')">' + config.leftLabel + '</text>';
+                if (rightRange) {
+                    svg += '<text x="' + (width - 10) + '" y="' + (margin.top + plotHeight / 2) + '" text-anchor="middle" class="plot-axis-label" transform="rotate(90 ' + (width - 10) + ' ' + (margin.top + plotHeight / 2) + ')">' + config.rightLabel + '</text>';
+                }
+
+                config.series.forEach(function(series, idx) {
+                    const legendX = margin.left + idx * 110;
+                    svg += '<line x1="' + legendX + '" y1="' + legendY + '" x2="' + (legendX + 16) + '" y2="' + legendY + '" class="plot-line" style="stroke:' + series.color + ';';
+                    if (series.dashed) svg += 'stroke-dasharray:5 4;';
+                    svg += '"></line>';
+                    svg += '<text x="' + (legendX + 21) + '" y="' + (legendY + 3) + '" class="plot-legend-label">' + series.name + '</text>';
+                });
+
+                svg += '</svg>';
+                container.innerHTML = svg;
+            }
+
+            function generateGBMStatic(S0, mu, sigma, T, n, rng) {
+                const dt = T / n;
+                const path = [S0];
+                for (let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * randomSymmetric(rng);
+                    const prev = path[path.length - 1];
+                    path.push(prev * Math.exp((mu - 0.5 * sigma * sigma) * dt + sigma * dW));
+                }
+                return path;
+            }
+
+            function generateOUStatic(X0, theta, mu, sigma, T, n, rng) {
+                const dt = T / n;
+                const path = [X0];
+                for (let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * randomSymmetric(rng);
+                    const prev = path[path.length - 1];
+                    path.push(prev + theta * (mu - prev) * dt + sigma * dW);
+                }
+                return path;
+            }
+
+            function generateCIRStatic(r0, a, b, sigma, T, n, rng) {
+                const dt = T / n;
+                const path = [r0];
+                for (let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * randomSymmetric(rng);
+                    const prev = path[path.length - 1];
+                    path.push(Math.max(0, prev + a * (b - prev) * dt + sigma * Math.sqrt(Math.max(0, prev)) * dW));
+                }
+                return path;
+            }
+
+            function generateHestonStatic(S0, v0, mu, kappa, theta, xi, rho, T, n, rng) {
+                const dt = T / n;
+                const prices = [S0];
+                const variances = [v0];
+                for (let i = 0; i < n; i++) {
+                    const dW1 = Math.sqrt(dt) * randomSymmetric(rng);
+                    const dW2Indep = Math.sqrt(dt) * randomSymmetric(rng);
+                    const dW2 = rho * dW1 + Math.sqrt(1 - rho * rho) * dW2Indep;
+                    const prevS = prices[prices.length - 1];
+                    const prevV = Math.max(0, variances[variances.length - 1]);
+                    prices.push(prevS * Math.exp((mu - 0.5 * prevV) * dt + Math.sqrt(prevV) * dW1));
+                    variances.push(Math.max(0, prevV + kappa * (theta - prevV) * dt + xi * Math.sqrt(prevV) * dW2));
+                }
+                return {prices: prices, vols: variances.map(function(v) { return Math.sqrt(v); })};
+            }
+
+            function sabrVolStatic(K, F, alpha, beta, nu, rho) {
+                if (Math.abs(K - F) < 1e-8) return alpha / Math.pow(F, 1 - beta);
+                const FK = F * K;
+                const logFK = Math.log(F / K);
+                const z = (nu / alpha) * Math.pow(FK, (1 - beta) / 2) * logFK;
+                const sqrtTerm = Math.sqrt(1 - 2 * rho * z + z * z);
+                const xz = Math.log((sqrtTerm + z - rho) / (1 - rho));
+                const denominator = Math.pow(FK, (1 - beta) / 2) * (1 + Math.pow(1 - beta, 2) * Math.pow(logFK, 2) / 24);
+                return (alpha / denominator) * (z / xz);
+            }
+
+            function generateJumpStatic(S0, mu, sigma, lambda, muJ, sigmaJ, T, n, rng) {
+                const dt = T / n;
+                const path = [S0];
+                for (let i = 0; i < n; i++) {
+                    const dW = Math.sqrt(dt) * randomSymmetric(rng);
+                    const prev = path[path.length - 1];
+                    let next = prev * Math.exp((mu - 0.5 * sigma * sigma) * dt + sigma * dW);
+                    if (rng() < lambda * dt) {
+                        next *= Math.exp(muJ + sigmaJ * randomSymmetric(rng));
+                    }
+                    path.push(next);
+                }
+                return path;
+            }
+
+            function generateGARCHStatic(n, omega, alpha, beta, mu, rng) {
+                const returns = [0];
+                const vols = [Math.sqrt(omega / (1 - alpha - beta))];
+                for (let i = 1; i < n; i++) {
+                    const z = randomSymmetric(rng);
+                    const sigmaPrev = vols[vols.length - 1];
+                    const epsPrev = returns[returns.length - 1];
+                    const sigma2 = omega + alpha * epsPrev * epsPrev + beta * sigmaPrev * sigmaPrev;
+                    const sigma = Math.sqrt(sigma2);
+                    returns.push(mu + sigma * z);
+                    vols.push(sigma);
+                }
+                return {returns: returns, vols: vols};
+            }
+
+            const rng = createRng(20260317);
+            const tStatic = linspace(0, 1, 101);
+            const tOuStatic = linspace(0, 2, 201);
+            const tCirStatic = linspace(0, 5, 501);
+            const tJumpStatic = linspace(0, 1, 251);
+            const tGarchStatic = linspace(0, 199, 200);
+            const strikesStatic = linspace(0.8, 1.2, 21);
+
+            const gbm1Static = generateGBMStatic(100, 0.08, 0.2, 1, 100, rng);
+            const gbm2Static = generateGBMStatic(100, 0.08, 0.2, 1, 100, rng);
+            const gbm3Static = generateGBMStatic(100, 0.08, 0.2, 1, 100, rng);
+            renderStaticPlot('plot-gbm', {
+                title: 'GBM Paths (μ=0.08, σ=0.2)',
+                xLabel: 'Time',
+                leftLabel: 'S(t)',
+                xDecimals: 1,
+                leftDecimals: 0,
+                series: [
+                    {name: 'Path 1', color: '#2563eb', points: tStatic.map(function(x, i) { return {x: x, y: gbm1Static[i]}; })},
+                    {name: 'Path 2', color: '#dc2626', points: tStatic.map(function(x, i) { return {x: x, y: gbm2Static[i]}; })},
+                    {name: 'Path 3', color: '#059669', points: tStatic.map(function(x, i) { return {x: x, y: gbm3Static[i]}; })}
+                ]
+            });
+
+            const ou1Static = generateOUStatic(0.01, 0.5, 0.05, 0.01, 2, 200, rng);
+            const ou2Static = generateOUStatic(0.08, 0.5, 0.05, 0.01, 2, 200, rng);
+            renderStaticPlot('plot-ou', {
+                title: 'O-U Mean Reversion (θ=0.5, μ=0.05)',
+                xLabel: 'Time',
+                leftLabel: 'X(t)',
+                xDecimals: 1,
+                leftDecimals: 2,
+                series: [
+                    {name: 'X_0=0.01', color: '#2563eb', points: tOuStatic.map(function(x, i) { return {x: x, y: ou1Static[i]}; })},
+                    {name: 'X_0=0.08', color: '#dc2626', points: tOuStatic.map(function(x, i) { return {x: x, y: ou2Static[i]}; })},
+                    {name: 'Mean', color: '#111827', dashed: true, points: tOuStatic.map(function(x) { return {x: x, y: 0.05}; })}
+                ]
+            });
+
+            const cirStatic = generateCIRStatic(0.03, 0.5, 0.05, 0.1, 5, 500, rng);
+            renderStaticPlot('plot-cir', {
+                title: 'CIR Interest Rate (a=0.5, b=0.05)',
+                xLabel: 'Time',
+                leftLabel: 'r(t)',
+                xDecimals: 1,
+                leftDecimals: 2,
+                series: [
+                    {name: 'Rate path', color: '#16a34a', points: tCirStatic.map(function(x, i) { return {x: x, y: cirStatic[i]}; })}
+                ]
+            });
+
+            const hestonStatic = generateHestonStatic(100, 0.04, 0.05, 2, 0.04, 0.3, -0.7, 1, 100, rng);
+            renderStaticPlot('plot-heston', {
+                title: 'Heston: Price and Stochastic Vol',
+                xLabel: 'Time',
+                leftLabel: 'S(t)',
+                rightLabel: 'σ(t)',
+                xDecimals: 1,
+                leftDecimals: 0,
+                rightDecimals: 2,
+                rightAxis: true,
+                series: [
+                    {name: 'Price', color: '#2563eb', points: tStatic.map(function(x, i) { return {x: x, y: hestonStatic.prices[i]}; })},
+                    {name: 'Vol', color: '#dc2626', axis: 'right', points: tStatic.map(function(x, i) { return {x: x, y: hestonStatic.vols[i]}; })}
+                ]
+            });
+
+            const volsStatic = strikesStatic.map(function(K) { return sabrVolStatic(K, 1.0, 0.3, 0.5, 0.4, -0.3); });
+            renderStaticPlot('plot-sabr', {
+                title: 'SABR Volatility Smile (β=0.5, ρ=-0.3)',
+                xLabel: 'Strike K',
+                leftLabel: 'Implied vol',
+                xDecimals: 2,
+                leftDecimals: 2,
+                series: [
+                    {name: 'Smile', color: '#7c3aed', showPoints: true, points: strikesStatic.map(function(x, i) { return {x: x, y: volsStatic[i]}; })}
+                ]
+            });
+
+            const jump1Static = generateJumpStatic(100, 0.05, 0.15, 5, -0.1, 0.15, 1, 250, rng);
+            const jump2Static = generateJumpStatic(100, 0.05, 0.15, 5, -0.1, 0.15, 1, 250, rng);
+            renderStaticPlot('plot-jump', {
+                title: 'Jump-Diffusion (λ=5, μJ=-0.1)',
+                xLabel: 'Time',
+                leftLabel: 'S(t)',
+                xDecimals: 1,
+                leftDecimals: 0,
+                series: [
+                    {name: 'Path 1', color: '#f59e0b', points: tJumpStatic.map(function(x, i) { return {x: x, y: jump1Static[i]}; })},
+                    {name: 'Path 2', color: '#0f766e', points: tJumpStatic.map(function(x, i) { return {x: x, y: jump2Static[i]}; })}
+                ]
+            });
+
+            const garchStatic = generateGARCHStatic(200, 0.000002, 0.08, 0.90, 0, rng);
+            renderStaticPlot('plot-garch', {
+                title: 'GARCH Returns and Conditional Vol',
+                xLabel: 'Time',
+                leftLabel: 'Return',
+                rightLabel: 'σ(t)',
+                xDecimals: 0,
+                leftDecimals: 3,
+                rightDecimals: 3,
+                rightAxis: true,
+                series: [
+                    {name: 'Returns', color: '#2563eb', points: tGarchStatic.map(function(x, i) { return {x: x, y: garchStatic.returns[i]}; })},
+                    {name: 'Vol', color: '#dc2626', axis: 'right', points: tGarchStatic.map(function(x, i) { return {x: x, y: garchStatic.vols[i]}; })}
+                ]
+            });
+
+            return;
             
             // 1. GBM Simulation
             function generateGBM(S0, mu, sigma, T, n) {

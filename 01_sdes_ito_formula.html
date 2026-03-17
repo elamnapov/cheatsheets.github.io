@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>'Stochastic_Differential_Equations_and_Ito_formula_applications_and_quant_interview_most_asked_questions' - Interview Cheatsheet</title>
+    <title>Stochastic Differential Equations & Ito Formula - Interview Cheatsheet</title>
     
     <!-- MathJax for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -12,36 +12,10 @@
             tex: {
                 inlineMath: [['\\(', '\\)']],
                 displayMath: [['\\[', '\\]']]
-            },
-            chtml: {
-                matchFontHeight: false,
-                scale: 0.85,
-                linebreaks: {
-                    automatic: true,
-                    width: 'container'
-                }
-            },
-            options: {
-                enableMenu: false,
-                renderActions: {
-                    addMenu: []
-                }
             }
         };
     </script>
-    <style>
-        /* MathJax containers with scrolling fallback */
-        mjx-container {
-            max-width: 100% !important;
-            display: block !important;
-        }
-        mjx-container[display="true"] {
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            max-width: 100%;
-        }
-    </style>
-    
+
     <style>
         * {
             margin: 0;
@@ -58,34 +32,28 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
-            padding: 50px;
+            padding: 40px 60px;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            
-            /* Two-column layout */
-            column-count: 2;
-            column-gap: 40px;
         }
-        
+
         h1 {
             color: #667eea;
             font-size: 2.5em;
             margin-bottom: 10px;
             border-bottom: 4px solid #667eea;
             padding-bottom: 15px;
-            column-span: all;
         }
-        
+
         .subtitle {
             color: #7f8c8d;
             font-size: 1.2em;
             margin-bottom: 40px;
-            column-span: all;
         }
-        
+
         h2 {
             color: #764ba2;
             font-size: 2em;
@@ -93,7 +61,6 @@
             margin-bottom: 20px;
             padding-left: 15px;
             border-left: 5px solid #764ba2;
-            column-span: all;
         }
         
         h3 {
@@ -114,7 +81,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .formula {
@@ -125,7 +92,7 @@
             border: 2px solid #e0e0e0;
             break-inside: avoid;
             max-width: 100%;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .example {
@@ -138,7 +105,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
 
         .note {
@@ -150,8 +117,20 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
 
         .theorem {
             background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
@@ -163,7 +142,7 @@
             break-inside: avoid;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            overflow: visible;
+            overflow-x: auto;
         }
         
         ul, ol {
@@ -188,14 +167,13 @@
             font-family: 'Courier New', monospace;
         }
         
-        /* Responsive: single column on mobile */
+        /* Responsive: mobile adjustments */
         @media (max-width: 768px) {
             .container {
-                column-count: 1;
                 padding: 20px;
             }
         }
-        
+
         @media print {
             body {
                 background: white;
@@ -204,7 +182,6 @@
             .container {
                 box-shadow: none;
                 padding: 20px;
-                column-count: 1;
             }
         }
         
@@ -343,9 +320,30 @@
                 margin-top: 60px;
             }
         }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-button">← Home</a>
     <div class="page-wrapper">
         <nav class="sidebar" id="sidebar">
             <h2 class="sidebar-header">Table of Contents</h2>
@@ -407,7 +405,7 @@
 
         <div class="main-content">
             <div class="container">
-        <h1>'Stochastic_Differential_Equations_and_Ito_formula_applications_and_quant_interview_most_asked_questions'</h1>
+        <h1>Stochastic Differential Equations & Ito Formula</h1>
         <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
         
         
@@ -1186,6 +1184,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 1-4: Stochastic Foundations):</b>
+    <a href="https://en.wikipedia.org/wiki/Brownian_motion" target="_blank">Wikipedia: Brownian Motion</a> |
+    <a href="https://en.wikipedia.org/wiki/Martingale_(probability_theory)" target="_blank">Wikipedia: Martingales</a> |
+    <a href="https://en.wikipedia.org/wiki/Quadratic_variation" target="_blank">Wikipedia: Quadratic Variation</a> |
+    <a href="https://www.quantstart.com/articles/Brownian-Motion-and-the-Wiener-Process/" target="_blank">QuantStart: Brownian Motion</a>
+</div>
 
 <h3 id="topic-5">Topic 5: Itô's Definition of Stochastic Integrals (for Simple Processes)</h3>
 
@@ -2025,6 +2030,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </p>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 5-9: Itô Calculus):</b>
+    <a href="https://en.wikipedia.org/wiki/It%C3%B4_calculus" target="_blank">Wikipedia: Itô Calculus</a> |
+    <a href="https://en.wikipedia.org/wiki/It%C3%B4%27s_lemma" target="_blank">Wikipedia: Itô's Lemma</a> |
+    <a href="https://www.quantstart.com/articles/Itos-Lemma/" target="_blank">QuantStart: Itô's Lemma</a> |
+    <a href="https://math.nyu.edu/~goodman/teaching/StochCalc2012/notes/Week4.pdf" target="_blank">NYU: Stochastic Calculus Notes</a>
+</div>
 
 <h3 id="topic-10">Topic 10: Geometric Brownian Motion (GBM) and Its SDE</h3>
 
@@ -2823,6 +2835,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </div>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 10-14: Key SDE Models):</b>
+    <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion" target="_blank">Wikipedia: GBM</a> |
+    <a href="https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process" target="_blank">Wikipedia: OU Process</a> |
+    <a href="https://en.wikipedia.org/wiki/Cox%E2%80%93Ingersoll%E2%80%93Ross_model" target="_blank">Wikipedia: CIR Model</a> |
+    <a href="https://www.quantstart.com/articles/Geometric-Brownian-Motion/" target="_blank">QuantStart: GBM Tutorial</a>
+</div>
 
 <h3 id="topic-15">Topic 15: Existence and Uniqueness of SDE Solutions (Lipschitz Conditions)</h3>
 
@@ -3708,9 +3727,15 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     \[
     \mathbb{E}\left[ \exp\left( \frac{1}{2} \int_0^T \theta_s \cdot dW_s \right) \right] < \infty,
     \]
-    <p>then \( Z_t \) is a martingale. This is weaker than Novikov’s Condition but often more difficult to check.</p>
+    <p>then \( Z_t \) is a martingale. This is weaker than Novikov's Condition but often more difficult to check.</p>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 15-19: SDE Theory & Measure Change):</b>
+    <a href="https://en.wikipedia.org/wiki/Girsanov_theorem" target="_blank">Wikipedia: Girsanov's Theorem</a> |
+    <a href="https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem" target="_blank">Wikipedia: Radon-Nikodym</a> |
+    <a href="https://www.quantstart.com/articles/Derivation-of-the-Radon-Nikodym-Derivative/" target="_blank">QuantStart: Radon-Nikodym</a>
+</div>
 
 <h3 id="topic-20">Topic 20: Black-Scholes SDE and Its Derivation from GBM</h3>
 
@@ -4510,6 +4535,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 20-24: Black-Scholes Framework):</b>
+    <a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model" target="_blank">Wikipedia: Black-Scholes Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Feynman%E2%80%93Kac_formula" target="_blank">Wikipedia: Feynman-Kac</a> |
+    <a href="https://www.investopedia.com/terms/b/blackscholes.asp" target="_blank">Investopedia: Black-Scholes</a> |
+    <a href="https://www.quantstart.com/articles/Derivation-of-the-Black-Scholes-Equation/" target="_blank">QuantStart: Black-Scholes Derivation</a>
+</div>
 
 <h3 id="topic-25">Topic 25: Local Volatility Models (Dupire's Equation)</h3>
 
@@ -5267,6 +5299,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 25-28: Volatility Models):</b>
+    <a href="https://en.wikipedia.org/wiki/Local_volatility" target="_blank">Wikipedia: Local Volatility</a> |
+    <a href="https://en.wikipedia.org/wiki/Heston_model" target="_blank">Wikipedia: Heston Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Affine_term_structure_model" target="_blank">Wikipedia: Affine Models</a> |
+    <a href="https://www.codearmo.com/python-tutorial/heston-model-simulation-python" target="_blank">Codearmo: Heston Simulation</a>
+</div>
 
 <h3 id="topic-29">Topic 29: Jump-Diffusion Processes (Merton Model)</h3>
 
@@ -6473,9 +6512,16 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
 
 <div class="note">
     <p><strong>6. Connection to Itô’s Formula:</strong></p>
-    <p>Kunita’s Lemma reduces to the classical Itô formula when the jump component is absent (i.e., \( \gamma(t, z) = 0 \)). This highlights the generality of Kunita’s result as an extension of Itô’s formula to processes with jumps.</p>
+    <p>Kunita's Lemma reduces to the classical Itô formula when the jump component is absent (i.e., \( \gamma(t, z) = 0 \)). This highlights the generality of Kunita's result as an extension of Itô's formula to processes with jumps.</p>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 29-34: Jump Processes):</b>
+    <a href="https://en.wikipedia.org/wiki/Jump_diffusion" target="_blank">Wikipedia: Jump-Diffusion</a> |
+    <a href="https://en.wikipedia.org/wiki/L%C3%A9vy_process" target="_blank">Wikipedia: Lévy Processes</a> |
+    <a href="https://en.wikipedia.org/wiki/Poisson_point_process" target="_blank">Wikipedia: Poisson Process</a> |
+    <a href="https://www.quantstart.com/articles/Jump-Diffusion-Models-for-European-Options-Pricing-in-Python/" target="_blank">QuantStart: Jump-Diffusion</a>
+</div>
 
 <h3 id="topic-35">Topic 35: Forward SDEs (FSDEs) and Backward SDEs (BSDEs)</h3>
 
@@ -7247,6 +7293,12 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 35-38: BSDEs & Malliavin Calculus):</b>
+    <a href="https://en.wikipedia.org/wiki/Backward_stochastic_differential_equation" target="_blank">Wikipedia: BSDEs</a> |
+    <a href="https://en.wikipedia.org/wiki/Malliavin_calculus" target="_blank">Wikipedia: Malliavin Calculus</a> |
+    <a href="https://en.wikipedia.org/wiki/Clark%E2%80%93Ocone_theorem" target="_blank">Wikipedia: Clark-Ocone</a>
+</div>
 
 <h3 id="topic-39">Topic 39: Monte Carlo Simulation of SDEs (Euler-Maruyama Scheme)</h3>
 
@@ -7908,6 +7960,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </div>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 39-42: Numerical Methods):</b>
+    <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Maruyama_method" target="_blank">Wikipedia: Euler-Maruyama</a> |
+    <a href="https://en.wikipedia.org/wiki/Milstein_method" target="_blank">Wikipedia: Milstein Method</a> |
+    <a href="https://en.wikipedia.org/wiki/Monte_Carlo_methods_in_finance" target="_blank">Wikipedia: MC in Finance</a> |
+    <a href="https://www.quantstart.com/articles/Euler-Maruyama-Scheme-for-SDEs/" target="_blank">QuantStart: Euler-Maruyama</a>
+</div>
 
 <h3 id="topic-43">Topic 43: Stochastic Control and Hamilton-Jacobi-Bellman (HJB) Equation</h3>
 
@@ -8848,6 +8907,13 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </ol>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 43-47: Stochastic Control & Barriers):</b>
+    <a href="https://en.wikipedia.org/wiki/Hamilton%E2%80%93Jacobi%E2%80%93Bellman_equation" target="_blank">Wikipedia: HJB Equation</a> |
+    <a href="https://en.wikipedia.org/wiki/Optimal_stopping" target="_blank">Wikipedia: Optimal Stopping</a> |
+    <a href="https://en.wikipedia.org/wiki/Local_time_(mathematics)" target="_blank">Wikipedia: Local Time</a> |
+    <a href="https://en.wikipedia.org/wiki/Barrier_option" target="_blank">Wikipedia: Barrier Options</a>
+</div>
 
 <h3 id="topic-48">Topic 48: Change of Numéraire Technique in Derivatives Pricing</h3>
 
@@ -9506,8 +9572,15 @@ N = np.arange(len(T_jumps) + 1)  # N_t values at jump times</code></pre>
     </div>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading (Topics 48-50: Advanced Derivatives & Interview Prep):</b>
+    <a href="https://en.wikipedia.org/wiki/Num%C3%A9raire" target="_blank">Wikipedia: Numéraire</a> |
+    <a href="https://en.wikipedia.org/wiki/LIBOR_market_model" target="_blank">Wikipedia: LIBOR Market Model</a> |
+    <a href="https://www.quantstart.com/articles/Quant-Interview-Questions/" target="_blank">QuantStart: Quant Interview Questions</a> |
+    <a href="https://www.wallstreetoasis.com/resources/interviews/quantitative-finance-interview-questions" target="_blank">WSO: Quant Interview Questions</a>
+</div>
 
-        
+
     </div>
         </div>
     </div>

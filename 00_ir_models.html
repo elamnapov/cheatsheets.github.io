@@ -26,23 +26,29 @@
         }
         
         body {
-            font-family: 'Times New Roman', serif;
-            font-size: 10pt;
-            line-height: 1.3;
-            padding: 0.5cm;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
             background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
+
         .content {
-            column-count: 2;
-            column-gap: 0.8cm;
-            column-rule: 1px solid #ddd;
+            /* Single column layout - removed column-count */
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 0.5cm;
-            column-span: all;
         }
         
         .header h1 {
@@ -58,6 +64,23 @@
             color: #555;
         }
         
+        .home-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
         h2 {
             font-size: 13pt;
             font-weight: bold;
@@ -65,7 +88,6 @@
             margin-top: 0.4cm;
             margin-bottom: 0.2cm;
             break-after: avoid;
-            column-span: all;
             background-color: #e8f4f8;
             padding: 0.2cm;
             border-left: 4px solid #0066cc;
@@ -103,7 +125,6 @@
             margin: 0.3cm 0;
             border: none;
             border-top: 2px solid #0066cc;
-            column-span: all;
         }
         
         h2, h3 {
@@ -135,7 +156,18 @@
             break-inside: avoid;
             font-size: 9pt;
         }
-        
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 5pt;
+            margin: 6pt 0;
+            border-left: 3pt solid #667eea;
+            font-size: 7.5pt;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
+
         .summary-table {
             width: 100%;
             border-collapse: collapse;
@@ -193,17 +225,183 @@
                 column-count: 1;
             }
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1 !important;
+            background-color: transparent !important;
+            font-size: 1.3em;
+            margin: 0 0 20px 0;
+            padding: 0 0 15px 0;
+            border: none;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>CQF Comprehensive Cheatsheet - Fixed Income</h1>
-        <div class="subtitle">Interest Rates: Bonds, Yield Curves, Swaps, Options & Term Structure Models</div>
-    </div>
-    
-    <div class="content">
+    <a href="index.html" class="home-button">← Home</a>
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#section-1">1. Bond Fundamentals</a></li>
+                <li><a href="#section-2">2. Yield Curve Construction</a></li>
+                <li><a href="#section-3">3. Duration and Convexity</a></li>
+                <li><a href="#section-4">4. Interest Rate Swaps</a></li>
+                <li><a href="#section-5">5. Caps, Floors, and Swaptions</a></li>
+                <li><a href="#section-6">6. Short Rate Models</a></li>
+                <li><a href="#section-7">7. Heath-Jarrow-Morton (HJM) Framework</a></li>
+                <li><a href="#section-8">8. LIBOR Market Model (LMM/BGM)</a></li>
+                <li><a href="#section-9">9. Interest Rate Derivatives Strategies</a></li>
+                <li><a href="#section-10">10. LIBOR Transition to SOFR</a></li>
+                <li><a href="#section-11">11. Key Formulas Summary</a></li>
+                <li><a href="#section-12">12. Common Mistakes & Tips</a></li>
+                <li><a href="#section-13">13. Practical Example: Complete Swap Pricing</a></li>
+            </ol>
+        </nav>
 
-<h2>BOND FUNDAMENTALS</h2>
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
+
+                <div class="header">
+                    <h1>CQF Comprehensive Cheatsheet - Fixed Income</h1>
+                    <div class="subtitle">Interest Rates: Bonds, Yield Curves, Swaps, Options & Term Structure Models</div>
+                </div>
+
+                <div class="content">
+
+<h2 id="section-1">BOND FUNDAMENTALS</h2>
 
 <h3>Basic Bond Terminology</h3>
 
@@ -288,7 +486,7 @@ $$AI = C \times \frac{\text{Days since last coupon}}{\text{Days in coupon period
 
 <hr>
 
-<h2>YIELD CURVE CONSTRUCTION</h2>
+<h2 id="section-2">YIELD CURVE CONSTRUCTION</h2>
 
 <h3>Spot Rates and Forward Rates</h3>
 
@@ -373,9 +571,16 @@ $$r(T) = \beta_0 + \beta_1\frac{1-e^{-T/\tau}}{T/\tau} + \beta_2\left(\frac{1-e^
 
 <p><strong>Svensson Extension</strong>: Adds second hump term</p>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Yield_curve" target="_blank">Wikipedia: Yield Curve</a> |
+    <a href="https://www.investopedia.com/terms/b/bootstrapping.asp" target="_blank">Investopedia: Bootstrapping</a> |
+    <a href="https://www.bis.org/publ/bppdf/bispap25l.pdf" target="_blank">BIS: Nelson-Siegel Model</a>
+</div>
+
 <hr>
 
-<h2>DURATION AND CONVEXITY</h2>
+<h2 id="section-3">DURATION AND CONVEXITY</h2>
 
 <h3>Macaulay Duration</h3>
 
@@ -469,9 +674,16 @@ $$D_{Eff} = \frac{P_{-\Delta y} - P_{+\Delta y}}{2 \times P_0 \times \Delta y}$$
 
 <p>where \(P_{-\Delta y}\) and \(P_{+\Delta y}\) are prices when yield shifts by \(\pm \Delta y\)</p>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Bond_duration" target="_blank">Wikipedia: Duration</a> |
+    <a href="https://www.investopedia.com/terms/c/convexity.asp" target="_blank">Investopedia: Convexity</a> |
+    <a href="https://corporatefinanceinstitute.com/resources/fixed-income/duration/" target="_blank">CFI: Duration Explained</a>
+</div>
+
 <hr>
 
-<h2>INTEREST RATE SWAPS</h2>
+<h2 id="section-4">INTEREST RATE SWAPS</h2>
 
 <h3>Plain Vanilla IRS</h3>
 
@@ -553,9 +765,16 @@ $$\text{DV01} = N \times 0.0001 \times \sum_{i=1}^n \delta_i P(0,T_i)$$
 
 <p><strong>Basis spread</strong>: Adjustment to make swap fair</p>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Interest_rate_swap" target="_blank">Wikipedia: Interest Rate Swaps</a> |
+    <a href="https://www.investopedia.com/terms/i/interestrateswap.asp" target="_blank">Investopedia: IRS Explained</a> |
+    <a href="https://www.cmegroup.com/education/courses/introduction-to-interest-rate-swaps.html" target="_blank">CME: Introduction to IRS</a>
+</div>
+
 <hr>
 
-<h2>CAPS, FLOORS, AND SWAPTIONS</h2>
+<h2 id="section-5">CAPS, FLOORS, AND SWAPTIONS</h2>
 
 <h3>Interest Rate Caps</h3>
 
@@ -651,9 +870,16 @@ $$d_1 = \frac{\ln(R_0/K) + \sigma^2 T_0/2}{\sigma\sqrt{T_0}}, \quad d_2 = d_1 - 
 = $18.5M × 0.0082 = <strong>$151,700</strong>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Interest_rate_cap_and_floor" target="_blank">Wikipedia: Caps and Floors</a> |
+    <a href="https://en.wikipedia.org/wiki/Swaption" target="_blank">Wikipedia: Swaptions</a> |
+    <a href="https://www.investopedia.com/terms/s/swaption.asp" target="_blank">Investopedia: Swaptions</a>
+</div>
+
 <hr>
 
-<h2>SHORT RATE MODELS</h2>
+<h2 id="section-6">SHORT RATE MODELS</h2>
 
 <h3>Vasicek Model</h3>
 
@@ -811,9 +1037,16 @@ $$\frac{dr_t}{r_t} = \theta(t)dt + \sigma(t)dW_t$$
 </tbody>
 </table>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Vasicek_model" target="_blank">Wikipedia: Vasicek Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Cox%E2%80%93Ingersoll%E2%80%93Ross_model" target="_blank">Wikipedia: CIR Model</a> |
+    <a href="https://en.wikipedia.org/wiki/Hull%E2%80%93White_model" target="_blank">Wikipedia: Hull-White Model</a>
+</div>
+
 <hr>
 
-<h2>HEATH-JARROW-MORTON (HJM) FRAMEWORK</h2>
+<h2 id="section-7">HEATH-JARROW-MORTON (HJM) FRAMEWORK</h2>
 
 <h3>HJM Setup</h3>
 
@@ -867,9 +1100,15 @@ $$df(t,T) = \alpha(t,T)dt + \sum_{i=1}^n \sigma_i(t,T)dW_t^i$$
 </ul>
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Heath%E2%80%93Jarrow%E2%80%93Morton_framework" target="_blank">Wikipedia: HJM Framework</a> |
+    <a href="https://www.quantstart.com/articles/Heath-Jarrow-Morton-Framework-for-Interest-Rates/" target="_blank">QuantStart: HJM Framework</a>
+</div>
+
 <hr>
 
-<h2>LIBOR MARKET MODEL (LMM/BGM)</h2>
+<h2 id="section-8">LIBOR MARKET MODEL (LMM/BGM)</h2>
 
 <h3>LMM Framework</h3>
 
@@ -947,9 +1186,15 @@ $$\rho_{ij} = e^{-\beta|T_i - T_j|}$$
 <p><strong>Parametric</strong>:</p>
 $$\rho_{ij} = \rho_{\infty} + (1-\rho_{\infty})e^{-\beta|i-j|}$$
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/LIBOR_market_model" target="_blank">Wikipedia: LIBOR Market Model</a> |
+    <a href="https://www.risk.net/definition/libor-market-model" target="_blank">Risk.net: LMM Definition</a>
+</div>
+
 <hr>
 
-<h2>INTEREST RATE DERIVATIVES STRATEGIES</h2>
+<h2 id="section-9">INTEREST RATE DERIVATIVES STRATEGIES</h2>
 
 <h3>Curve Steepeners/Flatteners</h3>
 
@@ -994,7 +1239,7 @@ If spread → 80 bps, loss
 
 <hr>
 
-<h2>LIBOR TRANSITION TO SOFR</h2>
+<h2 id="section-10">LIBOR TRANSITION TO SOFR</h2>
 
 <h3>Background</h3>
 
@@ -1061,7 +1306,7 @@ If spread → 80 bps, loss
 
 <hr>
 
-<h2>KEY FORMULAS SUMMARY</h2>
+<h2 id="section-11">KEY FORMULAS SUMMARY</h2>
 
 <table class="summary-table">
 <thead>
@@ -1124,7 +1369,7 @@ If spread → 80 bps, loss
 
 <hr>
 
-<h2>COMMON MISTAKES & TIPS</h2>
+<h2 id="section-12">COMMON MISTAKES & TIPS</h2>
 
 <div class="warning-box">
 <strong>Common Mistakes:</strong>
@@ -1162,7 +1407,7 @@ If spread → 80 bps, loss
 
 <hr>
 
-<h2>PRACTICAL EXAMPLE: COMPLETE SWAP PRICING</h2>
+<h2 id="section-13">PRACTICAL EXAMPLE: COMPLETE SWAP PRICING</h2>
 
 <div class="example-box" style="column-span: all;">
 <strong>Real-World Interest Rate Swap Pricing:</strong><br><br>
@@ -1236,6 +1481,15 @@ Bond notional = \(\frac{\$2,869}{2.85 \times 98 \times 0.0001} = \boxed{\$10.26M
 To hedge fixed receiver position: <strong>short $10.26M of 3Y bonds</strong>
 </div>
 
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

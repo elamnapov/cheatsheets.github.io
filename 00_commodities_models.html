@@ -26,23 +26,29 @@
         }
         
         body {
-            font-family: 'Times New Roman', serif;
-            font-size: 10pt;
-            line-height: 1.3;
-            padding: 0.5cm;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
             background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
+
         .content {
-            column-count: 2;
-            column-gap: 0.8cm;
-            column-rule: 1px solid #ddd;
+            /* Single column layout - removed column-count */
         }
-        
+
         .header {
             text-align: center;
             margin-bottom: 0.5cm;
-            column-span: all;
         }
         
         .header h1 {
@@ -58,6 +64,23 @@
             color: #555;
         }
         
+        .home-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
         h2 {
             font-size: 13pt;
             font-weight: bold;
@@ -65,7 +88,6 @@
             margin-top: 0.4cm;
             margin-bottom: 0.2cm;
             break-after: avoid;
-            column-span: all;
             background-color: #e8f4f8;
             padding: 0.2cm;
             border-left: 4px solid #0066cc;
@@ -103,7 +125,6 @@
             margin: 0.3cm 0;
             border: none;
             border-top: 2px solid #0066cc;
-            column-span: all;
         }
         
         h2, h3 {
@@ -135,7 +156,18 @@
             break-inside: avoid;
             font-size: 9pt;
         }
-        
+
+        .further-reading {
+            background-color: #f0f4ff;
+            padding: 5pt;
+            margin: 6pt 0;
+            border-left: 3pt solid #667eea;
+            font-size: 7.5pt;
+        }
+        .further-reading b { color: #667eea; }
+        .further-reading a { color: #764ba2; text-decoration: none; }
+        .further-reading a:hover { text-decoration: underline; }
+
         .summary-table {
             width: 100%;
             border-collapse: collapse;
@@ -193,17 +225,185 @@
                 column-count: 1;
             }
         }
+
+        /* Sidebar Navigation Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            color: #ecf0f1 !important;
+            background-color: transparent !important;
+            font-size: 1.3em;
+            margin: 0 0 20px 0;
+            padding: 0 0 15px 0;
+            border: none;
+            border-bottom: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            line-height: 1.4;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ecf0f1;
+            transform: translateX(5px);
+        }
+
+        .toc-list a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 280px);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .container {
+                margin-top: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>CQF Comprehensive Cheatsheet - Commodities</h1>
-        <div class="subtitle">Energy, Metals, Agriculture: Futures, Options, Storage, and Convenience Yield</div>
-    </div>
-    
-    <div class="content">
+    <a href="index.html" class="home-button">← Home</a>
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <h2 class="sidebar-header">Table of Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#section-1">1. Commodity Fundamentals</a></li>
+                <li><a href="#section-2">2. Cost of Carry Model</a></li>
+                <li><a href="#section-3">3. Commodity Futures Curve Shapes</a></li>
+                <li><a href="#section-4">4. Commodity Futures Pricing Models</a></li>
+                <li><a href="#section-5">5. Commodity Options</a></li>
+                <li><a href="#section-6">6. Energy Commodities</a></li>
+                <li><a href="#section-7">7. Metals</a></li>
+                <li><a href="#section-8">8. Agricultural Commodities</a></li>
+                <li><a href="#section-9">9. Commodity Trading Strategies</a></li>
+                <li><a href="#section-10">10. Commodity Risk Management</a></li>
+                <li><a href="#section-11">11. Commodity Indices</a></li>
+                <li><a href="#section-12">12. Storage and Infrastructure</a></li>
+                <li><a href="#section-13">13. Key Formulas Summary</a></li>
+                <li><a href="#section-14">14. Common Mistakes & Tips</a></li>
+                <li><a href="#section-15">15. Practical Example: Complete Commodity Hedge</a></li>
+            </ol>
+        </nav>
 
-<h2>COMMODITY FUNDAMENTALS</h2>
+        <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
+
+        <div class="main-content">
+            <div class="container">
+
+                <div class="header">
+                    <h1>CQF Comprehensive Cheatsheet - Commodities</h1>
+                    <div class="subtitle">Energy, Metals, Agriculture: Futures, Options, Storage, and Convenience Yield</div>
+                </div>
+
+                <div class="content">
+
+<h2 id="section-1">COMMODITY FUNDAMENTALS</h2>
 
 <h3>Commodity Classifications</h3>
 
@@ -306,7 +506,7 @@ Market in <strong>contango</strong> by $5/bbl
 
 <hr>
 
-<h2>COST OF CARRY MODEL</h2>
+<h2 id="section-2">COST OF CARRY MODEL</h2>
 
 <h3>Basic Cost of Carry</h3>
 
@@ -404,9 +604,16 @@ $$c(I) = \alpha e^{-\beta I}$$
 
 <p>where \(I\) = inventory level, \(\alpha, \beta\) = parameters</p>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Cost_of_carry" target="_blank">Wikipedia: Cost of Carry</a> |
+    <a href="https://www.investopedia.com/terms/c/costofcarry.asp" target="_blank">Investopedia: Cost of Carry</a> |
+    <a href="https://www.cmegroup.com/education/courses/introduction-to-commodities.html" target="_blank">CME: Introduction to Commodities</a>
+</div>
+
 <hr>
 
-<h2>COMMODITY FUTURES CURVE SHAPES</h2>
+<h2 id="section-3">COMMODITY FUTURES CURVE SHAPES</h2>
 
 <h3>Contango</h3>
 
@@ -478,9 +685,16 @@ Roll yield ≈ 5% × 12 = <strong>60% annual return</strong> from roll alone<br>
 (Plus spot price changes and collateral interest)
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Contango" target="_blank">Wikipedia: Contango</a> |
+    <a href="https://en.wikipedia.org/wiki/Normal_backwardation" target="_blank">Wikipedia: Backwardation</a> |
+    <a href="https://www.investopedia.com/terms/r/roll-yield.asp" target="_blank">Investopedia: Roll Yield</a>
+</div>
+
 <hr>
 
-<h2>COMMODITY FUTURES PRICING MODELS</h2>
+<h2 id="section-4">COMMODITY FUTURES PRICING MODELS</h2>
 
 <h3>Gibson-Schwartz Two-Factor Model</h3>
 
@@ -547,9 +761,15 @@ $$dS_t = \kappa(\mu - S_t)S_t dt + \sigma S_t dW_t$$
 Expected to revert toward $5 relatively quickly
 </div>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5578" target="_blank">Schwartz: Stochastic Behavior of Commodity Prices</a> |
+    <a href="https://en.wikipedia.org/wiki/Convenience_yield" target="_blank">Wikipedia: Convenience Yield</a>
+</div>
+
 <hr>
 
-<h2>COMMODITY OPTIONS</h2>
+<h2 id="section-5">COMMODITY OPTIONS</h2>
 
 <h3>Black-76 Formula</h3>
 
@@ -628,9 +848,16 @@ $$\max\left(\frac{1}{n}\sum_{i=1}^n S_{t_i} - K, 0\right)$$
 <li>Popular for energy hedging</li>
 </ul>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Black_model" target="_blank">Wikipedia: Black-76 Model</a> |
+    <a href="https://www.investopedia.com/terms/a/asianoption.asp" target="_blank">Investopedia: Asian Options</a> |
+    <a href="https://www.cmegroup.com/education/courses/option-greeks.html" target="_blank">CME: Option Greeks</a>
+</div>
+
 <hr>
 
-<h2>ENERGY COMMODITIES</h2>
+<h2 id="section-6">ENERGY COMMODITIES</h2>
 
 <h3>Crude Oil Market Structure</h3>
 
@@ -701,9 +928,16 @@ $$dS = \kappa(\mu - S)dt + \sigma S dW + J dN$$
 <li>Spike regime: High volatility, mean reversion</li>
 </ul>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://www.eia.gov/petroleum/" target="_blank">EIA: Petroleum Overview</a> |
+    <a href="https://www.cmegroup.com/markets/energy.html" target="_blank">CME: Energy Markets</a> |
+    <a href="https://www.investopedia.com/terms/c/crackspread.asp" target="_blank">Investopedia: Crack Spread</a>
+</div>
+
 <hr>
 
-<h2>METALS</h2>
+<h2 id="section-7">METALS</h2>
 
 <h3>Precious Metals</h3>
 
@@ -769,7 +1003,7 @@ $$\text{3M-15M spread} = F_{3M} - F_{15M}$$
 
 <hr>
 
-<h2>AGRICULTURAL COMMODITIES</h2>
+<h2 id="section-8">AGRICULTURAL COMMODITIES</h2>
 
 <h3>Grain Markets</h3>
 
@@ -854,7 +1088,7 @@ $$Y_t = a + bt + \epsilon_t$$
 
 <hr>
 
-<h2>COMMODITY TRADING STRATEGIES</h2>
+<h2 id="section-9">COMMODITY TRADING STRATEGIES</h2>
 
 <h3>Momentum Strategies</h3>
 
@@ -936,9 +1170,16 @@ $$\text{Ratio} = \frac{P_{gold}}{P_{silver}}$$
 <li>Risk-off: Gold outperforms (safe haven)</li>
 </ul>
 
+<div class="further-reading">
+    <b>Further Reading:</b>
+    <a href="https://en.wikipedia.org/wiki/Commodity_market" target="_blank">Wikipedia: Commodity Markets</a> |
+    <a href="https://www.investopedia.com/terms/s/spreadtrading.asp" target="_blank">Investopedia: Spread Trading</a> |
+    <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank">CFTC: Commitments of Traders</a>
+</div>
+
 <hr>
 
-<h2>COMMODITY RISK MANAGEMENT</h2>
+<h2 id="section-10">COMMODITY RISK MANAGEMENT</h2>
 
 <h3>Producer Hedging</h3>
 
@@ -1013,7 +1254,7 @@ $$V = S + h(F - F_0) = S - hF_0 + hF$$
 
 <hr>
 
-<h2>COMMODITY INDICES</h2>
+<h2 id="section-11">COMMODITY INDICES</h2>
 
 <h3>Major Indices</h3>
 
@@ -1102,7 +1343,7 @@ $$V = S + h(F - F_0) = S - hF_0 + hF$$
 
 <hr>
 
-<h2>STORAGE AND INFRASTRUCTURE</h2>
+<h2 id="section-12">STORAGE AND INFRASTRUCTURE</h2>
 
 <h3>Storage Economics</h3>
 
@@ -1142,7 +1383,7 @@ $$V_{storage} = \mathbb{E}[F_T - S_t] - (u \times t + r \times S_t \times t)$$
 
 <hr>
 
-<h2>KEY FORMULAS SUMMARY</h2>
+<h2 id="section-13">KEY FORMULAS SUMMARY</h2>
 
 <table class="summary-table">
 <thead>
@@ -1197,7 +1438,7 @@ $$V_{storage} = \mathbb{E}[F_T - S_t] - (u \times t + r \times S_t \times t)$$
 
 <hr>
 
-<h2>COMMON MISTAKES & TIPS</h2>
+<h2 id="section-14">COMMON MISTAKES & TIPS</h2>
 
 <div class="warning-box">
 <strong>Common Mistakes:</strong>
@@ -1237,7 +1478,7 @@ $$V_{storage} = \mathbb{E}[F_T - S_t] - (u \times t + r \times S_t \times t)$$
 
 <hr>
 
-<h2>PRACTICAL EXAMPLE: COMPLETE COMMODITY HEDGE</h2>
+<h2 id="section-15">PRACTICAL EXAMPLE: COMPLETE COMMODITY HEDGE</h2>
 
 <div class="example-box" style="column-span: all;">
 <strong>Real-World Commodity Hedging Example:</strong><br><br>
@@ -1312,6 +1553,15 @@ Range: <strong>$0.425/gal</strong><br><br>
 Remaining risk is basis risk (jet fuel vs crude correlation imperfect)
 </div>
 
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
