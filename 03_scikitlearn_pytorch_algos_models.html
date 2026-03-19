@@ -237,7 +237,8 @@
             margin-bottom: 8px;
         }
 
-        .toc-list a {
+        .toc-list a,
+        .toc-list button {
             color: #bdc3c7;
             text-decoration: none;
             font-size: 0.9em;
@@ -246,18 +247,149 @@
             padding: 8px 12px;
             border-radius: 6px;
             transition: all 0.2s ease;
+            width: 100%;
+            border: none;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
         }
 
-        .toc-list a:hover {
+        .toc-list a:hover,
+        .toc-list button:hover {
             background: rgba(102, 126, 234, 0.2);
             color: #ecf0f1;
             transform: translateX(5px);
         }
 
-        .toc-list a.active {
+        .toc-list a.active,
+        .toc-list button.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             font-weight: 600;
+        }
+
+        .toc-helper {
+            color: #95a5a6;
+            font-size: 0.82em;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .toc-bucket {
+            margin-bottom: 18px;
+        }
+
+        .toc-bucket-label {
+            color: #dfe6f5;
+            font-size: 0.74em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0 8px;
+            margin: 0 0 8px;
+        }
+
+        .toc-bucket-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-topic {
+            margin-bottom: 10px;
+        }
+
+        .toc-topic-button {
+            position: relative;
+            padding-right: 34px;
+            font-weight: 600;
+        }
+
+        .toc-topic-button::after {
+            content: '>';
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            color: #8fa5ff;
+            font-size: 0.8em;
+            transition: transform 0.2s ease;
+        }
+
+        .toc-topic[data-has-sections="false"] .toc-topic-button::after {
+            display: none;
+        }
+
+        .toc-topic.expanded .toc-topic-button::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .toc-sublist {
+            display: none;
+            list-style: none;
+            margin: 4px 0 8px;
+            padding-left: 14px;
+            border-left: 1px solid rgba(189, 195, 199, 0.25);
+        }
+
+        .toc-topic.expanded .toc-sublist {
+            display: block;
+        }
+
+        .toc-subitem {
+            margin-bottom: 4px;
+        }
+
+        .toc-section-link {
+            font-size: 0.82em;
+            color: #95a5a6;
+            padding: 6px 10px;
+        }
+
+        .toc-section-link:hover {
+            transform: translateX(3px);
+        }
+
+        .toc-section-link.active {
+            background: rgba(102, 126, 234, 0.18);
+            color: #ecf0f1;
+            font-weight: 600;
+        }
+
+        .topic-panel {
+            margin: 28px 0 42px;
+            padding: 28px 32px;
+            border: 1px solid #e3e9ff;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+            box-shadow: 0 12px 30px rgba(44, 62, 80, 0.08);
+        }
+
+        .topic-panel > h3 {
+            margin-top: 0;
+        }
+
+        .topic-panel > :last-child {
+            margin-bottom: 0;
+        }
+
+        .topic-bucket-label {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: #eef3ff;
+            color: #5b6fb5;
+            font-size: 0.76em;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        h3[id^="topic-"],
+        .topic-panel h4[id] {
+            scroll-margin-top: 24px;
         }
 
         .main-content {
@@ -347,58 +479,8 @@
     <div class="page-wrapper">
         <nav class="sidebar" id="sidebar">
             <h2 class="sidebar-header">Table of Contents</h2>
-            <ol class="toc-list">
-                <li><a href="#topic-1">1. Linear Regression: Closed-Form Solution vs. Gradient Descent</a></li>
-                <li><a href="#topic-2">2. Ridge and Lasso Regression: L1/L2 Regularization and Bayesian Interpretation</a></li>
-                <li><a href="#topic-3">3. Logistic Regression: MLE Derivation and Probabilistic Interpretation</a></li>
-                <li><a href="#topic-4">4. Softmax Regression: Multi-Class Generalization and Cross-Entropy Loss</a></li>
-                <li><a href="#topic-5">5. Bias-Variance Tradeoff: Mathematical Formulation and Model Complexity</a></li>
-                <li><a href="#topic-6">6. K-Nearest Neighbors (KNN): Distance Metrics and Curse of Dimensionality</a></li>
-                <li><a href="#topic-7">7. Decision Trees: Gini Impurity, Entropy, and Information Gain</a></li>
-                <li><a href="#topic-8">8. Random Forests: Bagging, Feature Randomness, and Out-of-Bag Error</a></li>
-                <li><a href="#topic-9">9. Gradient Boosting Machines (GBM): AdaBoost, XGBoost, LightGBM, and CatBoost</a></li>
-                <li><a href="#topic-10">10. Support Vector Machines (SVM): Hard/Soft Margin, Kernel Trick, and Dual Formulation</a></li>
-                <li><a href="#topic-11">11. Naive Bayes: Gaussian, Multinomial, and Bernoulli Variants</a></li>
-                <li><a href="#topic-12">12. Principal Component Analysis (PCA): Eigenvalue Decomposition and Variance Explained</a></li>
-                <li><a href="#topic-13">13. Singular Value Decomposition (SVD): Low-Rank Approximation and Applications</a></li>
-                <li><a href="#topic-14">14. Independent Component Analysis (ICA): FastICA and Blind Source Separation</a></li>
-                <li><a href="#topic-15">15. k-Means Clustering: Lloyd's Algorithm and Elbow Method</a></li>
-                <li><a href="#topic-16">16. Gaussian Mixture Models (GMM): EM Algorithm and AIC/BIC for Model Selection</a></li>
-                <li><a href="#topic-17">17. Hierarchical Clustering: Agglomerative vs. Divisive Methods and Dendrograms</a></li>
-                <li><a href="#topic-18">18. DBSCAN: Density-Based Clustering and Core/Border/Noise Points</a></li>
-                <li><a href="#topic-19">19. Neural Networks: Forward/Backward Propagation and Chain Rule</a></li>
-                <li><a href="#topic-20">20. Activation Functions: Sigmoid, Tanh, ReLU, Leaky ReLU, and Swish</a></li>
-                <li><a href="#topic-21">21. Loss Functions: MSE, Cross-Entropy, Hinge, and KL Divergence</a></li>
-                <li><a href="#topic-22">22. Optimizers: SGD, Momentum, Adam, RMSprop, and Learning Rate Schedules</a></li>
-                <li><a href="#topic-23">23. Batch Normalization: Internal Covariate Shift and Training Dynamics</a></li>
-                <li><a href="#topic-24">24. Dropout: Regularization Mechanism and Inverted Scaling</a></li>
-                <li><a href="#topic-25">25. Convolutional Neural Networks (CNNs): Kernels, Strides, and Pooling</a></li>
-                <li><a href="#topic-26">26. Recurrent Neural Networks (RNNs): Vanishing/Exploding Gradients and LSTM/GRU</a></li>
-                <li><a href="#topic-27">27. Attention Mechanisms: Self-Attention, Multi-Head Attention, and Transformers</a></li>
-                <li><a href="#topic-28">28. Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</a></li>
-                <li><a href="#topic-29">29. Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</a></li>
-                <li><a href="#topic-30">30. Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</a></li>
-                <li><a href="#topic-31">31. Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</a></li>
-                <li><a href="#topic-32">32. Time Series Models: ARIMA, SARIMA, and State Space Models</a></li>
-                <li><a href="#topic-33">33. Kalman Filters: Prediction and Update Equations for Dynamic Systems</a></li>
-                <li><a href="#topic-34">34. Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</a></li>
-                <li><a href="#topic-35">35. Bayesian Networks: Conditional Independence and Inference Algorithms</a></li>
-                <li><a href="#topic-36">36. Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</a></li>
-                <li><a href="#topic-37">37. Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito's Lemma</a></li>
-                <li><a href="#topic-38">38. Black-Litterman Model: Combining Market Equilibrium and Views</a></li>
-                <li><a href="#topic-39">39. Factor Models: Fama-French, PCA-Based, and Latent Factor Models</a></li>
-                <li><a href="#topic-40">40. Portfolio Optimization: Mean-Variance, Black-Litterman, and Risk Parity</a></li>
-                <li><a href="#topic-41">41. Risk Metrics: VaR, CVaR, and Expected Shortfall</a></li>
-                <li><a href="#topic-42">42. Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</a></li>
-                <li><a href="#topic-43">43. Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</a></li>
-                <li><a href="#topic-44">44. Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</a></li>
-                <li><a href="#topic-45">45. Cross-Validation: k-Fold, Stratified, and Time Series CV</a></li>
-                <li><a href="#topic-46">46. Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</a></li>
-                <li><a href="#topic-47">47. Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</a></li>
-                <li><a href="#topic-48">48. PyTorch Autograd: Computational Graphs and Automatic Differentiation</a></li>
-                <li><a href="#topic-49">49. Scikit-Learn Pipeline: Custom Transformers and Column Transformers</a></li>
-                <li><a href="#topic-50">50. Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</a></li>
-            </ol>
+            <p class="toc-helper">Browse by bucket, then click a topic to reveal its internal sections.</p>
+            <ol class="toc-list" id="tocList"></ol>
         </nav>
 
         <button class="mobile-menu-toggle" id="menuToggle">☰ Menu</button>
@@ -406,7 +488,7 @@
         <div class="main-content">
             <div class="container">
         <h1>Scikit-Learn & PyTorch: ML Algorithms & Models</h1>
-        <p class="subtitle">Comprehensive Interview Cheatsheet - 50 Key Topics</p>
+        <p class="subtitle">Comprehensive Interview Cheatsheet - 46 Key Topics</p>
         
         
 <h3 id="topic-1">Topic 1: Linear Regression: Closed-Form Solution vs. Gradient Descent</h3>
@@ -7604,7 +7686,7 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 </div>
 
 
-<h3 id="topic-27">Topic 27: Attention Mechanisms: Self-Attention, Multi-Head Attention, and Transformers</h3>
+<h3 id="topic-27">Topic 27: Attention Mechanisms: Self-Attention and Multi-Head Attention</h3>
 
 <div class="definition">
     <strong>Attention Mechanism:</strong> A technique that enables models to focus on specific parts of the input data, dynamically weighting the importance of different elements. It mimics cognitive attention, allowing the model to prioritize relevant information.
@@ -7616,10 +7698,6 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 
 <div class="definition">
     <strong>Multi-Head Attention:</strong> An extension of self-attention where multiple attention heads are used in parallel, allowing the model to jointly attend to information from different representation subspaces at different positions.
-</div>
-
-<div class="definition">
-    <strong>Transformer:</strong> A deep learning model architecture introduced in "Attention Is All You Need" (Vaswani et al., 2017) that relies entirely on attention mechanisms, eschewing recurrence and convolutions. It consists of an encoder-decoder structure with stacked self-attention and feed-forward layers.
 </div>
 
 <hr>
@@ -7641,6 +7719,46 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
         <li>\(n\) and \(m\) are the sequence lengths (often equal in self-attention).</li>
     </ul>
     The scaling factor \(\sqrt{d_k}\) prevents the dot products from growing too large in magnitude, which can lead to vanishing gradients in the softmax.
+</div>
+
+<div class="formula">
+    <strong>Softmax Applied to the Score Matrix:</strong>
+    Let
+    \[
+    S = \frac{QK^T}{\sqrt{d_k}} \in \mathbb{R}^{n \times m}
+    \]
+    be the matrix of attention scores. The softmax is applied row-wise, so each row becomes a probability distribution over the \(m\) keys:
+    \[
+    \text{softmax}(S)_{ij} = \frac{e^{S_{ij}}}{\sum_{\ell=1}^{m} e^{S_{i\ell}}}
+    \]
+    for \(i = 1, \dots, n\) and \(j = 1, \dots, m\). Equivalently, if the \(i\)-th row of \(S\) is \(s_i\), then
+    \[
+    \text{softmax}(s_i) = \left[\frac{e^{s_{i1}}}{\sum_{\ell=1}^{m} e^{s_{i\ell}}}, \dots, \frac{e^{s_{im}}}{\sum_{\ell=1}^{m} e^{s_{i\ell}}}\right].
+    \]
+</div>
+
+<div class="definition">
+    <strong>What \(Q\), \(K\), and \(V\) Mean:</strong>
+    <ul>
+        <li><strong>Query (\(Q\)):</strong> What a token is looking for in other tokens.</li>
+        <li><strong>Key (\(K\)):</strong> How a token can be matched by other tokens' queries.</li>
+        <li><strong>Value (\(V\)):</strong> The information a token contributes if it is attended to.</li>
+    </ul>
+    Intuitively, the query asks "which other tokens are relevant to me?", the key determines how strongly each token matches that request, and the value is the content blended into the output once attention weights are assigned.
+</div>
+
+<div class="formula">
+    <strong>How Queries, Keys, and Values Are Constructed:</strong>
+    If \(X \in \mathbb{R}^{n \times d_{\text{model}}}\) is the matrix of token representations, then self-attention builds queries, keys, and values by applying three different learned linear projections:
+    \[
+    Q = XW_Q, \quad K = XW_K, \quad V = XW_V
+    \]
+    where \(W_Q\), \(W_K\), and \(W_V\) are learned parameter matrices. Thus, \(Q\), \(K\), and \(V\) are populated from the same input representations, but each projection emphasizes a different role in the attention computation.
+</div>
+
+<div class="note">
+    <strong>Important Nuance:</strong>
+    Queries, keys, and values are not human-readable questions, labels, or symbolic tags. They are learned vectors in an internal feature space. During training, the model learns projection matrices that make query-key dot products reflect useful compatibility patterns, while the value vectors carry the information that should be aggregated.
 </div>
 
 <div class="example">
@@ -7736,7 +7854,46 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 
 <hr>
 
+<h3 id="topic-28">Topic 28: Transformers: Architecture, Feed-Forward Networks, and Positional Encoding</h3>
+
+<div class="definition">
+    <strong>Transformer:</strong> A deep learning model architecture introduced in "Attention Is All You Need" (Vaswani et al., 2017) that relies entirely on attention mechanisms, eschewing recurrence and convolutions. It consists of an encoder-decoder structure with stacked self-attention and feed-forward layers.
+</div>
+
+<div class="note">
+    <strong>Why Are They Called Transformers?</strong>
+    Transformers are called transformers because each layer transforms token representations into richer contextualized representations. If the input to a layer is
+    \[
+    X \in \mathbb{R}^{n \times d}
+    \]
+    then the output has the same overall shape, but each token embedding now reflects more information about the surrounding sequence. Self-attention lets tokens exchange information across positions, while the position-wise feed-forward network refines each token locally. Repeating these operations across many layers progressively transforms the representation of the entire sequence.
+</div>
+
+<hr>
+
 <h4>Transformer Architecture</h4>
+
+<div class="definition">
+    <strong>Main Components of a Transformer:</strong>
+    A Transformer block is built from a small set of repeated components:
+    <ol>
+        <li><strong>Token embeddings + positional information:</strong> Convert tokens into vectors and inject information about token order.</li>
+        <li><strong>Multi-head attention:</strong> Allows each token to gather information from other tokens in the sequence.</li>
+        <li><strong>Feed-forward neural network:</strong> A small neural network applied independently to each token representation after attention.</li>
+        <li><strong>Residual connections:</strong> Add the input of a sublayer back to its output to stabilize optimization and preserve information flow.</li>
+        <li><strong>Layer normalization:</strong> Normalizes activations to improve training stability.</li>
+    </ol>
+</div>
+
+<div class="note">
+    <strong>GPT-Style Transformer Blocks:</strong>
+    In decoder-only large language models such as GPT, the repeated block is essentially:
+    <ul>
+        <li><strong>Causal self-attention:</strong> Each token can attend only to earlier tokens (and itself), not future tokens.</li>
+        <li><strong>Feed-forward network:</strong> A position-wise neural network that further transforms each token representation.</li>
+        <li><strong>Residual connections and normalization:</strong> These wrap the main sublayers and help deep stacks train reliably.</li>
+    </ul>
+</div>
 
 <div class="definition">
     <strong>Encoder:</strong> A stack of \(N\) identical layers, each containing:
@@ -7759,7 +7916,7 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
 
 <div class="formula">
     <strong>Position-wise Feed-Forward Network:</strong>
-    Applied to each position separately:
+    This is a small fully connected neural network, typically with two linear layers and a nonlinearity, applied independently to each token position using the same weights at every position:
     \[
     \text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
     \]
@@ -7887,7 +8044,7 @@ attn_output, attn_weights = multihead_attn(query, key, value)</code></pre>
 </div>
 
 
-<h3 id="topic-28">Topic 28: Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</h3>
+<h3 id="topic-29">Topic 29: Autoencoders: Variational Autoencoders (VAEs) and Latent Space Regularization</h3>
 
 <div class="definition">
     <p><strong>Autoencoder (AE):</strong> A type of neural network used for unsupervised learning that aims to learn efficient data codings. It consists of two main parts: an encoder that maps the input to a latent space, and a decoder that reconstructs the input from the latent representation.</p>
@@ -8224,7 +8381,7 @@ for epoch in range(epochs):
 </div>
 
 
-<h3 id="topic-29">Topic 29: Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</h3>
+<h3 id="topic-30">Topic 30: Generative Adversarial Networks (GANs): Minimax Game and Mode Collapse</h3>
 
 <div class="definition">
     <strong>Generative Adversarial Networks (GANs):</strong>
@@ -8438,7 +8595,7 @@ for epoch in range(epochs):
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 25-29: Deep Learning Architectures):</b>
+    <b>Further Reading (Topics 25-30: Deep Learning Architectures):</b>
     <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network" target="_blank">Wikipedia: CNNs</a> |
     <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network" target="_blank">Wikipedia: RNNs</a> |
     <a href="https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)" target="_blank">Wikipedia: Transformers</a> |
@@ -8448,7 +8605,7 @@ for epoch in range(epochs):
 </div>
 
 
-<h3 id="topic-30">Topic 30: Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</h3>
+<h3 id="topic-31">Topic 31: Reinforcement Learning: Q-Learning, Policy Gradients, and Actor-Critic Methods</h3>
 
 <div class="definition">
     <p><strong>Reinforcement Learning (RL):</strong> A paradigm of machine learning where an agent learns to make decisions by performing actions in an environment to maximize cumulative reward. The agent learns from the consequences of its actions, rather than from being explicitly taught.</p>
@@ -8902,7 +9059,7 @@ class A2CAgent:
 </div>
 
 
-<h3 id="topic-31">Topic 31: Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</h3>
+<h3 id="topic-32">Topic 32: Markov Decision Processes (MDPs): Bellman Equations and Value Iteration</h3>
 
 <div class="definition">
     <p><strong>Markov Decision Process (MDP):</strong> A mathematical framework for modeling decision-making in situations where outcomes are partly random and partly under the control of a decision-maker. An MDP is defined by the tuple \((S, A, P, R, \gamma)\) where:</p>
@@ -9070,7 +9227,7 @@ class A2CAgent:
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 30-31: Reinforcement Learning):</b>
+    <b>Further Reading (Topics 31-32: Reinforcement Learning):</b>
     <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Wikipedia: Reinforcement Learning</a> |
     <a href="https://en.wikipedia.org/wiki/Q-learning" target="_blank">Wikipedia: Q-Learning</a> |
     <a href="https://en.wikipedia.org/wiki/Markov_decision_process" target="_blank">Wikipedia: MDP</a> |
@@ -9079,7 +9236,7 @@ class A2CAgent:
 </div>
 
 
-<h3 id="topic-32">Topic 32: Time Series Models: ARIMA, SARIMA, and State Space Models</h3>
+<h3 id="topic-33">Topic 33: Time Series Models: ARIMA, SARIMA, and State Space Models</h3>
 
 <div class="definition">
     <p><strong>Time Series:</strong> A sequence of data points indexed in time order, typically consisting of successive measurements made over a time interval. Examples include stock prices, temperature readings, and sales data.</p>
@@ -9378,7 +9535,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3 id="topic-33">Topic 33: Kalman Filters: Prediction and Update Equations for Dynamic Systems</h3>
+<h3 id="topic-34">Topic 34: Kalman Filters: Prediction and Update Equations for Dynamic Systems</h3>
 
 <div class="definition">
     <p><strong>Kalman Filter:</strong> A recursive algorithm that estimates the state of a linear dynamic system from a series of noisy measurements. It operates in two steps: <em>prediction</em> (time update) and <em>update</em> (measurement update). The filter is optimal for linear Gaussian systems, minimizing the mean squared error of the estimated state.</p>
@@ -9604,7 +9761,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3 id="topic-34">Topic 34: Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</h3>
+<h3 id="topic-35">Topic 35: Hidden Markov Models (HMMs): Forward-Backward Algorithm and Viterbi Decoding</h3>
 
 <div class="definition">
     <p><strong>Hidden Markov Model (HMM):</strong> A statistical model where the system being modeled is assumed to be a Markov process with unobserved (hidden) states. An HMM is characterized by:</p>
@@ -9876,7 +10033,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3 id="topic-35">Topic 35: Bayesian Networks: Conditional Independence and Inference Algorithms</h3>
+<h3 id="topic-36">Topic 36: Bayesian Networks: Conditional Independence and Inference Algorithms</h3>
 
 <div class="definition">
     <p><strong>Bayesian Network (BN):</strong> A probabilistic graphical model that represents a set of random variables and their conditional dependencies via a directed acyclic graph (DAG). Each node in the graph represents a random variable, and edges represent conditional dependencies.</p>
@@ -10127,7 +10284,7 @@ print(results.summary())</code></pre>
 </div>
 
 
-<h3 id="topic-36">Topic 36: Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</h3>
+<h3 id="topic-37">Topic 37: Monte Carlo Methods: Importance Sampling and Markov Chain Monte Carlo (MCMC)</h3>
 
 <div class="definition">
     <p><strong>Monte Carlo Methods:</strong> A class of computational algorithms that rely on repeated random sampling to obtain numerical results. The underlying concept is to use randomness to solve problems that might be deterministic in principle. They are often used in physical and mathematical problems and are most useful when it is difficult or impossible to use other approaches.</p>
@@ -10316,7 +10473,7 @@ print(results.summary())</code></pre>
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 32-36: Time Series & Probabilistic Models):</b>
+    <b>Further Reading (Topics 33-37: Time Series & Probabilistic Models):</b>
     <a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average" target="_blank">Wikipedia: ARIMA</a> |
     <a href="https://en.wikipedia.org/wiki/Kalman_filter" target="_blank">Wikipedia: Kalman Filter</a> |
     <a href="https://en.wikipedia.org/wiki/Hidden_Markov_model" target="_blank">Wikipedia: HMM</a> |
@@ -10324,1395 +10481,7 @@ print(results.summary())</code></pre>
     <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method" target="_blank">Wikipedia: Monte Carlo Methods</a>
 </div>
 
-
-<h3 id="topic-37">Topic 37: Stochastic Processes: Brownian Motion, Geometric Brownian Motion, and Ito's Lemma</h3>
-
-<div class="definition">
-    <p><strong>Stochastic Process:</strong> A collection of random variables \(\{X_t\}_{t \in T}\) indexed by time \(t\), where \(T\) is a set of time points (discrete or continuous). Each random variable \(X_t\) represents the state of the process at time \(t\).</p>
-</div>
-
-<div class="section">
-    <h4>1. Brownian Motion (Wiener Process)</h4>
-
-    <div class="definition">
-        <p><strong>Standard Brownian Motion (Wiener Process):</strong> A continuous-time stochastic process \(W_t\) with the following properties:</p>
-        <ol>
-            <li><strong>Initial Value:</strong> \(W_0 = 0\) almost surely.</li>
-            <li><strong>Independent Increments:</strong> For any \(0 \leq t_1 < t_2 < \dots < t_n\), the increments \(W_{t_2} - W_{t_1}, W_{t_3} - W_{t_2}, \dots, W_{t_n} - W_{t_{n-1}}\) are independent.</li>
-            <li><strong>Gaussian Increments:</strong> For \(0 \leq s < t\), the increment \(W_t - W_s \sim \mathcal{N}(0, t-s)\).</li>
-            <li><strong>Continuous Paths:</strong> The sample paths \(t \mapsto W_t\) are continuous almost surely.</li>
-        </ol>
-    </div>
-
-    <div class="formula">
-        <p><strong>Probability Density Function (PDF) of \(W_t\):</strong></p>
-        \[
-        f_{W_t}(x) = \frac{1}{\sqrt{2 \pi t}} e^{-\frac{x^2}{2t}}
-        \]
-        <p>where \(W_t \sim \mathcal{N}(0, t)\).</p>
-    </div>
-
-    <div class="formula">
-        <p><strong>Covariance of Brownian Motion:</strong></p>
-        \[
-        \text{Cov}(W_s, W_t) = \min(s, t)
-        \]
-    </div>
-
-    <div class="example">
-        <p><strong>Example: Simulating Brownian Motion</strong></p>
-        <p>To simulate a Brownian motion path at discrete time points \(0 = t_0 < t_1 < \dots < t_n = T\):</p>
-        <ol>
-            <li>Generate independent increments \(\Delta W_i = W_{t_i} - W_{t_{i-1}} \sim \mathcal{N}(0, t_i - t_{i-1})\).</li>
-            <li>Construct the path recursively: \(W_{t_i} = W_{t_{i-1}} + \Delta W_i\).</li>
-        </ol>
-    </div>
-
-    <div class="note">
-        <p><strong>Note:</strong> Brownian motion is a martingale, meaning \(\mathbb{E}[W_t | \mathcal{F}_s] = W_s\) for \(s \leq t\), where \(\mathcal{F}_s\) is the filtration up to time \(s\).</p>
-    </div>
-</div>
-
-<div class="section">
-    <h4>2. Geometric Brownian Motion (GBM)</h4>
-
-    <div class="definition">
-        <p><strong>Geometric Brownian Motion:</strong> A stochastic process \(S_t\) defined as:</p>
-        \[
-        S_t = S_0 \exp\left( \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t \right)
-        \]
-        <p>where:</p>
-        <ul>
-            <li>\(S_0\) is the initial value,</li>
-            <li>\(\mu\) is the drift coefficient,</li>
-            <li>\(\sigma\) is the volatility,</li>
-            <li>\(W_t\) is a standard Brownian motion.</li>
-        </ul>
-    </div>
-
-    <div class="formula">
-        <p><strong>Stochastic Differential Equation (SDE) for GBM:</strong></p>
-        \[
-        dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-        \]
-    </div>
-
-    <div class="derivation">
-        <p><strong>Derivation of GBM from Brownian Motion:</strong></p>
-        <p>Start with the SDE for GBM:</p>
-        \[
-        dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-        \]
-        <p>This is a linear SDE. To solve it, we use the integrating factor method:</p>
-        <ol>
-            <li>Define the integrating factor \(F_t = \exp\left(-\left(\mu - \frac{\sigma^2}{2}\right)t - \sigma W_t\right)\).</li>
-            <li>Apply Ito's Lemma to \(F_t S_t\) (see Ito's Lemma section for details):</li>
-            \[
-            d(F_t S_t) = F_t \left( dS_t + S_t \left(-\left(\mu - \frac{\sigma^2}{2}\right) dt - \sigma dW_t + \frac{\sigma^2}{2} dt \right) + \sigma S_t (-\sigma) dt \right) = 0
-            \]
-            <li>Thus, \(F_t S_t\) is a martingale, and \(F_t S_t = F_0 S_0 = S_0\).</li>
-            <li>Solving for \(S_t\) gives the GBM formula:</li>
-            \[
-            S_t = S_0 \exp\left( \left(\mu - \frac{\sigma^2}{2}\right)t + \sigma W_t \right)
-            \]
-        </ol>
-    </div>
-
-    <div class="formula">
-        <p><strong>Expectation and Variance of GBM:</strong></p>
-        \[
-        \mathbb{E}[S_t] = S_0 e^{\mu t}, \quad \text{Var}(S_t) = S_0^2 e^{2\mu t} \left(e^{\sigma^2 t} - 1\right)
-        \]
-    </div>
-
-    <div class="example">
-        <p><strong>Example: Simulating GBM</strong></p>
-        <p>To simulate a path of \(S_t\) at discrete time points \(0 = t_0 < t_1 < \dots < t_n = T\):</p>
-        <ol>
-            <li>Simulate a Brownian motion path \(W_{t_i}\) as in the previous example.</li>
-            <li>Compute \(S_{t_i} = S_0 \exp\left( \left(\mu - \frac{\sigma^2}{2}\right)t_i + \sigma W_{t_i} \right)\).</li>
-        </ol>
-    </div>
-
-    <div class="note">
-        <p><strong>Note:</strong> GBM is widely used in finance to model stock prices because it ensures \(S_t > 0\) and has log-normal returns.</p>
-    </div>
-</div>
-
-<div class="section">
-    <h4>3. Ito’s Lemma</h4>
-
-    <div class="definition">
-        <p><strong>Ito’s Lemma:</strong> A fundamental result in stochastic calculus that provides a rule for differentiating functions of stochastic processes. If \(X_t\) is an Ito process defined by:</p>
-        \[
-        dX_t = \mu_t \, dt + \sigma_t \, dW_t
-        \]
-        <p>and \(f(t, X_t)\) is a twice continuously differentiable function, then \(f(t, X_t)\) is also an Ito process, and:</p>
-        \[
-        df(t, X_t) = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t
-        \]
-    </div>
-
-    <div class="derivation">
-        <p><strong>Heuristic Derivation of Ito’s Lemma:</strong></p>
-        <p>Consider a Taylor expansion of \(f(t, X_t)\) up to second order:</p>
-        \[
-        df = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dX_t + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} (dX_t)^2 + \text{higher-order terms}
-        \]
-        <p>Substitute \(dX_t = \mu_t dt + \sigma_t dW_t\) and use the following rules for \(dt\) and \(dW_t\):</p>
-        <ul>
-            <li>\((dt)^2 = 0\), \(dt \cdot dW_t = 0\),</li>
-            <li>\((dW_t)^2 = dt\) (in the mean-square sense).</li>
-        </ul>
-        <p>Thus:</p>
-        \[
-        (dX_t)^2 = \sigma_t^2 (dW_t)^2 = \sigma_t^2 dt
-        \]
-        <p>Substituting back into the Taylor expansion:</p>
-        \[
-        df = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} (\mu_t dt + \sigma_t dW_t) + \frac{1}{2} \frac{\partial^2 f}{\partial x^2} \sigma_t^2 dt
-        \]
-        <p>Collecting terms gives Ito’s Lemma:</p>
-        \[
-        df = \left( \frac{\partial f}{\partial t} + \mu_t \frac{\partial f}{\partial x} + \frac{1}{2} \sigma_t^2 \frac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \frac{\partial f}{\partial x} dW_t
-        \]
-    </div>
-
-    <div class="example">
-        <p><strong>Example: Applying Ito’s Lemma to GBM</strong></p>
-        <p>Let \(S_t\) follow GBM:</p>
-        \[
-        dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
-        \]
-        <p>Define \(f(S_t) = \ln(S_t)\). Then:</p>
-        \[
-        \frac{\partial f}{\partial t} = 0, \quad \frac{\partial f}{\partial S} = \frac{1}{S}, \quad \frac{\partial^2 f}{\partial S^2} = -\frac{1}{S^2}
-        \]
-        <p>Applying Ito’s Lemma:</p>
-        \[
-        d(\ln S_t) = \left( 0 + \mu S_t \cdot \frac{1}{S_t} + \frac{1}{2} \sigma^2 S_t^2 \cdot \left(-\frac{1}{S_t^2}\right) \right) dt + \sigma S_t \cdot \frac{1}{S_t} dW_t
-        \]
-        \[
-        d(\ln S_t) = \left( \mu - \frac{\sigma^2}{2} \right) dt + \sigma dW_t
-        \]
-        <p>Integrating both sides from \(0\) to \(t\) recovers the GBM formula:</p>
-        \[
-        \ln S_t - \ln S_0 = \left( \mu - \frac{\sigma^2}{2} \right) t + \sigma W_t
-        \]
-        \[
-        S_t = S_0 \exp\left( \left(\mu - \frac{\sigma^2}{2}\right) t + \sigma W_t \right)
-        \]
-    </div>
-
-    <div class="note">
-        <p><strong>Note:</strong> Ito’s Lemma is the stochastic counterpart of the chain rule in deterministic calculus. It is essential for deriving the Black-Scholes equation in financial mathematics.</p>
-    </div>
-</div>
-
-<div class="section">
-    <h4>4. Practical Applications</h4>
-    <ul>
-        <li><strong>Finance:</strong>
-            <ul>
-                <li>Brownian motion is used to model asset prices, interest rates, and other financial quantities.</li>
-                <li>GBM is the foundation of the Black-Scholes model for option pricing.</li>
-                <li>Ito’s Lemma is used to derive the Black-Scholes PDE and to compute hedging strategies.</li>
-            </ul>
-        </li>
-        <li><strong>Physics:</strong>
-            <ul>
-                <li>Brownian motion describes the random movement of particles suspended in a fluid (e.g., pollen grains in water).</li>
-                <li>Used in statistical mechanics to model diffusion processes.</li>
-            </ul>
-        </li>
-        <li><strong>Engineering:</strong>
-            <ul>
-                <li>Stochastic processes are used in signal processing and control theory to model noise and uncertainty.</li>
-            </ul>
-        </li>
-        <li><strong>Machine Learning:</strong>
-            <ul>
-                <li>Stochastic processes are used in Bayesian optimization, reinforcement learning (e.g., Thompson sampling), and generative models (e.g., diffusion models).</li>
-            </ul>
-        </li>
-    </ul>
-</div>
-
-<div class="section">
-    <h4>5. Common Pitfalls and Important Notes</h4>
-    <div class="note">
-        <p><strong>Pitfall 1: Misapplying Ito’s Lemma</strong></p>
-        <p>Ito’s Lemma requires the function \(f(t, X_t)\) to be twice continuously differentiable. Applying it to non-smooth functions (e.g., \(f(x) = |x|\)) can lead to incorrect results. For such functions, the Tanaka formula or local time must be used.</p>
-    </div>
-    <div class="note">
-        <p><strong>Pitfall 2: Confusing Arithmetic and Geometric Brownian Motion</strong></p>
-        <p>Arithmetic Brownian motion (ABM) is defined as \(dX_t = \mu dt + \sigma dW_t\) and can take negative values. GBM, on the other hand, is always positive and is more appropriate for modeling prices.</p>
-    </div>
-    <div class="note">
-        <p><strong>Pitfall 3: Ignoring the Quadratic Variation</strong></p>
-        <p>In stochastic calculus, \((dW_t)^2 = dt\) is a key property that distinguishes it from deterministic calculus. Ignoring this can lead to incorrect derivations (e.g., in the derivation of Ito’s Lemma).</p>
-    </div>
-    <div class="note">
-        <p><strong>Important Note: Martingale Property</strong></p>
-        <p>Brownian motion is a martingale, but GBM is a martingale only if the drift \(\mu = 0\). This property is crucial in risk-neutral pricing in finance.</p>
-    </div>
-    <div class="note">
-        <p><strong>Important Note: Simulation of Stochastic Processes</strong></p>
-        <p>When simulating stochastic processes, the choice of time step \(\Delta t\) affects the accuracy of the simulation. Smaller \(\Delta t\) gives more accurate paths but increases computational cost. Euler-Maruyama and Milstein methods are common discretization schemes.</p>
-    </div>
-</div>
-
-
-<h3 id="topic-38">Topic 38: Black-Litterman Model: Combining Market Equilibrium and Views</h3>
-
-<div class="definition">
-    <p><strong>Black-Litterman Model:</strong> A sophisticated portfolio allocation model that combines market equilibrium (derived from the Capital Asset Pricing Model, CAPM) with investor views to produce a posterior estimate of expected returns. The model addresses the instability and extreme weights often produced by mean-variance optimization by anchoring estimates to market equilibrium and incorporating subjective views in a Bayesian framework.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Market Equilibrium Returns:</strong> The expected returns implied by the market capitalization weights of assets in a fully diversified market portfolio, assuming all investors hold the market portfolio (as per CAPM).</p>
-</div>
-
-<div class="definition">
-    <p><strong>Investor Views:</strong> Subjective opinions about the future performance of one or more assets, expressed as absolute or relative return expectations. These views are typically uncertain and modeled with a confidence level.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Posterior Expected Returns:</strong> The updated expected returns after combining market equilibrium returns with investor views using Bayesian inference.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Bayesian Inference:</strong> A statistical method that updates the probability of a hypothesis as more evidence or information becomes available. In the Black-Litterman model, the prior is the market equilibrium returns, and the likelihood is the investor views.</p>
-</div>
-
-<section>
-    <h4>Key Concepts</h4>
-
-    <p>The Black-Litterman model addresses two major limitations of traditional mean-variance optimization:</p>
-    <ol>
-        <li><strong>Input Sensitivity:</strong> Small changes in expected returns can lead to large changes in portfolio weights.</li>
-        <li><strong>Extreme Weights:</strong> Mean-variance optimization often results in concentrated portfolios with extreme long/short positions.</li>
-    </ol>
-
-    <p>The model starts with the market equilibrium returns (from CAPM) as the prior distribution and combines them with investor views (modeled as a likelihood) to produce posterior expected returns. This approach yields more stable and diversified portfolios.</p>
-</section>
-
-<section>
-    <h4>Important Formulas</h4>
-
-    <div class="formula">
-        <p><strong>Market Equilibrium Returns (Implied Excess Equilibrium Returns):</strong></p>
-        \[
-        \Pi = \lambda \Sigma w_{mkt}
-        \]
-        where:
-        <ul>
-            <li>\(\Pi\) is the \(N \times 1\) vector of implied excess equilibrium returns.</li>
-            <li>\(\lambda\) is the risk aversion coefficient of the market.</li>
-            <li>\(\Sigma\) is the \(N \times N\) covariance matrix of asset returns.</li>
-            <li>\(w_{mkt}\) is the \(N \times 1\) vector of market capitalization weights.</li>
-        </ul>
-    </div>
-
-    <div class="formula">
-        <p><strong>Investor Views:</strong></p>
-        \[
-        P \mu = Q + \epsilon
-        \]
-        where:
-        <ul>
-            <li>\(P\) is the \(K \times N\) picking matrix (where \(K\) is the number of views and \(N\) is the number of assets). Each row represents a view, with non-zero entries indicating the assets involved.</li>
-            <li>\(\mu\) is the \(N \times 1\) vector of expected returns (to be solved for).</li>
-            <li>\(Q\) is the \(K \times 1\) vector of expected returns for each view.</li>
-            <li>\(\epsilon\) is the \(K \times 1\) vector of error terms, assumed to be normally distributed with mean 0 and covariance \(\Omega\).</li>
-        </ul>
-    </div>
-
-    <div class="formula">
-        <p><strong>Uncertainty in Views (\(\Omega\)):</strong></p>
-        \[
-        \Omega = \text{diag}(P (\tau \Sigma) P^T)
-        \]
-        where:
-        <ul>
-            <li>\(\tau\) is a scalar representing the uncertainty of the prior (market equilibrium returns). A common choice is \(\tau = \frac{1}{T}\), where \(T\) is the number of observations used to estimate \(\Sigma\).</li>
-        </ul>
-        <p>Alternatively, \(\Omega\) can be specified directly based on the confidence in each view.</p>
-    </div>
-
-    <div class="formula">
-        <p><strong>Black-Litterman Posterior Expected Returns:</strong></p>
-        \[
-        E[R] = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1} \left[ (\tau \Sigma)^{-1} \Pi + P^T \Omega^{-1} Q \right]
-        \]
-        where:
-        <ul>
-            <li>\(E[R]\) is the \(N \times 1\) vector of posterior expected returns.</li>
-        </ul>
-    </div>
-
-    <div class="formula">
-        <p><strong>Posterior Covariance Matrix:</strong></p>
-        \[
-        M = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1}
-        \]
-    </div>
-
-    <div class="formula">
-        <p><strong>Combined Portfolio Weights:</strong></p>
-        Using the posterior expected returns \(E[R]\) and the posterior covariance matrix \(M\), the optimal portfolio weights \(w\) are given by:
-        \[
-        w = \frac{1}{\lambda} M^{-1} E[R]
-        \]
-        where \(\lambda\) is the investor's risk aversion coefficient.
-    </div>
-</section>
-
-<section>
-    <h4>Derivations</h4>
-
-    <div class="example">
-        <h5>Derivation of Black-Litterman Posterior Expected Returns</h5>
-        <p>The Black-Litterman model uses Bayesian inference to combine the prior (market equilibrium returns) with the likelihood (investor views). The derivation follows these steps:</p>
-
-        <ol>
-            <li><strong>Prior Distribution:</strong>
-                <p>The prior distribution of expected returns is assumed to be normal with mean \(\Pi\) and covariance \(\tau \Sigma\):</p>
-                \[
-                \mu \sim \mathcal{N}(\Pi, \tau \Sigma)
-                \]
-            </li>
-
-            <li><strong>Likelihood (Views):</strong>
-                <p>The investor views are modeled as a linear combination of expected returns with some noise:</p>
-                \[
-                P \mu = Q + \epsilon, \quad \epsilon \sim \mathcal{N}(0, \Omega)
-                \]
-                <p>This implies the likelihood is:</p>
-                \[
-                P \mu \sim \mathcal{N}(Q, \Omega)
-                \]
-            </li>
-
-            <li><strong>Posterior Distribution:</strong>
-                <p>The posterior distribution of \(\mu\) given the views is also normal, with mean and covariance given by the Bayesian update formulas. The posterior mean \(E[R]\) is a weighted average of the prior mean \(\Pi\) and the views \(Q\), where the weights depend on the relative confidence in the prior and the views.</p>
-                <p>The posterior mean is derived as:</p>
-                \[
-                E[R] = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1} \left[ (\tau \Sigma)^{-1} \Pi + P^T \Omega^{-1} Q \right]
-                \]
-                <p>This can be interpreted as a precision-weighted average, where precision is the inverse of covariance.</p>
-            </li>
-
-            <li><strong>Posterior Covariance:</strong>
-                <p>The posterior covariance matrix \(M\) is given by:</p>
-                \[
-                M = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1}
-                \]
-                <p>This reflects the reduced uncertainty after incorporating the views.</p>
-            </li>
-        </ol>
-    </div>
-</section>
-
-<section>
-    <h4>Practical Applications</h4>
-
-    <div class="example">
-        <h5>Example: Applying the Black-Litterman Model</h5>
-        <p>Consider a universe of 3 assets with the following data:</p>
-        <ul>
-            <li>Market capitalization weights: \(w_{mkt} = [0.5, 0.3, 0.2]^T\)</li>
-            <li>Covariance matrix \(\Sigma\):</li>
-        </ul>
-        \[
-        \Sigma = \begin{bmatrix}
-        0.04 & 0.01 & 0.00 \\
-        0.01 & 0.09 & 0.02 \\
-        0.00 & 0.02 & 0.04
-        \end{bmatrix}
-        \]
-        <ul>
-            <li>Risk aversion coefficient \(\lambda = 2.5\)</li>
-            <li>Uncertainty scalar \(\tau = 0.05\)</li>
-        </ul>
-
-        <p><strong>Step 1: Compute Market Equilibrium Returns</strong></p>
-        \[
-        \Pi = \lambda \Sigma w_{mkt} = 2.5 \begin{bmatrix}
-        0.04 & 0.01 & 0.00 \\
-        0.01 & 0.09 & 0.02 \\
-        0.00 & 0.02 & 0.04
-        \end{bmatrix} \begin{bmatrix} 0.5 \\ 0.3 \\ 0.2 \end{bmatrix} = \begin{bmatrix} 0.0525 \\ 0.0750 \\ 0.0350 \end{bmatrix}
-        \]
-
-        <p><strong>Step 2: Specify Investor Views</strong></p>
-        <p>Suppose the investor has the following views:</p>
-        <ol>
-            <li>Asset 1 will outperform Asset 2 by 2% (relative view).</li>
-            <li>Asset 3 will return 5% (absolute view).</li>
-        </ol>
-        <p>The picking matrix \(P\) and view vector \(Q\) are:</p>
-        \[
-        P = \begin{bmatrix}
-        1 & -1 & 0 \\
-        0 & 0 & 1
-        \end{bmatrix}, \quad Q = \begin{bmatrix} 0.02 \\ 0.05 \end{bmatrix}
-        \]
-
-        <p><strong>Step 3: Compute Uncertainty in Views (\(\Omega\))</strong></p>
-        <p>Assume \(\Omega\) is diagonal with confidence levels such that:</p>
-        \[
-        \Omega = \begin{bmatrix}
-        0.0025 & 0 \\
-        0 & 0.0016
-        \end{bmatrix}
-        \]
-        <p>(This corresponds to standard deviations of 5% and 4% for the two views, respectively.)</p>
-
-        <p><strong>Step 4: Compute Posterior Expected Returns</strong></p>
-        <p>First, compute the precision matrices:</p>
-        \[
-        (\tau \Sigma)^{-1} = \left( 0.05 \begin{bmatrix}
-        0.04 & 0.01 & 0.00 \\
-        0.01 & 0.09 & 0.02 \\
-        0.00 & 0.02 & 0.04
-        \end{bmatrix} \right)^{-1} = \begin{bmatrix}
-        555.56 & -61.73 & 30.86 \\
-        -61.73 & 137.17 & -68.59 \\
-        30.86 & -68.59 & 274.35
-        \end{bmatrix}
-        \]
-        \[
-        P^T \Omega^{-1} P = \begin{bmatrix}
-        1 & 0 \\
-        -1 & 0 \\
-        0 & 1
-        \end{bmatrix} \begin{bmatrix}
-        400 & 0 \\
-        0 & 625
-        \end{bmatrix} \begin{bmatrix}
-        1 & -1 & 0 \\
-        0 & 0 & 1
-        \end{bmatrix} = \begin{bmatrix}
-        400 & -400 & 0 \\
-        -400 & 400 & 0 \\
-        0 & 0 & 625
-        \end{bmatrix}
-        \]
-        <p>Now, compute the posterior mean:</p>
-        \[
-        E[R] = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1} \left[ (\tau \Sigma)^{-1} \Pi + P^T \Omega^{-1} Q \right]
-        \]
-        <p>First, compute the sum of precision matrices:</p>
-        \[
-        (\tau \Sigma)^{-1} + P^T \Omega^{-1} P = \begin{bmatrix}
-        955.56 & -461.73 & 30.86 \\
-        -461.73 & 537.17 & -68.59 \\
-        30.86 & -68.59 & 899.35
-        \end{bmatrix}
-        \]
-        <p>Next, compute the right-hand side vector:</p>
-        \[
-        (\tau \Sigma)^{-1} \Pi = \begin{bmatrix}
-        555.56 & -61.73 & 30.86 \\
-        -61.73 & 137.17 & -68.59 \\
-        30.86 & -68.59 & 274.35
-        \end{bmatrix} \begin{bmatrix} 0.0525 \\ 0.0750 \\ 0.0350 \end{bmatrix} = \begin{bmatrix} 25.46 \\ 6.86 \\ 6.15 \end{bmatrix}
-        \]
-        \[
-        P^T \Omega^{-1} Q = \begin{bmatrix}
-        1 & 0 \\
-        -1 & 0 \\
-        0 & 1
-        \end{bmatrix} \begin{bmatrix}
-        400 & 0 \\
-        0 & 625
-        \end{bmatrix} \begin{bmatrix} 0.02 \\ 0.05 \end{bmatrix} = \begin{bmatrix} 8 \\ -8 \\ 31.25 \end{bmatrix}
-        \]
-        \[
-        (\tau \Sigma)^{-1} \Pi + P^T \Omega^{-1} Q = \begin{bmatrix} 33.46 \\ -1.14 \\ 37.40 \end{bmatrix}
-        \]
-        <p>Finally, compute the posterior expected returns:</p>
-        \[
-        E[R] = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1} \begin{bmatrix} 33.46 \\ -1.14 \\ 37.40 \end{bmatrix} = \begin{bmatrix} 0.0450 \\ 0.0250 \\ 0.0450 \end{bmatrix}
-        \]
-
-        <p><strong>Step 5: Compute Optimal Portfolio Weights</strong></p>
-        <p>Using the posterior expected returns and covariance matrix, the optimal weights are:</p>
-        \[
-        w = \frac{1}{\lambda} M^{-1} E[R]
-        \]
-        <p>First, compute the posterior covariance matrix \(M\):</p>
-        \[
-        M = \left[ (\tau \Sigma)^{-1} + P^T \Omega^{-1} P \right]^{-1} = \begin{bmatrix}
-        0.0012 & 0.0010 & -0.0001 \\
-        0.0010 & 0.0023 & 0.0002 \\
-        -0.0001 & 0.0002 & 0.0011
-        \end{bmatrix}
-        \]
-        <p>Then, compute the weights:</p>
-        \[
-        w = \frac{1}{2.5} \begin{bmatrix}
-        0.0012 & 0.0010 & -0.0001 \\
-        0.0010 & 0.0023 & 0.0002 \\
-        -0.0001 & 0.0002 & 0.0011
-        \end{bmatrix}^{-1} \begin{bmatrix} 0.0450 \\ 0.0250 \\ 0.0450 \end{bmatrix} \approx \begin{bmatrix} 0.45 \\ 0.15 \\ 0.40 \end{bmatrix}
-        \]
-    </div>
-
-    <p>The Black-Litterman model is widely used in:</p>
-    <ul>
-        <li><strong>Asset Allocation:</strong> Institutional investors (e.g., pension funds, endowments) use the model to combine market equilibrium with their views to construct diversified portfolios.</li>
-        <li><strong>Risk Management:</strong> The model helps in quantifying the impact of views on portfolio risk and return, allowing for better risk-adjusted decision-making.</li>
-        <li><strong>Tactical Asset Allocation:</strong> Hedge funds and asset managers use the model to tilt portfolios based on short-term views while remaining anchored to long-term equilibrium.</li>
-        <li><strong>Robo-Advisors:</strong> Automated investment platforms use simplified versions of the Black-Litterman model to incorporate user preferences and market data.</li>
-    </ul>
-</section>
-
-<section>
-    <h4>Common Pitfalls and Important Notes</h4>
-
-    <div class="note">
-        <h5>1. Choice of \(\tau\) (Uncertainty of Prior):</h5>
-        <ul>
-            <li>The scalar \(\tau\) represents the confidence in the market equilibrium returns. A common choice is \(\tau = \frac{1}{T}\), where \(T\) is the number of observations used to estimate \(\Sigma\). However, \(\tau\) is often treated as a tuning parameter.</li>
-            <li>A small \(\tau\) (high confidence in prior) will result in posterior returns close to the market equilibrium. A large \(\tau\) (low confidence in prior) will give more weight to the views.</li>
-            <li><strong>Pitfall:</strong> Arbitrarily choosing \(\tau\) without justification can lead to unstable or unintuitive results.</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>2. Specification of \(\Omega\) (Uncertainty in Views):</h5>
-        <ul>
-            <li>\(\Omega\) represents the confidence in the investor views. It can be specified directly (e.g., based on historical data or expert judgment) or derived as \(\Omega = \text{diag}(P (\tau \Sigma) P^T)\).</li>
-            <li><strong>Pitfall:</strong> Overconfidence in views (small \(\Omega\)) can lead to extreme portfolio weights, while underconfidence (large \(\Omega\)) will cause the model to ignore the views.</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>3. Non-Invertibility of Matrices:</h5>
-        <ul>
-            <li>The Black-Litterman formula involves inverting matrices, which may not be invertible if the views are redundant or the covariance matrix is singular.</li>
-            <li><strong>Solution:</strong> Use regularization (e.g., adding a small constant to the diagonal of \(\Sigma\)) or ensure that the views are independent.</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>4. Interpretation of Views:</h5>
-        <ul>
-            <li>Views can be absolute (e.g., "Asset A will return 5%") or relative (e.g., "Asset A will outperform Asset B by 2%").</li>
-            <li><strong>Pitfall:</strong> Mixing absolute and relative views without proper scaling can lead to inconsistent results. Ensure that the units of \(Q\) match the units of \(\Pi\) (e.g., both in excess returns).</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>5. Covariance Matrix Estimation:</h5>
-        <ul>
-            <li>The Black-Litterman model relies on a stable and accurate estimate of the covariance matrix \(\Sigma\).</li>
-            <li><strong>Pitfall:</strong> Using a sample covariance matrix with limited data can lead to estimation error and extreme weights. Consider using shrinkage estimators or factor models to improve stability.</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>6. Risk Aversion Coefficient (\(\lambda\)):</h5>
-        <ul>
-            <li>The choice of \(\lambda\) affects the aggressiveness of the optimal portfolio. It is often derived from the market portfolio or set based on investor preferences.</li>
-            <li><strong>Pitfall:</strong> Using an inconsistent \(\lambda\) (e.g., not matching the market equilibrium) can lead to suboptimal portfolios.</li>
-        </ul>
-    </div>
-
-    <div class="note">
-        <h5>7. Extensions and Variants:</h5>
-        <ul>
-            <li>The Black-Litterman model can be extended to incorporate transaction costs, constraints (e.g., no short-selling), or dynamic views.</li>
-            <li><strong>Advanced Topics:</strong>
-                <ul>
-                    <li><strong>Resampled Efficiency:</strong> Combines Black-Litterman with resampling techniques to account for estimation error in \(\Sigma\).</li>
-                    <li><strong>Bayesian Shrinkage:</strong> Uses Bayesian methods to shrink the covariance matrix toward a structured target (e.g., factor model).</li>
-                    <li><strong>Entropy Pooling:</strong> A generalization of Black-Litterman that allows for non-normal distributions and more flexible view specifications.</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</section>
-
-
-<h3 id="topic-39">Topic 39: Factor Models: Fama-French, PCA-Based, and Latent Factor Models</h3>
-
-<div class="definition">
-    <p><strong>Factor Models:</strong> Statistical models that explain the returns of assets through a set of common factors. These models decompose asset returns into systematic (factor-driven) and idiosyncratic (asset-specific) components.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Fama-French Model:</strong> An asset pricing model that expands on the Capital Asset Pricing Model (CAPM) by adding size and value factors to the market risk factor. Proposed by Eugene Fama and Kenneth French in 1993.</p>
-</div>
-
-<div class="definition">
-    <p><strong>PCA-Based Factor Models:</strong> Factor models that use Principal Component Analysis (PCA) to extract latent factors from asset returns. These factors are linear combinations of the original variables that capture the most variance in the data.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Latent Factor Models:</strong> Models that assume the existence of unobserved (latent) factors influencing asset returns. These factors are inferred from the data rather than being directly observable.</p>
-</div>
-
-<hr>
-
-<h4>1. Key Concepts and Definitions</h4>
-
-<div class="definition">
-    <p><strong>Systematic Risk:</strong> Risk that affects the entire market or a broad market segment. In factor models, this is captured by the common factors.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Idiosyncratic Risk:</strong> Risk that is specific to an individual asset and can be diversified away. This is the residual component in factor models.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Factor Loadings:</strong> Coefficients that represent the sensitivity of an asset's returns to changes in the underlying factors.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Factor Returns:</strong> The returns associated with each factor. These are often estimated using cross-sectional regressions or time-series methods.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Orthogonal Factors:</strong> Factors that are uncorrelated with each other. PCA produces orthogonal factors by construction.</p>
-</div>
-
-<hr>
-
-<h4>2. Important Formulas</h4>
-
-<div class="formula">
-    <p><strong>General Factor Model:</strong></p>
-    \[
-    R_i = \alpha_i + \sum_{j=1}^{k} \beta_{i,j} F_j + \epsilon_i
-    \]
-    <ul>
-        <li>\( R_i \): Return of asset \( i \)</li>
-        <li>\( \alpha_i \): Intercept term for asset \( i \)</li>
-        <li>\( \beta_{i,j} \): Factor loading of asset \( i \) on factor \( j \)</li>
-        <li>\( F_j \): Return of factor \( j \)</li>
-        <li>\( \epsilon_i \): Idiosyncratic return of asset \( i \)</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>Fama-French 3-Factor Model:</strong></p>
-    \[
-    R_i - R_f = \alpha_i + \beta_{i,M}(R_M - R_f) + \beta_{i,SMB}SMB + \beta_{i,HML}HML + \epsilon_i
-    \]
-    <ul>
-        <li>\( R_i \): Return of asset \( i \)</li>
-        <li>\( R_f \): Risk-free rate</li>
-        <li>\( R_M \): Market return</li>
-        <li>\( SMB \) (Small Minus Big): Return difference between small and large capitalization stocks</li>
-        <li>\( HML \) (High Minus Low): Return difference between high and low book-to-market ratio stocks</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>Fama-French 5-Factor Model (2015):</strong></p>
-    \[
-    R_i - R_f = \alpha_i + \beta_{i,M}(R_M - R_f) + \beta_{i,SMB}SMB + \beta_{i,HML}HML + \beta_{i,RMW}RMW + \beta_{i,CMA}CMA + \epsilon_i
-    \]
-    <ul>
-        <li>\( RMW \) (Robust Minus Weak): Return difference between firms with robust and weak profitability</li>
-        <li>\( CMA \) (Conservative Minus Aggressive): Return difference between conservative and aggressive investment firms</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>PCA-Based Factor Model:</strong></p>
-    <p>Given a matrix of returns \( \mathbf{R} \in \mathbb{R}^{T \times N} \), where \( T \) is the number of time periods and \( N \) is the number of assets:</p>
-    \[
-    \mathbf{R} = \mathbf{F} \mathbf{B}^T + \mathbf{E}
-    \]
-    <ul>
-        <li>\( \mathbf{F} \in \mathbb{R}^{T \times k} \): Matrix of factor returns (principal components)</li>
-        <li>\( \mathbf{B} \in \mathbb{R}^{N \times k} \): Matrix of factor loadings</li>
-        <li>\( \mathbf{E} \in \mathbb{R}^{T \times N} \): Matrix of idiosyncratic returns</li>
-        <li>\( k \): Number of factors (principal components)</li>
-    </ul>
-    <p>The principal components are obtained by solving:</p>
-    \[
-    \mathbf{F} = \mathbf{R} \mathbf{V}
-    \]
-    <p>where \( \mathbf{V} \) contains the eigenvectors of \( \mathbf{R}^T \mathbf{R} \) corresponding to the \( k \) largest eigenvalues.</p>
-</div>
-
-<div class="formula">
-    <p><strong>Latent Factor Model (Probabilistic PCA):</strong></p>
-    \[
-    \mathbf{R} = \mathbf{F} \mathbf{B}^T + \mathbf{E}, \quad \mathbf{E} \sim \mathcal{N}(0, \sigma^2 \mathbf{I})
-    \]
-    <p>where the factors \( \mathbf{F} \) are also assumed to be normally distributed:</p>
-    \[
-    \mathbf{F} \sim \mathcal{N}(0, \mathbf{I})
-    \]
-    <p>The model can be estimated using Expectation-Maximization (EM) or variational inference.</p>
-</div>
-
-<hr>
-
-<h4>3. Derivations</h4>
-
-<div class="example">
-    <h5>Derivation of Fama-French 3-Factor Model from CAPM</h5>
-    <p>The CAPM states:</p>
-    \[
-    R_i - R_f = \beta_{i,M}(R_M - R_f) + \epsilon_i
-    \]
-    <p>Fama and French observed that size (market capitalization) and value (book-to-market ratio) explain additional variation in returns not captured by the market factor. They proposed:</p>
-    <ol>
-        <li>Construct portfolios based on size (S) and book-to-market (B/M) ratios.</li>
-        <li>Calculate the return difference between small and large cap stocks (SMB).</li>
-        <li>Calculate the return difference between high and low B/M stocks (HML).</li>
-        <li>Regress asset returns on the market, SMB, and HML factors to estimate factor loadings.</li>
-    </ol>
-    <p>The resulting model is:</p>
-    \[
-    R_i - R_f = \alpha_i + \beta_{i,M}(R_M - R_f) + \beta_{i,SMB}SMB + \beta_{i,HML}HML + \epsilon_i
-    \]
-</div>
-
-<div class="example">
-    <h5>Derivation of PCA-Based Factors</h5>
-    <p>Given a centered returns matrix \( \mathbf{R} \), PCA seeks to find directions (principal components) that maximize the variance of the projected data.</p>
-    <ol>
-        <li>Compute the covariance matrix \( \mathbf{\Sigma} = \frac{1}{T-1} \mathbf{R}^T \mathbf{R} \).</li>
-        <li>Find the eigenvalues \( \lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N \) and corresponding eigenvectors \( \mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_N \) of \( \mathbf{\Sigma} \).</li>
-        <li>The principal components (factors) are given by \( \mathbf{F} = \mathbf{R} \mathbf{V} \), where \( \mathbf{V} \) is the matrix of the first \( k \) eigenvectors.</li>
-        <li>The factor loadings are the eigenvectors \( \mathbf{V} \), scaled by the square root of the eigenvalues.</li>
-    </ol>
-    <p>The proportion of variance explained by the \( j \)-th principal component is:</p>
-    \[
-    \frac{\lambda_j}{\sum_{i=1}^N \lambda_i}
-    \]
-</div>
-
-<hr>
-
-<h4>4. Practical Applications</h4>
-
-<div class="example">
-    <h5>Portfolio Construction and Risk Management</h5>
-    <ul>
-        <li><strong>Factor Investing:</strong> Construct portfolios with specific factor exposures (e.g., tilting toward value or small-cap stocks).</li>
-        <li><strong>Risk Decomposition:</strong> Attribute portfolio risk to factor exposures and idiosyncratic risk.</li>
-        <li><strong>Performance Attribution:</strong> Analyze the sources of portfolio returns (e.g., market, size, value factors).</li>
-    </ul>
-</div>
-
-<div class="example">
-    <h5>Asset Pricing and Anomaly Detection</h5>
-    <ul>
-        <li><strong>Testing Asset Pricing Models:</strong> Use factor models to test whether certain factors (e.g., momentum, profitability) explain asset returns.</li>
-        <li><strong>Identifying Anomalies:</strong> Detect assets with significant alphas (intercepts) after controlling for factor exposures.</li>
-    </ul>
-</div>
-
-<div class="example">
-    <h5>Dimensionality Reduction</h5>
-    <ul>
-        <li><strong>PCA-Based Models:</strong> Reduce the dimensionality of a large universe of assets by representing them in terms of a smaller number of factors.</li>
-        <li><strong>Latent Factor Models:</strong> Infer unobserved factors driving asset returns, useful in scenarios where the true factors are unknown.</li>
-    </ul>
-</div>
-
-<div class="example">
-    <h5>Implementation in PyTorch and Scikit-Learn</h5>
-    <p><strong>Fama-French Model (Scikit-Learn):</strong></p>
-    <pre><code class="language-python">from sklearn.linear_model import LinearRegression
-import numpy as np
-
-# Example data: R_i - R_f (excess returns), R_M - R_f, SMB, HML
-X = np.array([[0.02, 0.01, 0.005], [0.03, 0.015, 0.01], ...])  # Factor returns
-y = np.array([0.025, 0.035, ...])  # Asset excess returns
-
-model = LinearRegression()
-model.fit(X, y)
-alphas = model.intercept_
-betas = model.coef_  # [beta_M, beta_SMB, beta_HML]</code></pre>
-
-    <p><strong>PCA-Based Factor Model (Scikit-Learn):</strong></p>
-    <pre><code class="language-python">from sklearn.decomposition import PCA
-
-# R: T x N matrix of returns
-pca = PCA(n_components=3)
-factors = pca.fit_transform(R)  # T x 3 matrix of factor returns
-loadings = pca.components_.T  # N x 3 matrix of factor loadings</code></pre>
-
-    <p><strong>Latent Factor Model (PyTorch):</strong></p>
-    <pre><code class="language-python">import torch
-import torch.nn as nn
-
-class LatentFactorModel(nn.Module):
-    def __init__(self, n_assets, n_factors):
-        super().__init__()
-        self.factor_loadings = nn.Parameter(torch.randn(n_assets, n_factors))
-        self.idiosyncratic_vol = nn.Parameter(torch.ones(n_assets))
-
-    def forward(self, factors):
-        # factors: batch_size x n_factors
-        systematic = torch.matmul(factors, self.factor_loadings.T)
-        idiosyncratic = torch.randn_like(systematic) * self.idiosyncratic_vol
-        return systematic + idiosyncratic
-
-# Example usage
-model = LatentFactorModel(n_assets=100, n_factors=5)
-factors = torch.randn(30, 5)  # 30 time periods, 5 factors
-returns = model(factors)</code></pre>
-</div>
-
-<hr>
-
-<h4>5. Common Pitfalls and Important Notes</h4>
-
-<div class="note">
-    <h5>Fama-French Model Pitfalls</h5>
-    <ul>
-        <li><strong>Factor Construction:</strong> The SMB and HML factors are constructed using specific portfolio sorts. Different construction methods can lead to different results.</li>
-        <li><strong>Survivorship Bias:</strong> Historical data may exclude delisted stocks, leading to overestimation of returns.</li>
-        <li><strong>Time-Varying Factor Loadings:</strong> Betas may change over time, especially during market stress. Rolling regressions can help capture this.</li>
-        <li><strong>International Markets:</strong> The Fama-French factors are primarily validated on U.S. data. Their applicability to other markets may vary.</li>
-    </ul>
-</div>
-
-<div class="note">
-    <h5>PCA-Based Model Pitfalls</h5>
-    <ul>
-        <li><strong>Interpretability:</strong> PCA factors are linear combinations of assets and may lack economic interpretation. Rotating factors (e.g., varimax rotation) can improve interpretability.</li>
-        <li><strong>Non-Stationarity:</strong> The covariance structure of returns may change over time, making static PCA less effective. Dynamic PCA or time-varying factor models may be needed.</li>
-        <li><strong>Scaling:</strong> PCA is sensitive to the scaling of variables. Returns should be standardized (mean 0, variance 1) if assets have different volatilities.</li>
-        <li><strong>Number of Factors:</strong> Choosing the number of factors is subjective. Common methods include the elbow method, Kaiser criterion (eigenvalues > 1), or parallel analysis.</li>
-    </ul>
-</div>
-
-<div class="note">
-    <h5>Latent Factor Model Pitfalls</h5>
-    <ul>
-        <li><strong>Identifiability:</strong> Latent factors are not uniquely identified. Constraints (e.g., orthogonality, unit variance) are often imposed to ensure identifiability.</li>
-        <li><strong>Overfitting:</strong> With many assets and few time periods, latent factor models can overfit. Regularization (e.g., L2 penalty on loadings) can help.</li>
-        <li><strong>Assumption of Linearity:</strong> Latent factor models assume linear relationships between factors and returns. Nonlinear models (e.g., neural networks) may capture more complex patterns.</li>
-        <li><strong>Computational Complexity:</strong> Estimating latent factor models (e.g., via EM) can be computationally intensive for large datasets.</li>
-    </ul>
-</div>
-
-<div class="note">
-    <h5>General Notes</h5>
-    <ul>
-        <li><strong>Factor Zoo:</strong> Hundreds of factors have been proposed in the literature. Not all are robust or economically meaningful. Focus on factors with strong theoretical and empirical support.</li>
-        <li><strong>Transaction Costs:</strong> Factor models often ignore transaction costs, which can erode the profitability of factor-based strategies.</li>
-        <li><strong>Data Quality:</strong> Factor models are sensitive to data quality. Ensure returns are adjusted for corporate actions (e.g., dividends, splits).</li>
-        <li><strong>Backtesting:</strong> Always backtest factor models out-of-sample to assess their robustness. In-sample performance can be misleading.</li>
-    </ul>
-</div>
-
-<div class="note">
-    <h5>Interview Tips</h5>
-    <ul>
-        <li><strong>Understand the Economic Intuition:</strong> Be prepared to explain why certain factors (e.g., value, size) should predict returns. For example, value stocks may outperform because they are riskier or because investors overreact to bad news.</li>
-        <li><strong>Compare Models:</strong> Know the differences between Fama-French, PCA-based, and latent factor models. For example, Fama-French factors are observable and interpretable, while PCA factors are data-driven and may lack economic meaning.</li>
-        <li><strong>Implementation Details:</strong> Be ready to discuss how you would implement a factor model in practice, including data preprocessing, factor construction, and model evaluation.</li>
-        <li><strong>Limitations:</strong> Acknowledge the limitations of factor models, such as the assumption of linearity, the potential for overfitting, and the challenge of interpreting latent factors.</li>
-    </ul>
-</div>
-
-
-<h3 id="topic-40">Topic 40: Portfolio Optimization: Mean-Variance, Black-Litterman, and Risk Parity</h3>
-
-<div class="definition">
-    <p><strong>Portfolio Optimization:</strong> The process of selecting the best portfolio (asset distribution) out of the set of all portfolios being considered, according to some objective. The objective typically maximizes factors such as expected return and minimizes costs like financial risk.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Efficient Frontier:</strong> A set of optimal portfolios that offer the highest expected return for a defined level of risk or the lowest risk for a given level of expected return. Portfolios that lie below the efficient frontier are sub-optimal because they do not provide enough return for the level of risk.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Mean-Variance Optimization (MVO):</strong> A framework introduced by Harry Markowitz for assembling a portfolio of assets such that the expected return is maximized for a given level of risk, defined as variance. It is a foundational theory in modern portfolio theory.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Black-Litterman Model:</strong> A mathematical model for portfolio allocation that combines market equilibrium (derived from the Capital Asset Pricing Model) with investor views to produce a posterior estimate of expected returns. It addresses some of the limitations of mean-variance optimization.</p>
-</div>
-
-<div class="definition">
-    <p><strong>Risk Parity:</strong> A portfolio allocation strategy that focuses on the allocation of risk, usually defined as volatility, rather than capital. The goal is to balance the contribution of each asset to the overall risk of the portfolio.</p>
-</div>
-
-<hr>
-
-<h4>1. Mean-Variance Optimization (MVO)</h4>
-
-<div class="formula">
-    <p><strong>Objective Function:</strong> Maximize the portfolio's expected return for a given level of risk, or equivalently, minimize the portfolio's risk for a given level of expected return.</p>
-    \[
-    \max_{\mathbf{w}} \left( \mathbf{w}^T \boldsymbol{\mu} - \frac{\lambda}{2} \mathbf{w}^T \boldsymbol{\Sigma} \mathbf{w} \right)
-    \]
-    <p>where:</p>
-    <ul>
-        <li>\(\mathbf{w}\) is the vector of portfolio weights,</li>
-        <li>\(\boldsymbol{\mu}\) is the vector of expected returns,</li>
-        <li>\(\boldsymbol{\Sigma}\) is the covariance matrix of asset returns,</li>
-        <li>\(\lambda\) is the risk aversion parameter.</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>Optimal Weights (with constraints):</strong> The optimal weights for a mean-variance portfolio with a target return \(\mu_p\) are given by:</p>
-    \[
-    \mathbf{w} = \frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{\mathbf{1}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}} \mu_p + \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}^T \boldsymbol{\Sigma}^{-1} \mathbf{1}} (1 - \mu_p \frac{\mathbf{1}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{\mathbf{1}^T \boldsymbol{\Sigma}^{-1} \mathbf{1}})
-    \]
-    <p>where \(\mathbf{1}\) is a vector of ones.</p>
-</div>
-
-<div class="example">
-    <p><strong>Example: Two-Asset Portfolio</strong></p>
-    <p>Consider two assets with expected returns \(\mu_1 = 0.10\), \(\mu_2 = 0.15\), and covariance matrix:</p>
-    \[
-    \boldsymbol{\Sigma} = \begin{bmatrix}
-    0.04 & 0.002 \\
-    0.002 & 0.09
-    \end{bmatrix}
-    \]
-    <p>The optimal weights for a target return \(\mu_p = 0.12\) can be computed using the formula above. First, compute \(\boldsymbol{\Sigma}^{-1}\):</p>
-    \[
-    \boldsymbol{\Sigma}^{-1} = \frac{1}{0.04 \cdot 0.09 - 0.002^2} \begin{bmatrix}
-    0.09 & -0.002 \\
-    -0.002 & 0.04
-    \end{bmatrix} = \begin{bmatrix}
-    25.0627 & -0.5571 \\
-    -0.5571 & 11.1378
-    \end{bmatrix}
-    \]
-    <p>Then, compute the weights using the formula for \(\mathbf{w}\).</p>
-</div>
-
-<div class="note">
-    <p><strong>Pitfalls of MVO:</strong></p>
-    <ul>
-        <li><strong>Sensitivity to Inputs:</strong> MVO is highly sensitive to the estimates of expected returns and covariance. Small changes in these estimates can lead to large changes in the optimal portfolio.</li>
-        <li><strong>Concentration:</strong> MVO often results in highly concentrated portfolios, with large weights in a small number of assets.</li>
-        <li><strong>Non-Normal Returns:</strong> MVO assumes returns are normally distributed, which is often not the case in practice.</li>
-    </ul>
-</div>
-
-<hr>
-
-<h4>2. Black-Litterman Model</h4>
-
-<div class="definition">
-    <p>The Black-Litterman model combines two sources of information:</p>
-    <ol>
-        <li>Market equilibrium returns (derived from the Capital Asset Pricing Model, CAPM).</li>
-        <li>Investor views on expected returns.</li>
-    </ol>
-    <p>The result is a posterior estimate of expected returns that is more stable than the sample mean.</p>
-</div>
-
-<div class="formula">
-    <p><strong>Market Equilibrium Returns:</strong></p>
-    \[
-    \boldsymbol{\Pi} = \lambda \boldsymbol{\Sigma} \mathbf{w}_{mkt}
-    \]
-    <p>where:</p>
-    <ul>
-        <li>\(\boldsymbol{\Pi}\) is the vector of implied equilibrium returns,</li>
-        <li>\(\lambda\) is the risk aversion coefficient,</li>
-        <li>\(\mathbf{w}_{mkt}\) is the market capitalization weights.</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>Combining Views:</strong> The posterior expected returns are given by:</p>
-    \[
-    \mathbf{E}[R] = \left[ (\tau \boldsymbol{\Sigma})^{-1} + \mathbf{P}^T \boldsymbol{\Omega}^{-1} \mathbf{P} \right]^{-1} \left[ (\tau \boldsymbol{\Sigma})^{-1} \boldsymbol{\Pi} + \mathbf{P}^T \boldsymbol{\Omega}^{-1} \mathbf{Q} \right]
-    \]
-    <p>where:</p>
-    <ul>
-        <li>\(\mathbf{P}\) is the matrix that maps views to assets,</li>
-        <li>\(\mathbf{Q}\) is the vector of investor views,</li>
-        <li>\(\boldsymbol{\Omega}\) is the covariance matrix of the views,</li>
-        <li>\(\tau\) is a scalar that reflects the confidence in the prior (market equilibrium).</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <p><strong>Posterior Covariance Matrix:</strong></p>
-    \[
-    \mathbf{M} = \left[ (\tau \boldsymbol{\Sigma})^{-1} + \mathbf{P}^T \boldsymbol{\Omega}^{-1} \mathbf{P} \right]^{-1}
-    \]
-</div>
-
-<div class="example">
-    <p><strong>Example: Black-Litterman Model</strong></p>
-    <p>Consider a market with two assets. The market capitalization weights are \(\mathbf{w}_{mkt} = [0.6, 0.4]^T\), and the covariance matrix is:</p>
-    \[
-    \boldsymbol{\Sigma} = \begin{bmatrix}
-    0.04 & 0.002 \\
-    0.002 & 0.09
-    \end{bmatrix}
-    \]
-    <p>Assume \(\lambda = 2.5\) and \(\tau = 0.05\). The implied equilibrium returns are:</p>
-    \[
-    \boldsymbol{\Pi} = 2.5 \cdot \boldsymbol{\Sigma} \cdot \mathbf{w}_{mkt} = [0.0605, 0.0905]^T
-    \]
-    <p>Suppose the investor has the following view: "Asset 2 will outperform Asset 1 by 2%". This can be represented as:</p>
-    \[
-    \mathbf{P} = [ -1, 1 ], \quad \mathbf{Q} = [0.02]
-    \]
-    <p>Assume \(\boldsymbol{\Omega} = [0.0004]\). The posterior expected returns can then be computed using the formula for \(\mathbf{E}[R]\).</p>
-</div>
-
-<div class="note">
-    <p><strong>Advantages of Black-Litterman:</strong></p>
-    <ul>
-        <li><strong>Stability:</strong> The model produces more stable and diversified portfolios compared to MVO.</li>
-        <li><strong>Flexibility:</strong> Allows investors to incorporate their views into the optimization process.</li>
-        <li><strong>Intuitive:</strong> The model is intuitive and aligns with how investors naturally think about portfolio construction.</li>
-    </ul>
-</div>
-
-<hr>
-
-<h4>3. Risk Parity</h4>
-
-<div class="definition">
-    <p><strong>Risk Parity:</strong> A portfolio construction approach that aims to allocate risk equally among the assets in the portfolio. Unlike traditional methods that focus on capital allocation, risk parity focuses on risk allocation.</p>
-</div>
-
-<div class="formula">
-    <p><strong>Risk Contribution:</strong> The risk contribution of asset \(i\) to the portfolio is given by:</p>
-    \[
-    RC_i = w_i \cdot (\boldsymbol{\Sigma} \mathbf{w})_i
-    \]
-    <p>where \((\boldsymbol{\Sigma} \mathbf{w})_i\) is the \(i\)-th element of the vector \(\boldsymbol{\Sigma} \mathbf{w}\).</p>
-</div>
-
-<div class="formula">
-    <p><strong>Equal Risk Contribution:</strong> The goal of risk parity is to find weights \(\mathbf{w}\) such that:</p>
-    \[
-    RC_i = \frac{\sigma_p^2}{N} \quad \forall i
-    \]
-    <p>where \(\sigma_p^2 = \mathbf{w}^T \boldsymbol{\Sigma} \mathbf{w}\) is the portfolio variance and \(N\) is the number of assets.</p>
-</div>
-
-<div class="formula">
-    <p><strong>Risk Parity Weights:</strong> The weights that achieve equal risk contribution can be found by solving the following optimization problem:</p>
-    \[
-    \min_{\mathbf{w}} \sum_{i=1}^N \left( w_i (\boldsymbol{\Sigma} \mathbf{w})_i - \frac{\mathbf{w}^T \boldsymbol{\Sigma} \mathbf{w}}{N} \right)^2
-    \]
-    <p>subject to \(\sum_{i=1}^N w_i = 1\) and \(w_i \geq 0\) (no short-selling).</p>
-</div>
-
-<div class="example">
-    <p><strong>Example: Two-Asset Risk Parity Portfolio</strong></p>
-    <p>Consider two assets with the following covariance matrix:</p>
-    \[
-    \boldsymbol{\Sigma} = \begin{bmatrix}
-    0.04 & 0.002 \\
-    0.002 & 0.09
-    \end{bmatrix}
-    \]
-    <p>The risk parity weights can be found by solving the optimization problem above. For simplicity, assume the solution is \(\mathbf{w} = [0.7, 0.3]^T\). The risk contributions are:</p>
-    \[
-    RC_1 = 0.7 \cdot (0.04 \cdot 0.7 + 0.002 \cdot 0.3) = 0.01988
-    \]
-    \[
-    RC_2 = 0.3 \cdot (0.002 \cdot 0.7 + 0.09 \cdot 0.3) = 0.00822
-    \]
-    <p>These are not equal, so the weights need to be adjusted. The optimization process iteratively adjusts the weights until the risk contributions are equal.</p>
-</div>
-
-<div class="note">
-    <p><strong>Advantages of Risk Parity:</strong></p>
-    <ul>
-        <li><strong>Diversification:</strong> Risk parity portfolios tend to be more diversified than traditional portfolios.</li>
-        <li><strong>Stability:</strong> Less sensitive to estimation errors in expected returns compared to MVO.</li>
-        <li><strong>Performance:</strong> Historically, risk parity portfolios have performed well during market downturns.</li>
-    </ul>
-    <p><strong>Challenges of Risk Parity:</strong></p>
-    <ul>
-        <li><strong>Leverage:</strong> Risk parity portfolios often require leverage to achieve target returns, which can introduce additional risks.</li>
-        <li><strong>Complexity:</strong> Implementing risk parity can be more complex than traditional methods.</li>
-    </ul>
-</div>
-
-<hr>
-
-<h4>Practical Applications</h4>
-
-<div class="example">
-    <p><strong>Application 1: Asset Allocation</strong></p>
-    <p>Portfolio optimization techniques are widely used in asset allocation. For example, a pension fund might use mean-variance optimization to determine the optimal mix of stocks, bonds, and other assets to achieve a target return while minimizing risk.</p>
-</div>
-
-<div class="example">
-    <p><strong>Application 2: Robo-Advisors</strong></p>
-    <p>Robo-advisors use portfolio optimization algorithms to automatically allocate and rebalance client portfolios based on their risk tolerance and investment goals. The Black-Litterman model is particularly useful in this context because it allows for the incorporation of both market data and client-specific views.</p>
-</div>
-
-<div class="example">
-    <p><strong>Application 3: Risk Management</strong></p>
-    <p>Risk parity is often used in risk management to construct portfolios that are robust to market downturns. By focusing on risk allocation rather than capital allocation, risk parity portfolios can achieve more stable returns over time.</p>
-</div>
-
-<hr>
-
-<h4>Common Pitfalls and Important Notes</h4>
-
-<div class="note">
-    <p><strong>1. Estimation Error:</strong> All portfolio optimization techniques rely on estimates of expected returns and covariance matrices. These estimates are subject to significant error, which can lead to suboptimal portfolios. Techniques like the Black-Litterman model and shrinkage estimators can help mitigate this issue.</p>
-</div>
-
-<div class="note">
-    <p><strong>2. Non-Normality of Returns:</strong> Most portfolio optimization techniques assume that returns are normally distributed. In practice, returns often exhibit skewness and kurtosis, which can lead to portfolios that are not truly optimal. Consider using techniques that account for higher moments of the return distribution.</p>
-</div>
-
-<div class="note">
-    <p><strong>3. Transaction Costs and Constraints:</strong> Portfolio optimization often ignores transaction costs and other practical constraints (e.g., maximum position sizes, sector constraints). Incorporating these factors can lead to more realistic and implementable portfolios.</p>
-</div>
-
-<div class="note">
-    <p><strong>4. Rebalancing:</strong> Portfolios need to be rebalanced periodically to maintain the desired risk-return profile. However, frequent rebalancing can lead to high transaction costs and tax inefficiencies. Consider the trade-offs between maintaining the optimal portfolio and minimizing costs.</p>
-</div>
-
-<div class="note">
-    <p><strong>5. Model Risk:</strong> All models are simplifications of reality and are subject to model risk. It is important to understand the assumptions underlying each model and to test the robustness of the results to changes in these assumptions.</p>
-</div>
-
-<hr>
-
-<h4>Implementation in Python (PyTorch and Scikit-Learn)</h4>
-
-<div class="example">
-    <p><strong>Mean-Variance Optimization with PyTorch:</strong></p>
-    <pre><code class="language-python">
-import torch
-import numpy as np
-
-# Expected returns and covariance matrix
-mu = torch.tensor([0.10, 0.15], dtype=torch.float32)
-Sigma = torch.tensor([[0.04, 0.002], [0.002, 0.09]], dtype=torch.float32)
-
-# Target return
-mu_p = 0.12
-
-# Compute inverse of Sigma
-Sigma_inv = torch.inverse(Sigma)
-
-# Compute optimal weights
-one = torch.ones_like(mu)
-w = (Sigma_inv @ mu) / (one @ Sigma_inv @ mu) * mu_p + (Sigma_inv @ one) / (one @ Sigma_inv @ one) * (1 - mu_p * (one @ Sigma_inv @ mu) / (one @ Sigma_inv @ one))
-
-print("Optimal weights:", w)
-    </code></pre>
-</div>
-
-<div class="example">
-    <p><strong>Black-Litterman Model with NumPy:</strong></p>
-    <pre><code class="language-python">
-import numpy as np
-
-# Market equilibrium returns
-w_mkt = np.array([0.6, 0.4])
-Sigma = np.array([[0.04, 0.002], [0.002, 0.09]])
-lambda_ = 2.5
-tau = 0.05
-
-Pi = lambda_ * Sigma @ w_mkt
-
-# Investor views
-P = np.array([[-1, 1]])
-Q = np.array([0.02])
-Omega = np.array([[0.0004]])
-
-# Posterior expected returns
-M = np.linalg.inv(np.linalg.inv(tau * Sigma) + P.T @ np.linalg.inv(Omega) @ P)
-E_R = M @ (np.linalg.inv(tau * Sigma) @ Pi + P.T @ np.linalg.inv(Omega) @ Q)
-
-print("Posterior expected returns:", E_R)
-    </code></pre>
-</div>
-
-<div class="example">
-    <p><strong>Risk Parity with Scipy:</strong></p>
-    <pre><code class="language-python">
-import numpy as np
-from scipy.optimize import minimize
-
-# Covariance matrix
-Sigma = np.array([[0.04, 0.002], [0.002, 0.09]])
-
-# Objective function for risk parity
-def risk_parity_objective(w, Sigma):
-    portfolio_variance = w @ Sigma @ w
-    risk_contributions = w * (Sigma @ w)
-    return np.sum((risk_contributions - portfolio_variance / len(w))**2)
-
-# Constraints
-constraints = ({'type': 'eq', 'fun': lambda w: np.sum(w) - 1})
-bounds = [(0, 1) for _ in range(len(Sigma))]
-
-# Initial guess
-w0 = np.ones(len(Sigma)) / len(Sigma)
-
-# Optimize
-result = minimize(risk_parity_objective, w0, args=(Sigma,), bounds=bounds, constraints=constraints)
-
-print("Risk parity weights:", result.x)
-    </code></pre>
-</div>
-
-
-<h3 id="topic-41">Topic 41: Risk Metrics: VaR, CVaR, and Expected Shortfall</h3>
-
-<div class="definition">
-    <p><strong>Value at Risk (VaR):</strong> VaR is a statistical measure that quantifies the potential loss in value of a risky asset or portfolio over a defined period for a given confidence interval. It answers the question: "What is the maximum loss over a given period with <em>x</em>% confidence?"</p>
-    <p>Formally, for a confidence level \( \alpha \in (0,1) \), the VaR is the smallest threshold value \( \text{VaR}_\alpha \) such that the probability of a loss \( L \) exceeding \( \text{VaR}_\alpha \) is at most \( 1-\alpha \):</p>
-    \[
-    \text{VaR}_\alpha(L) = \inf \left\{ l \in \mathbb{R} : P(L > l) \leq 1 - \alpha \right\}
-    \]
-</div>
-
-<div class="definition">
-    <p><strong>Conditional Value at Risk (CVaR) / Expected Shortfall (ES):</strong> CVaR, also known as Expected Shortfall, is the expected loss given that the loss is beyond the VaR threshold. It provides a more comprehensive measure of risk by considering the tail end of the loss distribution. CVaR is always greater than or equal to VaR for the same confidence level.</p>
-    <p>For a continuous loss distribution, CVaR at confidence level \( \alpha \) is defined as:</p>
-    \[
-    \text{CVaR}_\alpha(L) = \mathbb{E} \left[ L \mid L \geq \text{VaR}_\alpha(L) \right]
-    \]
-</div>
-
-<div class="formula">
-    <h4>Key Formulas</h4>
-    <p><strong>VaR for Normally Distributed Returns:</strong></p>
-    <p>If returns \( R \) are normally distributed with mean \( \mu \) and standard deviation \( \sigma \), then the VaR at confidence level \( \alpha \) for a time horizon \( t \) is:</p>
-    \[
-    \text{VaR}_\alpha = -\left( \mu t + \sigma \sqrt{t} \cdot \Phi^{-1}(\alpha) \right)
-    \]
-    where \( \Phi^{-1} \) is the inverse of the standard normal cumulative distribution function (CDF).
-
-    <p><strong>CVaR for Normally Distributed Returns:</strong></p>
-    \[
-    \text{CVaR}_\alpha = -\mu t + \sigma \sqrt{t} \cdot \frac{\phi(\Phi^{-1}(\alpha))}{1 - \alpha}
-    \]
-    where \( \phi \) is the standard normal probability density function (PDF).
-
-    <p><strong>Empirical VaR and CVaR:</strong></p>
-    <p>For a sample of losses \( \{L_1, L_2, \dots, L_n\} \), sorted in ascending order \( L_{(1)} \leq L_{(2)} \leq \dots \leq L_{(n)} \):</p>
-    <p>Empirical VaR at confidence level \( \alpha \):</p>
-    \[
-    \widehat{\text{VaR}}_\alpha = L_{(k)}, \quad \text{where } k = \lceil n(1-\alpha) \rceil
-    \]
-    <p>Empirical CVaR at confidence level \( \alpha \):</p>
-    \[
-    \widehat{\text{CVaR}}_\alpha = \frac{1}{n - k} \sum_{i=k+1}^n L_{(i)}
-    \]
-</div>
-
-<div class="example">
-    <h4>Example: Calculating VaR and CVaR</h4>
-    <p>Consider a portfolio with daily losses (in $) over the past 10 days:</p>
-    \[
-    \{ -50, -20, 10, -30, 40, -10, 20, -60, 30, -40 \}
-    \]
-    <p>We want to calculate the 90% VaR and CVaR.</p>
-
-    <p><strong>Step 1: Sort the losses in ascending order:</strong></p>
-    \[
-    \{ -60, -50, -40, -30, -20, -10, 10, 20, 30, 40 \}
-    \]
-
-    <p><strong>Step 2: Calculate VaR at 90% confidence level:</strong></p>
-    <p>For \( \alpha = 0.9 \), \( n = 10 \), \( k = \lceil 10 \times (1 - 0.9) \rceil = \lceil 1 \rceil = 1 \).</p>
-    <p>Thus, \( \widehat{\text{VaR}}_{0.9} = L_{(1)} = -60 \).</p>
-
-    <p><strong>Step 3: Calculate CVaR at 90% confidence level:</strong></p>
-    <p>CVaR is the average of losses beyond the VaR threshold. Here, \( k = 1 \), so we average the losses from \( L_{(2)} \) to \( L_{(10)} \):</p>
-    \[
-    \widehat{\text{CVaR}}_{0.9} = \frac{1}{10 - 1} \sum_{i=2}^{10} L_{(i)} = \frac{-50 + (-40) + \dots + 40}{9} = \frac{-120}{9} \approx -13.33
-    \]
-    <p>Thus, the 90% CVaR is approximately $13.33.</p>
-</div>
-
-<div class="note">
-    <h4>Important Notes and Pitfalls</h4>
-    <ul>
-        <li><strong>VaR Limitations:</strong> VaR does not provide information about the severity of losses beyond the VaR threshold. It is not a coherent risk measure because it fails subadditivity (the risk of a combined portfolio can be greater than the sum of individual risks).</li>
-        <li><strong>CVaR Advantages:</strong> CVaR is a coherent risk measure, meaning it satisfies properties like subadditivity, monotonicity, and positive homogeneity. It provides a more complete picture of tail risk.</li>
-        <li><strong>Distribution Assumptions:</strong> VaR and CVaR calculations often assume a parametric distribution (e.g., normal). If the true distribution has fat tails, these estimates may understate risk. Non-parametric methods (e.g., historical simulation) can mitigate this.</li>
-        <li><strong>Confidence Level:</strong> Higher confidence levels (e.g., 99%) result in higher VaR and CVaR values. The choice of confidence level depends on the risk tolerance of the organization.</li>
-        <li><strong>Time Horizon:</strong> VaR and CVaR are typically calculated for a specific time horizon (e.g., 1 day, 10 days). The horizon should align with the liquidity of the portfolio and the holding period of the assets.</li>
-        <li><strong>Backtesting:</strong> Always backtest VaR and CVaR models to ensure they accurately predict losses. This involves comparing predicted VaR breaches with actual losses over a historical period.</li>
-    </ul>
-</div>
-
-<div class="formula">
-    <h4>Derivation of CVaR for Continuous Distributions</h4>
-    <p>Let \( L \) be a continuous random variable representing losses, with cumulative distribution function (CDF) \( F_L \) and probability density function (PDF) \( f_L \). The CVaR at confidence level \( \alpha \) is defined as:</p>
-    \[
-    \text{CVaR}_\alpha(L) = \mathbb{E} \left[ L \mid L \geq \text{VaR}_\alpha(L) \right]
-    \]
-    <p>By definition of conditional expectation:</p>
-    \[
-    \text{CVaR}_\alpha(L) = \frac{1}{1 - \alpha} \int_{\text{VaR}_\alpha(L)}^\infty l \cdot f_L(l) \, dl
-    \]
-    <p>Using the definition of VaR, \( \text{VaR}_\alpha(L) = F_L^{-1}(\alpha) \), we can rewrite the integral as:</p>
-    \[
-    \text{CVaR}_\alpha(L) = \frac{1}{1 - \alpha} \int_\alpha^1 F_L^{-1}(u) \, du
-    \]
-    <p>This shows that CVaR is the average of the quantiles of the loss distribution above the \( \alpha \)-quantile.</p>
-</div>
-
-<div class="example">
-    <h4>Practical Applications</h4>
-    <ul>
-        <li><strong>Portfolio Risk Management:</strong> VaR and CVaR are widely used by financial institutions to assess the risk of trading portfolios. They help in setting risk limits and capital reserves.</li>
-        <li><strong>Regulatory Capital Requirements:</strong> Basel III regulations use VaR and CVaR to determine the capital banks must hold to cover market risks.</li>
-        <li><strong>Hedge Fund Strategies:</strong> Hedge funds use VaR and CVaR to evaluate the risk of complex strategies and optimize asset allocation.</li>
-        <li><strong>Insurance:</strong> Insurers use these metrics to assess the risk of catastrophic events and set premiums accordingly.</li>
-        <li><strong>Supply Chain Risk:</strong> Companies use VaR and CVaR to quantify the financial impact of disruptions in their supply chains.</li>
-        <li><strong>Machine Learning for Risk:</strong> In ML, CVaR is used as a loss function for robust optimization, particularly in scenarios where the cost of extreme errors is high (e.g., fraud detection, medical diagnosis).</li>
-    </ul>
-</div>
-
-<div class="note">
-    <h4>Implementing VaR and CVaR in Python</h4>
-    <p>Here’s how you can compute VaR and CVaR using <code>numpy</code> and <code>scipy</code>:</p>
-    <pre><code class="language-python">
-import numpy as np
-from scipy.stats import norm
-
-# Example: Parametric VaR and CVaR for normally distributed returns
-mu = 0.001  # daily mean return
-sigma = 0.02  # daily volatility
-alpha = 0.95  # confidence level
-t = 1  # 1-day horizon
-
-var = -(mu * t + sigma * np.sqrt(t) * norm.ppf(alpha))
-cvar = -(mu * t + sigma * np.sqrt(t) * norm.pdf(norm.ppf(alpha)) / (1 - alpha))
-
-print(f"VaR at {alpha*100}% confidence: {var:.4f}")
-print(f"CVaR at {alpha*100}% confidence: {cvar:.4f}")
-
-# Example: Non-parametric (historical) VaR and CVaR
-losses = np.array([-50, -20, 10, -30, 40, -10, 20, -60, 30, -40])
-sorted_losses = np.sort(losses)
-n = len(sorted_losses)
-k = int(np.ceil(n * (1 - alpha)))
-
-historical_var = sorted_losses[k-1]  # Python uses 0-based indexing
-historical_cvar = sorted_losses[k:].mean()
-
-print(f"Historical VaR at {alpha*100}% confidence: {historical_var}")
-print(f"Historical CVaR at {alpha*100}% confidence: {historical_cvar:.2f}")
-    </code></pre>
-</div>
-
-
-<h3 id="topic-42">Topic 42: Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</h3>
+<h3 id="topic-38">Topic 38: Copula Models: Gaussian, Clayton, and Gumbel Copulas for Dependency Modeling</h3>
 
 <div class="definition">
     <p><strong>Copula:</strong> A copula is a multivariate cumulative distribution function (CDF) defined on the unit hypercube \([0,1]^d\) such that every marginal distribution is uniform on \([0,1]\). Copulas allow us to model the dependence structure of random variables separately from their marginal distributions. Formally, for a \(d\)-dimensional random vector \(\mathbf{U} = (U_1, \ldots, U_d)\) with uniform marginals, the copula \(C\) is defined as:</p>
@@ -11881,16 +10650,16 @@ print(f"Estimated theta: {clayton.params[0]:.3f}")  # Should be close to 2.0</co
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 37-42: Quantitative Finance):</b>
-    <a href="https://en.wikipedia.org/wiki/Brownian_motion" target="_blank">Wikipedia: Brownian Motion</a> |
-    <a href="https://en.wikipedia.org/wiki/Black%E2%80%93Litterman_model" target="_blank">Wikipedia: Black-Litterman</a> |
-    <a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory" target="_blank">Wikipedia: Portfolio Theory</a> |
-    <a href="https://en.wikipedia.org/wiki/Value_at_risk" target="_blank">Wikipedia: VaR</a> |
+    <b>Further Reading (Topic 38: Copula Models):</b>
+
+
+
+
     <a href="https://en.wikipedia.org/wiki/Copula_(probability_theory)" target="_blank">Wikipedia: Copulas</a>
 </div>
 
 
-<h3 id="topic-43">Topic 43: Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</h3>
+<h3 id="topic-39">Topic 39: Survival Analysis: Kaplan-Meier Estimator and Cox Proportional Hazards Model</h3>
 
 <div class="definition">
     <p><strong>Survival Analysis:</strong> A branch of statistics that deals with the analysis of time-to-event data. The goal is to estimate the time until an event of interest occurs (e.g., death, failure, relapse). Key challenges include handling <em>censoring</em> (incomplete observations) and <em>time-dependent covariates</em>.</p>
@@ -12193,7 +10962,7 @@ print("Concordance index:", model.score(X_test, y_test))</code></pre>
 </div>
 
 
-<h3 id="topic-44">Topic 44: Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</h3>
+<h3 id="topic-40">Topic 40: Hyperparameter Tuning: Grid Search, Random Search, and Bayesian Optimization</h3>
 
 <div class="definition">
     <p><strong>Hyperparameter Tuning:</strong> The process of systematically searching for the optimal hyperparameters of a machine learning model to improve its performance. Unlike model parameters, hyperparameters are set before training and control the learning process.</p>
@@ -12510,7 +11279,7 @@ print("Best score:", study.best_value)</code></pre>
 </div>
 
 
-<h3 id="topic-45">Topic 45: Cross-Validation: k-Fold, Stratified, and Time Series CV</h3>
+<h3 id="topic-41">Topic 41: Cross-Validation: k-Fold, Stratified, and Time Series CV</h3>
 
 <div class="definition">
     <p><strong>Cross-Validation (CV):</strong> A statistical technique used to evaluate machine learning models by partitioning the dataset into subsets, training the model on some subsets (training set), and validating it on the remaining subsets (validation set). The goal is to assess how well a model generalizes to an independent dataset.</p>
@@ -12714,7 +11483,7 @@ print(f"Nested CV Score: {scores.mean():.3f}")</code></pre>
 </div>
 
 
-<h3 id="topic-46">Topic 46: Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</h3>
+<h3 id="topic-42">Topic 42: Feature Selection: Lasso, Mutual Information, and Recursive Feature Elimination</h3>
 
 <div class="definition">
     <p><strong>Feature Selection:</strong> The process of selecting a subset of relevant features (variables, predictors) for use in model construction. It improves model performance, reduces overfitting, and enhances interpretability.</p>
@@ -12956,7 +11725,7 @@ print("Feature rankings:", rfe.ranking_)</code></pre>
 </div>
 
 
-<h3 id="topic-47">Topic 47: Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</h3>
+<h3 id="topic-43">Topic 43: Imbalanced Learning: SMOTE, Class Weighting, and Anomaly Detection</h3>
 
 <div class="definition">
     <p><strong>Imbalanced Learning:</strong> A scenario in machine learning where the distribution of classes in the training data is highly skewed. Typically, one class (the minority class) has significantly fewer instances than the other(s) (the majority class). This imbalance can lead to poor model performance, especially for the minority class.</p>
@@ -13148,7 +11917,7 @@ X_resampled, y_resampled = smote.fit_resample(X_train, y_train)</code></pre>
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 43-47: Applied ML Methods):</b>
+    <b>Further Reading (Topics 39-43: Applied ML Methods):</b>
     <a href="https://en.wikipedia.org/wiki/Survival_analysis" target="_blank">Wikipedia: Survival Analysis</a> |
     <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization" target="_blank">Wikipedia: Hyperparameter Tuning</a> |
     <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)" target="_blank">Wikipedia: Cross-Validation</a> |
@@ -13157,7 +11926,7 @@ X_resampled, y_resampled = smote.fit_resample(X_train, y_train)</code></pre>
 </div>
 
 
-<h3 id="topic-48">Topic 48: PyTorch Autograd: Computational Graphs and Automatic Differentiation</h3>
+<h3 id="topic-44">Topic 44: PyTorch Autograd: Computational Graphs and Automatic Differentiation</h3>
 
 <div class="definition">
     <p><strong>Autograd:</strong> PyTorch's automatic differentiation engine that powers neural network training. It tracks operations on tensors to build a computational graph, then computes gradients via backpropagation.</p>
@@ -13378,7 +12147,7 @@ def forward_with_checkpoint(x):
 </div>
 
 
-<h3 id="topic-49">Topic 49: Scikit-Learn Pipeline: Custom Transformers and Column Transformers</h3>
+<h3 id="topic-45">Topic 45: Scikit-Learn Pipeline: Custom Transformers and Column Transformers</h3>
 
 <div class="definition">
     <p><strong>Scikit-Learn Pipeline:</strong> A tool in scikit-learn that sequentially applies a series of data transformations and a final estimator. Pipelines help streamline workflows by chaining multiple steps into a single object, ensuring that intermediate steps (e.g., imputation, scaling) are correctly applied during cross-validation and prediction.</p>
@@ -13602,7 +12371,7 @@ loaded_model = load('model_pipeline.joblib')
 </div>
 
 
-<h3 id="topic-50">Topic 50: Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</h3>
+<h3 id="topic-46">Topic 46: Model Interpretability: SHAP, LIME, and Partial Dependence Plots (PDPs)</h3>
 
 <div class="definition">
     <p><strong>Model Interpretability:</strong> The degree to which a human can understand the cause of a decision made by a machine learning model. Interpretability methods help explain <em>why</em> a model makes certain predictions, which is crucial for debugging, fairness, and regulatory compliance.</p>
@@ -13926,7 +12695,7 @@ shap.summary_plot(shap_values, X_test)</code></pre>
 </div>
 
 <div class="further-reading">
-    <b>Further Reading (Topics 48-50: Tools & Interpretability):</b>
+    <b>Further Reading (Topics 44-46: Tools & Interpretability):</b>
     <a href="https://pytorch.org/docs/stable/autograd.html" target="_blank">PyTorch: Autograd</a> |
     <a href="https://scikit-learn.org/stable/modules/compose.html" target="_blank">Scikit-Learn: Pipelines</a> |
     <a href="https://shap.readthedocs.io/" target="_blank">SHAP Documentation</a> |
@@ -13946,43 +12715,294 @@ shap.summary_plot(shap_values, X_test)</code></pre>
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
+        const tocList = document.getElementById('tocList');
+        const container = document.querySelector('.container');
+        const topicBuckets = [
+            { id: 'regression', start: 1, end: 5, label: '1-5 Regression & Fundamentals', title: 'Regression & Fundamentals' },
+            { id: 'classical-ml', start: 6, end: 10, label: '6-10 Classical ML Algorithms', title: 'Classical ML Algorithms' },
+            { id: 'prob-dimred', start: 11, end: 14, label: '11-14 Probabilistic Models & Dimensionality Reduction', title: 'Probabilistic Models & Dimensionality Reduction' },
+            { id: 'clustering', start: 15, end: 18, label: '15-18 Clustering Algorithms', title: 'Clustering Algorithms' },
+            { id: 'nn-fundamentals', start: 19, end: 24, label: '19-24 Neural Network Fundamentals', title: 'Neural Network Fundamentals' },
+            { id: 'deep-learning', start: 25, end: 30, label: '25-30 Deep Learning Architectures', title: 'Deep Learning Architectures' },
+            { id: 'rl', start: 31, end: 32, label: '31-32 Reinforcement Learning', title: 'Reinforcement Learning' },
+            { id: 'stat-models', start: 33, end: 39, label: '33-39 Statistical & Sequential Models', title: 'Statistical & Sequential Models' },
+            { id: 'applied-ml', start: 40, end: 43, label: '40-43 Model Selection & Robust Learning', title: 'Model Selection & Robust Learning' },
+            { id: 'tooling', start: 44, end: 46, label: '44-46 Tooling & Interpretability', title: 'Tooling & Interpretability' }
+        ];
 
         menuToggle.addEventListener('click', function() {
             sidebar.classList.toggle('active');
         });
 
-        // Close sidebar when clicking on a link (mobile)
-        const tocLinks = document.querySelectorAll('.toc-list a');
-        tocLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
+        function getTopicNumber(topicId) {
+            const match = topicId.match(/^topic-(\d+)$/);
+            return match ? parseInt(match[1], 10) : null;
+        }
+
+        function getBucketForTopic(topicId) {
+            const topicNumber = getTopicNumber(topicId);
+            return topicBuckets.find((bucket) => topicNumber >= bucket.start && topicNumber <= bucket.end) || {
+                id: 'other',
+                label: 'Other Topics',
+                title: 'Other Topics'
+            };
+        }
+
+        function slugify(text) {
+            return text
+                .toLowerCase()
+                .replace(/&/g, 'and')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '')
+                .slice(0, 60);
+        }
+
+        function formatTopicTitle(text) {
+            return text.trim().replace(/^Topic\s+([0-9A-Za-z]+):\s*/, '$1. ');
+        }
+
+        function formatSectionTitle(text) {
+            return text.trim().replace(/^\d+\.?\s*/, '');
+        }
+
+        function wrapTopics() {
+            const topicHeadings = Array.from(container.querySelectorAll('h3[id^="topic-"]'));
+
+            topicHeadings.forEach((heading) => {
+                if (heading.closest('.topic-panel')) {
+                    return;
+                }
+
+                const panel = document.createElement('section');
+                panel.className = 'topic-panel';
+                panel.dataset.topicId = heading.id;
+                heading.parentNode.insertBefore(panel, heading);
+
+                let current = heading;
+                while (current) {
+                    if (current !== heading && current.nodeType === Node.ELEMENT_NODE && current.matches('h3[id^="topic-"]')) {
+                        break;
+                    }
+
+                    const next = current.nextSibling;
+                    panel.appendChild(current);
+                    current = next;
+                }
+            });
+        }
+
+        function labelTopicPanels() {
+            document.querySelectorAll('.topic-panel').forEach((panel) => {
+                const topicHeading = panel.querySelector('h3[id^="topic-"]');
+                const bucket = getBucketForTopic(topicHeading.id);
+
+                panel.dataset.bucketId = bucket.id;
+
+                if (!panel.querySelector('.topic-bucket-label')) {
+                    const label = document.createElement('div');
+                    label.className = 'topic-bucket-label';
+                    label.textContent = bucket.title;
+                    panel.insertBefore(label, topicHeading);
+                }
+            });
+        }
+
+        function assignSectionIds() {
+            const usedIds = new Set(Array.from(document.querySelectorAll('[id]')).map((element) => element.id));
+
+            document.querySelectorAll('.topic-panel').forEach((panel) => {
+                const topicHeading = panel.querySelector('h3[id^="topic-"]');
+                const sectionHeadings = Array.from(panel.querySelectorAll('h4'));
+
+                sectionHeadings.forEach((heading, index) => {
+                    if (heading.id) {
+                        return;
+                    }
+
+                    const baseSlug = slugify(formatSectionTitle(heading.textContent)) || `section-${index + 1}`;
+                    let candidateId = `${topicHeading.id}-${baseSlug}`;
+                    let counter = 2;
+
+                    while (usedIds.has(candidateId)) {
+                        candidateId = `${topicHeading.id}-${baseSlug}-${counter}`;
+                        counter += 1;
+                    }
+
+                    heading.id = candidateId;
+                    usedIds.add(candidateId);
+                });
+            });
+        }
+
+        function buildToc() {
+            const linkMap = new Map();
+            const topicItems = new Map();
+            const topicPanels = Array.from(document.querySelectorAll('.topic-panel'));
+            const bucketLists = new Map();
+
+            tocList.innerHTML = '';
+
+            topicBuckets.forEach((bucket) => {
+                const bucketItem = document.createElement('li');
+                const bucketLabel = document.createElement('div');
+                const bucketList = document.createElement('ol');
+
+                bucketItem.className = 'toc-bucket';
+                bucketItem.dataset.bucketId = bucket.id;
+
+                bucketLabel.className = 'toc-bucket-label';
+                bucketLabel.textContent = bucket.label;
+
+                bucketList.className = 'toc-bucket-list';
+
+                bucketItem.appendChild(bucketLabel);
+                bucketItem.appendChild(bucketList);
+                tocList.appendChild(bucketItem);
+                bucketLists.set(bucket.id, bucketList);
+            });
+
+            topicPanels.forEach((panel) => {
+                const topicHeading = panel.querySelector('h3[id^="topic-"]');
+                const sectionHeadings = Array.from(panel.querySelectorAll('h4'));
+                const topicItem = document.createElement('li');
+                const topicButton = document.createElement('button');
+                const subList = document.createElement('ol');
+                const bucket = getBucketForTopic(topicHeading.id);
+
+                topicItem.className = 'toc-topic';
+                topicItem.dataset.topicId = topicHeading.id;
+                topicItem.dataset.hasSections = sectionHeadings.length > 0 ? 'true' : 'false';
+
+                topicButton.className = 'toc-topic-button';
+                topicButton.type = 'button';
+                topicButton.textContent = formatTopicTitle(topicHeading.textContent);
+                topicButton.setAttribute('aria-expanded', 'false');
+                topicButton.addEventListener('click', function() {
+                    if (sectionHeadings.length > 0 && topicItem.classList.contains('expanded')) {
+                        setExpandedTopic(null);
+                        return;
+                    }
+
+                    setExpandedTopic(topicHeading.id);
+                    history.replaceState(null, '', `#${topicHeading.id}`);
+                    topicHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+
+                subList.className = 'toc-sublist';
+
+                sectionHeadings.forEach((sectionHeading) => {
+                    const sectionItem = document.createElement('li');
+                    const sectionLink = document.createElement('a');
+
+                    sectionItem.className = 'toc-subitem';
+                    sectionLink.className = 'toc-section-link';
+                    sectionLink.href = `#${sectionHeading.id}`;
+                    sectionLink.textContent = formatSectionTitle(sectionHeading.textContent);
+                    sectionLink.dataset.topicId = topicHeading.id;
+
+                    sectionItem.appendChild(sectionLink);
+                    subList.appendChild(sectionItem);
+                    linkMap.set(sectionHeading.id, sectionLink);
+                });
+
+                topicItem.appendChild(topicButton);
+                topicItem.appendChild(subList);
+                bucketLists.get(bucket.id).appendChild(topicItem);
+
+                linkMap.set(topicHeading.id, topicButton);
+                topicItems.set(topicHeading.id, topicItem);
+            });
+
+            return { linkMap, topicItems };
+        }
+
+        let tocState = {
+            linkMap: new Map(),
+            topicItems: new Map()
+        };
+
+        function setExpandedTopic(topicId) {
+            tocState.topicItems.forEach((item, id) => {
+                const isExpanded = topicId !== null && id === topicId;
+                item.classList.toggle('expanded', isExpanded);
+                const button = item.querySelector('.toc-topic-button');
+                if (button) {
+                    button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                }
+            });
+        }
+
+        function setActiveHeading(id) {
+            tocState.linkMap.forEach((link) => {
+                link.classList.remove('active');
+            });
+
+            const activeLink = tocState.linkMap.get(id);
+            if (!activeLink) {
+                return;
+            }
+
+            activeLink.classList.add('active');
+
+            const topicId = activeLink.dataset.topicId || id;
+            const topicButton = tocState.linkMap.get(topicId);
+            if (topicButton && topicButton !== activeLink) {
+                topicButton.classList.add('active');
+            }
+
+            setExpandedTopic(topicId);
+        }
+
+        function currentHeadingId() {
+            const headings = Array.from(document.querySelectorAll('.topic-panel h3[id^="topic-"], .topic-panel h4[id]'));
+            const offset = 140;
+            let activeHeading = headings[0];
+
+            headings.forEach((heading) => {
+                if (heading.getBoundingClientRect().top <= offset) {
+                    activeHeading = heading;
+                }
+            });
+
+            return activeHeading ? activeHeading.id : null;
+        }
+
+        function initializeTopicNavigation() {
+            wrapTopics();
+            labelTopicPanels();
+            assignSectionIds();
+            tocState = buildToc();
+
+            sidebar.addEventListener('click', function(event) {
+                const sectionLink = event.target.closest('.toc-section-link');
+                if (sectionLink && window.innerWidth <= 768) {
                     sidebar.classList.remove('active');
                 }
             });
-        });
 
-        // Highlight active section in TOC
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    tocLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
+            const initialId = window.location.hash ? window.location.hash.slice(1) : currentHeadingId();
+            if (initialId) {
+                const initialTopicId = (tocState.linkMap.get(initialId) && tocState.linkMap.get(initialId).dataset.topicId) || initialId;
+                setExpandedTopic(initialTopicId);
+                setActiveHeading(initialId);
+            }
+
+            window.addEventListener('scroll', function() {
+                const activeId = currentHeadingId();
+                if (activeId) {
+                    setActiveHeading(activeId);
+                }
+            }, { passive: true });
+
+            window.addEventListener('hashchange', function() {
+                const activeId = window.location.hash.slice(1);
+                if (activeId) {
+                    setActiveHeading(activeId);
                 }
             });
-        }, {
-            rootMargin: '-100px 0px -66%',
-            threshold: 0
-        });
+        }
 
-        // Observe all h3 headings
-        document.querySelectorAll('h3[id^="topic-"]').forEach(heading => {
-            observer.observe(heading);
-        });
+        initializeTopicNavigation();
     </script>
 </body>
 </html>
