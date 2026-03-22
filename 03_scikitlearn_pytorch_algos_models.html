@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scikit-Learn & PyTorch: ML Algorithms & Models - Interview Cheatsheet</title>
+    <title>Scikit-Learn & PyTorch: ML Algorithms & Models - Cheatsheet</title>
     
     <!-- MathJax for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -488,7 +488,7 @@
         <div class="main-content">
             <div class="container">
         <h1>Scikit-Learn & PyTorch: ML Algorithms & Models</h1>
-        <p class="subtitle">Comprehensive Interview Cheatsheet - 46 Key Topics</p>
+<p class="subtitle">Comprehensive Cheatsheet - 47 Key Topics</p>
         
         
 <h3 id="topic-1">Topic 1: Linear Regression: Closed-Form Solution vs. Gradient Descent</h3>
@@ -1102,10 +1102,10 @@ for epoch in range(1000):
 
 <hr>
 
-<h4>8. Key Takeaways for Interviews</h4>
+<h4>8. Key Takeaways and Review Questions</h4>
 
 <div class="example">
-    <p><strong>Common Interview Questions and Answers:</strong></p>
+    <p><strong>Common Questions and Answers:</strong></p>
     <ol>
         <li>
             <p><strong>Q: What is the difference between Ridge and Lasso regression?</strong></p>
@@ -1902,7 +1902,7 @@ print(f"Test Accuracy: {accuracy:.4f}")</code></pre>
 </div>
 
 <div class="note">
-    <h4>Interview Questions and Answers</h4>
+    <h4>Review Questions and Answers</h4>
     <ol>
         <li>
             <p><strong>Q: Explain the bias-variance tradeoff in your own words.</strong></p>
@@ -3227,7 +3227,7 @@ model.fit(
 </div>
 
 <div class="note">
-    <p><strong>Common Interview Questions:</strong></p>
+    <p><strong>Common Questions:</strong></p>
     <ol>
         <li>Explain the difference between bagging and boosting. How does GBM fit into this?</li>
         <li>Why does XGBoost use second-order derivatives? How does this improve performance?</li>
@@ -3798,7 +3798,7 @@ class GaussianNaiveBayes:
 </div>
 
 <div class="note">
-    <p><strong>Interview Tips:</strong></p>
+    <p><strong>Study Tips:</strong></p>
     <ul>
         <li>Understand the differences between the three variants and when to use each.</li>
         <li>Be prepared to derive the key formulas (e.g., Gaussian PDF, multinomial likelihood) from scratch.</li>
@@ -4257,7 +4257,7 @@ print("Explained variance ratio:", svd.explained_variance_ratio_)</code></pre>
     </ol>
 </div>
 
-<h4>Interview Questions and Answers</h4>
+<h4>Review Questions and Answers</h4>
 <div class="example">
     <p><strong>Q1: What is the difference between SVD and PCA?</strong></p>
     <p><strong>A:</strong> PCA is a dimensionality reduction technique that uses SVD as its computational backbone. Specifically, PCA involves centering the data matrix \( X \) and then computing its SVD: \( X = U \Sigma V^T \). The principal components are the columns of \( V \), and the projected data is \( U \Sigma \). SVD is a more general matrix factorization technique that can be applied to any matrix, while PCA is a specific application of SVD to data analysis.</p>
@@ -4770,7 +4770,7 @@ labels, centroids = kmeans_pytorch(X, k=2)</code></pre>
 </section>
 
 <section>
-    <h4>Interview Questions</h4>
+    <h4>Review Questions</h4>
 
     <div class="example">
         <p><strong>1. What is the objective function of k-means, and how does Lloyd’s algorithm minimize it?</strong></p>
@@ -5289,7 +5289,7 @@ plt.show()
 
 <hr>
 
-<h4>Interview Questions</h4>
+<h4>Review Questions</h4>
 <div class="example">
     <ol>
         <li>
@@ -6286,7 +6286,7 @@ mlp.fit(X_train, y_train)</code></pre>
 </section>
 
 <section>
-    <h4>Common Interview Questions</h4>
+    <h4>Common Questions</h4>
 
     <div class="example">
         <p><strong>1. Why do we need activation functions in neural networks?</strong></p>
@@ -7254,7 +7254,7 @@ nn.Sequential(
 </section>
 
 <section>
-    <h4>Interview Questions and Answers</h4>
+    <h4>Review Questions and Answers</h4>
 
     <div class="example">
         <p><strong>Q1: Why is inverted scaling used in dropout?</strong></p>
@@ -7923,6 +7923,66 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
     where \(W_1 \in \mathbb{R}^{d_{\text{model}} \times d_{ff}}\), \(W_2 \in \mathbb{R}^{d_{ff} \times d_{\text{model}}}\), and \(d_{ff}\) is typically 4 times \(d_{\text{model}}\).
 </div>
 
+<div class="definition">
+    <strong>What the Feed-Forward Network Means:</strong>
+    The feed-forward network in a Transformer is a standard neural network applied independently to each token vector. It does not mix information across different token positions; instead, it takes the representation of one token after attention and transforms that token locally with a learned nonlinear function.
+</div>
+
+<div class="formula">
+    <strong>Typical Feed-Forward Form:</strong>
+    A common formulation is:
+    \[
+    \text{FFN}(x) = W_2 \, \sigma(W_1 x + b_1) + b_2
+    \]
+    where:
+    <ul>
+        <li>\(W_1\) expands the hidden dimension,</li>
+        <li>\(\sigma\) is a nonlinearity such as GELU or ReLU,</li>
+        <li>\(W_2\) projects the representation back down to the model dimension.</li>
+    </ul>
+</div>
+
+<div class="note">
+    <strong>Important Insight:</strong>
+    Attention and the feed-forward network play different roles:
+    <ul>
+        <li><strong>Attention:</strong> mixes information across token positions.</li>
+        <li><strong>FFN:</strong> does not mix tokens; it performs local nonlinear processing on each token separately.</li>
+    </ul>
+    So a useful mental model is: <strong>attention = communication across positions</strong>, while <strong>FFN = local nonlinear processing at each position</strong>.
+</div>
+
+<div class="formula">
+    <strong>Layer Normalization, Concretely:</strong>
+    For a token vector
+    \[
+    x = (x_1, \dots, x_d)
+    \]
+    we compute the mean and variance across its feature coordinates:
+    \[
+    \mu = \frac{1}{d} \sum_{i=1}^{d} x_i, \qquad
+    \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2
+    \]
+    then normalize each coordinate:
+    \[
+    \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}
+    \]
+    and finally apply a learned scale and shift:
+    \[
+    y_i = \gamma_i \hat{x}_i + \beta_i
+    \]
+    In Transformers, this normalization is done <strong>per token</strong>, across that token's feature dimension. It is not computed across the whole batch and not across different token positions.
+</div>
+
+<div class="note">
+    <strong>Learned Scale and Shift:</strong>
+    In layer normalization, \(\gamma\) is the learned scale and \(\beta\) is the learned shift. Both are trainable vectors of length \(d\), with one parameter per feature coordinate. After normalization, the model can still learn to amplify or damp specific coordinates and to shift them upward or downward. They are usually initialized as
+    \[
+    \gamma = 1, \qquad \beta = 0
+    \]
+    so initially layer normalization behaves like standard normalization, and training later learns the best affine correction.
+</div>
+
 <div class="formula">
     <strong>Positional Encoding:</strong>
     Since the Transformer contains no recurrence or convolution, positional encodings are added to the input embeddings to inject information about the relative or absolute position of the tokens:
@@ -7933,6 +7993,65 @@ pool = torch.nn.MaxPool2d(kernel_size=2, stride=2)</code></pre>
     \text{PE}_{(\text{pos}, 2i+1)} = \cos\left(\frac{\text{pos}}{10000^{2i/d_{\text{model}}}}\right)
     \]
     where \(\text{pos}\) is the position and \(i\) is the dimension.
+</div>
+
+<hr>
+
+<h4>Training and Optimization</h4>
+
+<div class="definition">
+    <strong>How Attention Weights and FFN Weights Are Learned Without Being Mixed Up:</strong>
+    The parameters for attention and the parameters for the feed-forward network are learned jointly from the same loss, but they remain separate parameter tensors in different parts of the computation graph. In a Transformer block, the attention sublayer has its own parameters such as
+    \[
+    W_Q,\; W_K,\; W_V,\; W_O
+    \]
+    while the feed-forward network has a different parameter set such as
+    \[
+    W_1,\; b_1,\; W_2,\; b_2.
+    \]
+    These parameter groups are not merged or confused: the architecture keeps their roles separate, and the computation graph preserves which operations depend on which parameters.
+</div>
+
+<div class="formula">
+    <strong>Separate Gradients for Separate Parameter Sets:</strong>
+    During backpropagation, the loss sends gradients backward through the graph, and each parameter receives its own partial derivative:
+    \[
+    \frac{\partial L}{\partial W_Q}, \quad
+    \frac{\partial L}{\partial W_K}, \quad
+    \frac{\partial L}{\partial W_V}, \quad
+    \frac{\partial L}{\partial W_1}, \quad \dots
+    \]
+    So the attention parameters and FFN parameters are optimized together as part of one model, but they are updated according to their own separate gradients.
+</div>
+
+<div class="note">
+    <strong>Key Insight:</strong>
+    The architecture separates the roles of the parameter sets, and backpropagation computes separate gradients accordingly. That is why the model can learn both cross-token communication in attention and local nonlinear processing in the FFN without the weights getting mixed up.
+</div>
+
+<div class="definition">
+    <strong>Backpropagation Versus Gradient Descent:</strong>
+    Backpropagation and gradient descent are related but different:
+    <ul>
+        <li><strong>Backpropagation:</strong> computes gradients of the loss with respect to each parameter.</li>
+        <li><strong>Gradient descent or another optimizer:</strong> uses those gradients to update the parameters.</li>
+    </ul>
+    So the training pipeline is:
+    <ol>
+        <li>Forward pass</li>
+        <li>Compute loss</li>
+        <li>Backpropagation computes gradients</li>
+        <li>Optimizer updates parameters</li>
+    </ol>
+</div>
+
+<div class="formula">
+    <strong>Parameter Update Rule:</strong>
+    For vanilla gradient descent, the update is:
+    \[
+    \theta \leftarrow \theta - \eta \nabla_{\theta} L
+    \]
+    where \(\eta\) is the learning rate. In modern Transformers, the optimizer is usually not plain gradient descent; it is more commonly Adam or AdamW. A more precise statement is therefore: backpropagation computes the gradients, and an optimizer such as AdamW uses them to update the weights.
 </div>
 
 <hr>
@@ -12703,6 +12822,146 @@ shap.summary_plot(shap_values, X_test)</code></pre>
     <a href="https://christophm.github.io/interpretable-ml-book/" target="_blank">Interpretable ML Book</a>
 </div>
 
+<h3 id="topic-47">Topic 47: Deep Hedging: Learned Dynamic Hedging Policies Under Costs, Constraints, and Risk Objectives</h3>
+
+<div class="definition">
+    <p><strong>Deep Hedging:</strong> A framework introduced by Buehler et al. that treats hedging as a <strong>sequential stochastic control</strong> or reinforcement learning style problem. Instead of deriving a local hedge rule from a pricing model and its Greeks, it learns a <strong>dynamic trading policy</strong> that directly optimizes a risk objective under realistic market frictions.</p>
+</div>
+
+<div class="note">
+    <p><strong>Main Shift:</strong></p>
+    <p>Classical hedging often follows:</p>
+    \[
+    \text{model} \rightarrow \text{Greek formula} \rightarrow \text{local hedge rule}
+    \]
+    <p>Deep hedging instead uses:</p>
+    \[
+    \text{market simulator} + \text{cost model} + \text{risk objective} \rightarrow \text{learned global hedge policy}
+    \]
+    <p>The hedge is not derived analytically from replication arguments in an ideal frictionless market. It is learned directly as the policy that gives the best trade-off between risk, trading cost, and constraints in the world you actually model.</p>
+</div>
+
+<hr>
+
+<h4>1. Sequential Control Formulation</h4>
+
+<div class="definition">
+    <p>Deep hedging views the problem as a repeated decision process over time. At each trading date, the hedger observes the current state, chooses trades in available hedging instruments, pays costs, updates inventory, and continues until terminal P&amp;L is realized.</p>
+</div>
+
+<div class="formula">
+    <p>A compact formulation is:</p>
+    \[
+    a_t = \pi_{\theta}(s_t)
+    \]
+    <p>where:</p>
+    <ul>
+        <li>\(s_t\) is the state at time \(t\),</li>
+        <li>\(a_t\) is the trade or hedge action,</li>
+        <li>\(\pi_{\theta}\) is a parameterized policy, typically a neural network.</li>
+    </ul>
+    <p>The training objective is usually written as either:</p>
+    \[
+    \min_{\theta} \rho\!\left(-\mathrm{PnL}_T^{\pi_{\theta}}\right)
+    \]
+    <p>for a risk measure \(\rho\) such as CVaR, or equivalently:</p>
+    \[
+    \max_{\theta} \mathbb{E}\!\left[U\!\left(\mathrm{PnL}_T^{\pi_{\theta}}\right)\right]
+    \]
+    <p>for a utility function \(U\).</p>
+</div>
+
+<div class="definition">
+    <p><strong>State:</strong> Current market information, time, current inventory, liability information, and possibly path-dependent features.</p>
+    <p><strong>Action:</strong> How much to trade now in each hedging instrument.</p>
+    <p><strong>Dynamics:</strong> A simulator for market evolution, portfolio evolution, costs, liquidity, and constraints.</p>
+    <p><strong>Objective:</strong> Minimize a risk-adjusted terminal hedging loss, not just match instantaneous Greeks.</p>
+</div>
+
+<hr>
+
+<h4>2. Why It Differs from Classical Delta Hedging</h4>
+
+<div class="note">
+    <p><strong>Why classical delta hedging is limited:</strong></p>
+    <ul>
+        <li>It is optimal only in a fairly idealized setting: continuous trading, no transaction costs, correct model, enough hedging instruments, and a frictionless complete market.</li>
+        <li>In realistic settings, desks face discrete rebalancing, nonlinear costs, liquidity limits, inventory constraints, multiple assets, path dependence, and asymmetric risk objectives.</li>
+        <li>Once those frictions matter, the optimal hedge is usually not a simple closed-form Greek rule.</li>
+    </ul>
+    <p><strong>Very important:</strong> A Greek is a local sensitivity; a hedging policy is a global control law. Deep hedging targets the second object.</p>
+</div>
+
+<div class="example">
+    <p><strong>Interpretation:</strong> Delta tells you how the portfolio reacts to an infinitesimal move right now. A deep hedging policy decides what trade to make now while accounting for future costs, future risk, remaining time, current inventory, and the fact that you may rebalance again later.</p>
+</div>
+
+<hr>
+
+<h4>3. Why AI Helps</h4>
+
+<div class="definition">
+    <p>AI matters here mainly as a <strong>function approximator</strong> and numerical optimizer for hard dynamic control problems. The value is not that a neural network discovers new finance laws, but that it can represent a rich nonlinear map from state to hedge action in high-dimensional constrained environments.</p>
+</div>
+
+<div class="note">
+    <p><strong>A neural network policy can learn to:</strong></p>
+    <ul>
+        <li>trade less when transaction costs are high,</li>
+        <li>stay inside effective no-trade bands,</li>
+        <li>use multiple hedging instruments jointly,</li>
+        <li>react differently based on inventory, time-to-maturity, and path history,</li>
+        <li>optimize directly for CVaR, utility, or tail risk rather than variance alone.</li>
+    </ul>
+    <p>In easy cases, the network may rediscover familiar structures such as delta hedging with no-trade bands. In harder cases, it can outperform hand-designed heuristics because the true optimum is too complex to derive analytically.</p>
+</div>
+
+<div class="formula">
+    <p><strong>Training loop:</strong></p>
+    \[
+    \text{simulate paths} \rightarrow \text{run policy} \rightarrow \text{compute terminal PnL and costs} \rightarrow \text{optimize } \theta
+    \]
+    <p>This is why deep hedging is naturally related to reinforcement learning and stochastic control.</p>
+</div>
+
+<hr>
+
+<h4>4. Practical Caveats</h4>
+
+<div class="note">
+    <p><strong>Important caveats:</strong></p>
+    <ul>
+        <li>The learned hedge is only as good as the simulator, cost model, and training distribution used to generate paths.</li>
+        <li>If those assumptions are misspecified, the policy may be highly optimized for the wrong world.</li>
+        <li>Interpretability, robustness, and out-of-sample regime shifts remain serious concerns.</li>
+        <li>Deep hedging does not imply that neural networks dominate classical hedging in every setting.</li>
+    </ul>
+</div>
+
+<div class="example">
+    <p><strong>Honest summary:</strong></p>
+    <ul>
+        <li>In a Black-Scholes style frictionless continuous-time world, AI adds little conceptual value because the classical solution is already known.</li>
+        <li>In realistic desk settings with costs, discrete rebalancing, multiple instruments, and constraints, AI can matter a lot because the problem becomes a difficult dynamic optimization problem.</li>
+    </ul>
+</div>
+
+<hr>
+
+<h4>5. Quick Summary</h4>
+
+<div class="note">
+    <p><strong>Concise phrasing:</strong> Deep Hedging learns the whole dynamic hedge policy directly from simulated market paths by optimizing a risk measure net of transaction costs and constraints. Its edge over classical hedging is not that it replaces finance theory, but that it solves realistic high-dimensional constrained hedging problems where closed-form Greek-based rules are no longer optimal or even available.</p>
+</div>
+
+<div class="formula">
+    <p><strong>Compact contrast:</strong></p>
+    <ul>
+        <li><strong>Classical hedging:</strong> derive the hedge from a pricing model, usually local and frictionless.</li>
+        <li><strong>Deep hedging:</strong> learn the hedge policy directly for the objective, frictions, and constraints you actually face.</li>
+    </ul>
+</div>
+
 
 
     </div>
@@ -12727,7 +12986,8 @@ shap.summary_plot(shap_values, X_test)</code></pre>
             { id: 'rl', start: 31, end: 32, label: '31-32 Reinforcement Learning', title: 'Reinforcement Learning' },
             { id: 'stat-models', start: 33, end: 39, label: '33-39 Statistical & Sequential Models', title: 'Statistical & Sequential Models' },
             { id: 'applied-ml', start: 40, end: 43, label: '40-43 Model Selection & Robust Learning', title: 'Model Selection & Robust Learning' },
-            { id: 'tooling', start: 44, end: 46, label: '44-46 Tooling & Interpretability', title: 'Tooling & Interpretability' }
+            { id: 'tooling', start: 44, end: 46, label: '44-46 Tooling & Interpretability', title: 'Tooling & Interpretability' },
+            { id: 'quant-ai', start: 47, end: 47, label: '47 AI in Quant Finance', title: 'AI in Quant Finance' }
         ];
 
         menuToggle.addEventListener('click', function() {
