@@ -1303,6 +1303,10 @@ for epoch in range(1000):
 
 <hr>
 
+
+
+<hr>
+
 <h4>Practical Applications</h4>
 
 <div class="example">
@@ -11396,6 +11400,106 @@ print("Best score:", study.best_value)</code></pre>
 <div class="note">
     <p><strong>7. Objective Function Design:</strong> The choice of objective function (e.g., accuracy vs. F1-score) can significantly impact results. Ensure the objective aligns with the problem's goals.</p>
 </div>
+
+
+<hr>
+
+<h4>4. Genetic Algorithms and Elitist Selection (including Solgi's PyPI GA)</h4>
+
+<div class="definition">
+    <p><strong>Genetic Algorithm (GA):</strong> A population-based metaheuristic inspired by biological evolution. Candidate solutions (chromosomes) evolve over generations using selection, crossover, and mutation to optimize an objective function.</p>
+</div>
+
+<div class="definition">
+    <p><strong>Elitist Algorithm (Elitism):</strong> A GA strategy where the top-performing individuals are copied unchanged into the next generation. This preserves the current best solutions and stabilizes convergence.</p>
+</div>
+
+<div class="formula">
+    <p>For population size \(N\) and elitism count \(e\), the next generation can be expressed as:</p>
+    \[
+    P_{t+1} = E_t \cup O_t, \quad |E_t| = e, \quad |O_t| = N-e
+    \]
+    <p>where \(E_t\) are elites from generation \(t\) and \(O_t\) are offspring produced via selection, crossover, and mutation.</p>
+</div>
+
+<div class="note">
+    <p><strong>Why elitism is useful:</strong></p>
+    <ul>
+        <li>Prevents losing the best solution due to random mutations.</li>
+        <li>Usually improves convergence speed and final objective value.</li>
+        <li>Common practical choice: elitism ratio between 1% and 10%.</li>
+    </ul>
+</div>
+
+<div class="note">
+    <p><strong>Potential downsides of excessive elitism:</strong></p>
+    <ul>
+        <li>Reduced diversity in the population.</li>
+        <li>Premature convergence to local optima.</li>
+        <li>Can be mitigated with stronger mutation, tournament pressure tuning, or occasional random immigrants.</li>
+    </ul>
+</div>
+
+<div class="example">
+    <p><strong>Solgi's PyPI Genetic Algorithm (<code>geneticalgorithm</code>) with scikit-learn:</strong></p>
+    <pre><code class="language-python"># Install Ryan (Mohammad) Solgi's package:
+# pip install geneticalgorithm
+
+import numpy as np
+from geneticalgorithm import geneticalgorithm as ga
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+
+# Objective must be minimized in this package, so we return negative CV accuracy.
+def objective(x):
+    n_estimators = int(x[0])               # [50, 500]
+    max_depth = int(x[1])                  # [1, 30]
+    min_samples_split = int(x[2])          # [2, 20]
+
+    model = RandomForestClassifier(
+        n_estimators=n_estimators,
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        random_state=42
+    )
+    score = cross_val_score(model, X_train, y_train, cv=5, scoring="accuracy").mean()
+    return -score
+
+varbound = np.array([[50, 500], [1, 30], [2, 20]])
+
+algorithm_param = {
+    'max_num_iteration': 80,
+    'population_size': 60,
+    'mutation_probability': 0.1,
+    'elit_ratio': 0.05,      # key elitist parameter
+    'crossover_probability': 0.8,
+    'parents_portion': 0.3,
+    'crossover_type': 'uniform',
+    'max_iteration_without_improv': 15
+}
+
+model = ga(
+    function=objective,
+    dimension=3,
+    variable_type='int',
+    variable_boundaries=varbound,
+    algorithm_parameters=algorithm_param
+)
+model.run()
+
+best_solution = model.output_dict['variable']
+best_cv_acc = -model.output_dict['function']
+print(best_solution, best_cv_acc)</code></pre>
+</div>
+
+<div class="note">
+    <p><strong>Integration tip with scikit-learn:</strong> Wrap GA evaluation around cross-validation and keep a fixed validation protocol. This makes GA, grid search, random search, and Bayesian optimization directly comparable on the same task.</p>
+</div>
+
+<div class="note">
+    <p><strong>Naming note:</strong> The PyPI package is commonly referenced as Solgi's <code>geneticalgorithm</code> package (the surname is sometimes misspelled as "Sogi").</p>
+</div>
+
 
 
 <h3 id="topic-41">Topic 41: Cross-Validation: k-Fold, Stratified, and Time Series CV</h3>
